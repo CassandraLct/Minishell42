@@ -27,6 +27,8 @@
 
 ------Partie Obligatoire-----
 
+![Screen Shot 2022-10-14 at 10 59 56 AM](https://user-images.githubusercontent.com/90134090/195809050-7219dd8e-3d77-4a3b-b855-2f5ff8dd27a7.png)
+
 ->Votre shell doit :
     • Afficher un prompt en l’attente d’une nouvelle commande.
     • Posséder un historique fonctionnel.
@@ -64,4 +66,12 @@
 ->La fonction readline() peut causer des fuites de mémoire. Vous n’avez pas à les gérer. Attention, cela ne veut pas
 	pour autant dire que votre code, oui celui que vous avez écrit, peut avoir des fuites de mémoire.
 
+![Screen Shot 2022-10-14 at 11 06 33 AM](https://user-images.githubusercontent.com/90134090/195809147-5d110a62-0b5c-480d-b630-c00631e94988.png)
+
 ------Potentiel Bonus-------
+
+
+/!\ si partie obligatoire parfaite /!\
+
+![Screen Shot 2022-10-14 at 11 00 19 AM](https://user-images.githubusercontent.com/90134090/195809108-25d8acc7-5014-4f85-bb26-81015dcf214f.png)
+
