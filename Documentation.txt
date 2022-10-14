@@ -1,6 +1,63 @@
 reproduire un shell
 
 se documenter sur :
+	-fichier a rendre
 	-fonction autorisee!
 	-commande a recreer
 	-comportement du bash
+
+____FICHIER A RENDRE______
+
+*nom programme : minishell
+*doit contenire: Makefile, .h et .c
+*possibiliter d'utiliser notre libft
+
+______FONCTION AUTORISEE_____
+
+printf,malloc,free,write,access,open,read,close,
+*readline :
+*rl_clear_history:
+*rl_on_new_line:
+*rl_replace_line:
+*rl_redisplay:
+*add_history:
+*fork:
+*wait:
+*waitpid:
+*wait3:
+*wait4:
+*signal:
+*sigaction:
+*sigemptyset:
+*sigaddset:
+*kill:
+*exit:
+*getcwd:
+*chdir:
+*stat:
+*lstat:
+*fstat:
+*unlink:
+*execve:
+*dup:
+*dup2:
+*pipe:
+*opendir:
+*readdir:
+*closedir:
+*strerror:
+*perror:
+*isatty:
+*ttyname:
+*ttyslot:
+*ioctl:
+*getenv:
+*tcsetattr:
+*tcgetattr:
+*tgetent:
+*tgetflag:
+*tgetnum:
+*tgetstr:
+*tgoto:
+*tputs:
+
