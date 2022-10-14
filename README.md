@@ -53,6 +53,7 @@
 
 ------Potentiel Bonus-------
 
+
 /!\ si partie obligatoire parfaite /!\
 
 ![Screen Shot 2022-10-14 at 11 00 19 AM](https://user-images.githubusercontent.com/90134090/195809108-25d8acc7-5014-4f85-bb26-81015dcf214f.png)
