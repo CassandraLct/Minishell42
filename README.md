@@ -1,5 +1,7 @@
 # Minishell42
 
+_Donne 20 jour de BLACKHOLE_
+
 ------Regles Communes-------
 
 	• Votre projet doit être écrit en C.
@@ -69,7 +71,6 @@
 ![Screen Shot 2022-10-14 at 11 06 33 AM](https://user-images.githubusercontent.com/90134090/195809147-5d110a62-0b5c-480d-b630-c00631e94988.png)
 
 ------Potentiel Bonus-------
-
 
 /!\ si partie obligatoire parfaite /!\
 
