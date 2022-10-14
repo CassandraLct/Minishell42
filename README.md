@@ -11,13 +11,14 @@ _Donne 20 jour de BLACKHOLE_
 		mis à part dans le cas d’un comportement indéfini. Si cela arrive, votre projet sera
 		considéré non fonctionnel et vous aurez 0 au projet.
 	• Toute mémoire allouée sur la heap doit être libéré lorsque c’est nécessaire. Aucun leak ne sera toléré.
-	• Si le projet le demande, vous devez rendre un Makefile qui compilera vos sources pour créer la sortie demandée,
-		en utilisant les flags -Wall, -Wextra et -Werror. Votre Makefile ne doit pas relink.
-	• Si le projet demande un Makefile, votre Makefile doit au minimum contenir les règles $(NAME), all, clean, fclean et re.
+	• Si le projet le demande, vous devez rendre un Makefile qui compilera vos sources pour créer la sortie
+		demandée, en utilisant les flags -Wall, -Wextra et -Werror. Votre Makefile ne doit pas relink.
+	• Si le projet demande un Makefile, votre Makefile doit au minimum contenir les règles $(NAME), all,
+		clean, fclean et re.
 	• Pour rendre des bonus, vous devez inclure une règle bonus à votre Makefile qui ajoutera les divers 
-		headers, librairies ou fonctions qui ne sont pas autorisées dans la partie principale du projet. Les bonus doivent
-		être dans un fichier différent : _bonus.{c/h}. L’évaluation de la partie obligatoire et 	de la partie bonus sont faites
-		séparément.
+		headers, librairies ou fonctions qui ne sont pas autorisées dans la partie principale du projet.
+		Les bonus doivent être dans un fichier différent : _bonus.{c/h}. L’évaluation de la partie obligatoire
+		et de la partie bonus sont faites séparément.
 	• Si le projet autorise votre libft, vous devez copier ses sources et son Makefile associé dans un dossier 
 		libft contenu à la racine. Le Makefile de votre projet doit compiler la librairie à l’aide de son
 		Makefile, puis compiler le projet.
