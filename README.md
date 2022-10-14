@@ -51,5 +51,8 @@
 ![Screen Shot 2022-10-14 at 11 06 33 AM](https://user-images.githubusercontent.com/90134090/195809147-5d110a62-0b5c-480d-b630-c00631e94988.png)
 
 ------Potentiel Bonus-------
+
+/!\ si partie obligatoire parfaite /!\
+
 ![Screen Shot 2022-10-14 at 11 00 19 AM](https://user-images.githubusercontent.com/90134090/195809108-25d8acc7-5014-4f85-bb26-81015dcf214f.png)
 
