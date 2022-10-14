@@ -14,6 +14,7 @@
 	• Vous devez rendre votre travail sur le git qui vous est assigné. Seul le travail déposé sur git sera 		évalué. Si Deepthought doit corriger votre travail, cela sera fait à la fin des peer-evaluations. Si 	une erreur se produit pendant l’évaluation Deepthought, celle-ci s’arrête.
 
 ------Partie Obligatoire-----
+
 ![Screen Shot 2022-10-14 at 10 59 56 AM](https://user-images.githubusercontent.com/90134090/195809050-7219dd8e-3d77-4a3b-b855-2f5ff8dd27a7.png)
 
 ->Votre shell doit :
