@@ -61,3 +61,6 @@ printf,malloc,free,write,access,open,read,close,
 *tgoto:
 *tputs:
 
+_______COMMANDES A RECREER________
+
+_______COMPORTEMENT DU SHELL_______
