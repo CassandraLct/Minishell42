@@ -1,0 +1,6 @@
+reproduire un shell
+
+se documenter sur :
+	-fonction autorisee!
+	-commande a recreer
+	-comportement du bash
