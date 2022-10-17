@@ -1,6 +1,6 @@
 # Minishell42
 
-_Donne 20 jour de BLACKHOLE_
+_Donne  environ 20 jour de BLACKHOLE_
 
 ------Regles Communes-------
 
