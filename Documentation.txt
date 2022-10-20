@@ -98,11 +98,20 @@ La fonction opendir() ouvre un flux répertoire correspondant au répertoire nam
 *readdir: #include <dirent.h>
 struct dirent *readdir(DIR *dir);
 int readdir(DIR *dir, struct dirent *entry, struct dirent **result);
-*closedir:
+La fonction readdir() renvoie un pointeur sur une structure dirent représentant l'entrée suivante du flux répertoire pointé par dir. Elle renvoie NULL à la fin du répertoire, ou en cas d'erreur.
+*closedir: #include <sys/types.h>
+#include <dirent.h>
+int closedir(DIR *dir);
+La fonction closedir() ferme le flux de répertoire associé à dir. Après cette invocation, le descripteur dir du flux de répertoire n'est plus disponible.
 *strerror:
 *perror:
-*isatty:
-*ttyname:
+*isatty: #include <unistd.h>
+Vérifier si un descripteur se rapporte à un terminal
+int isatty(int desc);
+renvoie 1 si desc est un descripteur de fichier ouvert connecté à un terminal, ou 0 autrement.  
+*ttyname:#include <unistd.h>
+char *ttyname(int fd);
+obtenir le nom d'un terminal
 *ttyslot:
 *ioctl:
 *getenv:
