@@ -22,8 +22,7 @@ printf,malloc,free,write,access,open,read,close,
 	#include <readline/readline.h>
 	#include <readline/history.h>
 
-	char *
-	readline (const char *prompt);
+	char *readline (const char *prompt);
 	readline va lire une ligne a partir du terminal et la retourner, en utilisant le const char *prompt en prompt.
 	si le prompt est NULL ou la chaine vide, aucun prompt n'est emise. La ligne retourner est definie par malloc,
 	il faudra la free une fois fini.

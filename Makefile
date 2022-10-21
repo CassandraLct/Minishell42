@@ -1,7 +1,7 @@
 CC		= GCC
-CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror #-g -fsanitize=address
 NAME	= minishell
-SRC		= main.c
+SRC		= src/main.c 
 
 OBJ		= $(SRC:.c=.o)
 
@@ -13,7 +13,7 @@ all : $(NAME)
 
 $(NAME) : $(OBJ)
 	@echo "\033[1;35m""Compilation de ${NAME}..."
-	$(CC) $(OBJ) $(CFLAGS) -o $(NAME)
+	$(CC) $(LIBPATH) $(OBJ) $(CFLAGS) -o $(NAME)
 
 clean :
 	@echo "\033[1;35m""Compilation de ${NAME}..."
@@ -25,4 +25,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : all clean fclean re
+.PHONY: all clean fclean re

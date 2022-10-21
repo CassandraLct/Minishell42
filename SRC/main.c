@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Minishell.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 10:25:10 by clecat            #+#    #+#             */
-/*   Updated: 2022/10/21 11:53:59 by clecat           ###   ########.fr       */
+/*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
+/*   Updated: 2022/10/21 17:19:56 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include <stdio.h>
+#include <readline/history.h>
+#include <readline/readline.h>
 
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
+int main(void)
+{
+    char *line;
 
-#endif
+	while(1)
+	{
+		line = readline("minishell>");
+		add_history(line);
+	}
+}
