@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Minishell.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 10:25:10 by clecat            #+#    #+#             */
-/*   Updated: 2022/10/21 11:53:59 by clecat           ###   ########.fr       */
+/*   Created: 2022/10/21 11:38:06 by clecat            #+#    #+#             */
+/*   Updated: 2022/10/21 13:11:30 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "Minishell.h"
 
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
+//valgrind --leak-check ./minishell
 
-#endif
+int main(int argc, char **argv, char **env)
+{
+	char *line;
+	
+	while(1)
+	{
+		line = readline("minishell>");
+	}
+}

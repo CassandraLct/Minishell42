@@ -1,7 +1,7 @@
 CC		= GCC
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
 NAME	= minishell
-SRC		=
+SRC		= main.c
 
 OBJ		= $(SRC:.c=.o)
 
