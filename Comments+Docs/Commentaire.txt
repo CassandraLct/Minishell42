@@ -6,7 +6,8 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 13:45:49 by clecat            #+#    #+#              #
-#    Updated: 2022/10/24 13:45:53 by clecat           ###   ########.fr        #
+#    Updated: 2022/10/24 13:53:57 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+Répartition des taches + chose à régler :
