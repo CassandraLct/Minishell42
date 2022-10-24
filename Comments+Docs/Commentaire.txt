@@ -6,9 +6,11 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 13:45:49 by clecat            #+#    #+#              #
-#    Updated: 2022/10/24 14:47:11 by clecat           ###   ########.fr        #
+#    Updated: 2022/10/24 16:43:29 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+Tuto Minishell : https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf
 
 Répartition des taches + chose à régler :
 

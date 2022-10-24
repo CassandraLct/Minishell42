@@ -1,5 +1,5 @@
 CC		= GCC
-CFLAGS	= -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
 NAME	= minishell
 LIBPATH = ~/.brew/Cellar/readline/8.2.1/lib
 SRC		= src/main.c 
