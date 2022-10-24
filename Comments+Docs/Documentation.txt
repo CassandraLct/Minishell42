@@ -1,0 +1,345 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Documentation.txt                                  :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/10/24 12:54:01 by clecat            #+#    #+#              #
+#    Updated: 2022/10/24 13:27:24 by clecat           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+
+Reproduire un Shell
+
+->se documenter sur :
+	-fichier a rendre
+	-fonction autorisee!
+	-commande a recreer
+	-comportement du bash
+
+____FICHIER A RENDRE______
+
+*nom programme : minishell
+*doit contenire: Makefile, .h et .c
+*possibiliter d'utiliser notre libft
+
+______FONCTION AUTORISEE_____
+
+prompt : invite de commande;
+
+printf,malloc,free,write,access,open,read,close,
+*readline :
+	#include <stdio.h>
+	#include <readline/readline.h>
+	#include <readline/history.h>
+
+	char *readline (const char *prompt);
+	readline va lire une ligne a partir du terminal et la retourner, en utilisant
+	le const char *prompt en prompt.
+	si le prompt est NULL ou la chaine vide, aucun prompt n'est emise. La ligne
+	retourner est definie par malloc,
+	il faudra la free une fois fini.
+*rl_clear_history:
+*rl_on_new_line: 
+int rl_on_new_line ()
+	Tell the update routines that we have moved onto a new (empty) line, usually
+	after ouputting a newline.
+*rl_replace_line:
+*rl_redisplay: 
+	Change what's displayed on the screen to reflect the current contents of
+	rl_line_buffer.
+*add_history: 
+	void add_history (const char *string)
+	Place string at the end of the history list. The associated data field
+	(if any) is set to NULL.
+*fork:
+	#include <unistd.h>
+	pid_t fork(void);
+*wait:
+	http://manpagesfr.free.fr/man/man2/wait.2.html
+	#include <sys/types.h>
+	#include <sys/wait.h>
+	pid_t wait(int *status);
+	Attendre qu'un processus change d'état 
+*waitpid:
+	#include <sys/types.h>
+	#include <sys/wait.h>
+	pid_t waitpid(pid_t pid, int *status, int options);
+	Attendre qu'un processus change d'état 
+*wait3:
+	Attendre la fin d’un processus
+	#include <sys/types.h>
+	#include <sys/time.h>
+	#include <sys/resource.h>
+	#include <sys/wait.h>
+	pid_t wait3(int *status, int options, struct rusage *rusage);
+	Les appels système wait3() et wait4()  sont  similaires  à  waitpid(2),
+    mais  retournent  également  des  informations  sur  l’utilisation  des
+    ressources par le fils dans la structure pointée par rusage.
+*wait4:
+	Attendre la fin d’un processus
+	#include <sys/types.h>
+	#include <sys/time.h>
+	#include <sys/resource.h>
+	#include <sys/wait.h>
+	pid_t wait4(pid_t pid, int *status, int options, struct rusage *rusage);
+*signal:
+	http://manpagesfr.free.fr/man/man2/signal.2.html
+	Gestion de signaux ANSI C
+	#include <signal.h>
+	typedef void (*sighandler_t)(int);
+	sighandler_t signal(int signum, sighandler_t handler); 
+*sigaction: 
+	Examiner et modifier l'action associée à un signal
+	#include <signal.h>
+	int sigaction(int signum, const struct sigaction *act,  struct sigaction *oldact);
+	http://manpagesfr.free.fr/man/man2/sigaction.2.html
+*sigemptyset:
+	#include <signal.h>
+	int sigemptyset(sigset_t *set);
+	initializes the signal set given by set to empty, with all signals excluded from the set.
+*sigaddset: 
+	#include <signal.h>
+	int sigaddset(sigset_t *set, int signum);
+	add signal signum from set;
+*kill: 
+	Envoyer un signal à un processus
+	#include <sys/types.h>
+	#include <signal.h>
+	int kill(pid_t pid, int sig);
+*exit:
+	Terminer normalement un processus
+	#include <stdlib.h>
+	void exit(int status);
+*getcwd: 
+	Obtenir le répertoire de travail courant 
+	#include <unistd.h>
+	char *getcwd(char *buf, size_t size);
+*chdir:
+	#include <unistd.h>
+	int chdir(const char *path);
+	remplace le répertoire de travail courant du processus appelant par celui indiqué
+	dans le chemin path.
+*stat:
+	#include <sys/types.h>
+	#include <sys/stat.h>
+	#include <unistd.h>
+	int stat(const char *path, struct stat *buf);
+	stat() récupère l'état du fichier pointé par path et remplit le tampon buf.
+*lstat:
+	#include <sys/types.h>
+	#include <sys/stat.h>
+	#include <unistd.h>
+	int lstat(const char *path, struct stat *buf);
+	lstat() est identique à stat(), sauf que si path est un lien symbolique, il donne
+	l'état du lien lui-même plutôt que celui du fichier visé.
+*fstat: 
+	#include <sys/types.h>
+	#include <sys/stat.h>
+	#include <unistd.h>
+	int fstat(int fd, struct stat *buf);
+	est identique à stat(), sauf que le fichier ouvert est pointé par le descripteur fd,
+	obtenu avec open(2).
+*unlink: 
+	#include <unistd.h>
+	int unlink(const char *pathname);  
+	Détruire un nom et éventuellement le fichier associé 
+	unlink() détruit un nom dans le système de fichiers. Si ce nom était le dernier lien sur
+	un fichier, et si aucun processus n'a ouvert ce fichier, ce dernier est effacé, et l'espace
+	qu'il utilisait est rendu disponible.
+	Si le nom était le dernier lien sur un fichier, mais qu'un processus conserve encore le
+	fichier ouvert, celui-ci continue d'exister jusqu'à ce que le dernier descripteur le
+	référençant soit fermé.
+	Si le nom correspond à un lien symbolique, le lien est supprimé.
+	Si le nom correspond à une socket, une FIFO, ou un périphérique, le nom est supprimé mais
+	les processus qui ont ouvert l'objet peuvent continuer à l'utiliser. 
+*execve:
+	#include <unistd.h>
+	int execve(const char *fichier, char *const argv[], char *const envp[]);  
+*dup:
+	#include <unistd.h>
+	int dup(int oldfd);
+	dup() et dup2() créent une copie du descripteur de fichier oldfd.
+	dup() utilise le plus petit numéro inutilisé pour le nouveau descripteur.
+*dup2:
+	#include <unistd.h>
+	int dup2(int oldfd, int newfd);
+	dup() et dup2() créent une copie du descripteur de fichier oldfd.
+	dup2() transforme newfd en une copie de oldfd, fermant auparavant newfd si besoin est,
+	mais veuillez noter ceci : 
+	*Si oldfd n'est pas un descripteur de fichier valide, l'appel échoue et newfd n'est pas fermé.
+	*Si oldfd est un descripteur de fichier valide et si newfd a la même valeur que oldfd, dup2()
+	ne fait rien et renvoie newfd.
+*pipe: 
+	#include <unistd.h>
+	int pipe(int pipefd[2]);
+	Cet appel renvoie 0 s'il réussit, ou -1 s'il échoue, auquel cas errno contient le code d'erreur.
+*opendir: 
+	ouvrir un repertoire
+	#include <sys/types.h>
+	#include <dirent.h>
+	DIR *opendir(const char *name);
+	La fonction opendir() ouvre un flux répertoire correspondant au répertoire name, et
+	renvoie un pointeur sur ce flux. Le flux est positionné sur la première entrée du répertoire.
+*readdir: 
+	#include <dirent.h>
+	struct dirent *readdir(DIR *dir);
+	int readdir(DIR *dir, struct dirent *entry, struct dirent **result);
+	La fonction readdir() renvoie un pointeur sur une structure dirent représentant l'entrée
+	suivante du flux répertoire pointé par dir. Elle renvoie NULL à la fin du répertoire,
+	ou en cas d'erreur.
+*closedir: 
+	#include <sys/types.h>
+	#include <dirent.h>
+	int closedir(DIR *dir);
+	La fonction closedir() ferme le flux de répertoire associé à dir. Après cette invocation,
+	le descripteur dir du flux de répertoire n'est plus disponible.
+*strerror: 
+	#include <string.h>
+	char *strerror(int errnum); -> obtenir le libellé d'un numéro d'erreur,
+	renvoie une chaîne décrivant le code d'erreur passé en argument errnum
+*perror: 
+	/!\ utliser dans pipex
+	#include <stdio.h>
+	#include <errno.h>
+	void perror(const char *s);
+	La fonction perror() affiche un message sur la sortie d'erreur standard, décrivant la
+	dernière erreur
+	rencontrée durant un appel système ou une fonction de bibliothèque.
+*isatty: 
+	#include <unistd.h>
+	Vérifier si un descripteur se rapporte à un terminal
+	int isatty(int desc);
+	renvoie 1 si desc est un descripteur de fichier ouvert connecté à un terminal, ou 0 autrement.  
+*ttyname: 
+	#include <unistd.h>
+	char *ttyname(int fd);
+	obtenir le nom d'un terminal
+*ttyslot:
+	Trouver l'emplacement du terminal en cours dans un fichier
+	#include <unistd.h>
+	int ttyslot(void);
+	La fonction ttyslot() renvoie la position de l'entrée du terminal en cours dans le fichier /etc/ttys,
+	(renvoie l'index du terminal de contrôle du processus)
+*ioctl:
+	Contrôler les périphériques
+	#include <sys/ioctl.h>
+	int ioctl(int d, int requête, ...);
+	La fonction ioctl() modifie le comportement des périphériques sous-jacents des fichiers spéciaux.
+	En particulier, de nombreuses caractéristiques des fichiers spéciaux en mode caractère (par
+	exemple des terminaux) peuvent être contrôlées avec des requêtes ioctl(). L'argument d doit être
+	un descripteur de fichier ouvert.
+	Le second argument est le code de la requête dépendant du périphérique. Le troisième argument est
+	un pointeur non typé. Il est traditionnellement défini en char *argp (ceci date de l'époque avant
+	que void * soit du C valide), et sera ainsi nommé dans le reste de cette page.
+	Une requête ioctl() encapsule le fait que l'argument est un paramètre d'entrée ou de sortie ainsi
+	que la taille de l'argument argp en octets. Les macros et constantes symboliques décrivant les
+	requêtes ioctl() se trouvent dans le fichier <sys/ioctl.h>. 
+*getenv:
+	Lire une variable d'environnement
+	#include <stdlib.h>
+	char *getenv(const char *name);
+	La fonction getenv() recherche dans la liste des variables d'environnement un variable nommée name,
+	et renvoie un pointeur sur la chaîne value correspondante.
+*tcsetattr:
+	#include <termios.h>
+	#include <unistd.h>
+	int tcsetattr(int fd, int optional_actions, const struct termios *termios_p);
+	(valable aussi pour tcgetattr)
+	The termios functions describe a general terminal interface that is provided to control asynchronous
+	communications ports.
+	The termios structure
+	Many of the functions described here have a termios_p argument that is a pointer to a termios structure.
+	This structure contains at least the following members:
+	tcflag_t c_iflag;      /* input modes */ 
+	tcflag_t c_oflag;      /* output modes */
+	tcflag_t c_cflag;      /* control modes */
+	tcflag_t c_lflag;      /* local modes */
+	cc_t     c_cc[NCCS];   /* special characters */
+*tcgetattr:
+	#include <termios.h>
+	#include <unistd.h>
+	int tcgetattr(int fd, struct termios *termios_p);
+*tgetent:
+	https://linux.die.net/man/3/tgetent
+	#include <curses.h>
+	#include <term.h>
+	int tgetent(char *bp, const char *name);
+	(valable aussi pour tgetflag, tgetnum, tgetstr, tgoto, et tputs)
+	These routines are included as a conversion aid for programs that use the termcap library. Their
+	parameters are the same and the routines are emulated using the terminfo database. Thus,
+	they can only be used to query the capabilities of entries for which a terminfo entry has
+	been compiled.
+	The tgetent routine loads the entry for name. It returns 1 on success, 0 if there is no
+	such entry, and -1 if the terminfo database could not be found. The emulation ignores the
+	buffer pointer bp.
+*tgetflag:
+	int tgetflag(char *id);
+	The tgetflag routine gets the boolean entry for id, or zero if it is not available.
+*tgetnum:
+	int tgetnum(char *id);
+	The tgetnum routine gets the numeric entry for id, or -1 if it is not available.
+*tgetstr:
+	char *tgetstr(char *id, char **area);
+	The tgetstr routine returns the string entry for id, or zero if it is not available.
+	Use tputs to output the returned string. The return value will also be copied to the
+	buffer pointed to by area, and the area value will be updated to point past the null
+	ending this value.
+*tgoto:
+	char *tgoto(const char *cap, int col, int row);
+	The tgoto routine instantiates the parameters into the given capability. The output from
+	this routine is to be passed to tputs.
+*tputs:
+	int tputs(const char *str, int affcnt, int (*putc)(int));
+	The tputs routine is described on the curs_terminfo(3X) manual page. It can retrieve
+	capabilities by either termcap or terminfo name.
+
+/!\Only the first two characters of the id parameter of tgetflag, tgetnum and tgetstr
+are compared in lookups.
+
+_______COMMANDES A RECREER________
+
+-recreer un prompt
+-avoir un historique fonctionnel
+-chercher et lancer le bon executable (en se basant sur la variable path ou un chemin relatif/absolu)
+-1 variable globale autorisee
+-ne pas interpreter de quotes non fermés, ou de caractere speciaux non demandes : le \, le ;
+-gerer les single quotes qui doit empecher le shell d'interpreter les meta-caracteres present entre guillemets
+-gerer les double quotes qui doit empecher le shell d'interpreter les meta-caracteres presents entre guillemets sauf le $
+-implementer les redirections : 
+	- < doit rediriger l'entree;
+	- > doit rediriger la sortie;
+	- << doit recevoir un delimiteur et lire l'input donné jusqu'à rencontrer une ligne contenant le delimiteur.L'historique ne doit pas etre mis a jour
+	- >> doit rediriger la sortie en mode append (?)
+- Implementer les pipes (|): la sortie de chaque pipeline est connecter a l'entree de la commande suivante grace a un pipe
+-gerer les variables d'environnement(un $ suivi d'une sequence de caracteres) qui doivent etre substitues par leur contenu.
+-gerer $? qui doit etre substitue par le statut de sortie de la derniere pipeline executee au premier plan
+-gerer ctrl-C, ctrl-D et ctrl-\ et fonctionner comme dans bash
+-en mode interactif:
+	-ctrl-C affiche un nouveau prompt sur une nouvelle ligne
+	-ctrl-D quitte le shell
+	-ctrl-\ ne fait rien
+-le shell doit implementer les builtins suivantes :
+	-echo et l'option -n;
+	-cd uniquement avec un chemin relatif ou absolu;
+	-pwd sans aucune option
+	-export sans aucune option
+	-unset sans aucune option
+	-env sans aucune option ni argument
+	-exit sans aucune option
+/!\ la fonction readline() peut causer des fuites memoires a ne pas gerer mais notre code ne doit
+pas avoir fuites memoires
+
+/!\ Getting started
+There is a github repository that obeys the order of proceedings pretty nicely: https://github.com/Swoorup/mysh
+Please make sure to do a lexer -> parser -> expander -> executor to make your life easier. Here is a solid start.
+Make sure that you understand the shell syntax /!\
+
+A parser is divided into two parts: a Lexical Analyzer or Lexer takes the input characters and 
+puts the characters together into words called tokens, and a Parser that processes the 
+tokens according to a grammar and build the command table.
+
+_______COMPORTEMENT DU SHELL_______
+

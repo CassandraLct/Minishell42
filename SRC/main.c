@@ -6,13 +6,11 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/10/21 17:19:56 by clecat           ###   ########.fr       */
+/*   Updated: 2022/10/24 13:47:22 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <readline/history.h>
-#include <readline/readline.h>
+#include "minishell.h"
 
 int main(void)
 {

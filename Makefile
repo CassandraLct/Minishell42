@@ -1,5 +1,5 @@
 CC		= GCC
-CFLAGS	= -Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -g #-fsanitize=address
 NAME	= minishell
 SRC		= src/main.c 
 
@@ -9,11 +9,11 @@ all : $(NAME)
 
 %.o : %.c
 	@echo "\033[1;35m""Compilation de ${Name}..."
-	$(CC) -o $@ -c $< $(CFLAGS)
+	$(CC) -o $@ -c $< $(CFLAGS) libreadline.a -lreadline
 
 $(NAME) : $(OBJ)
 	@echo "\033[1;35m""Compilation de ${NAME}..."
-	$(CC) $(LIBPATH) $(OBJ) $(CFLAGS) -o $(NAME)
+	$(CC) $(OBJ) $(CFLAGS) libreadline.a -lreadline -lncurses -o $(NAME)
 
 clean :
 	@echo "\033[1;35m""Compilation de ${NAME}..."
