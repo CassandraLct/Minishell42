@@ -1,7 +1,7 @@
 CC		= GCC
 CFLAGS	= -Wall -Wextra -Werror -g #-fsanitize=address
 NAME	= minishell
-#LIBPATH = ~/.brew/opt/readline/include/readline
+LIBPATH = ~/.brew/Cellar/readline/8.2.1/lib
 SRC		= src/main.c 
 
 OBJ		= $(SRC:.c=.o)
@@ -15,7 +15,7 @@ all : $(NAME)
 
 $(NAME) : $(OBJ)
 	@echo "\033[1;35m""Compilation de ${NAME}..."
-	$(CC) $(OBJ) $(CFLAGS) libreadline.a -lreadline -lncurses -o $(NAME)
+	$(CC) $(OBJ) $(CFLAGS) -lreadline -L $(LIBPATH) -o $(NAME)
 
 clean :
 	@echo "\033[1;35m""Compilation de ${NAME}..."
