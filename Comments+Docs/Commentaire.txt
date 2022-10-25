@@ -6,7 +6,7 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 13:45:49 by clecat            #+#    #+#              #
-#    Updated: 2022/10/25 10:08:38 by clecat           ###   ########.fr        #
+#    Updated: 2022/10/25 14:27:23 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,4 +26,19 @@ Répartition des taches + chose à régler :
         $(CC) $(OBJ) $(CFLAGS) libreadline.a -lreadline -lncurses -o $(NAME)
 
 *Faire le Parse : determiner si c'est une commande, un arguments, une variable d'environnament
-    ->utiliser access pour verifier si une cmd existe;
+    ->utiliser access pour verifier si une cmd existe; (pas possible)
+
+*/ regarder chacun des cas (execve/ built-in / pipe / chevron / signaux)
+built-in : echo (-n), cd, pwd, unset, env, export et exit
+
+echo : Par exemple ci-dessous, la variable $PATH n’est pas “traduite” car elle est entourée de guillemets simples.
+Si on utilise des guillemets doubles, le shell remplace la variable par sa valeur.
+	c2r5p4% bash 
+	bash-3.2$ echo '$PATH'
+	$PATH
+	bash-3.2$ echo "$PATH"
+	/Users/clecat/.brew/bin:/Users/clecat/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
+	bash-3.2$ 
+	bash-3.2$ echo -n "$PATH"
+	/Users/clecat/.brew/bin:/Users/clecat/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munkibash-3.2$ 
+l'option -n n'affiche pas la nouvelle ligne
