@@ -6,7 +6,7 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 13:45:49 by clecat            #+#    #+#              #
-#    Updated: 2022/10/24 16:43:29 by clecat           ###   ########.fr        #
+#    Updated: 2022/10/25 10:08:38 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ Tuto Minishell : https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book
 
 Répartition des taches + chose à régler :
 
-Pour le Makefile :
+*Pour le Makefile :
     ->si homebrew sur la session :
         *créer var LIBPATH et entrer le chemin de la librairie :
         ex : LIBPATH = ~/.brew/Cellar/readline/8.2.1/lib
@@ -24,3 +24,6 @@ Pour le Makefile :
         télécharger la librairie libreadline.a
         et dans $(NAME) : $(OBJ)
         $(CC) $(OBJ) $(CFLAGS) libreadline.a -lreadline -lncurses -o $(NAME)
+
+*Faire le Parse : determiner si c'est une commande, un arguments, une variable d'environnament
+    ->utiliser access pour verifier si une cmd existe;

@@ -6,7 +6,7 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 12:54:01 by clecat            #+#    #+#              #
-#    Updated: 2022/10/24 13:27:24 by clecat           ###   ########.fr        #
+#    Updated: 2022/10/25 10:48:48 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -301,8 +301,8 @@ are compared in lookups.
 
 _______COMMANDES A RECREER________
 
--recreer un prompt
--avoir un historique fonctionnel
+-recreer un prompt ok
+-avoir un historique fonctionnel commencer
 -chercher et lancer le bon executable (en se basant sur la variable path ou un chemin relatif/absolu)
 -1 variable globale autorisee
 -ne pas interpreter de quotes non fermés, ou de caractere speciaux non demandes : le \, le ;
@@ -343,3 +343,9 @@ tokens according to a grammar and build the command table.
 
 _______COMPORTEMENT DU SHELL_______
 
+*exit :
+	lors de l'exit du bash:
+	bash-3.2$ exit
+	exit
+	c2r5p2%
+*
