@@ -6,7 +6,7 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 13:45:49 by clecat            #+#    #+#              #
-#    Updated: 2022/10/25 14:27:23 by clecat           ###   ########.fr        #
+#    Updated: 2022/10/26 11:54:36 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ Répartition des taches + chose à régler :
 */ regarder chacun des cas (execve/ built-in / pipe / chevron / signaux)
 built-in : echo (-n), cd, pwd, unset, env, export et exit
 
+cd : gerer . ; .. ; et chemin donner
 echo : Par exemple ci-dessous, la variable $PATH n’est pas “traduite” car elle est entourée de guillemets simples.
 Si on utilise des guillemets doubles, le shell remplace la variable par sa valeur.
 	c2r5p4% bash 
@@ -42,3 +43,30 @@ Si on utilise des guillemets doubles, le shell remplace la variable par sa valeu
 	bash-3.2$ echo -n "$PATH"
 	/Users/clecat/.brew/bin:/Users/clecat/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munkibash-3.2$ 
 l'option -n n'affiche pas la nouvelle ligne
+pwd : donne le chemin de l'endroit ou on se trouve
+unset : supprime une variable ou une fonction 
+    option a ne pas faire : -f supprime une fonction ; -v supprime une variable ;
+    comportement bash : unset sans arguments donne juste une nouvelle ligne (prompt) et ne fais rien;
+	doit prendre une variable d'environnement en arguments
+env: sans option ni argument
+	montre la liste des variables d'environnement du shell
+
+export: sans option
+	export (une variable)=(valeur a definir)
+	sans le export la variable est declarer et accesible seulement dan l'environnement actuel
+	avec export la variable est declarer dans les environnement du shell 
+
+exit: sans option
+	lors de l'exit du bash:
+	bash-3.2$ exit
+	exit
+	c2r5p2%
+	->ecrit une nouvelle ligne "exit" puis sort
+
+chevron > :
+chevron < :
+chevron >> :
+chevron << :
+
+/!\ Comprendre ce qu'est un HEREDOC
+
