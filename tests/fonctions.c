@@ -1,14 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   fonctions.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 10:12:41 by clecat            #+#    #+#             */
-/*   Updated: 2022/10/25 10:12:53 by clecat           ###   ########.fr       */
+/*   Created: 2022/10/28 15:34:43 by clecat            #+#    #+#             */
+/*   Updated: 2022/10/28 17:24:50 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+//fonction exit
+void exit_m(char *cmd)
+{
+    if(cmd == "exit")
+    {
+        printf("exit\n");
+        exit(0);
+    }
+}
 
+void pwd(char *cmd)
+{
+    if(cmd == "pwd")
+	{
+		printf("%s\n", **env);
+	}
+}
