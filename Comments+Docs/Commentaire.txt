@@ -6,7 +6,7 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 13:45:49 by clecat            #+#    #+#              #
-#    Updated: 2022/10/26 11:54:36 by clecat           ###   ########.fr        #
+#    Updated: 2022/11/02 12:23:39 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,10 +63,35 @@ exit: sans option
 	c2r5p2%
 	->ecrit une nouvelle ligne "exit" puis sort
 
-chevron > :
+chevron > : 
+	ex : ls > fichier
+	si le fichier existe la sortie de ls est ecrit dans le fichier, si il n'existe pas le fichier est créer
+	si le fichier contient deja quelque chose le contenu est remplacer
+
+chevron >> : 
+	même comportement que le > , sauf que si le fichier contient quelque chose il ecrit a la fin de fichier
+
 chevron < :
-chevron >> :
+	cmd < entrée de la commande arg
+	grep < Makefile Minishell
+	bash-3.2$ grep < Makefile minishell
+	NAME = minishell
+	bash-3.2$
+
 chevron << :
+	heredoc(fichier virtuel),
+	bash-3.2$ grep << heredoc Minishell
+	> Name = Minishell
+	> Minishell
+	> heredoc
+	Name = Minishell
+	Minishell
+	bash-3.2$
 
-/!\ Comprendre ce qu'est un HEREDOC
+/!\ Comprendre ce qu'est le lexer et comment le faire 
 
+->chose possible a faire pour le moment :
+	*echo
+	*exit
+	*creer la variable $? -> code de retour de la derniere fonction
+	*pwd

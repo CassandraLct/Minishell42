@@ -6,7 +6,7 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 12:54:01 by clecat            #+#    #+#              #
-#    Updated: 2022/10/26 11:40:20 by clecat           ###   ########.fr        #
+#    Updated: 2022/11/02 12:39:34 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ Reproduire un Shell
 ->se documenter sur :
 	-fichier a rendre
 	-fonction autorisee!
-	-commande a recreer
+	-commandes a recreer
 	-comportement du bash
 
 ____FICHIER A RENDRE______
