@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/02 12:35:12 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/03 14:58:31 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 //includes
 # include <stdio.h>
 # include <unistd.h>
+# include <stdlib.h>
+# include <string.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 

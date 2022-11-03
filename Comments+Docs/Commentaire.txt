@@ -6,7 +6,7 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 13:45:49 by clecat            #+#    #+#              #
-#    Updated: 2022/11/02 12:23:39 by clecat           ###   ########.fr        #
+#    Updated: 2022/11/03 19:07:41 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,17 +44,17 @@ Si on utilise des guillemets doubles, le shell remplace la variable par sa valeu
 	/Users/clecat/.brew/bin:/Users/clecat/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munkibash-3.2$ 
 l'option -n n'affiche pas la nouvelle ligne
 pwd : donne le chemin de l'endroit ou on se trouve
+
 unset : supprime une variable ou une fonction 
     option a ne pas faire : -f supprime une fonction ; -v supprime une variable ;
     comportement bash : unset sans arguments donne juste une nouvelle ligne (prompt) et ne fais rien;
 	doit prendre une variable d'environnement en arguments
+
 env: sans option ni argument
 	montre la liste des variables d'environnement du shell
 
-export: sans option
-	export (une variable)=(valeur a definir)
-	sans le export la variable est declarer et accesible seulement dan l'environnement actuel
-	avec export la variable est declarer dans les environnement du shell 
+export: sans option (a revoir)
+	http://www.w3big.com/fr/linux/linux-comm-export.html#gsc.tab=0 
 
 exit: sans option
 	lors de l'exit du bash:
@@ -62,7 +62,14 @@ exit: sans option
 	exit
 	c2r5p2%
 	->ecrit une nouvelle ligne "exit" puis sort
-
+	exit bonjour
+	exit
+	bash: exit: bonjour: numeric argument required
+	//bash home pas celui de 42
+	clecat@DESKTOP-158CID6:~/Minishell42$ exit 156
+	exit
+	clecat@DESKTOP-158CID6:~/Minishell42$ $?
+	Command '156' not found, did you mean:
 chevron > : 
 	ex : ls > fichier
 	si le fichier existe la sortie de ls est ecrit dans le fichier, si il n'existe pas le fichier est créer
