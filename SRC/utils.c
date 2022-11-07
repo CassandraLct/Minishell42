@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:12:41 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/02 12:30:33 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/07 10:03:12 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,21 @@ int	ft_strlen(char *str)
 	while (str[i])
 		i++;
 	return (i);
+}
+
+//verifie que la string est que des digit
+int strdigit(char *str)
+{
+	int i = 0;
+	int y = 0;
+
+	while (str[y])
+	{
+		if(str[y] >= '0' && str[y] <= '9')
+			i++;
+		y++;
+	}
+	if (i != y)
+		return(1);
+	return(0);
 }

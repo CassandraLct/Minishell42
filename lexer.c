@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/07 15:03:32 by clecat           ###   ########.fr       */
+/*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
+/*   Updated: 2022/11/07 15:53:11 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-//grep >test < Makefile "minishell" | cat test
-//commencer le lexer split la line et 
+#include "src/minishell.h"
 
-g_min mini;
+//split la line et stocker dans un char **tab;
+/*char	split_line(char *line)
+{}*/
 
-int main(int argc, char **argv, char **envp)
+//test dup2
+int main()
 {
-	(void)argc;
-	(void)argv;
+	char *line;
+	char **tab;
+	int i = 0;
+	int x = 0;
+	int y = 0;
 
-	recup_env(envp, mini);
-	while(1)
+	line = "minishell> cat test";
+	while(line)
 	{
-		mini.line = readline("minishell>");
-		add_history(mini.line);
+		ft_split(line);
 	}
-	//free(c_env);
 }
