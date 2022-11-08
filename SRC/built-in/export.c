@@ -1,32 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/08 10:32:24 by clecat           ###   ########.fr       */
+/*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
+/*   Updated: 2022/11/08 13:31:30 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-//grep >test < Makefile "minishell" | cat test
-//commencer le lexer split la line et 
+#include "../minishell.h"
 
-g_min mini;
-
-int main(int argc, char **argv, char **envp)
-{
-	(void)argc;
-	(void)argv;
-
-	mini.prompt = "minishell>";
-	recup_env(envp, mini);
-	while(1)
-	{
-		mini.line = readline(mini.prompt);
-		add_history(mini.line);
-	}
-	//free(c_env);
-}
+/*Pour export affiche que certaine 
+ecrit delare -x avant le nom de la varible, mets entre cote ce qu'il y a après le =
+*/

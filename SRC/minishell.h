@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/07 15:09:20 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/08 10:31:07 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_min
 	int		ret_error;
 	char	*line;
 	char	**tab;
+	char	*prompt;
 } g_min;
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);

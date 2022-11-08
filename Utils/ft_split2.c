@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_split2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/29 18:24:15 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/08 09:24:18 by clecat           ###   ########.fr       */
+/*   Created: 2022/11/08 07:41:27 by clecat            #+#    #+#             */
+/*   Updated: 2022/11/08 13:07:46 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+//return: 1 = error; 0 = ok
 #include <stdio.h>
 #include <stdlib.h>
 
+//plusieurs cas a gerer simple et doucle cote
 static int	cmp_nb_word(const char *s, char c)
 {
 	int	i;
@@ -26,6 +28,10 @@ static int	cmp_nb_word(const char *s, char c)
 		i++;
 	while (s[i])
 	{
+		if(s[i] == 34)
+		{
+			
+		}
 		while (s[i] && (s[i] != c))
 			i++;
 		word++;
@@ -108,13 +114,16 @@ char	**ft_split(char const *s, char c)
 	return (str);
 }
 
-int main(void)
+//split dès qu'il y a un espace, -> ne pas split si il y a des cotes(""; '')
+//verifier si il y a bien 2 cotes (debut/fin)
+int main(int argc, char **argv)
 {
-	char *line = "minishell> cat file1";
+	//char *line = "minishell> gcc main.c | grep "main" > test";//faire avec argv
+	(void)argc;
 	char **tab;
 	int	x = 0;
 	
-	tab = ft_split(line, ' ');
+	tab = ft_split(argv[1], ' ');
 	while(tab[x] != NULL)
 	{
 		printf("%s\n", tab[x]);

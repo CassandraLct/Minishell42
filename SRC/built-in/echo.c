@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/08 10:32:24 by clecat           ###   ########.fr       */
+/*   Created: 2022/11/08 12:37:12 by clecat            #+#    #+#             */
+/*   Updated: 2022/11/08 13:03:54 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-//grep >test < Makefile "minishell" | cat test
-//commencer le lexer split la line et 
-
-g_min mini;
-
-int main(int argc, char **argv, char **envp)
+/*echo sans arg affiche une ligne vide puis le prompt
+echo (num/string) affiche la string
+echo -n n'affiche pas la nouvelle ligne
+echo -n-n-n-n-n-n affiche le -n-n-n-...
+echo -nnnnnnn même comportement que -n
+echo -nnnnn5nnnn affiche -nnnnn5nnnn
+echo $PATH ou "$PATH" affiche /Users/clecat/.brew/bin:/Users/clecat/...
+echo '$PATH' affiche $PATH
+*/
+void	echo(g_min mini)
 {
-	(void)argc;
-	(void)argv;
+	
+}
 
-	mini.prompt = "minishell>";
-	recup_env(envp, mini);
-	while(1)
-	{
-		mini.line = readline(mini.prompt);
-		add_history(mini.line);
-	}
-	//free(c_env);
+int	main(void)
+{
+
 }
