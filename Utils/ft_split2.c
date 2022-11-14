@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 07:41:27 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/08 13:07:46 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/14 13:16:45 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//plusieurs cas a gerer simple et doucle cote
+//cas simple cote et double cote, et si cote non fermer
+//"" == 34, '' == 39
 static int	cmp_nb_word(const char *s, char c)
 {
 	int	i;
@@ -118,7 +119,7 @@ char	**ft_split(char const *s, char c)
 //verifier si il y a bien 2 cotes (debut/fin)
 int main(int argc, char **argv)
 {
-	//char *line = "minishell> gcc main.c | grep "main" > test";//faire avec argv
+	//char *line = "minishell> gcc main.c | grep "main" > test";//faire avec argv pour tester
 	(void)argc;
 	char **tab;
 	int	x = 0;

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:12:24 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/07 12:23:01 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/14 12:54:18 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,6 @@ void	recup_env(char **env, g_min mini)
 		y = 0;
 	}
 	mini.c_env[x] = NULL;
+	export(mini);
+	//print_env(mini);
 }

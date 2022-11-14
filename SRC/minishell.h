@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/08 10:31:07 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/14 12:53:32 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ int		ft_strlen(char *str);
 char	**ft_split(char const *s, char c);
 void	recup_env(char **env, g_min mini);
 int		strdigit(char *str);
+void	print_env(g_min mini);
+void	export(g_min mini);
 
 #endif
