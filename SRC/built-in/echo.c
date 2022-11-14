@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:37:12 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/14 16:08:04 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/14 16:16:17 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,13 @@ int	echo(char **arg)
 	
 	printf("dans echo\n");
 	printf("%s\n", arg[0]);
-	if(arg[i][0] == 45)
+	if(arg[1][0] == 45)
 		return(1);
-	else if(arg == NULL)
+	else if(!arg[1])
+	{
 		printf("\n");
+		return (0);
+	}
 	while((arg[i][j] >= 33 && arg[i][j] <= 126) && arg[i][0] != 45)
 	{
 		printf("%s\n", arg[i]);
@@ -43,10 +46,12 @@ int	echo(char **arg)
 int	main(void)
 {
 	char **arg;
+	arg = malloc(sizeof(char *) * 4);
 	
-	arg[0] = "-n";
-	arg[1] = "bonjour";
-	arg[2] = NULL;
+	arg[0] = "echo";
+	/*arg[1] = "-n";
+	arg[2] = "bonjour";*/
+	arg[1] = NULL;
 	printf("main\n");
 	echo(arg);
 }
