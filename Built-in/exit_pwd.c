@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/15 09:09:27 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/15 11:05:16 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void    exit_min(char **argv, g_min mini)
 				{
 					printf("exit\n");
 					printf("minishell: exit : too many arguments\n");
-					//code retour a mettre a (1);
+					mini.ret_error = 1;
 				}
 			}
 			else if(strdigit(argv[i]) == 1)

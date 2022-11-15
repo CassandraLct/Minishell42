@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/14 13:04:45 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/15 10:54:54 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,6 @@ void	export(g_min mini)
 	char index = 33;
 	
 	i = 0;
-	printf("avant while\n");
-	/*while(index != 127)
-	{
-		printf("index = %c\n", index);
-		index++;
-	}*/
-	/*while(mini.c_env[i])
-	{
-		printf("%s\n", mini.c_env[i]);
-		i++;
-	}*/
 	while(mini.c_env[i])
 	{
 		printf("dans while c_env de i\n");

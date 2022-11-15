@@ -1,6 +1,0 @@
-#include "minishell.h"
-//grep >test < Makefile "minishell" | cat test.txt
-		mini.line = readline("minishell>");
-/*   exit_pwd.c                                         :+:      :+:    :+:   */
-//affiche le pwd
-void	pwd(char **c_env)

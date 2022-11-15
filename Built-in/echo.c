@@ -6,11 +6,11 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:37:12 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/15 10:45:02 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/15 10:57:52 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 #include <stdlib.h>
 /*echo sans arg affiche une ligne vide puis le prompt ok (a faire avec le vraie prompt)
 echo (num/string) affiche la string ok
