@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/15 11:05:16 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/15 11:27:01 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 void	pwd(char **c_env)
 {
 	int i = 0;
-	//int j = 5;
 	
 	while(c_env[i])
 	{
@@ -35,7 +34,7 @@ void    exit_min(char **argv, g_min mini)
 {
 	int i = 2;
 	
-	if(strcmp(argv[1], "exit") == 0)
+	if(strcmp(argv[1], "exit") == 0) //a recuperer de la libft
 	{
 		if(argv[i] == NULL)
 		{

@@ -6,14 +6,15 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:12:24 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/14 12:54:18 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/15 13:00:07 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 //copie de l'environnement + malloc de c_env
-void	recup_env(char **env, g_min mini)
+//a mettre a la norm
+char	**recup_env(char **env, g_min mini)
 {
 	int i = 0;
 	int y = 0;
@@ -48,6 +49,6 @@ void	recup_env(char **env, g_min mini)
 		y = 0;
 	}
 	mini.c_env[x] = NULL;
-	export(mini);
-	//print_env(mini);
+	return(mini.c_env);
+
 }
