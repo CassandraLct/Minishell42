@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 18:24:15 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/08 09:24:18 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/17 11:29:13 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int main(void)
 	int	x = 0;
 	
 	tab = ft_split(line, ' ');
-	while(tab[x] != NULL)
+	while (tab[x] != NULL)
 	{
 		printf("%s\n", tab[x]);
 		x++;

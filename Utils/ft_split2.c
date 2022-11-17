@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 07:41:27 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/14 13:16:45 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/17 11:34:12 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static int	cmp_nb_word(const char *s, char c)
 		i++;
 	while (s[i])
 	{
-		if(s[i] == 34)
+		if (s[i] == 34)
 		{
-			
+			printf("double cote");
 		}
 		while (s[i] && (s[i] != c))
 			i++;
@@ -115,17 +115,18 @@ char	**ft_split(char const *s, char c)
 	return (str);
 }
 
-//split dès qu'il y a un espace, -> ne pas split si il y a des cotes(""; '')
+//split dès qu'il y a un espace, ->ne pas split si il y a des cotes(""; '')
 //verifier si il y a bien 2 cotes (debut/fin)
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	//char *line = "minishell> gcc main.c | grep "main" > test";//faire avec argv pour tester
 	(void)argc;
-	char **tab;
-	int	x = 0;
-	
+	char	**tab;
+	int		x = 0;
+	//char *line = "minishell> gcc main.c | grep "main" > test";
+	//faire avec argv pour tester
+
 	tab = ft_split(argv[1], ' ');
-	while(tab[x] != NULL)
+	while (tab[x] != NULL)
 	{
 		printf("%s\n", tab[x]);
 		x++;

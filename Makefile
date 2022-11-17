@@ -2,7 +2,7 @@ CC		= GCC
 CFLAGS	= -Wall -Wextra -Werror #-g -fsanitize=address
 NAME	= minishell
 LIBPATH = ~/.brew/Cellar/readline/8.2.1/lib
-SRC		= main.c parse.c built-in/env.c built-in/echo.c built-in/export.c#utils.c
+SRC		= main.c parse.c utils.c built-in/env.c built-in/export.c #built-in/echo.c
 
 OBJ		= $(SRC:.c=.o)
 

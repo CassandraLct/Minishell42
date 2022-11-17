@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/15 16:10:22 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/17 15:29:58 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,22 @@
 //grep >test < Makefile "minishell" | cat test
 //commencer le lexer split la line et 
 
-g_min mini;
+t_min	g_mini;
 
-int main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
-	//char **arg; checker echo
-
-	//arg = malloc(sizeof(char *) * 4);
-	//arg[0] = "echo";
-	/*arg[1] = "-nnnnnnnn";
-	arg[2] = "Bonjour";
-	arg[3] = "42";*/
-	//arg[1] = NULL;
-	mini.prompt = "minishell>";
-	//echo(arg);
-	mini.c_env= recup_env(envp, mini);
-	export(mini);
-	//print_env(mini);
-	while(1)
+	
+	g_mini.prompt = "minishell>";
+	g_mini.c_env = recup_env(envp, g_mini);
+	export(g_mini);
+	printf("  ----------------------  \n");
+	print_env(g_mini);
+	while (1)
 	{
-		mini.line = readline(mini.prompt);
-		add_history(mini.line);
+		g_mini.line = readline(g_mini.prompt);
+		add_history(g_mini.line);
 	}
 	//free(c_env);
 }

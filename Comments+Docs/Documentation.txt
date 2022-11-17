@@ -6,7 +6,7 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 12:54:01 by clecat            #+#    #+#              #
-#    Updated: 2022/11/02 12:39:34 by clecat           ###   ########.fr        #
+#    Updated: 2022/11/17 10:31:59 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,7 @@ int rl_on_new_line ()
 	Gestion de signaux ANSI C
 	#include <signal.h>
 	typedef void (*sighandler_t)(int);
-	sighandler_t signal(int signum, sighandler_t handler); 
+	sighandler_t signal(int signum, sighandler_t handler);
 *sigaction: 
 	Examiner et modifier l'action associée à un signal
 	#include <signal.h>

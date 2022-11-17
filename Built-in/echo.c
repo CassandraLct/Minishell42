@@ -6,13 +6,14 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:37:12 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/15 11:54:13 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/17 11:23:02 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include <stdlib.h>
-/*echo sans arg affiche une ligne vide puis le prompt ok (a faire avec le vraie prompt)
+/*echo sans arg affiche une ligne vide puis le prompt ok (a faire avec le
+vraie prompt)
 echo (num/string) affiche la string ok
 echo -n n'affiche pas la nouvelle ligne (verif avec vraie minishell)
 echo -n-n-n-n-n-n affiche le -n-n-n-... ok
@@ -24,59 +25,62 @@ echo $ affiche $ sur new line puis prompt sur new line (gerer par la string)
 echo $? affiche la valeur lexer */
 
 //verifie si que des n pour l'option
-int check_arg_opt(char *arg)
+int	check_arg_opt(char *arg)
 {
-	int i = 1;
-	int y = 1;
+	int	i;
+	int	y;
 
-	while(arg[i])
+	i = 1;
+	y = 1;
+	while (arg[i])
 	{
-		if(arg[i] == 'n')
+		if (arg[i] == 'n')
 			y++;
 		i++;
 	}
-	if(y != i)
-		return(1);
-	return(0);
+	if (y != i)
+		return (1);
+	return (0);
 }
 
 //print les args option valide
 int	print_arg_opt(char **arg, int i)
 {
-	if(arg[i + 1] == NULL)
-		return(0);
+	if (arg[i + 1] == NULL)
+		return (0);
 	else if (arg[i + 1] != NULL)
 	{
 		i += 1;
-		while(arg[i] != NULL)
+		while (arg[i] != NULL)
 		{
-			if(arg[i + 1] == NULL)
+			if (arg[i + 1] == NULL)
 				printf("%s", arg[i]);
 			else
 				printf("%s ", arg[i]);
 			i++;
 		}
 	}
-	return(1);
+	return (1);
 }
 
 //verifie l'option
 int	check_opt(char **arg)
 {
-	int i = 1;
+	int	i;
 
-	while(arg[i])
+	i = 1;
+	while (arg[i])
 	{
-		if(check_arg_opt(arg[i]) == 0)
+		if (check_arg_opt(arg[i]) == 0)
 		{
 			print_arg_opt(arg, i);
-			return(0);
+			return (0);
 		}
 		else if (check_arg_opt(arg[i]) == 1)
 		{
-			while(arg[i])
+			while (arg[i])
 			{
-				if(arg[i + 1] == NULL)
+				if (arg[i + 1] == NULL)
 					printf("%s\n", arg[i]);
 				else
 					printf("%s ", arg[i]);
@@ -84,28 +88,30 @@ int	check_opt(char **arg)
 			}
 		}
 	}
-	return(0);
+	return (0);
 }
 
 int	echo(char **arg)
 {
-	int i = 1;
-	int j = 0;
-	
-	if(!arg[1])
+	int	i;
+	int	j;
+
+	i = 1;
+	j = 0;
+	if (!arg[1])
 	{
 		printf("\n");
 		return (0);
 	}
-	else if(arg[1][0] == 45) //gestion des options
+	else if (arg[1][0] == 45)
 		check_opt(arg);
-	while(arg[i] && (arg[i][j] >= 33 && arg[i][j] <= 126) && arg[i][0] != 45)
+	while (arg[i] && (arg[i][j] >= 33 && arg[i][j] <= 126) && arg[i][0] != 45)
 	{
-		if(arg[i + 1] == NULL)
+		if (arg[i + 1] == NULL)
 			printf("%s\n", arg[i]);
 		else
 			printf("%s ", arg[i]);
 		i++;
 	}
-	return(0);
+	return (0);
 }

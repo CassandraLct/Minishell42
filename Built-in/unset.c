@@ -6,13 +6,11 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:18 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/08 15:19:28 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/17 11:48:30 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	unset(g_min mini)
-{
-	
-}
+void	unset(t_min mini)
+{}
