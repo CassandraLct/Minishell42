@@ -6,12 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/17 11:48:50 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/17 17:30:30 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+//2 fonctions
 //affiche le pwd
 void	pwd(char **c_env)
 {
@@ -30,13 +31,14 @@ void	pwd(char **c_env)
 }
 
 // exit doit avoir 0 ou 1 arg, qui doit etre numerique
-//a modifier en fonction du lexer fonction +25lignes
+//a modifier en fonction du lexer fonction +25lignes (faire fonction aff_error); 
+//strcmp a faire
 void	exit_min(char **argv, t_min mini)
 {
 	int	i;
 
 	i = 2;
-	if (strcmp(argv[1], "exit") == 0) //a recuperer de la libft
+	if (strcmp(argv[1], "exit") == 0)
 	{
 		if (argv[i] == NULL)
 		{

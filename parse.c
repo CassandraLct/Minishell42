@@ -6,23 +6,24 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:12:24 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/17 14:44:11 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/17 16:41:29 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+//2 fonctions
 //malloc la taille du tableau
 char	**init_cpy(char **str, char **dest)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 		i++;
 	dest = malloc(sizeof(char *) * i + 1);
 	i = 0;
-	while(dest[i])
+	while (dest[i])
 	{
 		dest[i] = NULL;
 		i++;

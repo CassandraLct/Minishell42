@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 07:41:27 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/17 11:34:12 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/17 16:11:33 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,14 +117,15 @@ char	**ft_split(char const *s, char c)
 
 //split dès qu'il y a un espace, ->ne pas split si il y a des cotes(""; '')
 //verifier si il y a bien 2 cotes (debut/fin)
-int	main(int argc, char **argv)
-{
-	(void)argc;
-	char	**tab;
-	int		x = 0;
 	//char *line = "minishell> gcc main.c | grep "main" > test";
 	//faire avec argv pour tester
+int	main(int argc, char **argv)
+{
+	char	**tab;
+	int		x;
 
+	(void)argc;
+	x = 0;
 	tab = ft_split(argv[1], ' ');
 	while (tab[x] != NULL)
 	{

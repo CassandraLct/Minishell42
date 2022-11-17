@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/17 14:42:25 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/17 16:46:50 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+//# include <signal.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 
@@ -41,5 +42,8 @@ void	export(t_min mini);
 int		echo(char **arg);
 char	**init_cpy(char **str, char **dest);
 char	*ft_strdup(char *s);
+int		tablen(t_min mini);
+int		check_exp(t_min mini, int index);
+void	fill_exp(t_min mini, char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 18:24:15 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/17 11:29:13 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/17 16:09:22 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,14 @@ char	**ft_split(char const *s, char c)
 	return (str);
 }
 
-int main(void)
+int	main(void)
 {
-	char *line = "minishell> cat file1";
-	char **tab;
-	int	x = 0;
-	
+	char	*line;
+	char	**tab;
+	int		x;
+
+	line = "minishell> cat file1";
+	x = 0;
 	tab = ft_split(line, ' ');
 	while (tab[x] != NULL)
 	{

@@ -6,12 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:12:41 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/17 14:42:08 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/17 16:41:05 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+//4 fonctions
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	int				i;
