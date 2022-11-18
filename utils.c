@@ -6,13 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:12:41 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/17 16:41:05 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/18 14:44:19 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//4 fonctions
+//5 fonctions
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	int				i;
@@ -84,4 +84,12 @@ char	*ft_strdup(char *s)
 	}
 	dest[i] = '\0';
 	return (dest);
+}
+
+int	ft_isdigit(char c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
 }

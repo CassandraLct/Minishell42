@@ -6,14 +6,25 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:12:24 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/17 16:41:29 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/18 16:20:03 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//2 fonctions
+//3 fonctions
 //malloc la taille du tableau
+char	**init_exp(char **tab)
+{
+	char	**tmp;
+	int		i;
+
+	i = 0;
+	tmp = NULL;
+	tmp = init_cpy(tab, tmp);
+	tmp[i] = NULL;
+	return(tmp);
+}
 char	**init_cpy(char **str, char **dest)
 {
 	int	i;
@@ -21,30 +32,37 @@ char	**init_cpy(char **str, char **dest)
 	i = 0;
 	while (str[i])
 		i++;
-	dest = malloc(sizeof(char *) * i + 1);
-	i = 0;
-	while (dest[i])
-	{
-		dest[i] = NULL;
-		i++;
-	}
-	dest[i] = NULL;
+	dest = malloc(sizeof(char *) * (i + 1));
 	return (dest);
 }
 
-//copie de l'environnement + malloc de c_env
-//fonction +25 lignes
-char	**recup_env(char **env, t_min mini)
+//effectue une copie de char**
+char	**ft_cptab(char **tab)
+{
+	char	**tmp;
+	int		i;
+
+	i = 0;
+	tmp = NULL;
+	tmp = init_cpy(tab, tmp);
+	while (tab[i])
+	{
+		tmp[i] = ft_strdup(tab[i]);
+		i++;
+	}
+	tmp[i] = NULL;
+	return (tmp);
+}
+
+void	free_tab(char **tab)
 {
 	int	i;
 
 	i = 0;
-	mini.c_env = init_cpy(env, mini.c_env);
-	while (env[i])
+	while (tab[i])
 	{
-		mini.c_env[i] = ft_strdup(env[i]);
+		free(tab[i]);
 		i++;
 	}
-	mini.c_env[i] = NULL;
-	return (mini.c_env);
+	free(tab);
 }

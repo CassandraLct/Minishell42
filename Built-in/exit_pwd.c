@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/17 17:30:30 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/18 08:59:31 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ void	pwd(char **c_env)
 		}
 		i++;
 	}
+}
+
+void	aff_err(char *proc, char *fonct, char *arg, char *err)
+{
+	//a faire autrement
 }
 
 // exit doit avoir 0 ou 1 arg, qui doit etre numerique
@@ -58,13 +63,13 @@ void	exit_min(char **argv, t_min mini)
 				{
 					printf("exit\n");
 					printf("minishell: exit : too many arguments\n");
-					mini.ret_error = 1;
+					mini.ret_err = 1;
 				}
 			}
 			else if (strdigit(argv[i]) == 1)
 			{
 				printf("exit\n");
-				printf("minishell: exit: %s: numeric argument required\n", argv[i]);
+				printf("minishell: exit: %s: numeric argument required\n", argv[i]); //ligne trop longue
 				exit(255);
 			}
 			break ;
