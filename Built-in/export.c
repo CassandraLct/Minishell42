@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/18 16:21:19 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/18 16:31:34 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,17 +81,20 @@ void	add_valexp(t_min mini, char *arg)
 	int		i;
 
 	i = 0;
-	while(mini.c_exp[i])
+	while (mini.c_exp[i])
 		i++;
 	cpy = malloc(sizeof(char *) * (i + 2));
 	i = 0;
-	while(mini.c_exp[i])
+	while (mini.c_exp[i])
 	{
 		/*if(strncmp(mini.c_exp[i], arg, ft_strlen((void)arg)) == 0)
 		{//checker valeur et si il faut modifier env aussi}*/
-		if(strcmp(mini.c_exp[i], arg) > 0)
-		{}
+		if (strcmp(mini.c_exp[i], arg) > 0)
+		{
+			printf("a copier\n");
+		}
 	}
+	return ;
 }
 
 //verifier si = present et quelque chose apres le =
@@ -111,10 +114,7 @@ void	new_vars(t_min mini, char *arg)
 		if (arg[i] == '=')
 		{
 			if (arg[i + 1] == '\0') //a modifier (voir si gerer avec le lexer)
-			{
 				printf("cas 1: a copier que dans export: '%s'\n", arg);
-				return ;
-			}
 			else
 			{
 				add_valenv(mini, arg);
@@ -124,14 +124,13 @@ void	new_vars(t_min mini, char *arg)
 		i++;
 	}
 	printf("cas 3: a copie que dans export : '%s'\n", arg);
-	return ;
 }
 
 //premiere partie d'export
 //+25lignes
 void	export(t_min mini)
 {
-	//char	*arg;
+	char	*arg;
 	int		i;
 	int		index;
 

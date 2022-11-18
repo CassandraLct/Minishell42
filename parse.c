@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:12:24 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/18 16:20:03 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/18 16:26:47 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ char	**init_exp(char **tab)
 	tmp = NULL;
 	tmp = init_cpy(tab, tmp);
 	tmp[i] = NULL;
-	return(tmp);
+	return (tmp);
 }
+
 char	**init_cpy(char **str, char **dest)
 {
 	int	i;

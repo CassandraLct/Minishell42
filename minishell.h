@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/18 16:18:16 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/18 16:46:01 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_min
 	char	*line;
 	char	**tab;
 	char	*prompt;
+	char	*cdpath;
 }	t_min;
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -49,5 +50,6 @@ void	free_tab(char **tab);
 char	**ft_cptab(char **tab);
 void	free_tab(char **tab);
 char	**init_exp(char **tab);
+void	cd(t_min mini);
 
 #endif
