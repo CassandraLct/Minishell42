@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/21 18:11:30 by clecat           ###   ########.fr       */
+/*   Created: 2022/11/21 13:36:33 by clecat            #+#    #+#             */
+/*   Updated: 2022/11/21 18:00:33 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-//grep >test < Makefile "minishell" | cat test
-//commencer le lexer split la line et 
+#include "../minishell.h"
 
-t_min	g_mini;
-
-//probleme a regler: valeur modifier non remonter
-//finir export
-int	main(int argc, char **argv, char **envp)
+//initialise la structure
+t_min	init_struct(t_min mini, char **envp)
 {
-	(void)argc;
-	g_mini = init_struct(g_mini, envp);
-	exec(g_mini, argv);
-	while (1)
-	{
-		g_mini.line = readline(g_mini.prompt);
-		add_history(g_mini.line);
-	}
+	mini.ret_err = 0;
+	mini.prompt = "minishell>";
+	mini.c_env = ft_cpytab(envp);
+	mini.cdpath = ".";
+	mini.c_exp = init_export(mini);
+	return (mini);
+}
+
+//creer la copie d'export
+char	**init_export(t_min mini)
+{
+	mini.c_exp = init_exp(mini.c_env);
+	order_exp(mini);
+	return (mini.c_exp);
 }

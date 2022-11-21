@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/21 14:44:56 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/21 17:32:20 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,8 @@
 #include <string.h>
 
 //5 fonctions
-/*Pour export affiche que certaine
-ecrit delare-x avant le nom de la variable, mets entre cote ce qu'il y a
-après le =
-affiche les variables par ordre ascii
-export (qqc) sans égale s'affcihe que dans export
-si = afficher aussi dans env
-
-ne pas prendre des chiffres en param pour nom de variable 
-bash-3.2$ export 42=a-b
-bash: export: `42=a-b': not a valid identifier
-bash-3.2$ export "42=a-b"
-bash: export: `42=a-b': not a valid identifier*/
+/*export (qqc) sans égale s'affcihe que dans export
+si = afficher aussi dans env*/
 
 //copy sur la derniere ligne d'env;
 void	add_valenv(t_min mini, char *str)
@@ -46,7 +36,7 @@ void	add_valenv(t_min mini, char *str)
 	}
 	cpy[i] = ft_strdup(str);
 	cpy[i + 1] = NULL;
-	free_tab(mini.c_env);
+	//free_tab(mini.c_env);
 	mini.c_env = ft_cpytab(cpy);
 }
 
@@ -63,7 +53,7 @@ void	add_valexp(t_min mini, char *str)
 	i = 0;
 	while (mini.c_exp[i])
 	{
-		cpy[i] = ft_strdup(str);
+		cpy[i] = ft_strdup(mini.c_exp[i]);
 		i++;
 	}
 	cpy[i] = ft_strdup(str);
@@ -130,7 +120,7 @@ void	export(t_min mini)
 {
 	char	*arg;
 
-	arg = "bonjour= ";
+	arg = "bonjour=a+b";
 	mini.c_exp = init_exp(mini.c_env);
 	if (arg != NULL)
 		new_vars(mini, arg);

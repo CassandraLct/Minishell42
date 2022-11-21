@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/21 18:11:30 by clecat           ###   ########.fr       */
+/*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
+/*   Updated: 2022/11/17 11:10:07 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-//grep >test < Makefile "minishell" | cat test
-//commencer le lexer split la line et 
+//#include "src/minishell.h"
 
-t_min	g_mini;
+//split la line et stocker dans un char **tab;
+/*char	split_line(char *line)
+{}*/
 
-//probleme a regler: valeur modifier non remonter
-//finir export
-int	main(int argc, char **argv, char **envp)
+/*int i = 0;int x = 0;int y = 0;*/
+//test dup2 
+int	main(void)
 {
-	(void)argc;
-	g_mini = init_struct(g_mini, envp);
-	exec(g_mini, argv);
-	while (1)
+	char	*line;
+	char	**tab;
+
+	line = "minishell> cat test";
+	while (line)
 	{
-		g_mini.line = readline(g_mini.prompt);
-		add_history(g_mini.line);
+		tab = ft_split(line, ' ');
 	}
 }

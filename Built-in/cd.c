@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 13:55:50 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/21 14:10:49 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/21 17:38:46 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	recup_value_pwd(t_min mini, char **str)
 	change_value_pwd(mini, str, pwd, oldpwd);
 }
 
-//utiliser chdir 1er if change oldpwd, 2e if change les 2 pwd, 3e if change les 2 pwd
+//1er if change oldpwd, 2e if change les 2 pwd, 3e if les 2 pwd
 //faire les autres cas plus tard
 void	cd(t_min mini)
 {
@@ -110,13 +110,13 @@ void	cd(t_min mini)
 			recup_value_pwd(mini, mini.c_env);
 			recup_value_pwd(mini, mini.c_exp);
 		}
-		if (strcmp(mini.cdpath, "..") == 0) //change le pwd et le oldpwd
+		if (strcmp(mini.cdpath, "..") == 0)
 		{
-			printf("retourne au reportoire au-dessus\n");
+			printf("retourne au reportoire au-dessus,change pwd et old\n");
 		}
 		if (strcmp(mini.cdpath, ".") > 0 || strcmp(mini.cdpath, "..") > 0)
 		{
-			printf("va au chemin indiqué\n"); //change pwd et oldpwd
+			printf("va au chemin indiqué,change pwd et old\n");
 		}
 	}
 }
