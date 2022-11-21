@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/18 16:46:01 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/21 14:45:47 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,14 @@ int		check_exp(t_min mini, int index);
 void	fill_exp(t_min mini, char *str);
 int		ft_isdigit(char c);
 void	free_tab(char **tab);
-char	**ft_cptab(char **tab);
-void	free_tab(char **tab);
+char	**ft_cpytab(char **tab);
 char	**init_exp(char **tab);
 void	cd(t_min mini);
+char	*ft_strjoin(char const *s1, char const *s2);
+void	print_export(t_min mini);
+void	exit_min(char **argv, t_min mini);
+t_min	init_struct(t_min mini, char **envp);
+char	**init_export(t_min mini);
+void	order_exp(t_min mini);
 
 #endif

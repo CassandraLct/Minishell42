@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/18 16:31:34 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/21 14:44:56 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,30 +28,6 @@ bash: export: `42=a-b': not a valid identifier
 bash-3.2$ export "42=a-b"
 bash: export: `42=a-b': not a valid identifier*/
 
-//print export with "declare-x" & valeur entre ""
-void	print_export(t_min mini)
-{
-	int		i;
-	int		y;
-	int		index;
-
-	i = 0;
-	y = 0;
-	while (mini.c_exp[i])
-	{
-		printf("declare -x ");
-		while (mini.c_exp[i][y] != '=')
-			printf("%c", mini.c_exp[i][y++]);
-		printf("%c%c", mini.c_exp[i][y], 34);
-		index = y + 1;
-		while (mini.c_exp[i][index] != '\0')
-			printf("%c", mini.c_exp[i][index++]);
-		printf("%c\n", 34);
-		y = 0;
-		i++;
-	}
-}
-
 //copy sur la derniere ligne d'env;
 void	add_valenv(t_min mini, char *str)
 {
@@ -71,11 +47,11 @@ void	add_valenv(t_min mini, char *str)
 	cpy[i] = ft_strdup(str);
 	cpy[i + 1] = NULL;
 	free_tab(mini.c_env);
-	mini.c_env = ft_cptab(cpy);
+	mini.c_env = ft_cpytab(cpy);
 }
 
 //voir pour modifier check_exp
-void	add_valexp(t_min mini, char *arg)
+void	add_valexp(t_min mini, char *str)
 {
 	char	**cpy;
 	int		i;
@@ -87,18 +63,16 @@ void	add_valexp(t_min mini, char *arg)
 	i = 0;
 	while (mini.c_exp[i])
 	{
-		/*if(strncmp(mini.c_exp[i], arg, ft_strlen((void)arg)) == 0)
-		{//checker valeur et si il faut modifier env aussi}*/
-		if (strcmp(mini.c_exp[i], arg) > 0)
-		{
-			printf("a copier\n");
-		}
+		cpy[i] = ft_strdup(str);
+		i++;
 	}
+	cpy[i] = ft_strdup(str);
+	cpy[i + 1] = NULL;
+	free_tab(mini.c_env);
 	return ;
 }
 
 //verifier si = present et quelque chose apres le =
-//+25lignes
 void	new_vars(t_min mini, char *arg)
 {
 	int	i;
@@ -117,6 +91,7 @@ void	new_vars(t_min mini, char *arg)
 				printf("cas 1: a copier que dans export: '%s'\n", arg);
 			else
 			{
+				printf("copie dans env et export\n");
 				add_valenv(mini, arg);
 				return ;
 			}
@@ -126,36 +101,39 @@ void	new_vars(t_min mini, char *arg)
 	printf("cas 3: a copie que dans export : '%s'\n", arg);
 }
 
-//premiere partie d'export
-//+25lignes
+//trie export par ordre ascii
+void	order_exp(t_min mini)
+{
+	int	index;
+	int	i;
+
+	i = 0;
+	while (tablen(mini) != 0)
+	{
+		index = 0;
+		while (check_exp(mini, index) != 0)
+			index++;
+		while (mini.c_env[i])
+		{
+			if (strcmp(mini.c_env[index], mini.c_env[i]) > 0
+				&& check_exp(mini, i) == 0)
+				index = i;
+			i++;
+		}
+		fill_exp(mini, mini.c_env[index]);
+		i = 0;
+	}
+}
+
+//add new_var ou affiche export
 void	export(t_min mini)
 {
 	char	*arg;
-	int		i;
-	int		index;
 
-	i = 0;
-	arg = "a42= bonjour";
+	arg = "bonjour= ";
 	mini.c_exp = init_exp(mini.c_env);
-	if (arg)
+	if (arg != NULL)
 		new_vars(mini, arg);
 	else
-	{
-		while (tablen(mini) != 0)
-		{
-			index = 0;
-			while (check_exp(mini, index) != 0)
-				index++;
-			while (mini.c_env[i])
-			{
-				if (strcmp(mini.c_env[index], mini.c_env[i]) > 0
-					&& check_exp(mini, i) == 0)
-					index = i;
-				i++;
-			}
-			fill_exp(mini, mini.c_env[index]);
-			i = 0;
-		}
 		print_export(mini);
-	}
 }

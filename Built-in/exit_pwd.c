@@ -6,11 +6,11 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/18 08:59:31 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/21 12:51:57 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 //2 fonctions
 //affiche le pwd
@@ -30,13 +30,33 @@ void	pwd(char **c_env)
 	}
 }
 
-void	aff_err(char *proc, char *fonct, char *arg, char *err)
+void	verif_arg_exit(t_min mini, int i, char **argv)
 {
-	//a faire autrement
+	char	*err;
+
+	err = "numeric argument required";
+	if (strdigit(argv[i]) == 0)
+	{
+		if (argv[i + 1] == NULL)
+		{
+			printf("exit\n");
+			exit(atoi(argv[i]) % 256);
+		}
+		else
+		{
+			printf("exit\nminishell: exit : too many arguments\n");
+			mini.ret_err = 1;
+		}
+	}
+	else if (strdigit(argv[i]) == 1)
+	{
+		printf("exit\nminishell: exit: %s: %s\n", argv[i], err);
+		exit(255);
+	}
 }
 
 // exit doit avoir 0 ou 1 arg, qui doit etre numerique
-//a modifier en fonction du lexer fonction +25lignes (faire fonction aff_error); 
+//a modifier en fonction du lexer
 //strcmp a faire
 void	exit_min(char **argv, t_min mini)
 {
@@ -52,26 +72,7 @@ void	exit_min(char **argv, t_min mini)
 		}
 		while (argv[i])
 		{
-			if (strdigit(argv[i]) == 0)
-			{
-				if (argv[i + 1] == NULL)
-				{
-					printf("exit\n");
-					exit(atoi(argv[i]) % 256);
-				}
-				else
-				{
-					printf("exit\n");
-					printf("minishell: exit : too many arguments\n");
-					mini.ret_err = 1;
-				}
-			}
-			else if (strdigit(argv[i]) == 1)
-			{
-				printf("exit\n");
-				printf("minishell: exit: %s: numeric argument required\n", argv[i]); //ligne trop longue
-				exit(255);
-			}
+			verif_arg_exit(mini, i, argv);
 			break ;
 		}
 	}

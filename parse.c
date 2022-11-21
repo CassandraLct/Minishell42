@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:12:24 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/18 16:26:47 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/21 14:19:52 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	**init_cpy(char **str, char **dest)
 }
 
 //effectue une copie de char**
-char	**ft_cptab(char **tab)
+char	**ft_cpytab(char **tab)
 {
 	char	**tmp;
 	int		i;

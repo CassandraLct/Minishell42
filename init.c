@@ -1,17 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset.c                                            :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 13:06:18 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/21 13:08:38 by clecat           ###   ########.fr       */
+/*   Created: 2022/11/21 13:36:33 by clecat            #+#    #+#             */
+/*   Updated: 2022/11/21 14:44:02 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
-//bash-3.2$ unset bonjour=
-//bash: unset: `bonjour=': not a valid identifier
-//void	unset(t_min mini){}
+t_min	init_struct(t_min mini, char **envp)
+{
+	mini.ret_err = 0;
+	mini.prompt = "minishell>";
+	mini.c_env = ft_cpytab(envp);
+	mini.cdpath = ".";
+	mini.c_exp = init_export(mini);
+	return (mini);
+}
+
+char	**init_export(t_min mini)
+{
+	mini.c_exp = init_exp(mini.c_env);
+	order_exp(mini);
+	return (mini.c_exp);
+}
