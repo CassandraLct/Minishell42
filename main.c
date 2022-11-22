@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/21 18:11:30 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/22 13:27:02 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@
 t_min	g_mini;
 
 //probleme a regler: valeur modifier non remonter
-//finir export
+//finir export, faire la base d'excve,modifier le split la line
 int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
+	(void)argv;
 	g_mini = init_struct(g_mini, envp);
-	exec(g_mini, argv);
+	export(g_mini);
+	//exec(g_mini, argv[1]);
 	while (1)
 	{
 		g_mini.line = readline(g_mini.prompt);

@@ -6,25 +6,28 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:51:31 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/21 19:02:07 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/22 11:29:18 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 //execve, perror, access
-//verifier que la commande existe split le path pour mettre la cmd a la fin
-//voir pipex
-void	exec(t_min mini, char **cmd)
+//voir si a modifier pour gerer les options
+void	exec(t_min mini, char *argv)
 {
 	char	**all_path;
 	char	*gd_path;
 	char	*b_path;
-	char	*cmd1;
+	char	**cmd1;
 	int		i;
+	int		j;
 
 	i = 0;
-	cmd1 = ft_strjoin("/", cmd[1]);
+	j = 0;
+	cmd1 = NULL;
+	cmd1 = ft_split(argv, ' ');
+	cmd1[0] = ft_strjoin("/", argv);
 	while (mini.c_env[i])
 	{
 		if (strncmp(mini.c_env[i], "PATH=", 5) == 0)
@@ -35,20 +38,19 @@ void	exec(t_min mini, char **cmd)
 	all_path = ft_split(b_path, ':');
 	while (all_path[i])
 	{
-		gd_path = ft_strjoin(all_path[i], cmd1);
+		gd_path = ft_strjoin(all_path[i], cmd1[0]);
+
 		if (access(gd_path, R_OK) == 0)
 		{
 			printf("commande existante: %s\n", gd_path);
-			if (execve(gd_path, &cmd1, mini.c_env) == -1)
+			if (execve(gd_path, cmd1, mini.c_env) == -1)
 				perror("Execve : ");
-				// c2r4p9% ./minishell grep erreur rendu
-				// commande existante: /usr/bin/grep
-				// grep: .: Is a directory
 		}
+		else
+			j++;
 		free(gd_path);
 		i++;
 	}
-	/*i = 0;
-	while(all_path[i])
-		printf("all_path = %s, cmd = %s\n", all_path[i++], cmd[1]);*/
+	if(j == i)
+		printf("minishell: %s: command not found\n", argv);
 }

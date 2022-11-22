@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/21 17:32:20 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/22 13:28:51 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	add_valenv(t_min mini, char *str)
 	}
 	cpy[i] = ft_strdup(str);
 	cpy[i + 1] = NULL;
-	//free_tab(mini.c_env);
 	mini.c_env = ft_cpytab(cpy);
 }
 
@@ -59,36 +58,8 @@ void	add_valexp(t_min mini, char *str)
 	cpy[i] = ft_strdup(str);
 	cpy[i + 1] = NULL;
 	free_tab(mini.c_env);
+	//order_exp();
 	return ;
-}
-
-//verifier si = present et quelque chose apres le =
-void	new_vars(t_min mini, char *arg)
-{
-	int	i;
-
-	i = 0;
-	while (arg[i] != '\0')
-	{
-		if (ft_isdigit(arg[0]) == 1)
-		{
-			printf("`%s': not a valid identifier\n", arg);
-			exit(1);
-		}
-		if (arg[i] == '=')
-		{
-			if (arg[i + 1] == '\0') //a modifier (voir si gerer avec le lexer)
-				printf("cas 1: a copier que dans export: '%s'\n", arg);
-			else
-			{
-				printf("copie dans env et export\n");
-				add_valenv(mini, arg);
-				return ;
-			}
-		}
-		i++;
-	}
-	printf("cas 3: a copie que dans export : '%s'\n", arg);
 }
 
 //trie export par ordre ascii
@@ -113,6 +84,36 @@ void	order_exp(t_min mini)
 		fill_exp(mini, mini.c_env[index]);
 		i = 0;
 	}
+}
+
+//verifier si = present et quelque chose apres le =
+void	new_vars(t_min mini, char *arg)
+{
+	int	i;
+
+	i = 0;
+	while (arg[i] != '\0')
+	{
+		if (ft_isdigit(arg[0]) == 1)
+		{
+			printf("`%s': not a valid identifier\n", arg);
+			exit(1);
+		}
+		if (arg[i] == '=')
+		{
+			if (arg[i + 1] == '\0')
+				printf("cas 1: a copier que dans export: '%s'\n", arg);
+			else
+			{
+				printf("copie dans env et export\n");
+				//add_valenv(mini, arg);
+				add_valexp(mini, arg);
+				return ;
+			}
+		}
+		i++;
+	}
+	printf("cas 3: a copie que dans export : '%s'\n", arg);
 }
 
 //add new_var ou affiche export

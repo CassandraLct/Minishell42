@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/21 18:11:56 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/22 11:06:11 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ t_min	init_struct(t_min mini, char **envp);
 char	**init_export(t_min mini);
 void	order_exp(t_min mini);
 void	unset(t_min mini);
-void	exec(t_min mini, char **cmd);
+void	exec(t_min mini, char *argv);
 
 #endif

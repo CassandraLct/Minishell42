@@ -6,13 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:35:49 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/21 14:42:51 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/22 13:24:17 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//3 fonctions
+//5 fonctions
 
 //compare la taille des 2
 int	tablen(t_min mini)
