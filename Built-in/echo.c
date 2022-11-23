@@ -6,12 +6,14 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:37:12 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/23 18:18:35 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/23 18:40:06 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include <stdlib.h>
+
+//4 fonctions
 /*echo sans arg affiche une ligne vide puis le prompt ok (a faire avec le
 vraie prompt)
 echo (num/string) affiche la string ok
@@ -105,7 +107,7 @@ void	echo(t_min mini)
 
 	i = 1;
 	j = 0;
-	if(strcmp(mini.tab[0], "echo") == 0)
+	if (strcmp(mini.tab[0], "echo") == 0)
 	{
 		if (!mini.tab[1])
 		{

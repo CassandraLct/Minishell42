@@ -6,26 +6,56 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/17 11:10:07 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/23 19:04:35 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "src/minishell.h"
+#include "../minishell.h"
 
-//split la line et stocker dans un char **tab;
-/*char	split_line(char *line)
-{}*/
-
-/*int i = 0;int x = 0;int y = 0;*/
-//test dup2 
-int	main(void)
+//a finir (ne gere pas encore les cotes)
+//+25 lignes
+char	**split_line(t_min mini)
 {
-	char	*line;
-	char	**tab;
+	char	c;
+	int		i;
+	int		j;
 
-	line = "minishell> cat test";
-	while (line)
+	i = 0;
+	j = 0;
+	while (mini.line[i])
 	{
-		tab = ft_split(line, ' ');
+		if (mini.line[i] == 34 || mini.line[i] == 39)
+		{
+			c = mini.line[i];
+			while (mini.line[i] != 34 || mini.line[i] != 39)
+			{
+				if (mini.line[i] != 34 && mini.line[i] != 39 
+					&& mini.line[i + 1] == '\0')
+					printf("minishell: `%s': cote not closed\n", mini.line);
+				if (mini.line[i] == c)
+				{
+					printf("c= %c, line[i] = %c\n", c, mini.line[i]);
+					printf("a copier dans le tableau, %s\n", mini.line);
+				}
+				j++;
+				i++;
+			}
+		}
+		i++;
+	}
+	if (j == 0)
+		mini.tab = ft_split(mini.line, ' ');
+	return (mini.tab);
+}
+
+void	verif_line(t_min mini)
+{
+	char	**builtin;
+	int		i;
+	int		j;
+
+	while(mini.tab[i])
+	{
+		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/23 18:16:23 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/23 18:40:50 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ void	verif_arg_exit(t_min mini, int i)
 }
 
 // exit doit avoir 0 ou 1 arg, qui doit etre numerique
-// exit $34 : exit correctement dans le bash (voir si gerer avec le lexer et le $)
-//la fonction exit de minishell soit redirige vers la verif des arguments
+// exit $34 : exit correctement dans le bash 
+// (voir si gerer avec le lexer et le $)
+// la fonction exit de minishell soit redirige vers la verif des arguments
 void	exit_min(t_min mini)
 {
 	int	i;

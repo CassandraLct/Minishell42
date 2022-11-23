@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:51:31 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/23 18:11:56 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/23 18:38:12 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 //execve, perror, access
 //a gerer avec un fork pour empecher de sortir de minishell
+//+25 lignes
 void	exec(t_min mini)
 {
 	char	**all_path;
@@ -29,9 +30,6 @@ void	exec(t_min mini)
 	cmd = init_cpy(mini.tab, cmd);
 	cmd = ft_cpytab(mini.tab);
 	cmd[0] = ft_strjoin("/", cmd[0]);
-	while(cmd[i])
-		printf("%s\n", cmd[i++]);
-	i = 0;
 	while (mini.c_env[i])
 	{
 		if (strncmp(mini.c_env[i], "PATH=", 5) == 0)
@@ -54,6 +52,6 @@ void	exec(t_min mini)
 		free(gd_path);
 		i++;
 	}
-	if(j == i)
+	if (j == i)
 		printf("minishell: %s: command not found\n", mini.tab[0]);
 }

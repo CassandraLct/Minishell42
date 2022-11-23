@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:35:49 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/22 14:00:25 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/23 19:00:02 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //5 fonctions
 
-//compare la taille des 2
+//compare la taille de 2 char**
 int	tablen(t_min mini)
 {
 	int	i;
