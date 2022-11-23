@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:37:12 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/17 11:23:02 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/23 18:18:35 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,49 +69,60 @@ int	check_opt(char **arg)
 	int	i;
 
 	i = 1;
-	while (arg[i])
+	if (check_arg_opt(arg[i]) == 0)
 	{
-		if (check_arg_opt(arg[i]) == 0)
+		i++;
+		while (arg[i] != NULL)
 		{
-			print_arg_opt(arg, i);
-			return (0);
+			if (arg[i + 1] == NULL)
+				printf("%s", arg[i]);
+			else
+				printf("%s ", arg[i]);
+			i++;
 		}
-		else if (check_arg_opt(arg[i]) == 1)
+		/*print_arg_opt(arg, i);
+		return (0);*/
+	}
+	else if (check_arg_opt(arg[i]) == 1)
+	{
+		while (arg[i])
 		{
-			while (arg[i])
-			{
-				if (arg[i + 1] == NULL)
-					printf("%s\n", arg[i]);
-				else
-					printf("%s ", arg[i]);
-				i++;
-			}
+			if (arg[i + 1] == NULL)
+				printf("%s\n", arg[i]);
+			else
+				printf("%s ", arg[i]);
+			i++;
 		}
 	}
 	return (0);
 }
 
-int	echo(char **arg)
+//verifie si echo a des arguments ou non
+void	echo(t_min mini)
 {
 	int	i;
 	int	j;
 
 	i = 1;
 	j = 0;
-	if (!arg[1])
+	if(strcmp(mini.tab[0], "echo") == 0)
 	{
-		printf("\n");
-		return (0);
+		if (!mini.tab[1])
+		{
+			printf("\n");
+			return ;
+		}
+		else if (mini.tab[1][0] == 45)
+			check_opt(mini.tab);
+		while (mini.tab[i] && (mini.tab[i][j] >= 33 && mini.tab[i][j] <= 126)
+			&& mini.tab[i][0] != 45)
+		{
+			if (mini.tab[i + 1] == NULL)
+				printf("%s\n", mini.tab[i]);
+			else
+				printf("%s ", mini.tab[i]);
+			i++;
+		}
 	}
-	else if (arg[1][0] == 45)
-		check_opt(arg);
-	while (arg[i] && (arg[i][j] >= 33 && arg[i][j] <= 126) && arg[i][0] != 45)
-	{
-		if (arg[i + 1] == NULL)
-			printf("%s\n", arg[i]);
-		else
-			printf("%s ", arg[i]);
-		i++;
-	}
-	return (0);
+	return ;
 }

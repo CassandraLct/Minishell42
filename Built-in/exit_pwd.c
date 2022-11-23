@@ -6,14 +6,14 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/21 12:51:57 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/23 18:16:23 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 //2 fonctions
-//affiche le pwd
+//affiche le pwd (voir si modifier lors du changement)
 void	pwd(char **c_env)
 {
 	int	i;
@@ -30,49 +30,51 @@ void	pwd(char **c_env)
 	}
 }
 
-void	verif_arg_exit(t_min mini, int i, char **argv)
+/*verifie si les arguments d'exit sont valide ou non et si il y en a plus qu'un 
+et renvoie le code erreur approprié(bash)*/
+void	verif_arg_exit(t_min mini, int i)
 {
 	char	*err;
 
 	err = "numeric argument required";
-	if (strdigit(argv[i]) == 0)
+	if (strdigit(mini.tab[i]) == 0)
 	{
-		if (argv[i + 1] == NULL)
+		if (mini.tab[i + 1] == NULL)
 		{
 			printf("exit\n");
-			exit(atoi(argv[i]) % 256);
+			exit(atoi(mini.tab[i]) % 256);
 		}
 		else
 		{
-			printf("exit\nminishell: exit : too many arguments\n");
+			printf("exit\nminishell: exit: too many arguments\n");
 			mini.ret_err = 1;
 		}
 	}
-	else if (strdigit(argv[i]) == 1)
+	else if (strdigit(mini.tab[i]) == 1)
 	{
-		printf("exit\nminishell: exit: %s: %s\n", argv[i], err);
+		printf("exit\nminishell: exit: %s: %s\n", mini.tab[i], err);
 		exit(255);
 	}
 }
 
 // exit doit avoir 0 ou 1 arg, qui doit etre numerique
-//a modifier en fonction du lexer
-//strcmp a faire
-void	exit_min(char **argv, t_min mini)
+// exit $34 : exit correctement dans le bash (voir si gerer avec le lexer et le $)
+//la fonction exit de minishell soit redirige vers la verif des arguments
+void	exit_min(t_min mini)
 {
 	int	i;
 
-	i = 2;
-	if (strcmp(argv[1], "exit") == 0)
+	i = 1;
+	if (strcmp(mini.tab[0], "exit") == 0)
 	{
-		if (argv[i] == NULL)
+		if (mini.tab[i] == NULL)
 		{
 			printf("exit\n");
 			exit(0);
 		}
-		while (argv[i])
+		while (mini.tab[i])
 		{
-			verif_arg_exit(mini, i, argv);
+			verif_arg_exit(mini, i);
 			break ;
 		}
 	}

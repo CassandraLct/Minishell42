@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/22 13:28:51 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/22 14:03:00 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	add_valexp(t_min mini, char *str)
 	cpy[i] = ft_strdup(str);
 	cpy[i + 1] = NULL;
 	free_tab(mini.c_env);
-	//order_exp();
+	
 	return ;
 }
 

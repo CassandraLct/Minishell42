@@ -6,7 +6,7 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 13:45:49 by clecat            #+#    #+#              #
-#    Updated: 2022/11/07 15:04:31 by clecat           ###   ########.fr        #
+#    Updated: 2022/11/23 12:55:39 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -145,4 +145,20 @@ bash-3.2$ cat test2
 /*   exit_pwd.c                                         :+:      :+:    :+:   */
 //affiche le pwd
 void    pwd(char **c_env)
+bash-3.2$ 
+
+/*test echo*/
+//comportement a voir aussi
+bash-3.2$ echo "bonjour | ls
+> 
+bash-3.2$ echo "bonjour | ls"
+bonjour | ls
+bash-3.2$ echo "
+> 
+bash-3.2$ bonjour
+bash: bonjour: command not found
+bash-3.2$ echo $bonjour
+
+bash-3.2$ echo $"bonjour"
+bonjour
 bash-3.2$ 

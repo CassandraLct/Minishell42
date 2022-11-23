@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/22 11:06:11 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/23 17:33:41 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	**ft_split(char const *s, char c);
 int		strdigit(char *str);
 void	print_env(t_min mini);
 void	export(t_min mini);
-int		echo(char **arg);
+void	echo(t_min mini);
 char	**init_cpy(char **str, char **dest);
 char	*ft_strdup(char *s);
 int		tablen(t_min mini);
@@ -52,11 +52,11 @@ char	**init_exp(char **tab);
 void	cd(t_min mini);
 char	*ft_strjoin(char const *s1, char const *s2);
 void	print_export(t_min mini);
-void	exit_min(char **argv, t_min mini);
+void	exit_min(t_min mini);
 t_min	init_struct(t_min mini, char **envp);
 char	**init_export(t_min mini);
 void	order_exp(t_min mini);
 void	unset(t_min mini);
-void	exec(t_min mini, char *argv);
+void	exec(t_min mini);
 
 #endif
