@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/23 19:04:35 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/24 13:18:58 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	**split_line(t_min mini)
 	return (mini.tab);
 }
 
-void	verif_line(t_min mini)
+/*void	verif_line(t_min mini)
 {
 	char	**builtin;
 	int		i;
@@ -58,4 +58,4 @@ void	verif_line(t_min mini)
 	{
 		i++;
 	}
-}
+}*/

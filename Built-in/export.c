@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/23 18:41:39 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/24 13:18:02 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	new_vars(t_min mini, char *arg)
 			else
 			{
 				printf("copie dans env et export\n");
-				//add_valenv(mini, arg);
+				add_valenv(mini, arg);
 				//add_valexp(mini, arg);
 				return ;
 			}
