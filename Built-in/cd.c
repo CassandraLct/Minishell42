@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 13:55:50 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/21 17:38:46 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/25 16:51:13 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,16 @@ void	recup_value_pwd(t_min mini, char **str)
 			oldpwd = str[i];
 		i++;
 	}
-	change_value_pwd(mini, str, pwd, oldpwd);
 }
 
 //1er if change oldpwd, 2e if change les 2 pwd, 3e if les 2 pwd
 //faire les autres cas plus tard
+//cd sans arg return, fichier non existant (bash: cd: bonjour: No such file or directory)
+//cd fichier : bash: cd: exec.c: Not a directory
 void	cd(t_min mini)
 {
+	if (mini.cdpath == NULL)
+		return ;
 	if (chdir(mini.cdpath) == -1)
 		printf("bash: cd: %s: No such file or directory\n", mini.cdpath);
 	else

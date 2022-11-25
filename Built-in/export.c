@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/24 13:18:02 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/25 16:50:24 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 #include <string.h>
 
 //5 fonctions
-/*export (qqc) sans égale s'affcihe que dans export
-si = afficher aussi dans env*/
+/*export (qqc) sans égale s'affiche que dans export
+si = afficher aussi dans env
+si var deja dans env et que la valeur est modifier, elle reste dans env mais
+la val est bien changer*/
 
 //copy sur la derniere ligne d'env;
-void	add_valenv(t_min mini, char *str)
+char	**add_valenv(t_min mini, char *str)
 {
 	int		i;
 	char	**cpy;
@@ -37,6 +39,7 @@ void	add_valenv(t_min mini, char *str)
 	cpy[i] = ft_strdup(str);
 	cpy[i + 1] = NULL;
 	mini.c_env = ft_cpytab(cpy);
+	return (mini.c_env);
 }
 
 //voir pour modifier check_exp
@@ -86,44 +89,46 @@ void	order_exp(t_min mini)
 }
 
 //verifier si = present et quelque chose apres le =
-void	new_vars(t_min mini, char *arg)
+void	new_vars(t_min mini)
 {
 	int	i;
+	int	j;
 
-	i = 0;
-	while (arg[i] != '\0')
+	i = 1;
+	j = 0;
+	while (mini.tab[i])
 	{
-		if (ft_isdigit(arg[0]) == 1)
+		while (mini.tab[i][j] != '\0')
 		{
-			printf("`%s': not a valid identifier\n", arg);
-			exit(1);
-		}
-		if (arg[i] == '=')
-		{
-			if (arg[i + 1] == '\0')
-				printf("cas 1: a copier que dans export: '%s'\n", arg);
-			else
+			if (ft_isdigit(mini.tab[1][0]) == 1)
 			{
-				printf("copie dans env et export\n");
-				add_valenv(mini, arg);
-				//add_valexp(mini, arg);
-				return ;
+				printf("minishell: `%s': not a valid identifier\n", mini.tab[i]);
+				exit(1);
 			}
+			if (mini.tab[i][j] == '=')
+			{
+				if (mini.tab[i][j + 1] == '\0')
+					printf("cas 1: a copier que dans export: '%s'\n", mini.tab[i]);
+				else
+				{
+					printf("copie dans env et export\n");
+					mini.c_env = add_valenv(mini, mini.tab[i]);
+					return ;
+				}
+			}
+			j++;
 		}
 		i++;
+		j = 0;
 	}
-	printf("cas 3: a copie que dans export : '%s'\n", arg);
+	printf("cas 3: a copie que dans export : '%s'\n", mini.tab[1]);
 }
 
 //add new_var ou affiche export
 void	export(t_min mini)
 {
-	char	*arg;
-
-	arg = "bonjour=a+b";
 	mini.c_exp = init_exp(mini.c_env);
-	if (arg != NULL)
-		new_vars(mini, arg);
-	else
-		print_export(mini);
+	if (mini.tab[1] != NULL)
+		new_vars(mini);
+	print_export(mini.c_exp);
 }

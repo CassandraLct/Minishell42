@@ -6,7 +6,7 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 12:54:01 by clecat            #+#    #+#              #
-#    Updated: 2022/11/17 10:31:59 by clecat           ###   ########.fr        #
+#    Updated: 2022/11/25 15:56:11 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,11 +42,16 @@ printf,malloc,free,write,access,open,read,close,
 	retourner est definie par malloc,
 	il faudra la free une fois fini.
 *rl_clear_history:
+	int rl_clear_history()
 *rl_on_new_line: 
-int rl_on_new_line ()
+	int rl_on_new_line(void)
 	Tell the update routines that we have moved onto a new (empty) line, usually
 	after ouputting a newline.
 *rl_replace_line:
+	Function: void rl_replace_line (const char *text, int clear_undo)
+	Replace the contents of rl_line_buffer with text. The point and mark are preserved,
+	if possible. If clear_undo is non-zero, the undo list associated with the current
+	line is cleared.
 *rl_redisplay: 
 	Change what's displayed on the screen to reflect the current contents of
 	rl_line_buffer.

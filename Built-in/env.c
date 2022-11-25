@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:05:50 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/17 16:40:15 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/25 16:50:45 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,23 @@
 
 //1 fonctions
 //a modifier : ne doit pas afficher les variables sans valeur
-void	print_env(t_min mini)
+void	ft_env(t_min mini)
 {
 	int	i;
 
-	i = 0;
-	while (mini.c_env[i])
+	i = 1;
+	if (mini.tab[i] != NULL)
 	{
-		printf("%s\n", mini.c_env[i]);
-		i++;
+		printf("env: %s: No such file or directory\n", mini.tab[i]);
+		return ;
+	}
+	else
+	{
+		i = 0;
+		while (mini.c_env[i])
+		{
+			printf("%s\n", mini.c_env[i]);
+			i++;
+		}
 	}
 }

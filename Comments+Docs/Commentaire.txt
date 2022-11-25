@@ -6,7 +6,7 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 13:45:49 by clecat            #+#    #+#              #
-#    Updated: 2022/11/23 12:55:39 by clecat           ###   ########.fr        #
+#    Updated: 2022/11/25 16:40:57 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,7 +89,7 @@ chevron < :
 	NAME = minishell
 	bash-3.2$
 
-chevron << :
+chevron << : HEREDOC
 	heredoc(fichier virtuel),
 	bash-3.2$ grep << heredoc Minishell
 	> Name = Minishell

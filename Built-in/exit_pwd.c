@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/23 18:40:50 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/25 16:31:47 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void	pwd(char **c_env)
 		if (strncmp(c_env[i], "PWD=", 4) == 0)
 		{
 			while (c_env[i])
+			{
 				printf("%s\n", c_env[i] + 4);
+				return ;
+			}
 		}
 		i++;
 	}

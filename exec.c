@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:51:31 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/24 13:19:41 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/25 13:32:58 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 //execve, perror, access (revoir pipex)
 //a gerer avec un fork pour empecher de sortir de minishell
-//+25 lignes
-void	exec(t_min mini)
+//+25 lignes gerer si pas de pwd
+void	ft_exec(t_min mini)
 {
 	char	**all_path;
 	char	*gd_path;
@@ -43,7 +43,6 @@ void	exec(t_min mini)
 		gd_path = ft_strjoin(all_path[i], cmd[0]);
 		if (access(gd_path, R_OK) == 0)
 		{
-			printf("commande existante: %s\n", gd_path);
 			if (execve(gd_path, cmd, mini.c_env) == -1)
 				perror("Execve : ");
 		}

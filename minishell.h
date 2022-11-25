@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/23 18:35:48 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/25 16:39:15 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
-//# include <signal.h>
+# include <signal.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 
@@ -44,14 +44,14 @@ char	*ft_strdup(char *s);
 char	**ft_split(char const *s, char c);
 
 //env.c
-void	print_env(t_min mini);
+void	ft_env(t_min mini);
 
 //export.c
 void	export(t_min mini);
 void	order_exp(t_min mini);
 
 //export_utils.c
-void	print_export(t_min mini);
+void	print_export(char **str);
 void	fill_exp(t_min mini, char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		check_exp(t_min mini, int index);
@@ -71,6 +71,7 @@ void	cd(t_min mini);
 
 //exit_pwd.c
 void	exit_min(t_min mini);
+void	pwd(char **c_env);
 
 //init.c
 t_min	init_struct(t_min mini, char **envp);
@@ -80,9 +81,10 @@ char	**init_export(t_min mini);
 void	unset(t_min mini);
 
 //exec.c
-void	exec(t_min mini);
+void	ft_exec(t_min mini);
 
 //lexer.c
 char	**split_line(t_min mini);
+void	redirection(t_min mini);
 
 #endif

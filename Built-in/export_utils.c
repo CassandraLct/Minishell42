@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:35:49 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/23 19:00:02 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/25 16:39:01 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 }
 
 //print export with "declare-x" & valeur entre ""
-void	print_export(t_min mini)
+void	print_export(char **c_exp)
 {
 	int		i;
 	int		y;
@@ -95,15 +95,15 @@ void	print_export(t_min mini)
 
 	i = 0;
 	y = 0;
-	while (mini.c_exp[i])
+	while (c_exp[i])
 	{
 		printf("declare -x ");
-		while (mini.c_exp[i][y] != '=')
-			printf("%c", mini.c_exp[i][y++]);
-		printf("%c%c", mini.c_exp[i][y], 34);
+		while (c_exp[i][y] != '=')
+			printf("%c", c_exp[i][y++]);
+		printf("%c%c", c_exp[i][y], 34);
 		index = y + 1;
-		while (mini.c_exp[i][index] != '\0')
-			printf("%c", mini.c_exp[i][index++]);
+		while (c_exp[i][index] != '\0')
+			printf("%c", c_exp[i][index++]);
 		printf("%c\n", 34);
 		y = 0;
 		i++;

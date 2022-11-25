@@ -1,0 +1,8 @@
+Reste à faire:
+	*export: réussir a ajouter une variable dans export;
+	*unset: réussir à enlevé une variable de env et de export;
+	*cd: gerer les path;
+	*signaux: faire ctrl-D, ctrl-c, ctrl-\;
+	*execve: fork;
+	*les chevrons, pipe , $?;
+	*lexer: gerer les cotes;
