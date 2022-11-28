@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/25 16:39:15 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/28 13:21:29 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,17 @@ void	ft_env(t_min mini);
 
 //export.c
 void	export(t_min mini);
-void	order_exp(t_min mini);
+//void	order_exp(t_min mini);
+void	order_exp(t_min mini, char **s1, char **s2);
 
 //export_utils.c
 void	print_export(char **str);
 void	fill_exp(t_min mini, char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
-int		check_exp(t_min mini, int index);
-int		tablen(t_min mini);
+//int		check_exp(t_min mini, int index);
+//int		tablen(t_min mini);
+int	tablen(char **s1, char **s2);
+int	check_exp(char **s1, char **s2, int index);
 
 //echo.c
 void	echo(t_min mini);

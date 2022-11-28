@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/25 16:45:41 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/28 10:34:33 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ t_min	g_mini;
 
 //probleme a regler: valeur modifier non remonter, probleme avec l'historique
 //modifier le split de la line
-//le print export ne fonctionnne plus (pourquoi? valeur non remonter?)
 int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;

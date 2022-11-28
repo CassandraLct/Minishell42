@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/25 16:50:24 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/28 16:39:21 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,21 @@ char	**add_valenv(t_min mini, char *str)
 	}
 	cpy[i] = ft_strdup(str);
 	cpy[i + 1] = NULL;
+	free_tab(mini.c_env);
 	mini.c_env = ft_cpytab(cpy);
 	return (mini.c_env);
 }
 
-//voir pour modifier check_exp
-void	add_valexp(t_min mini, char *str)
+//ajoute la variable dans export
+//regler le probleme de malloc et de segfault
+char	**add_valexp(t_min mini, char *str)
 {
 	char	**cpy;
 	int		i;
+	int		y;
 
 	i = 0;
+	y = 0;
 	while (mini.c_exp[i])
 		i++;
 	cpy = malloc(sizeof(char *) * (i + 2));
@@ -60,32 +64,48 @@ void	add_valexp(t_min mini, char *str)
 	}
 	cpy[i] = ft_strdup(str);
 	cpy[i + 1] = NULL;
-	free_tab(mini.c_env);
-	return ;
+	while(cpy[y])
+	{
+		printf("cpy[%d] = %s\n", y, cpy[y]);
+		y++;
+	}
+	free_tab(mini.c_exp);
+	mini.c_exp = malloc(sizeof(char *) * (y + 1));
+	//remplir c_exp de NULL;
+	order_exp(mini, mini.c_exp, cpy);
+	return (mini.c_exp);
 }
 
 //trie export par ordre ascii
-void	order_exp(t_min mini)
+//cmp = c_env ou cpy
+void	order_exp(t_min mini, char **c_exp, char **cmp)
 {
 	int	index;
 	int	i;
 
 	i = 0;
-	while (tablen(mini) != 0)
+	printf("cmp = %s\n", cmp[0]);
+	while (tablen(cmp, c_exp) != 0)
 	{
+		printf("test\n");
 		index = 0;
-		while (check_exp(mini, index) != 0)
+		while (check_exp(cmp, c_exp, index) != 0)
 			index++;
-		while (mini.c_env[i])
+		printf("test2\n");
+		while (cmp[i])
 		{
-			if (strcmp(mini.c_env[index], mini.c_env[i]) > 0
-				&& check_exp(mini, i) == 0)
+			//printf("dans boucle cmp, i = %d, ret = %d\n", i, strcmp(cmp[index], cmp[i]));
+			if (strcmp(cmp[index], cmp[i]) > 0
+				&& check_exp(cmp, c_exp, i) == 0)
 				index = i;
 			i++;
+			printf("apres le if\n");
 		}
-		fill_exp(mini, mini.c_env[index]);
+		//printf("vers fill_exp, cmp[in] = %s\n", cmp[index]);
+		fill_exp(mini, cmp[index]);
 		i = 0;
 	}
+	printf("sortie\n");
 }
 
 //verifier si = present et quelque chose apres le =
@@ -122,13 +142,14 @@ void	new_vars(t_min mini)
 		j = 0;
 	}
 	printf("cas 3: a copie que dans export : '%s'\n", mini.tab[1]);
+	mini.c_exp = add_valexp(mini, mini.tab[1]);
 }
 
 //add new_var ou affiche export
 void	export(t_min mini)
 {
-	mini.c_exp = init_exp(mini.c_env);
 	if (mini.tab[1] != NULL)
 		new_vars(mini);
-	print_export(mini.c_exp);
+	else
+		print_export(mini.c_exp);
 }

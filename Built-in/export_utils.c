@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:35:49 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/25 16:39:01 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/28 16:38:32 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,42 @@
 //5 fonctions
 
 //compare la taille de 2 char**
-int	tablen(t_min mini)
+int	tablen(char **s1, char **s2)
 {
 	int	i;
 	int	y;
 
 	i = 0;
 	y = 0;
-	while (mini.c_env[i])
+	if(s2 == NULL)
+		return (1);
+	while (s1[i])
 		i++;
-	while (mini.c_exp[y])
+	printf("s2[y] = %s\n", s2[y]);
+	while (s2[y])
 		y++;
+	//printf("cmplen = %d, explen = %d\n", i, y);
 	if (y != i)
 		return (1);
 	return (0);
 }
 
 //verifie si index envoyer est deja present dans copy exp
-int	check_exp(t_min mini, int index)
+//cmp = env ou cpy
+int	check_exp(char **cmp, char **c_exp, int index)
 {
 	int	i;
 
 	i = 0;
-	while (mini.c_exp[i])
+	if(!c_exp || !cmp)
+		return (0);
+	while (c_exp[i])
 	{
-		if (strcmp(mini.c_env[index], mini.c_exp[i]) == 0)
+		//printf("cmp[index] = %s\n", cmp[index]);
+		printf("test4\n");
+		if (strcmp(cmp[index], c_exp[i]) == 0)
 			return (1);
+		printf("test5\n");
 		i++;
 	}
 	return (0);

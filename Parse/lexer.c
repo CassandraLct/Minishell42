@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/25 16:30:54 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/28 10:23:39 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ char	**split_line(t_min mini)
 //redirige soit vers les built-in soit vers execve
 void	redirection(t_min mini)
 {
+	if(mini.tab[0] == NULL)
+		return ;
 	if (strcmp(mini.tab[0], "exit") == 0)
 		exit_min(mini);
 	else if (strcmp(mini.tab[0], "echo") == 0)

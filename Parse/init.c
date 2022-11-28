@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:36:33 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/25 10:36:53 by clecat           ###   ########.fr       */
+/*   Updated: 2022/11/28 15:49:43 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ t_min	init_struct(t_min mini, char **envp)
 //creer la copie d'export au tout début
 char	**init_export(t_min mini)
 {
+	int i;
+
+	i = 0;
 	mini.c_exp = init_exp(mini.c_env);
-	order_exp(mini);
+	printf("%s\n", mini.c_exp[0]);
+	order_exp(mini, mini.c_exp, mini.c_env);
 	return (mini.c_exp);
 }
