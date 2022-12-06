@@ -6,13 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:12:24 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/28 11:24:33 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/06 15:36:04 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//3 fonctions
+//4 fonctions
 //malloc la taille du tableau
 char	**init_exp(char **tab)
 {
@@ -55,6 +55,7 @@ char	**ft_cpytab(char **tab)
 	return (tmp);
 }
 
+//free le double tableau
 void	free_tab(char **tab)
 {
 	int	i;

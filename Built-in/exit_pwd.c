@@ -6,13 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/25 16:31:47 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/06 15:36:49 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//2 fonctions
+//3 fonctions
 //affiche le pwd (voir si modifier lors du changement)
 void	pwd(char **c_env)
 {
@@ -62,8 +62,8 @@ void	verif_arg_exit(t_min mini, int i)
 
 // exit doit avoir 0 ou 1 arg, qui doit etre numerique
 // exit $34 : exit correctement dans le bash 
-// (voir si gerer avec le lexer et le $)
-// la fonction exit de minishell soit redirige vers la verif des arguments
+// (voir si gerer avec le lexer ou le $)
+// la fonction exit de minishell ou redirige vers la verif des arguments
 void	exit_min(t_min mini)
 {
 	int	i;

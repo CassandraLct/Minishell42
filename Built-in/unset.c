@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:18 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/25 16:49:48 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/06 15:26:19 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	unset_verif_var(t_min mini)
 		if (strncmp(mini.c_env[i], mini.tab[1], ft_strlen(mini.tab[1])) == 0)
 		{
 			printf("free line\n");
-			//unset_var_env(mini);
 			j += 1;
 		}
 		i++;
@@ -91,7 +90,8 @@ void	unset(t_min mini)
 			unset_verif_var(mini);
 		else
 		{
-			printf("minishell: unset: `%s': not a valid identifier\n", mini.tab[1]);
+			printf("minishell: unset: `%s':", mini.tab[1]);
+			printf(" not a valid identifier\n");
 			mini.ret_err = 1;
 		}
 		i++;

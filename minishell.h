@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/28 13:21:29 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/06 17:43:25 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,60 +33,64 @@ typedef struct s_min
 	char	*cdpath;
 }	t_min;
 
-//utils.c
+//14 fichiers
+//utils.c 5 fonctions//
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_strlen(char *str);
 int		strdigit(char *str);
 int		ft_isdigit(char c);
 char	*ft_strdup(char *s);
 
-//ft_split.c
+//ft_split.c (split libft)//
 char	**ft_split(char const *s, char c);
 
-//env.c
+//env.c 1 fonction//
 void	ft_env(t_min mini);
 
-//export.c
+//export.c 6 fonctions//
 void	export(t_min mini);
-//void	order_exp(t_min mini);
-void	order_exp(t_min mini, char **s1, char **s2);
+char	**order_exp(char **s1, char **s2);
 
-//export_utils.c
+//export_utils.c 5 fonctions//
 void	print_export(char **str);
-void	fill_exp(t_min mini, char *str);
+char	**fill_exp(char **new_val, char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
-//int		check_exp(t_min mini, int index);
-//int		tablen(t_min mini);
-int	tablen(char **s1, char **s2);
-int	check_exp(char **s1, char **s2, int index);
+int		tablen(char **s1);
+int		check_exp(char **s1, char **s2, int index);
 
-//echo.c
+//export_addvar.c 3fonctions
+char	**add_valexp(t_min mini, char *str);
+char	**add_valenv(t_min mini, char *str);
+
+//echo.c 4 fonctions//
 void	echo(t_min mini);
 
-//parse.c
+//parse.c 4 fonctions//
 void	free_tab(char **tab);
 char	**init_cpy(char **str, char **dest);
 char	**ft_cpytab(char **tab);
 char	**init_exp(char **tab);
 
-//cd.c
+//cd.c 5 fonctions//
 void	cd(t_min mini);
 
-//exit_pwd.c
+//exit_pwd.c 3 fonctions//
 void	exit_min(t_min mini);
 void	pwd(char **c_env);
 
-//init.c
+//init.c 2 fonctions//
 t_min	init_struct(t_min mini, char **envp);
 char	**init_export(t_min mini);
 
-//unset.c
+//unset.c 4 fonctions//
 void	unset(t_min mini);
+int		check_var(char *str);
 
-//exec.c
-void	ft_exec(t_min mini);
+//exec.c 4 fonctions//
+void	ft_exec(t_min mini, char **all_path, char **cmd);
+void	ft_set_pathexec(t_min mini);
 
-//lexer.c
+//lexer.c 2 fonctions//
 char	**split_line(t_min mini);
 void	redirection(t_min mini);
 

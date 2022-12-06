@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:37:12 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/25 08:51:26 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/06 10:07:46 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int	check_opt(char **arg)
 }
 
 //verifie si echo a des arguments ou non
+//pb a regler, si l'option est après est considerer comme une string
 void	echo(t_min mini)
 {
 	int	i;

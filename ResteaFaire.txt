@@ -1,8 +1,11 @@
 Reste à faire:
-	*export: réussir a ajouter une variable dans export;
+	*export: réussir a ajouter x variable dans export sans probleme de malloc;
 	*unset: réussir à enlevé une variable de env et de export;
 	*cd: gerer les path;
 	*signaux: faire ctrl-D, ctrl-c, ctrl-\;
-	*execve: fork;
+	*execve: faire les fork pour execve;
 	*les chevrons, pipe , $?;
 	*lexer: gerer les cotes;
+	*echo: gerer le cas -n apres une string
+	*exit $quelque chose , exit normalement, (gerer avec le $)
+	*export et env = reussir a remonter les changements de etc...

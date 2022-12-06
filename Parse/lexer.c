@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/28 10:23:39 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/06 16:39:44 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,7 @@ char	**split_line(t_min mini)
 			c = mini.line[i];
 			while (mini.line[i] != 34 || mini.line[i] != 39)
 			{
-				if (mini.line[i] != 34 && mini.line[i] != 39
-					&& mini.line[i + 1] == '\0')
-					printf("minishell: `%s': cote not closed\n", mini.line);
-				if (mini.line[i] == c)
-				{
-					printf("c= %c, line[i] = %c\n", c, mini.line[i]);
-					printf("a copier dans le tableau, %s\n", mini.line);
-				}
+				printf("gestion des cotes\n");
 				j++;
 				i++;
 			}
@@ -52,7 +45,7 @@ char	**split_line(t_min mini)
 //redirige soit vers les built-in soit vers execve
 void	redirection(t_min mini)
 {
-	if(mini.tab[0] == NULL)
+	if (mini.tab[0] == NULL)
 		return ;
 	if (strcmp(mini.tab[0], "exit") == 0)
 		exit_min(mini);
@@ -61,7 +54,7 @@ void	redirection(t_min mini)
 	else if (strcmp(mini.tab[0], "env") == 0)
 		ft_env(mini);
 	else if (strcmp(mini.tab[0], "cd") == 0)
-		printf("fonction cd\n");//cd(mini);
+		cd(mini);
 	else if (strcmp(mini.tab[0], "export") == 0)
 		export(mini);
 	else if (strcmp(mini.tab[0], "unset") == 0)
@@ -69,5 +62,5 @@ void	redirection(t_min mini)
 	else if (strcmp(mini.tab[0], "pwd") == 0)
 		pwd(mini.c_env);
 	else
-		ft_exec(mini);
+		ft_set_pathexec(mini);
 }

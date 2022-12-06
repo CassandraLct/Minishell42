@@ -6,14 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:05:50 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/25 16:50:45 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/06 15:34:01 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 //1 fonctions
-//a modifier : ne doit pas afficher les variables sans valeur
 void	ft_env(t_min mini)
 {
 	int	i;
