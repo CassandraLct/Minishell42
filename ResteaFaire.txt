@@ -1,5 +1,6 @@
 Reste à faire:
-	*export: réussir a ajouter x variable dans export sans probleme de malloc;
+	*export: réussir a ajouter x variable en meme temps dans export
+	sans probleme de malloc;
 	*unset: réussir à enlevé une variable de env et de export;
 	*cd: gerer les path;
 	*signaux: faire ctrl-D, ctrl-c, ctrl-\;
@@ -8,4 +9,5 @@ Reste à faire:
 	*lexer: gerer les cotes;
 	*echo: gerer le cas -n apres une string
 	*exit $quelque chose , exit normalement, (gerer avec le $)
-	*export et env = reussir a remonter les changements de etc...
+	*export et env = reussir a remonter les changements etc... Fait !
+	*fonction free_all a faire

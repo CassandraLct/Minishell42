@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/06 17:43:25 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/07 12:03:29 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	**ft_split(char const *s, char c);
 void	ft_env(t_min mini);
 
 //export.c 6 fonctions//
-void	export(t_min mini);
+t_min	export(t_min mini);
 char	**order_exp(char **s1, char **s2);
 
 //export_utils.c 5 fonctions//
@@ -92,6 +92,6 @@ void	ft_set_pathexec(t_min mini);
 
 //lexer.c 2 fonctions//
 char	**split_line(t_min mini);
-void	redirection(t_min mini);
+t_min	redirection(t_min mini);
 
 #endif

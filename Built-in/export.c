@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/06 17:14:21 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/07 12:01:07 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 #include <stdlib.h>
 #include <string.h>
 
-//3 fonctions
+//4 fonctions
 /*export (qqc) sans égale s'affiche que dans export
 si = afficher aussi dans env
 si var deja dans env et que la valeur est modifier, elle reste dans env mais
 la val est bien changer*/
 
+//faire remonter en faisant return return(mini)
 //verifier si = present et quelque chose apres le =
-//+25lignes (30 lignes) a voir plus tard
-void	new_vars(t_min mini)
+//+25lignes (30 lignes) a revoir
+t_min	new_vars(t_min mini)
 {
 	int	i;
 	int	j;
@@ -33,18 +34,18 @@ void	new_vars(t_min mini)
 	{
 		while (mini.tab[i][j] != '\0')
 		{
-			if (ft_isdigit(mini.tab[1][0]) == 1)
+			if (ft_isdigit(mini.tab[i][0]) == 1)
 			{
 				printf("minishell: `%s': not a valid identifier\n", mini.tab[i]);
 				exit(1);
 			}
-			if (mini.tab[i][j] == '=')
+			if (mini.tab[i][j] == '=') //a remplacer par check_var
 			{
 				if (mini.tab[i][j + 1] != '\0')
 				{
 					mini.c_env = add_valenv(mini, mini.tab[i]);
 					mini.c_exp = add_valexp(mini, mini.tab[i]);
-					return ;
+					return (mini);
 				}
 			}
 			j++;
@@ -53,6 +54,25 @@ void	new_vars(t_min mini)
 		j = 0;
 	}
 	mini.c_exp = add_valexp(mini, mini.tab[1]);
+	return(mini);
+}
+
+//verifie si index envoyer est deja present dans copy exp
+//cmp = env ou cpy
+int	check_exp(char **cmp, char **c_exp, int index)
+{
+	int	i;
+
+	i = 0;
+	if (!c_exp)
+		return (0);
+	while (c_exp[i])
+	{
+		if (strcmp(cmp[index], c_exp[i]) == 0)
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 //trie export par ordre ascii
@@ -85,7 +105,7 @@ char	**order_exp(char **c_exp, char **cmp)
 }
 
 //add new_var ou affiche export
-void	export(t_min mini)
+t_min	export(t_min mini)
 {
 	int	i;
 
@@ -96,8 +116,9 @@ void	export(t_min mini)
 	{
 		while (mini.tab[i] != NULL)
 		{
-			new_vars(mini);
+			mini = new_vars(mini);
 			i++;
 		}
 	}
+	return(mini);
 }

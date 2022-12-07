@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:35:49 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/06 17:53:31 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/07 10:09:25 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,6 @@ int	tablen(char **s1)
 			i++;
 	}
 	return (i);
-}
-
-//verifie si index envoyer est deja present dans copy exp
-//cmp = env ou cpy
-int	check_exp(char **cmp, char **c_exp, int index)
-{
-	int	i;
-
-	i = 0;
-	if (!c_exp)
-		return (0);
-	while (c_exp[i])
-	{
-		if (strcmp(cmp[index], c_exp[i]) == 0)
-			return (1);
-		i++;
-	}
-	return (0);
 }
 
 //copie str dans new_val
@@ -91,12 +73,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 void	print_valexp(char *str)
 {
-	int index;
+	int	index;
 	int	y;
 
 	y = 0;
 	printf("declare -x ");
-	while(str[y] != '=')
+	while (str[y] != '=')
 		printf("%c", str[y++]);
 	printf("=\"");
 	index = y + 1;
@@ -115,9 +97,9 @@ void	print_export(char **c_exp)
 
 	i = 0;
 	y = 0;
-	while(c_exp[i])
+	while (c_exp[i])
 	{
-		if(check_var(c_exp[i]) == 0)
+		if (check_var(c_exp[i]) == 0)
 		{
 			printf("declare -x ");
 			while (c_exp[i][y] != '\0')
