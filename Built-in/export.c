@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/07 12:01:07 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/08 17:19:18 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,66 @@
 #include <stdlib.h>
 #include <string.h>
 
-//4 fonctions
-/*export (qqc) sans égale s'affiche que dans export
-si = afficher aussi dans env
-si var deja dans env et que la valeur est modifier, elle reste dans env mais
+//5 fonctions
+/*si var deja dans env et que la valeur est modifier, elle reste dans env mais
 la val est bien changer*/
 
-//faire remonter en faisant return return(mini)
-//verifier si = present et quelque chose apres le =
-//+25lignes (30 lignes) a revoir
-t_min	new_vars(t_min mini)
+//verifier si valeur deja presente et changer que sa valeur
+int	verif_modif_var(char **str, char *cmp)
+{
+	char	*name_var;
+	int		i;
+
+	i = 0;
+	name_var = malloc(sizeof(char) * (ft_strlen(cmp) + 1));
+	name_var = recup_name(cmp, name_var);
+	while (str[i])
+	{
+		if (strncmp(str[i], name_var, ft_strlen(name_var)) == 0)
+			return (1);
+		i++;
+	}
+	free(name_var);
+	return (0);
+}
+
+//redirige vers l'ajout ou la modification
+//+25lignes (35 lignes)
+t_min	new_vars(t_min mini, char *str)
 {
 	int	i;
 	int	j;
 
-	i = 1;
+	i = 0;
 	j = 0;
-	while (mini.tab[i])
+	if (verif_modif_var(mini.c_env, str) == 1 && verif_modif_var(mini.c_exp, str) == 1)//a mettre dans une autre fonction
 	{
-		while (mini.tab[i][j] != '\0')
+		printf("variable deja presente dans env et exp, valeur a modifier\n");
+		j += 1;
+	}
+	else if (verif_modif_var(mini.c_exp, str) == 1 && verif_modif_var(mini.c_env, str) == 0)
+	{
+		printf("variable presente dans exp valeur a modifier et ajout dans env\n");
+		j += 1;
+	}
+	while (str[i])
+	{
+		if (ft_isdigit(str[0]) == 1)
 		{
-			if (ft_isdigit(mini.tab[i][0]) == 1)
-			{
-				printf("minishell: `%s': not a valid identifier\n", mini.tab[i]);
-				exit(1);
-			}
-			if (mini.tab[i][j] == '=') //a remplacer par check_var
-			{
-				if (mini.tab[i][j + 1] != '\0')
-				{
-					mini.c_env = add_valenv(mini, mini.tab[i]);
-					mini.c_exp = add_valexp(mini, mini.tab[i]);
-					return (mini);
-				}
-			}
-			j++;
+			printf("minishell: `%s': not a valid identifier\n", mini.tab[i]);
+			exit(1);
+		}
+		if (str[i] == '=' && str[i + 1] != '\0' && j == 0)
+		{
+			mini.c_env = add_valenv(mini, str);
+			mini.c_exp = add_valexp(mini, str);
+			j += 1;
 		}
 		i++;
-		j = 0;
 	}
-	mini.c_exp = add_valexp(mini, mini.tab[1]);
-	return(mini);
+	if (j == 0)
+		mini.c_exp = add_valexp(mini, str);
+	return (mini);
 }
 
 //verifie si index envoyer est deja present dans copy exp
@@ -116,9 +135,9 @@ t_min	export(t_min mini)
 	{
 		while (mini.tab[i] != NULL)
 		{
-			mini = new_vars(mini);
+			mini = new_vars(mini, mini.tab[i]);
 			i++;
 		}
 	}
-	return(mini);
+	return (mini);
 }

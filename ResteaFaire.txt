@@ -1,13 +1,15 @@
 Reste à faire:
-	*export: réussir a ajouter x variable en meme temps dans export
-	sans probleme de malloc;
-	*unset: réussir à enlevé une variable de env et de export;
-	*cd: gerer les path;
+	*export: réussir a ajouter x variable en meme temps dans export sans probleme
+de malloc;
+	*unset: réussir à enlevé une variable de env fait et de export;
+	*cd: modifier les paths; comment changer de directory ?
 	*signaux: faire ctrl-D, ctrl-c, ctrl-\;
 	*execve: faire les fork pour execve;
 	*les chevrons, pipe , $?;
 	*lexer: gerer les cotes;
 	*echo: gerer le cas -n apres une string
-	*exit $quelque chose , exit normalement, (gerer avec le $)
+	*exit $quelque chose , exit normalement, (gerer avec le $ ?)
 	*export et env = reussir a remonter les changements etc... Fait !
 	*fonction free_all a faire
+	*modifier fonction cd pour recup pwd et oldpwd
+	*export et env: verifier si la variable est deja presente

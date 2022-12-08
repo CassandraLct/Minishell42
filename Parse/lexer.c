@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/07 12:10:52 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/08 13:44:56 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_min	redirection(t_min mini)
 	if (mini.tab[0] == NULL)
 		return (mini);
 	if (strcmp(mini.tab[0], "exit") == 0)
-		exit_min(mini); // doit return mini
+		mini.ret_err = exit_min(mini);
 	else if (strcmp(mini.tab[0], "echo") == 0)
 		echo(mini);
 	else if (strcmp(mini.tab[0], "env") == 0)
@@ -58,10 +58,10 @@ t_min	redirection(t_min mini)
 	else if (strcmp(mini.tab[0], "export") == 0)
 		mini = export(mini);
 	else if (strcmp(mini.tab[0], "unset") == 0)
-		unset(mini); //doit return mini
+		mini = unset(mini);
 	else if (strcmp(mini.tab[0], "pwd") == 0)
-		pwd(mini.c_env); //doit return mini ?
+		pwd(mini.c_env);
 	else
 		ft_set_pathexec(mini);
-	return(mini);
+	return (mini);
 }

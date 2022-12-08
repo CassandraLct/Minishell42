@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:48:06 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/07 12:15:18 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/08 12:51:14 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ char	**add_valexp(t_min mini, char *str)
 	mini.c_exp = malloc(sizeof(char *) * (tablen(new_exp) + 1));
 	mini.c_exp = ft_cpytab(new_exp);
 	free_tab(new_exp);
-	print_export(mini.c_exp);
 	return (mini.c_exp);
 }
 
