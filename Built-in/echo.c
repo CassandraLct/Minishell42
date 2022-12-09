@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:37:12 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/06 10:07:46 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/09 15:38:18 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ int	check_opt(char **arg)
 }
 
 //verifie si echo a des arguments ou non
-//pb a regler, si l'option est après est considerer comme une string
 void	echo(t_min mini)
 {
 	int	i;
@@ -99,24 +98,21 @@ void	echo(t_min mini)
 
 	i = 1;
 	j = 0;
-	if (strcmp(mini.tab[0], "echo") == 0)
+	if (!mini.tab[1])
 	{
-		if (!mini.tab[1])
-		{
-			printf("\n");
-			return ;
-		}
-		else if (mini.tab[1][0] == 45)
-			check_opt(mini.tab);
-		while (mini.tab[i] && (mini.tab[i][j] >= 33 && mini.tab[i][j] <= 126)
-			&& mini.tab[i][0] != 45)
-		{
-			if (mini.tab[i + 1] == NULL)
-				printf("%s\n", mini.tab[i]);
-			else
-				printf("%s ", mini.tab[i]);
-			i++;
-		}
+		printf("\n");
+		return ;
+	}
+	else if (mini.tab[1][0] == 45)
+		check_opt(mini.tab);
+	while (mini.tab[i] && (mini.tab[i][j] >= 33 && mini.tab[i][j] <= 126)
+		&& mini.tab[1][0] != 45)
+	{
+		if (mini.tab[i + 1] == NULL)
+			printf("%s\n", mini.tab[i]);
+		else
+			printf("%s ", mini.tab[i]);
+		i++;
 	}
 	return ;
 }

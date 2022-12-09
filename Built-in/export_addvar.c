@@ -6,13 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:48:06 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/09 11:49:55 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/09 15:55:41 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//3 fonctions
+//4 fonctions
 
 //remplie la copie de NULL
 static void	ft_remp(char **remp, int y)
@@ -63,7 +63,7 @@ char	**add_valexp(t_min mini, char *str)
 	i = tablen(cpy);
 	ft_remp(new_exp, i);
 	new_exp = order_exp(new_exp, cpy);
-	//free_tab(mini.c_exp);
+	free_tab(mini.c_exp);
 	free_tab(cpy);
 	mini.c_exp = malloc(sizeof(char *) * (tablen(new_exp) + 1));
 	mini.c_exp = ft_cpytab(new_exp);

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:03:34 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/09 13:51:19 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/09 15:40:47 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@ char	*add_egal(char *name_var, char *str)
 	int	i;
 
 	i = 0;
-	if(check_var(str) != 1)
-		return(name_var);
+	if (check_var(str) != 1)
+		return (name_var);
 	else
 	{
-		while(name_var[i])
+		while (name_var[i])
 		{
 			i++;
 		}
 		name_var[i] = '=';
 		name_var[i + 1] = '\0';
 	}
-	return(name_var);
+	return (name_var);
 }
 
 //change la valeur dans env, la valeur ne change pas si pas de egal

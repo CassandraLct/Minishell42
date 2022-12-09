@@ -1,7 +1,4 @@
 Reste à faire:
-	*export: réussir a ajouter x variable en meme temps dans export sans probleme
-de malloc;
-	*unset: réussir à enlevé une variable de env fait et de export;
 	*cd: modifier les paths; comment changer de directory ?
 	*signaux: faire ctrl-D, ctrl-c, ctrl-\;
 	*execve: faire les fork pour execve;
@@ -9,12 +6,27 @@ de malloc;
 	*lexer: gerer les cotes;
 	*echo: gerer le cas -n apres une string
 	*exit $quelque chose , exit normalement, (gerer avec le $ ?)
-	*export et env = reussir a remonter les changements etc... Fait !
 	*fonction free_all a faire
 	*modifier fonction cd pour recup pwd et oldpwd
-	*export et env: verifier si la variable est deja presente
 
-/!\Objectif d'aujourd'hui : 
-	-> Finir unset (enlever une variable d'export) Fait et seg fault regler
-	-> Finir export (changer valeur d'une variable (env, export)) Fait
-	-> Finir echo (cas -n expres un 1er arg)
+/!\ Objectif 8/12 (vendredi):
+	-> Finir unset (enlever une variable d'export) : Fait et seg fault regler!
+	-> Finir export (changer valeur d'une variable (env, export)) : Fait!
+	-> Finir echo (cas -n expres un 1er arg) : Fait!
+	-> Faire un coup de norminette : Fait!
+	-> Verifier les leaks (leaks ne fonctionne pas avec fsanitize) : 1 leak
+	*Si le temps commencer les signaux : Fait
+		signaux: https://www-apr.lip6.fr/~chaillou/Public/enseignement/MA1/TD3/node1.html (debut interessant)
+				 http://pauillac.inria.fr/~remy/poly/system/camlunix/sign.html (explication du fonctionnement)
+				 https://btholt.github.io/complete-intro-to-linux-and-the-cli/signals-and-the-power-of-ctrl
+		sigint	Interruption (ctrl-C)
+		sigquit	Interruption forte (ctrl-\)
+		sigquit	Interruption forte (ctrl-D)
+	/*utiliser unlink pour heredoc ?*/
+
+/!\ Objectif 13/12 (Mardi):
+	-> Comprendre les signaux;
+	-> Tester le fonctionnement d'Export et Unset;
+	-> Continuer cd et faire le changement de directory;
+	-> voir pour l'execve(fork)(surement utile pour les signaux);
+	-> chercher de la doc pour Makefile

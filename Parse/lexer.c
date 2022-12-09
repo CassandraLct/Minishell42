@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/08 13:44:56 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/09 15:41:49 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_min	redirection(t_min mini)
 	else if (strcmp(mini.tab[0], "env") == 0)
 		ft_env(mini);
 	else if (strcmp(mini.tab[0], "cd") == 0)
-		cd(mini); //doit return mini
+		cd(mini);
 	else if (strcmp(mini.tab[0], "export") == 0)
 		mini = export(mini);
 	else if (strcmp(mini.tab[0], "unset") == 0)

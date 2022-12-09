@@ -11,19 +11,20 @@ OBJ		= $(SRC:.c=.o)
 all : $(NAME)
 
 %.o : %.c
-	@echo "\033[1;35m""Compilation de ${Name}..."
-	$(CC) -o $@ -c $< $(CFLAGS)
+	@echo "\033[1;35m""Compilation des fichiers sources"
+#	@echo "\033[1;32m""[OK!]"
+	$(CC) -o $@ -c $< $(CFLAGS) 
 
 $(NAME) : $(OBJ)
-	@echo "\033[1;35m""Compilation de ${NAME}..."
+	@echo "\033[1;35m""Compilation de ${NAME}"
 	$(CC) $(OBJ) $(CFLAGS) -lreadline -L $(LIBPATH) -o $(NAME)
 
 clean :
-	@echo "\033[1;35m""Compilation de ${NAME}..."
+	@echo "\033[1;34m""Suppression des .o de ${NAME}"
 	rm -rf $(OBJ)
 
 fclean : clean
-	@echo "\033[1;34m""Supression des executables et librairies..."
+	@echo "\033[1;34m""Supression de l'executable..."
 	rm -rf $(NAME)
 
 re : fclean all

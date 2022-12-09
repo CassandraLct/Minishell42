@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/09 11:52:41 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/09 15:58:09 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,5 @@ int	main(int argc, char **argv, char **envp)
 		free(g_mini.line);
 		free_tab(g_mini.tab);
 	}
+	free_all(g_mini);
 }

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:36:33 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/09 13:10:42 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/09 15:57:33 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,10 @@ char	**init_export(t_min mini)
 	mini.c_exp = init_exp(mini.c_env);
 	mini.c_exp = order_exp(mini.c_exp, mini.c_env);
 	return (mini.c_exp);
+}
+
+void	free_all(t_min mini)
+{
+	free_tab(mini.c_env);
+	free_tab(mini.c_exp);
 }

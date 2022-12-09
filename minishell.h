@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/09 13:54:33 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/09 15:48:11 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ typedef struct s_min
 	char	**tab;
 	char	*prompt;
 	char	*cdpath;
-	int		nb_passage_exp;//verifie si modifie val exp et env
+	int		nb_passage_exp;
 }	t_min;
 
-//14 fichiers
+//15 fichiers
 //utils.c 5 fonctions
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_strlen(char *str);
@@ -84,9 +84,10 @@ void	cd(t_min mini);
 int		exit_min(t_min mini);
 void	pwd(char **c_env);
 
-//init.c 2 fonctions
+//init.c 3 fonctions
 t_min	init_struct(t_min mini, char **envp);
 char	**init_export(t_min mini);
+void	free_all(t_min mini);
 
 //unset.c 4 fonctions
 t_min	unset(t_min mini);
