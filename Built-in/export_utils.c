@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:35:49 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/07 10:09:25 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/09 13:36:22 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	print_valexp(char *str)
 }
 
 //print export with "declare-x" & valeur entre ""
-// +25 lignes
+//
 void	print_export(char **c_exp)
 {
 	int		i;

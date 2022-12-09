@@ -13,3 +13,8 @@ de malloc;
 	*fonction free_all a faire
 	*modifier fonction cd pour recup pwd et oldpwd
 	*export et env: verifier si la variable est deja presente
+
+/!\Objectif d'aujourd'hui : 
+	-> Finir unset (enlever une variable d'export) Fait et seg fault regler
+	-> Finir export (changer valeur d'une variable (env, export)) Fait
+	-> Finir echo (cas -n expres un 1er arg)

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/08 17:19:18 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/09 13:48:53 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 /*si var deja dans env et que la valeur est modifier, elle reste dans env mais
 la val est bien changer*/
 
-//verifier si valeur deja presente et changer que sa valeur
+//verifier si valeur deja presente
 int	verif_modif_var(char **str, char *cmp)
 {
 	char	*name_var;
@@ -38,24 +38,12 @@ int	verif_modif_var(char **str, char *cmp)
 }
 
 //redirige vers l'ajout ou la modification
-//+25lignes (35 lignes)
 t_min	new_vars(t_min mini, char *str)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
-	if (verif_modif_var(mini.c_env, str) == 1 && verif_modif_var(mini.c_exp, str) == 1)//a mettre dans une autre fonction
-	{
-		printf("variable deja presente dans env et exp, valeur a modifier\n");
-		j += 1;
-	}
-	else if (verif_modif_var(mini.c_exp, str) == 1 && verif_modif_var(mini.c_env, str) == 0)
-	{
-		printf("variable presente dans exp valeur a modifier et ajout dans env\n");
-		j += 1;
-	}
+	mini = redir_changeval(mini, str);
 	while (str[i])
 	{
 		if (ft_isdigit(str[0]) == 1)
@@ -63,16 +51,17 @@ t_min	new_vars(t_min mini, char *str)
 			printf("minishell: `%s': not a valid identifier\n", mini.tab[i]);
 			exit(1);
 		}
-		if (str[i] == '=' && str[i + 1] != '\0' && j == 0)
+		if (str[i] == '=' && str[i + 1] != '\0' && mini.nb_passage_exp == 0)
 		{
 			mini.c_env = add_valenv(mini, str);
 			mini.c_exp = add_valexp(mini, str);
-			j += 1;
+			mini.nb_passage_exp += 1;
 		}
 		i++;
 	}
-	if (j == 0)
+	if (mini.nb_passage_exp == 0)
 		mini.c_exp = add_valexp(mini, str);
+	mini.nb_passage_exp = 0;
 	return (mini);
 }
 
