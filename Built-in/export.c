@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/09 17:09:18 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/13 14:51:27 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,15 @@ t_min	new_vars(t_min mini, char *str)
 	int	i;
 
 	i = 0;
+	if (ft_isdigit(str[0]) == 1 || str[0] == '=')
+	{
+		printf("minishell: `%s': not a valid identifier\n", mini.tab[i]);
+		exit(1);
+	}
 	mini = redir_changeval(mini, str);
 	while (str[i])
 	{
-		if (ft_isdigit(str[0]) == 1)
-		{
-			printf("minishell: `%s': not a valid identifier\n", mini.tab[i]);
-			exit(1);
-		}
+		
 		if (str[i] == '=' && str[i + 1] != '\0' && mini.nb_passage_exp == 0)
 		{
 			mini.c_env = add_valenv(mini, str);

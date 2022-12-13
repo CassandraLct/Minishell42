@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:18 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/09 15:41:35 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/13 14:49:59 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,16 @@ char	**unset_var(char **tab, char *str)
 }
 
 // verifie si argument present ou non dans env
-t_min	unset_verif_var(t_min mini)
+t_min	unset_verif_var(t_min mini, int y)
 {
 	int	i;
 
 	i = 0;
 	while (mini.c_env[i])
 	{
-		if (strncmp(mini.c_env[i], mini.tab[1], ft_strlen(mini.tab[1])) == 0)
+		if (strncmp(mini.c_env[i], mini.tab[y], ft_strlen(mini.tab[y])) == 0)
 		{
-			mini.c_env = unset_var(mini.c_env, mini.tab[1]);
+			mini.c_env = unset_var(mini.c_env, mini.tab[y]);
 			break ;
 		}
 		i++;
@@ -61,9 +61,9 @@ t_min	unset_verif_var(t_min mini)
 	i = 0;
 	while (mini.c_exp[i])
 	{
-		if (strncmp(mini.c_exp[i], mini.tab[1], ft_strlen(mini.tab[1])) == 0)
+		if (strncmp(mini.c_exp[i], mini.tab[y], ft_strlen(mini.tab[y])) == 0)
 		{
-			mini.c_exp = unset_var(mini.c_exp, mini.tab[1]);
+			mini.c_exp = unset_var(mini.c_exp, mini.tab[y]);
 			break ;
 		}
 		i++;
@@ -101,7 +101,7 @@ t_min	unset(t_min mini)
 	while (mini.tab[i])
 	{
 		if (check_var(mini.tab[i]) == 0)
-			mini = unset_verif_var(mini);
+			mini = unset_verif_var(mini, i);
 		else
 		{
 			printf("minishell: unset: `%s':", mini.tab[1]);
