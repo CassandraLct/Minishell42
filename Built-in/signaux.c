@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:33:18 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/09 17:45:09 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/13 16:17:08 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ void	ft_interruption(int signum)
 {
 	(void)signum;
 
+	printf("fonction interruption\n");
 	rl_on_new_line(); //remplace la ligne actuel
+	rl_redisplay();
 }
 
 //fonction de sortie du prog
@@ -39,7 +41,7 @@ void	ft_quit(int signum)
 	(void)signum;
 }
 
-void	signaux(t_min mini)
+void	signaux(void)
 {
 	//numero_du_signal, procedure a faire
 	signal(SIGINT, ft_interruption); //interruption controle c

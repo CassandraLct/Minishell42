@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/09 15:48:11 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/13 15:54:13 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,8 @@ void	ft_set_pathexec(t_min mini);
 //lexer.c 2 fonctions
 char	**split_line(t_min mini);
 t_min	redirection(t_min mini);
+
+//signaux.c
+void	signaux(void);
 
 #endif
