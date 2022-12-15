@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/13 15:54:13 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/15 16:41:33 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_min
 	char	*line;
 	char	**tab;
 	char	*prompt;
-	char	*cdpath;
 	int		nb_passage_exp;
 }	t_min;
 
@@ -79,10 +78,19 @@ char	**init_exp(char **tab);
 
 //cd.c 5 fonctions
 void	cd(t_min mini);
+void	change_value_pwd(char **str);
 
-//exit_pwd.c 3 fonctions
+//cd_utils.c 5 fonctions
+int		check_arg(char *str);
+char	*recup_pwd(char **str);
+char	*recup_oldpwd(char **str);
+void	cpy_value(char *name_var, char **str, char *new_val);
+
+//exit_pwd.c 4 fonctions
 int		exit_min(t_min mini);
 void	pwd(char **c_env);
+int		recup_new_pwd(char **str);
+void	change_val_pwdpath(t_min mini, char **str);
 
 //init.c 3 fonctions
 t_min	init_struct(t_min mini, char **envp);

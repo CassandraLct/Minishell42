@@ -6,124 +6,142 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 13:55:50 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/06 11:33:55 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/15 16:41:08 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//5fonctions
-char	*join_var(char *str1, char *new_val)
+//5 fonctions
+//change la valeur de pwd
+void	change_value_pwd(char **str)
 {
-	char	*dest;
-	char	*cpy;
+	char	*new_val;
 	int		i;
 	int		j;
-
-	i = 45;
-	j = 0;
-	cpy = malloc(sizeof(char) * i);
-	i = 0;
-	while (new_val[i] != '=')
-		i++;
-	if (new_val[i] == '=')
-	{
-		i += 1;
-		while (new_val[i])
-			cpy[j++] = new_val[i++];
-		cpy[j] = '\0';
-	}
-	dest = malloc(sizeof(char) * (ft_strlen(str1) + ft_strlen(cpy) + 1));
-	dest = ft_strjoin(str1, cpy);
-	return (dest);
-}
-
-//a modifier pour etre utiliser pour tout les cas
-void	cpy_value(char **str, char *new_val)
-{
-	char	*s1;
-	char	*ret;
-	int		i;
-
-	i = 0;
-	s1 = ft_strdup("OLDPWD=");
-	ret = join_var(s1, new_val);
-	while (str[i])
-	{
-		if (strncmp(str[i], "OLDPWD=", 7) == 0)
-			str[i] = ft_strdup(ret);
-		i++;
-	}
-}
-
-//
-void	change_value_pwd(t_min mini, char **str, char *pwd, char *oldpwd)
-{
-	int	i;
-	int	j;
+	int		w;
 
 	i = 0;
 	j = 0;
-	printf("str = %s\n", str[i]);
-	while (pwd[i] != '=')
-		i++;
-	while (oldpwd[j] != '=')
-		j++;
-	printf("change value oldpwd, %s\n", mini.cdpath);
-	cpy_value(str, pwd);
-}
-
-//recuperation des valeurs de PWD et OLDPWD
-void	recup_value_pwd(t_min mini, char **str)
-{
-	char	*pwd;
-	char	*oldpwd;
-	int		i;
-
-	i = 0;
+	w = 0;
 	while (str[i])
 	{
 		if (ft_strncmp(str[i], "PWD=", 4) == 0)
-			pwd = str[i];
+			break ;
 		i++;
 	}
-	i = 0;
-	while (str[i])
+	j = recup_new_pwd(str);
+	new_val = malloc(sizeof(char) * (j + 1));
+	while (str[i][w] && w < j)
 	{
-		if (ft_strncmp(str[i], "OLDPWD=", 7) == 0)
-			oldpwd = str[i];
+		new_val[w] = str[i][w];
+		w++;
+	}
+	new_val[w] = '\0';
+	free(str[i]);
+	str[i] = ft_strdup(new_val);
+	free(new_val);
+	printf("str[i] = %s\n",str[i]);
+}
+
+//change la valeur de oldpwd
+void	change_value_oldpwd(char **str, char *pwd, char *oldpwd)
+{
+	char	*name_var;
+	int		j;
+	int		i;
+	int		y;
+
+	j = 0;
+	i = 0;
+	y = 0;
+	while (oldpwd[j++] != '=')
+		y++;
+	if (j != ft_strlen(oldpwd))
+		j++;
+	name_var = malloc(sizeof(char) * (y + 2));
+	while (i < y)
+	{
+		name_var[i] = oldpwd[i];
 		i++;
 	}
-	printf("ret _error = %d\n", mini.ret_err);
-	change_value_pwd(mini, str, pwd, oldpwd);
+	name_var[i] = '=';
+	name_var[i + 1] = '\0';
+	cpy_value(name_var, str, pwd);
+	free(name_var);
+	free(oldpwd);
+}
+
+//modifie env (pwd et oldpwd) en fonction du path donner
+void	change_value_env(t_min mini)
+{
+	char	*pwd;
+	char	*oldpwd;
+
+	pwd = recup_pwd(mini.c_env);
+	oldpwd = recup_oldpwd(mini.c_env);
+	if (strcmp(mini.tab[1], ".") == 0 || strcmp(mini.tab[1], "./") == 0)
+		change_value_oldpwd(mini.c_env, pwd, oldpwd);
+	else if (strcmp(mini.tab[1], "..") == 0 || strcmp(mini.tab[1], "../") == 0)
+	{
+		printf("retourne au reportoire au-dessus, env\n");
+		change_value_pwd(mini.c_env);
+		change_value_oldpwd(mini.c_env, pwd, oldpwd);
+	}
+	else if (strcmp(mini.tab[1], ".") > 0 || strcmp(mini.tab[1], "..") > 0)
+	{
+		printf("va au chemin indiqué, env\n");
+		change_value_oldpwd(mini.c_env, pwd, oldpwd);
+		change_val_pwdpath(mini, mini.c_env);
+	}
+	free(pwd);
+}
+
+//modifie exp (pwd et oldpwd) en fonction du path donner
+void	change_value_exp(t_min mini)
+{
+	char	*pwd;
+	char	*oldpwd;
+
+	pwd = recup_pwd(mini.c_exp);
+	oldpwd = recup_oldpwd(mini.c_exp);
+	if (strcmp(mini.tab[1], ".") == 0 || strcmp(mini.tab[1], "./") == 0)
+		change_value_oldpwd(mini.c_exp, pwd, oldpwd);
+	else if (strcmp(mini.tab[1], "..") == 0 || strcmp(mini.tab[1], "../") == 0)
+	{
+		printf("retourne au reportoire au-dessus, exp\n");
+		change_value_pwd(mini.c_exp);
+		change_value_oldpwd(mini.c_exp, pwd, oldpwd);
+	}
+	else if (strcmp(mini.tab[1], "./") > 0 || strcmp(mini.tab[1], "../") > 0)
+	{
+		printf("va au chemin indiqué, exp\n");
+		change_value_oldpwd(mini.c_exp, pwd, oldpwd);
+		//change_val_pwdpath(mini, mini.c_exp);
+	}
+	free(pwd);
 }
 
 //1er if change oldpwd, 2e if change les 2 pwd, 3e if les 2 pwd
-//faire les autres cas plus tard
-//cd sans arg return, fichier non existant
-//(bash: cd: bonjour: No such file or directory)
-//cd fichier : bash: cd: exec.c: Not a directory
-//a modifier en fonction du tableau
+//cd sans arg return, fichier non existant, si 2 arg -> ne prend pas en compte le deuxieme
+//cas specifique a verifier: si repo au dessus est supprimer, et que cd .. est fait ->doit afficher une erreur
 void	cd(t_min mini)
 {
-	if (mini.cdpath == NULL)
+	if (mini.tab[1] == NULL)
 		return ;
-	if (chdir(mini.cdpath) == -1)
-		printf("bash: cd: %s: No such file or directory\n", mini.cdpath);
+	if (chdir(mini.tab[1]) == -1)
+	{
+		if (check_arg(mini.tab[1]) == 1)
+			printf("minishell: cd: %s: Not a directory\n", mini.tab[1]);
+		else
+		{
+			printf("minishell: cd: %s:", mini.tab[1]);
+			printf("No such file or directory\n");
+		}
+	}
 	else
 	{
-		if (strcmp(mini.cdpath, ".") == 0)
-		{
-			recup_value_pwd(mini, mini.c_env);
-			recup_value_pwd(mini, mini.c_exp);
-		}
-		if (strcmp(mini.cdpath, "..") == 0)
-		{
-			printf("retourne au reportoire au-dessus,change pwd et old\n");
-		}
-		if (strcmp(mini.cdpath, ".") > 0 || strcmp(mini.cdpath, "..") > 0)
-		{
-			printf("va au chemin indiqué,change pwd et old\n");
-		}
+		change_value_env(mini);
+		change_value_exp(mini);
 	}
 }

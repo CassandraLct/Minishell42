@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:36:33 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/09 15:57:33 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/15 10:10:56 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_min	init_struct(t_min mini, char **envp)
 	mini.tab = NULL;
 	mini.prompt = "minishell> ";
 	mini.c_env = ft_cpytab(envp);
-	mini.cdpath = ".";
 	mini.c_exp = init_export(mini);
 	mini.nb_passage_exp = 0;
 	return (mini);

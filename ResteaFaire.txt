@@ -25,8 +25,18 @@ Reste à faire:
 	/*utiliser unlink pour heredoc ?*/
 
 /!\ Objectif 13/12 (Mardi):
-	-> Comprendre les signaux;
-	-> Tester le fonctionnement d'Export et Unset;
+	-> Comprendre les signaux; debut
+	-> Tester le fonctionnement d'Export et Unset; Fait
 	-> Continuer cd et faire le changement de directory;
 	-> voir pour l'execve(fork)(surement utile pour les signaux);
 	-> chercher de la doc pour Makefile
+
+/!\ Objectif 15/12 (Jeudi):
+	->Finir cd: modification des valeurs de pwd et oldpwd;
+		-> dernier cas a gerer: si un path est donner
+	->Norminette a faire: cd: 2fonctions +25lignes,
+
+/!\ free le path pour cd
+
+*continuer les signaux;
+*corriger les leaks et modifier la gestion de la structure

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/13 16:06:54 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/15 12:23:53 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ t_min	new_vars(t_min mini, char *str, int y)
 	mini = redir_changeval(mini, str);
 	while (str[i])
 	{
-		
 		if (str[i] == '=' && str[i + 1] != '\0' && mini.nb_passage_exp == 0)
 		{
 			mini.c_env = add_valenv(mini, str);

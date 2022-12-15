@@ -6,12 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:51:31 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/06 16:44:58 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/15 16:28:00 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+//recupere les paths possible
 static char	**recup_path(t_min mini)
 {
 	char	**all_path;
@@ -30,6 +31,7 @@ static char	**recup_path(t_min mini)
 	return (all_path);
 }
 
+//initialise le tableau
 static char	**init_cmd(char **tab, char **cmd)
 {
 	cmd = NULL;
@@ -39,6 +41,7 @@ static char	**init_cmd(char **tab, char **cmd)
 	return (cmd);
 }
 
+//test chaque path puis execute la cmd si existante
 void	ft_exec(t_min mini, char **all_path, char **cmd)
 {
 	char	*gd_path;
@@ -64,9 +67,7 @@ void	ft_exec(t_min mini, char **all_path, char **cmd)
 		printf("minishell: %s: command not found\n", mini.tab[0]);
 }
 
-//execve, perror, access (revoir pipex)
 //a gerer avec un fork pour empecher de sortir de minishell
-//+25 lignes gerer si pas de pwd
 void	ft_set_pathexec(t_min mini)
 {
 	char	**all_path;
