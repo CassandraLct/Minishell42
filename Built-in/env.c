@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:05:50 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/19 15:00:46 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/19 15:24:13 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,33 @@ void	change_val(char **str, char *new_pwd)
 	pwd = recup_pwd(str);
 	oldpwd = recup_oldpwd(str);
 	change_value_oldpwd(str, pwd, oldpwd);
-	while(str[i])
+	while (str[i])
 	{
-		if(ft_strncmp(str[i], "PWD=", 4) == 0)
-			break;
+		if (ft_strncmp(str[i], "PWD=", 4) == 0)
+			break ;
 		i++;
 	}
 	free(str[i]);
 	str[i] = ft_strjoin("PWD=", new_pwd);
+}
+
+void	add_reponame(char **str, char *repo)
+{
+	char	*new_pwd;
+	int		i;
+
+	i = 0;
+	new_pwd = NULL;
+	while (str[i])
+	{
+		if (ft_strncmp(str[i], "PWD=", 4) == 0)
+		{
+			new_pwd = ft_strdup(str[i]);
+			break ;
+		}
+		i++;
+	}
+	free(str[i]);
+	new_pwd = ft_strjoin(new_pwd, "/");
+	str[i] = ft_strjoin(new_pwd, repo);
 }
