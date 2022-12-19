@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 13:55:50 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/15 16:41:08 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/19 15:01:52 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,21 +80,21 @@ void	change_value_env(t_min mini)
 
 	pwd = recup_pwd(mini.c_env);
 	oldpwd = recup_oldpwd(mini.c_env);
+	if(mini.tab[1][0] == '/')
+		change_val(mini.c_env, mini.tab[1]);
 	if (strcmp(mini.tab[1], ".") == 0 || strcmp(mini.tab[1], "./") == 0)
 		change_value_oldpwd(mini.c_env, pwd, oldpwd);
 	else if (strcmp(mini.tab[1], "..") == 0 || strcmp(mini.tab[1], "../") == 0)
 	{
-		printf("retourne au reportoire au-dessus, env\n");
 		change_value_pwd(mini.c_env);
 		change_value_oldpwd(mini.c_env, pwd, oldpwd);
 	}
-	else if (strcmp(mini.tab[1], ".") > 0 || strcmp(mini.tab[1], "..") > 0)
+	else if ((strcmp(mini.tab[1], ".") > 0 || strcmp(mini.tab[1], "..") > 0) && mini.tab[1][0] != '/')
 	{
-		printf("va au chemin indiqué, env\n");
 		change_value_oldpwd(mini.c_env, pwd, oldpwd);
 		change_val_pwdpath(mini, mini.c_env);
 	}
-	free(pwd);
+	//free(pwd);
 }
 
 //modifie exp (pwd et oldpwd) en fonction du path donner
@@ -105,21 +105,21 @@ void	change_value_exp(t_min mini)
 
 	pwd = recup_pwd(mini.c_exp);
 	oldpwd = recup_oldpwd(mini.c_exp);
-	if (strcmp(mini.tab[1], ".") == 0 || strcmp(mini.tab[1], "./") == 0)
+	if(mini.tab[1][0] == '/')
+		change_val(mini.c_exp, mini.tab[1]);
+	else if (strcmp(mini.tab[1], ".") == 0 || strcmp(mini.tab[1], "./") == 0)
 		change_value_oldpwd(mini.c_exp, pwd, oldpwd);
 	else if (strcmp(mini.tab[1], "..") == 0 || strcmp(mini.tab[1], "../") == 0)
 	{
-		printf("retourne au reportoire au-dessus, exp\n");
 		change_value_pwd(mini.c_exp);
 		change_value_oldpwd(mini.c_exp, pwd, oldpwd);
 	}
 	else if (strcmp(mini.tab[1], "./") > 0 || strcmp(mini.tab[1], "../") > 0)
 	{
-		printf("va au chemin indiqué, exp\n");
 		change_value_oldpwd(mini.c_exp, pwd, oldpwd);
-		//change_val_pwdpath(mini, mini.c_exp);
+		change_val_pwdpath(mini, mini.c_exp);
 	}
-	free(pwd);
+	//free(pwd);
 }
 
 //1er if change oldpwd, 2e if change les 2 pwd, 3e if les 2 pwd
@@ -127,21 +127,29 @@ void	change_value_exp(t_min mini)
 //cas specifique a verifier: si repo au dessus est supprimer, et que cd .. est fait ->doit afficher une erreur
 void	cd(t_min mini)
 {
+	char	*str;
+
+	str = "/Users/clecat";
 	if (mini.tab[1] == NULL)
-		return ;
-	if (chdir(mini.tab[1]) == -1)
+	{
+		printf("reviens au repo racine\n");
+		change_val(mini.c_env, str);
+		change_val(mini.c_exp, str);
+		chdir("/Users/clecat");
+	}
+	else if (chdir(mini.tab[1]) == -1)
 	{
 		if (check_arg(mini.tab[1]) == 1)
 			printf("minishell: cd: %s: Not a directory\n", mini.tab[1]);
 		else
 		{
-			printf("minishell: cd: %s:", mini.tab[1]);
+			printf("minishell: cd: %s: ", mini.tab[1]);
 			printf("No such file or directory\n");
 		}
 	}
 	else
 	{
-		change_value_env(mini);
-		change_value_exp(mini);
+			change_value_env(mini);
+			change_value_exp(mini);
 	}
 }

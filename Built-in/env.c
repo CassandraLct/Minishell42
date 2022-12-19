@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:05:50 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/06 15:34:01 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/19 15:00:46 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,25 @@ void	ft_env(t_min mini)
 			i++;
 		}
 	}
+}
+
+//change pwd env & exp with repo root
+void	change_val(char **str, char *new_pwd)
+{
+	char	*pwd;
+	char	*oldpwd;
+	int		i;
+
+	i = 0;
+	pwd = recup_pwd(str);
+	oldpwd = recup_oldpwd(str);
+	change_value_oldpwd(str, pwd, oldpwd);
+	while(str[i])
+	{
+		if(ft_strncmp(str[i], "PWD=", 4) == 0)
+			break;
+		i++;
+	}
+	free(str[i]);
+	str[i] = ft_strjoin("PWD=", new_pwd);
 }
