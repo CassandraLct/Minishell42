@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/15 17:01:55 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/19 15:32:00 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,48 +14,22 @@
 
 //5 fonctions
 
-void	add_reponame(char **str, char *repo)
-{
-	char	*new_pwd;
-	int	i;
-
-	i = 0;
-	new_pwd = NULL;
-	while(str[i])
-	{
-		if(ft_strncmp(str[i], "PWD=", 4) == 0)
-		{
-			new_pwd = ft_strdup(str[i]);
-			break ;
-		}
-		i++;
-	}
-	printf("add: str[i] = %s, new_pwd = %s\n", str[i], new_pwd);
-	free(str[i]);
-	new_pwd = ft_strjoin(new_pwd, "/");
-	str[i] = ft_strjoin(new_pwd, repo);
-	printf("new str[i] = %s\n", str[i]);
-}
-
 void	change_val_pwdpath(t_min mini, char **str)
 {
-	//char	*new_pwd;
 	char	**path;
-	int	i;
+	int		i;
 
 	i = 0;
 	path = ft_split(mini.tab[1], '/');
-	while(path[i])
-		printf("path = %s\n", path[i++]);
-	i = 0;
-	while(path[i])
+	while (path[i])
 	{
-		if(strcmp(path[i], "..") == 0)
+		if (strcmp(path[i], "..") == 0)
 			change_value_pwd(str);
-		if(strcmp(path[i], "..") != 0 && strcmp(path[i], ".") != 0)
+		if (strcmp(path[i], "..") != 0 && strcmp(path[i], ".") != 0)
 			add_reponame(str, path[i]);
 		i++;
 	}
+	free_tab(path);
 }
 
 //remonte un fichier au_dessus pour avoir le new_pwd;

@@ -36,7 +36,12 @@ Reste à faire:
 		-> dernier cas a gerer: si un path est donner
 	->Norminette a faire: cd: 2fonctions +25lignes,
 
-/!\ free le path pour cd
+/!\ Objectif 19/12 (Lundi):
+	-> Finir cd (cd, cd /, cd path absolu) : Fait
+	-> Avancer les signaux:
+	-> Faire la norminette:
+
+/!\ free le path pour cd: Fait
 
 *continuer les signaux;
 *corriger les leaks et modifier la gestion de la structure

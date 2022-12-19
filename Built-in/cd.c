@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 13:55:50 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/19 15:01:52 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/19 15:27:14 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	change_value_pwd(char **str)
 	free(str[i]);
 	str[i] = ft_strdup(new_val);
 	free(new_val);
-	printf("str[i] = %s\n",str[i]);
 }
 
 //change la valeur de oldpwd
@@ -80,7 +79,7 @@ void	change_value_env(t_min mini)
 
 	pwd = recup_pwd(mini.c_env);
 	oldpwd = recup_oldpwd(mini.c_env);
-	if(mini.tab[1][0] == '/')
+	if (mini.tab[1][0] == '/')
 		change_val(mini.c_env, mini.tab[1]);
 	if (strcmp(mini.tab[1], ".") == 0 || strcmp(mini.tab[1], "./") == 0)
 		change_value_oldpwd(mini.c_env, pwd, oldpwd);
@@ -89,7 +88,7 @@ void	change_value_env(t_min mini)
 		change_value_pwd(mini.c_env);
 		change_value_oldpwd(mini.c_env, pwd, oldpwd);
 	}
-	else if ((strcmp(mini.tab[1], ".") > 0 || strcmp(mini.tab[1], "..") > 0) && mini.tab[1][0] != '/')
+	else if ((strcmp(mini.tab[1], "./") > 0 || strcmp(mini.tab[1], "../") > 0))
 	{
 		change_value_oldpwd(mini.c_env, pwd, oldpwd);
 		change_val_pwdpath(mini, mini.c_env);
@@ -105,7 +104,7 @@ void	change_value_exp(t_min mini)
 
 	pwd = recup_pwd(mini.c_exp);
 	oldpwd = recup_oldpwd(mini.c_exp);
-	if(mini.tab[1][0] == '/')
+	if (mini.tab[1][0] == '/')
 		change_val(mini.c_exp, mini.tab[1]);
 	else if (strcmp(mini.tab[1], ".") == 0 || strcmp(mini.tab[1], "./") == 0)
 		change_value_oldpwd(mini.c_exp, pwd, oldpwd);
@@ -122,9 +121,7 @@ void	change_value_exp(t_min mini)
 	//free(pwd);
 }
 
-//1er if change oldpwd, 2e if change les 2 pwd, 3e if les 2 pwd
-//cd sans arg return, fichier non existant, si 2 arg -> ne prend pas en compte le deuxieme
-//cas specifique a verifier: si repo au dessus est supprimer, et que cd .. est fait ->doit afficher une erreur
+//redirige vers les fonction adéquat
 void	cd(t_min mini)
 {
 	char	*str;
@@ -149,7 +146,7 @@ void	cd(t_min mini)
 	}
 	else
 	{
-			change_value_env(mini);
-			change_value_exp(mini);
+		change_value_env(mini);
+		change_value_exp(mini);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/19 15:02:57 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/19 16:17:28 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char	**ft_split(char const *s, char c);
 //env.c 1 fonction
 void	ft_env(t_min mini);
 void	change_val(char **str, char *new_pwd);
+void	add_reponame(char **str, char *repo);
 
 //export.c 5 fonctions
 t_min	export(t_min mini);
