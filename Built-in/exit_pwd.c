@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/19 15:32:00 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/20 14:54:03 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ void	change_val_pwdpath(t_min mini, char **str)
 
 	i = 0;
 	path = ft_split(mini.tab[1], '/');
+	while (path[i])
+	{
+		printf("path[%d] = %s\n", i, path[i]);
+		i++;
+	}
+	i = 0;
 	while (path[i])
 	{
 		if (strcmp(path[i], "..") == 0)
