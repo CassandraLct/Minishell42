@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:05:50 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/19 15:24:13 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/20 10:51:57 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	change_val(char **str, char *new_pwd)
 	}
 	free(str[i]);
 	str[i] = ft_strjoin("PWD=", new_pwd);
+	free(pwd);
 }
 
 void	add_reponame(char **str, char *repo)
@@ -72,6 +73,11 @@ void	add_reponame(char **str, char *repo)
 		i++;
 	}
 	free(str[i]);
-	new_pwd = ft_strjoin(new_pwd, "/");
-	str[i] = ft_strjoin(new_pwd, repo);
+	if (new_pwd[4] == '/' && new_pwd[5] == '\0')
+		str[i] = ft_strjoin(new_pwd, repo);
+	else
+	{
+		new_pwd = ft_strjoin(new_pwd, "/");
+		str[i] = ft_strjoin(new_pwd, repo);
+	}
 }

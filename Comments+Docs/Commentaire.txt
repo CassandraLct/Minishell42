@@ -6,7 +6,7 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 13:45:49 by clecat            #+#    #+#              #
-#    Updated: 2022/11/25 16:40:57 by clecat           ###   ########.fr        #
+#    Updated: 2022/12/20 12:47:18 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -161,4 +161,12 @@ bash-3.2$ echo $bonjour
 
 bash-3.2$ echo $"bonjour"
 bonjour
-bash-3.2$ 
+bash-3.2$
+
+
+/*Signaux*/
+	*permet de reafficher correctement le prompt et ^C :
+		-> mettre un printf("\n")avant pour afficher sur une nouvelle ligne a chaque fois
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();

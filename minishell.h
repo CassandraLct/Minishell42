@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/19 16:17:28 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/20 13:01:49 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,16 @@
 //includes
 # include <stdio.h>
 # include <unistd.h>
-# include <stdlib.h>
 # include <string.h>
+# include <fcntl.h>
 # include <signal.h>
-# include <readline/history.h>
+# include <stdlib.h>
 # include <readline/readline.h>
+# include <readline/history.h>
+# include <sys/wait.h>
+# include <termios.h>
 
+//structure
 typedef struct s_min
 {
 	char	**c_env;
@@ -44,7 +48,7 @@ char	*ft_strdup(char *s);
 //ft_split.c (split libft)
 char	**ft_split(char const *s, char c);
 
-//env.c 1 fonction
+//env.c 3 fonction
 void	ft_env(t_min mini);
 void	change_val(char **str, char *new_pwd);
 void	add_reponame(char **str, char *repo);
@@ -89,7 +93,7 @@ char	*recup_pwd(char **str);
 char	*recup_oldpwd(char **str);
 void	cpy_value(char *name_var, char **str, char *new_val);
 
-//exit_pwd.c 4 fonctions
+//exit_pwd.c 5 fonctions
 int		exit_min(t_min mini);
 void	pwd(char **c_env);
 int		recup_new_pwd(char **str);
@@ -114,5 +118,6 @@ t_min	redirection(t_min mini);
 
 //signaux.c
 void	signaux(void);
+void	rl_replace_line(const char *text, int clear_undo);
 
 #endif

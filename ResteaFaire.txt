@@ -38,10 +38,14 @@ Reste à faire:
 
 /!\ Objectif 19/12 (Lundi):
 	-> Finir cd (cd, cd /, cd path absolu) : Fait
-	-> Avancer les signaux:
-	-> Faire la norminette:
+	-> Avancer les signaux: impossibilité d'utiliser la fonction rl_replace_line()
+	-> Faire la norminette: Fait (reste les WRONG_SCOPE_COMMENT)
+	/!\ free le path pour cd: Fait
 
-/!\ free le path pour cd: Fait
+/!\ Objectif 20/12 :
+	-> cd verifier quand cd /, puis cd Users/...; enlever le / : Fait
+	-> signaux: reussir a utiliser rl_replace_line(): Fait
+	->Continuer les signaux (sans la gestion des pipes, sans le fork) 
+	//faire une fois les piepes et les fork fait
 
-*continuer les signaux;
 *corriger les leaks et modifier la gestion de la structure

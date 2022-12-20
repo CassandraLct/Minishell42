@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 13:55:50 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/19 15:27:14 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/20 10:49:26 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	change_value_env(t_min mini)
 		change_value_oldpwd(mini.c_env, pwd, oldpwd);
 		change_val_pwdpath(mini, mini.c_env);
 	}
-	//free(pwd);
+	free(pwd);
 }
 
 //modifie exp (pwd et oldpwd) en fonction du path donner
@@ -118,7 +118,7 @@ void	change_value_exp(t_min mini)
 		change_value_oldpwd(mini.c_exp, pwd, oldpwd);
 		change_val_pwdpath(mini, mini.c_exp);
 	}
-	//free(pwd);
+	free(pwd);
 }
 
 //redirige vers les fonction adéquat
