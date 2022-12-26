@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:51:31 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/26 18:15:53 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/26 21:15:07 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,11 @@ static char	**recup_path(t_min *mini)
 	i = 0;
 	while (mini->c_env[i])
 	{
-		if (strncmp(mini->c_env[i], "PATH=", 5) == 0)
+		if (ft_strncmp(mini->c_env[i], "PATH=", 5) == 0)
+		{
 			b_path = ft_strdup(mini->c_env[i] + 5);
+			break ;
+		}
 		i++;
 	}
 	i = 0;
