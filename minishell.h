@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/26 12:05:03 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/26 16:47:23 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_min
 	int		nb_passage_exp;
 }	t_min;
 
-//15 fichiers
+//18 fichiers
 //utils.c 5 fonctions
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_strlen(char *str);
