@@ -6,7 +6,7 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2022/12/20 12:39:12 by clecat           ###   ########.fr        #
+#    Updated: 2022/12/26 10:14:58 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ all	:	${NAME}
 
 $(NAME)	:	${OBJ}
 		@echo "\033[1;35m""Compilation de ${NAME}"
-		$(CC) $(OBJ) $(CFLAGS) libreadline.a -lreadline -lncurses -o $(NAME)
+		$(CC) $(OBJ) $(CFLAGS) -lreadline -L $(LIBPATH) -o $(NAME)
 
 %.o	:	%.c
 		@echo "\033[1;35m""Compilation des fichiers sources"

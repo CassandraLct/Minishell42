@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/15 11:07:11 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/26 10:59:40 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,25 +43,24 @@ char	**split_line(t_min mini)
 
 //built-in : cd/echo/env/exit/export/unset
 //redirige soit vers les built-in soit vers execve
-t_min	redirection(t_min mini)
+void	redirection(t_min *mini)
 {
-	if (mini.tab[0] == NULL)
-		return (mini);
-	if (strcmp(mini.tab[0], "exit") == 0)
-		mini.ret_err = exit_min(mini);
-	else if (strcmp(mini.tab[0], "echo") == 0)
+	if (mini->tab[0] == NULL)
+		return ;
+	if (strcmp(mini->tab[0], "exit") == 0)
+		exit_min(mini);
+	else if (strcmp(mini->tab[0], "echo") == 0)
 		echo(mini);
-	else if (strcmp(mini.tab[0], "env") == 0)
+	else if (strcmp(mini->tab[0], "env") == 0)
 		ft_env(mini);
-	else if (strcmp(mini.tab[0], "cd") == 0)
+	else if (strcmp(mini->tab[0], "cd") == 0)
 		cd(mini);
-	else if (strcmp(mini.tab[0], "export") == 0)
-		mini = export(mini);
-	else if (strcmp(mini.tab[0], "unset") == 0)
-		mini = unset(mini);
-	else if (strcmp(mini.tab[0], "pwd") == 0)
-		pwd(mini.c_env);
+	else if (strcmp(mini->tab[0], "export") == 0)
+		export(mini);
+	else if (strcmp(mini->tab[0], "unset") == 0)
+		unset(mini);
+	else if (strcmp(mini->tab[0], "pwd") == 0)
+		pwd(mini->c_env);
 	else
 		ft_set_pathexec(mini);
-	return (mini);
 }

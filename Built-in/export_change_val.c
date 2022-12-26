@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:03:34 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/09 15:40:47 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/26 10:56:28 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,23 +87,22 @@ char	**changeval_exp(char **c_exp, char *str)
 }
 
 //redirige vers les fonctions de modification ou d'ajout
-t_min	redir_changeval(t_min mini, char *str)
+void	redir_changeval(t_min *mini, char *str)
 {
-	if (verif_modif_var(mini.c_env, str) == 1
-		&& verif_modif_var(mini.c_exp, str) == 1)
+	if (verif_modif_var(mini->c_env, str) == 1
+		&& verif_modif_var(mini->c_exp, str) == 1)
 	{
-		mini.c_exp = changeval_exp(mini.c_exp, str);
-		mini.c_env = changeval_env(mini.c_env, str);
-		mini.nb_passage_exp += 1;
+		mini->c_exp = changeval_exp(mini->c_exp, str);
+		mini->c_env = changeval_env(mini->c_env, str);
+		mini->nb_passage_exp += 1;
 	}
-	else if (verif_modif_var(mini.c_exp, str) == 1
-		&& verif_modif_var(mini.c_env, str) == 0)
+	else if (verif_modif_var(mini->c_exp, str) == 1
+		&& verif_modif_var(mini->c_env, str) == 0)
 	{
-		mini.c_exp = changeval_exp(mini.c_exp, str);
-		mini.c_env = add_valenv(mini, str);
-		mini.nb_passage_exp += 1;
+		mini->c_exp = changeval_exp(mini->c_exp, str);
+		mini->c_env = add_valenv(mini, str);
+		mini->nb_passage_exp += 1;
 	}
-	return (mini);
 }
 
 //recupere le nom de la variable
