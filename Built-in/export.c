@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/15 12:23:53 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/26 14:21:45 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,31 +38,33 @@ int	verif_modif_var(char **str, char *cmp)
 }
 
 //redirige vers l'ajout ou la modification
-t_min	new_vars(t_min mini, char *str, int y)
+void	new_vars(t_min *mini, char *str, int y)
 {
 	int	i;
 
 	i = 0;
 	if (ft_isdigit(str[0]) == 1 || str[0] == '=')
 	{
-		printf("minishell: `%s': not a valid identifier\n", mini.tab[y]);
+		printf("minishell: `%s': not a valid identifier\n", mini->tab[y]);
 		exit(1);
 	}
-	mini = redir_changeval(mini, str);
+	redir_changeval(mini, str);
 	while (str[i])
 	{
-		if (str[i] == '=' && str[i + 1] != '\0' && mini.nb_passage_exp == 0)
+		if (str[i] == '=' && str[i + 1] != '\0' && mini->nb_passage_exp == 0)
 		{
-			mini.c_env = add_valenv(mini, str);
-			mini.c_exp = add_valexp(mini, str);
-			mini.nb_passage_exp += 1;
+			mini->c_env = add_valenv(mini, str);
+			mini->c_exp = add_valexp(mini, str);
+			mini->nb_passage_exp += 1;
 		}
 		i++;
 	}
-	if (mini.nb_passage_exp == 0)
-		mini.c_exp = add_valexp(mini, str);
-	mini.nb_passage_exp = 0;
-	return (mini);
+	if (mini->nb_passage_exp == 0)
+	{
+		printf("ici\n");
+		mini->c_exp = add_valexp(mini, str);
+	}
+	mini->nb_passage_exp = 0;
 }
 
 //verifie si index envoyer est deja present dans copy exp
@@ -113,20 +115,19 @@ char	**order_exp(char **c_exp, char **cmp)
 }
 
 //add new_var ou affiche export
-t_min	export(t_min mini)
+void	export(t_min *mini)
 {
 	int	i;
 
 	i = 1;
-	if (mini.tab[1] == NULL)
-		print_export(mini.c_exp);
+	if (mini->tab[1] == NULL)
+		print_export(mini->c_exp);
 	else
 	{
-		while (mini.tab[i] != NULL)
+		while (mini->tab[i] != NULL)
 		{
-			mini = new_vars(mini, mini.tab[i], i);
+			new_vars(mini, mini->tab[i], i);
 			i++;
 		}
 	}
-	return (mini);
 }

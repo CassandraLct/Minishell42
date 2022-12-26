@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:35:49 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/09 13:36:22 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/22 13:07:54 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //5 fonctions
 
-//compare la taille de 2 char**
+//retourna la taille d'un char ** 
 int	tablen(char **s1)
 {
 	int	i;

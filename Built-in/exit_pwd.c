@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/20 14:54:03 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/26 14:02:18 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,13 @@
 
 //5 fonctions
 
-void	change_val_pwdpath(t_min mini, char **str)
+void	change_val_pwdpath(t_min *mini, char **str)
 {
 	char	**path;
 	int		i;
 
 	i = 0;
-	path = ft_split(mini.tab[1], '/');
-	while (path[i])
-	{
-		printf("path[%d] = %s\n", i, path[i]);
-		i++;
-	}
-	i = 0;
+	path = ft_split(mini->tab[1], '/');
 	while (path[i])
 	{
 		if (strcmp(path[i], "..") == 0)
@@ -84,50 +78,49 @@ void	pwd(char **c_env)
 
 /*verifie si les arguments d'exit sont valide ou non et si il y en a plus qu'un 
 et renvoie le code erreur approprié(bash)*/
-int	verif_arg_exit(t_min mini, int i)
+int	verif_arg_exit(t_min *mini, int i)
 {
 	char	*err;
 
 	err = "numeric argument required";
-	if (strdigit(mini.tab[i]) == 0)
+	if (strdigit(mini->tab[i]) == 0)
 	{
-		if (mini.tab[i + 1] == NULL)
+		if (mini->tab[i + 1] == NULL)
 		{
 			printf("exit\n");
-			exit(atoi(mini.tab[i]) % 256);
+			exit(atoi(mini->tab[i]) % 256);
 		}
 		else
 		{
 			printf("exit\nminishell: exit: too many arguments\n");
-			mini.ret_err = 1;
+			mini->ret_err = 1;
 		}
 	}
-	else if (strdigit(mini.tab[i]) == 1)
+	else if (strdigit(mini->tab[i]) == 1)
 	{
-		printf("exit\nminishell: exit: %s: %s\n", mini.tab[i], err);
+		printf("exit\nminishell: exit: %s: %s\n", mini->tab[i], err);
 		exit(255);
 	}
-	return (mini.ret_err);
+	return (mini->ret_err);
 }
 
 // la fonction sort de minishell ou redirige vers la verif des arguments
-int	exit_min(t_min mini)
+void	exit_min(t_min *mini)
 {
 	int	i;
 
 	i = 1;
-	if (strcmp(mini.tab[0], "exit") == 0)
+	if (strcmp(mini->tab[0], "exit") == 0)
 	{
-		if (mini.tab[i] == NULL)
+		if (mini->tab[i] == NULL)
 		{
 			printf("exit\n");
 			exit(0);
 		}
-		while (mini.tab[i])
+		while (mini->tab[i])
 		{
-			mini.ret_err = verif_arg_exit(mini, i);
+			mini->ret_err = verif_arg_exit(mini, i);
 			break ;
 		}
 	}
-	return (mini.ret_err);
 }

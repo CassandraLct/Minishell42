@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:18 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/13 14:49:59 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/26 11:00:38 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,31 +44,30 @@ char	**unset_var(char **tab, char *str)
 }
 
 // verifie si argument present ou non dans env
-t_min	unset_verif_var(t_min mini, int y)
+void	unset_verif_var(t_min *mini, int y)
 {
 	int	i;
 
 	i = 0;
-	while (mini.c_env[i])
+	while (mini->c_env[i])
 	{
-		if (strncmp(mini.c_env[i], mini.tab[y], ft_strlen(mini.tab[y])) == 0)
+		if (strncmp(mini->c_env[i], mini->tab[y], ft_strlen(mini->tab[y])) == 0)
 		{
-			mini.c_env = unset_var(mini.c_env, mini.tab[y]);
+			mini->c_env = unset_var(mini->c_env, mini->tab[y]);
 			break ;
 		}
 		i++;
 	}
 	i = 0;
-	while (mini.c_exp[i])
+	while (mini->c_exp[i])
 	{
-		if (strncmp(mini.c_exp[i], mini.tab[y], ft_strlen(mini.tab[y])) == 0)
+		if (strncmp(mini->c_exp[i], mini->tab[y], ft_strlen(mini->tab[y])) == 0)
 		{
-			mini.c_exp = unset_var(mini.c_exp, mini.tab[y]);
+			mini->c_exp = unset_var(mini->c_exp, mini->tab[y]);
 			break ;
 		}
 		i++;
 	}
-	return (mini);
 }
 
 //verifie si = present ou non et si premier caract est un chiffre
@@ -93,22 +92,21 @@ int	check_var(char *str)
 }
 
 // l'arg ne doit pas avoir de egale
-t_min	unset(t_min mini)
+void	unset(t_min *mini)
 {
 	int	i;
 
 	i = 1;
-	while (mini.tab[i])
+	while (mini->tab[i])
 	{
-		if (check_var(mini.tab[i]) == 0)
-			mini = unset_verif_var(mini, i);
+		if (check_var(mini->tab[i]) == 0)
+			unset_verif_var(mini, i);
 		else
 		{
-			printf("minishell: unset: `%s':", mini.tab[1]);
+			printf("minishell: unset: `%s':", mini->tab[1]);
 			printf(" not a valid identifier\n");
-			mini.ret_err = 1;
+			mini->ret_err = 1;
 		}
 		i++;
 	}
-	return (mini);
 }
