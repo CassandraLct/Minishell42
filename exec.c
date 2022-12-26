@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:51:31 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/26 10:53:21 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/26 18:15:53 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ static char	**init_cmd(char **tab, char **cmd)
 	return (cmd);
 }
 
-//test chaque path puis execute la cmd si existante
-void	ft_exec(t_min *mini, char **all_path, char **cmd)
+//execute la cmd donner
+void	ft_execve(t_min *mini, char **all_path, char **cmd)
 {
 	char	*gd_path;
 	int		i;
@@ -52,20 +52,43 @@ void	ft_exec(t_min *mini, char **all_path, char **cmd)
 	i = 0;
 	j = 0;
 	while (all_path[i])
-	{
-		gd_path = ft_strjoin(all_path[i], cmd[0]);
-		if (access(gd_path, R_OK) == 0)
 		{
-			if (execve(gd_path, cmd, mini->c_env) == -1)
-				perror("Execve : ");
+			gd_path = ft_strjoin(all_path[i], cmd[0]);
+			if (access(gd_path, R_OK) == 0)
+			{
+				if (execve(gd_path, cmd, mini->c_env) == -1)
+				{
+					perror("Execve : ");
+					exit(EXIT_FAILURE);
+				}
+			}
+			else
+				j++;
+			free(gd_path);
+			i++;
 		}
-		else
-			j++;
-		free(gd_path);
-		i++;
+		if (j == i)
+			printf("minishell: %s: command not found\n", mini->tab[0]);
+}
+
+//test chaque path puis execute la cmd si existante
+void	ft_exec(t_min *mini, char **all_path, char **cmd)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == -1)
+	{
+		perror("Fork failed");
+		exit(EXIT_FAILURE);
 	}
-	if (j == i)
-		printf("minishell: %s: command not found\n", mini->tab[0]);
+	else if (pid == 0)
+	{
+		ft_execve(mini, all_path, cmd);
+	}
+	else
+		waitpid(pid, &mini->ret_err, 0);
+	free(all_path);
 }
 
 //a gerer avec un fork pour empecher de sortir de minishell

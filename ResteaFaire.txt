@@ -1,9 +1,8 @@
 Reste à faire:
 	*signaux: faire ctrl-D, ctrl-c, ctrl-\;
-	*execve: faire les fork pour execve;
-	*les chevrons, pipe , $?;
+	*les chevrons, pipe, $?;
 	*lexer: gerer les cotes;
-	*exit $quelque chose , exit normalement, (gerer avec le $ ?)
+	*exit $quelque chose , exit normalement, (gerer avec le $)?
 
 /!\ Objectif 8/12 (vendredi):
 	-> Finir unset (enlever une variable d'export) : Fait et seg fault regler!
@@ -47,10 +46,15 @@ Reste à faire:
 /!\ Objectif 26/12 :
 	-> Fixer la gestion de la structure: Fait
 	-> Corriger les leaks :
-		cd : 0 leaks;
-		echo : 0 leaks;
-		env : 0 leaks;
-		exit : 0 leaks;
-		pwd : 0 leaks
 		export : leaks lors de l'ajout d'une variable dans export(tableau?)
-		unset : 0leaks;
+		unset : 0 leaks pour le moment;
+	-> Faire le fork execve; Fait (a tester pour tous les cas)
+		*pb : fait 2 fois exit (parfois)
+
+/!\ Objectif 27/12 :
+	-> Faire les chevrons(utiliser dup), heredoc ;
+	-> Faire les pipes ();
+	-> gerer les cotes(niveau du split);
+	-> gerer le $?;
+	-> finir les signaux(voir la fonction signal);
+	-> verifier les leaks;
