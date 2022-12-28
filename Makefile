@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
+#    By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2022/12/26 10:14:58 by clecat           ###   ########.fr        #
+#    Updated: 2022/12/27 15:00:13 by rdi-marz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-CC		= GCC
+CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror -g #-fsanitize=address
 NAME	= minishell
 LIBPATH	= ~/.brew/Cellar/readline/8.2.1/lib/
