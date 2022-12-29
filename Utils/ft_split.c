@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 18:24:15 by clecat            #+#    #+#             */
-/*   Updated: 2022/11/21 18:13:46 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/29 09:16:54 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,11 @@ static void	ft_assembleall(char const *s, char c, char **str)
 char	**ft_split(char const *s, char c)
 {
 	char	**str;
-	int		x;
-	int		y;
+//	int		x;
+//	int		y;
 
-	x = 0;
-	y = 0;
+//	x = 0;
+//	y = 0;
 	str = malloc((sizeof(char *) * (cmp_nb_word(s, c) + 1)));
 	if (!str)
 		return (NULL);

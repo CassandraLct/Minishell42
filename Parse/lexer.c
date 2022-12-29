@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/26 10:59:40 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/29 09:20:22 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 //+25 lignes
 char	**split_line(t_min mini)
 {
-	char	c;
+//	char	c;
 	int		i;
 	int		j;
 
@@ -26,7 +26,7 @@ char	**split_line(t_min mini)
 	{
 		if (mini.line[i] == 34 || mini.line[i] == 39)
 		{
-			c = mini.line[i];
+//			c = mini.line[i];
 			while (mini.line[i] != 34 || mini.line[i] != 39)
 			{
 				printf("gestion des cotes\n");
