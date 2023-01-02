@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:51:31 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/26 21:15:07 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/02 11:31:43 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static char	**recup_path(t_min *mini)
 	int		i;
 
 	i = 0;
+	b_path = NULL;
 	while (mini->c_env[i])
 	{
 		if (ft_strncmp(mini->c_env[i], "PATH=", 5) == 0)
@@ -30,6 +31,8 @@ static char	**recup_path(t_min *mini)
 		i++;
 	}
 	i = 0;
+	if (b_path == NULL)
+		return (NULL);
 	all_path = ft_split(b_path, ':');
 	free(b_path);
 	return (all_path);
@@ -55,23 +58,23 @@ void	ft_execve(t_min *mini, char **all_path, char **cmd)
 	i = 0;
 	j = 0;
 	while (all_path[i])
+	{
+		gd_path = ft_strjoin(all_path[i], cmd[0]);
+		if (access(gd_path, R_OK) == 0)
 		{
-			gd_path = ft_strjoin(all_path[i], cmd[0]);
-			if (access(gd_path, R_OK) == 0)
+			if (execve(gd_path, cmd, mini->c_env) == -1)
 			{
-				if (execve(gd_path, cmd, mini->c_env) == -1)
-				{
-					perror("Execve : ");
-					exit(EXIT_FAILURE);
-				}
+				perror("Execve : ");
+				exit(EXIT_FAILURE);
 			}
-			else
-				j++;
-			free(gd_path);
-			i++;
 		}
-		if (j == i)
-			printf("minishell: %s: command not found\n", mini->tab[0]);
+		else
+			j++;
+		free(gd_path);
+		i++;
+	}
+	if (j == i)
+		printf("minishell: %s: command not found\n", mini->tab[0]);
 }
 
 //test chaque path puis execute la cmd si existante

@@ -6,7 +6,7 @@
 #    By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2022/12/29 16:47:12 by rdi-marz         ###   ########.fr        #
+#    Updated: 2023/01/02 11:32:40 by rdi-marz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ fclean	:	clean
 norme	:
 	norminette -R CheckForbiddenSourceHeader | grep -v OK || true
 	@rm -rf $(OBJ)
-	echo "fonctions utilisées"
+	@echo "used functions that may be forbidden"
 	@nm -u minishell | egrep -v "readline|rl_clear_history|rl_on_new_line" \
 	| egrep -v "rl_replace_line|rl_redisplay|add_history|printf|malloc|free" \
 	| egrep -v "write|access|open|read|close|fork|wait|waitpid|wait3|wait4" \
@@ -65,7 +65,7 @@ norme	:
 	| egrep -v "chdir|stat|lstat|fstat|unlink|execve|dup|dup2|pipe|opendir" \
 	| egrep -v "readdir|closedir|strerror|perror|isatty|ttyname|ttyslot" \
 	| egrep -v "ioctl|getenv|csuetattr|tcgetattr|tgetent|tgetflag" \
-	| egrep -v "tgetnum|tgetstr|tgoto|tputs" || true
+	| egrep -v "tgetnum|tgetstr|tgoto|tputs|dyld_stub_binder" || true
 
 re	:	fclean all
 
