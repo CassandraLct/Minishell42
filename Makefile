@@ -6,7 +6,7 @@
 #    By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2023/01/02 11:32:40 by rdi-marz         ###   ########.fr        #
+#    Updated: 2023/01/04 22:10:27 by rdi-marz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SRC		=	main.c \
 		Parse/lexer.c \
 		Parse/parse.c \
 		Utils/ft_split.c \
-		Utils/utils.c
+		Utils/utils.c \
+		Utils/utils2.c
 
 OBJ		= $(SRC:.c=.o)
 

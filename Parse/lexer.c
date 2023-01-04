@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/29 09:20:22 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/03 17:55:06 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,19 @@ void	redirection(t_min *mini)
 {
 	if (mini->tab[0] == NULL)
 		return ;
-	if (strcmp(mini->tab[0], "exit") == 0)
+	if (ft_strcmp(mini->tab[0], "exit") == 0)
 		exit_min(mini);
-	else if (strcmp(mini->tab[0], "echo") == 0)
+	else if (ft_strcmp(mini->tab[0], "echo") == 0)
 		echo(mini);
-	else if (strcmp(mini->tab[0], "env") == 0)
+	else if (ft_strcmp(mini->tab[0], "env") == 0)
 		ft_env(mini);
-	else if (strcmp(mini->tab[0], "cd") == 0)
+	else if (ft_strcmp(mini->tab[0], "cd") == 0)
 		cd(mini);
-	else if (strcmp(mini->tab[0], "export") == 0)
+	else if (ft_strcmp(mini->tab[0], "export") == 0)
 		export(mini);
-	else if (strcmp(mini->tab[0], "unset") == 0)
+	else if (ft_strcmp(mini->tab[0], "unset") == 0)
 		unset(mini);
-	else if (strcmp(mini->tab[0], "pwd") == 0)
+	else if (ft_strcmp(mini->tab[0], "pwd") == 0)
 		pwd(mini->c_env);
 	else
 		ft_set_pathexec(mini);

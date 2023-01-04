@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 13:55:50 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/26 14:37:18 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/04 22:01:00 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,30 +47,30 @@ void	change_value_pwd(char **str)
 void	change_value_oldpwd(char **str, char *pwd, char *oldpwd)
 {
 	char	*name_var;
-	int		j;
+//	int		j;
 	int		i;
 	int		y;
 
-	j = 0;
+//	j = 0;
 	i = 0;
 	y = 0;
-	while (oldpwd[j++] != '=')
+	while (oldpwd[y] != '=')
 		y++;
-	if (j != ft_strlen(oldpwd))
-		j++;
+//	if (j != ft_strlen(oldpwd))
+//		j++;
 	name_var = malloc(sizeof(char) * (y + 2));
-	while (i < y)
+	while (i <= y)
 	{
 		name_var[i] = oldpwd[i];
 		i++;
 	}
-	name_var[i] = '=';
+//	name_var[i] = '=';
 	name_var[i + 1] = '\0';
 	cpy_value(name_var, str, pwd);
 	free(name_var);
 }
 
-//modifie env (pwd et oldpwd) en fonction du path donner
+//modifie env (pwd et oldpwd) en fonction du path donné
 void	change_value_env(t_min *mini)
 {
 	char	*pwd;
@@ -78,18 +78,18 @@ void	change_value_env(t_min *mini)
 
 	pwd = recup_pwd(mini->c_env);
 	oldpwd = recup_oldpwd(mini->c_env);
-	if (mini->tab[1][0] == '/')
+	if (mini->tab[1][0] == '/')  // test si le chemin est valide ?
 		change_val(mini->c_env, mini->tab[1], pwd, oldpwd);
-	else if (strcmp(mini->tab[1], ".") == 0 || strcmp(mini->tab[1], "./") == 0)
+	else if (ft_strcmp(mini->tab[1], ".") == 0 || ft_strcmp(mini->tab[1], "./") == 0)
 		change_value_oldpwd(mini->c_env, pwd, oldpwd);
-	else if (strcmp(mini->tab[1], "..") == 0
-		|| strcmp(mini->tab[1], "../") == 0)
+	else if (ft_strcmp(mini->tab[1], "..") == 0 || ft_strcmp(mini->tab[1],
+				"../") == 0)
 	{
 		change_value_pwd(mini->c_env);
 		change_value_oldpwd(mini->c_env, pwd, oldpwd);
 	}
-	else if ((strcmp(mini->tab[1], "./") > 0
-			|| strcmp(mini->tab[1], "../") > 0))
+	else if ((ft_strcmp(mini->tab[1], "./") > 0 || ft_strcmp(mini->tab[1],
+					"../") > 0))
 	{
 		change_value_oldpwd(mini->c_env, pwd, oldpwd);
 		change_val_pwdpath(mini, mini->c_env);
@@ -98,7 +98,7 @@ void	change_value_env(t_min *mini)
 	free(oldpwd);
 }
 
-//modifie exp (pwd et oldpwd) en fonction du path donner
+//modifie exp (pwd et oldpwd) en fonction du path donné
 void	change_value_exp(t_min *mini)
 {
 	char	*pwd;
@@ -108,15 +108,15 @@ void	change_value_exp(t_min *mini)
 	oldpwd = recup_oldpwd(mini->c_exp);
 	if (mini->tab[1][0] == '/')
 		change_val(mini->c_exp, mini->tab[1], pwd, oldpwd);
-	else if (strcmp(mini->tab[1], ".") == 0 || strcmp(mini->tab[1], "./") == 0)
+	else if (ft_strcmp(mini->tab[1], ".") == 0 || ft_strcmp(mini->tab[1], "./") == 0)
 		change_value_oldpwd(mini->c_exp, pwd, oldpwd);
-	else if (strcmp(mini->tab[1], "..") == 0
-		|| strcmp(mini->tab[1], "../") == 0)
+	else if (ft_strcmp(mini->tab[1], "..") == 0 || ft_strcmp(mini->tab[1],
+				"../") == 0)
 	{
 		change_value_pwd(mini->c_exp);
 		change_value_oldpwd(mini->c_exp, pwd, oldpwd);
 	}
-	else if (strcmp(mini->tab[1], "./") > 0 || strcmp(mini->tab[1], "../") > 0)
+	else if (ft_strcmp(mini->tab[1], "./") > 0 || ft_strcmp(mini->tab[1], "../") > 0)
 	{
 		change_value_oldpwd(mini->c_exp, pwd, oldpwd);
 		change_val_pwdpath(mini, mini->c_exp);

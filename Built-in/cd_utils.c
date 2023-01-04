@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 11:06:45 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/15 15:35:41 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/03 17:52:29 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ char	*recup_pwd(char **str)
 	while (str[i])
 	{
 		if (ft_strncmp(str[i], "PWD=", 4) == 0)
+		{
 			pwd = ft_strdup(str[i]);
+			break ;
+		}
 		i++;
 	}
 	return (pwd);
@@ -54,7 +57,10 @@ char	*recup_oldpwd(char **str)
 	while (str[i])
 	{
 		if (ft_strncmp(str[i], "OLDPWD=", 7) == 0)
+		{
 			oldpwd = ft_strdup(str[i]);
+			break ;
+		}
 		i++;
 	}
 	return (oldpwd);
@@ -68,19 +74,19 @@ char	*join_var(char *str1, char *new_val)
 	int		i;
 	int		j;
 
-	i = 45;
+//	i = 45;
 	j = 0;
-	cpy = malloc(sizeof(char) * i);
+	cpy = malloc(sizeof(char) * (ft_strlen(new_val) + 1));
 	i = 0;
 	while (new_val[i] != '=')
 		i++;
-	if (new_val[i] == '=')
-	{
+//	if (new_val[i] == '=')
+//	{
 		i += 1;
 		while (new_val[i])
 			cpy[j++] = new_val[i++];
 		cpy[j] = '\0';
-	}
+//	}
 	dest = ft_strjoin(str1, cpy);
 	free(cpy);
 	return (dest);
@@ -89,20 +95,22 @@ char	*join_var(char *str1, char *new_val)
 //modifie la valeur de oldpwd
 void	cpy_value(char *name_var, char **str, char *new_val)
 {
-	char	*s1;
+//	char	*s1;
 	char	*ret;
 	int		i;
 
 	i = 0;
-	s1 = ft_strdup(name_var);
-	ret = join_var(s1, new_val);
-	free(s1);
+//	s1 = ft_strdup(name_var);
+//	ret = join_var(s1, new_val);
+//	free(s1);
+	ret = join_var(name_var, new_val);
 	while (str[i])
 	{
-		if (strncmp(str[i], name_var, ft_strlen(name_var)) == 0)
+		if (ft_strncmp(str[i], name_var, ft_strlen(name_var)) == 0)
 		{
 			free(str[i]);
 			str[i] = ft_strdup(ret);
+			break ;
 		}
 		i++;
 	}
