@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 11:06:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/03 17:52:29 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/05 13:25:28 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char	*recup_pwd(char **str)
 	int		i;
 
 	i = 0;
+	pwd = NULL;
 	while (str[i])
 	{
 		if (ft_strncmp(str[i], "PWD=", 4) == 0)
@@ -54,6 +55,7 @@ char	*recup_oldpwd(char **str)
 	int		i;
 
 	i = 0;
+	oldpwd = NULL;
 	while (str[i])
 	{
 		if (ft_strncmp(str[i], "OLDPWD=", 7) == 0)

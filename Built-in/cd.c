@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 13:55:50 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/04 22:01:00 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/05 13:30:54 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void	change_value_exp(t_min *mini)
 //redirige vers les fonction adéquat
 void	cd(t_min *mini)
 {
-	if (mini->tab[1] == NULL)
+	if (mini->tab[1] == NULL || (mini->tab[1][0] == '~' && mini->tab[1][1] == '\0'))
 		cd_noarg(mini);
 	else if (chdir(mini->tab[1]) == -1)
 	{
