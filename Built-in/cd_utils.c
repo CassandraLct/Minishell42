@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 11:06:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/03 17:52:29 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:25:15 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char	*recup_pwd(char **str)
 	int		i;
 
 	i = 0;
+	pwd = NULL;
 	while (str[i])
 	{
 		if (ft_strncmp(str[i], "PWD=", 4) == 0)
@@ -54,6 +55,7 @@ char	*recup_oldpwd(char **str)
 	int		i;
 
 	i = 0;
+	oldpwd = NULL;
 	while (str[i])
 	{
 		if (ft_strncmp(str[i], "OLDPWD=", 7) == 0)
@@ -74,19 +76,16 @@ char	*join_var(char *str1, char *new_val)
 	int		i;
 	int		j;
 
-//	i = 45;
+
 	j = 0;
 	cpy = malloc(sizeof(char) * (ft_strlen(new_val) + 1));
 	i = 0;
 	while (new_val[i] != '=')
 		i++;
-//	if (new_val[i] == '=')
-//	{
-		i += 1;
-		while (new_val[i])
-			cpy[j++] = new_val[i++];
-		cpy[j] = '\0';
-//	}
+	i += 1;
+	while (new_val[i])
+		cpy[j++] = new_val[i++];
+	cpy[j] = '\0';
 	dest = ft_strjoin(str1, cpy);
 	free(cpy);
 	return (dest);

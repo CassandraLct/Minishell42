@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/03 17:57:08 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:44:19 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	new_vars(t_min *mini, char *str, int y)
 	i = 0;
 	if (ft_isdigit(str[0]) == 1 || str[0] == '=')
 	{
-		printf("minishell: `%s': not a valid identifier\n", mini->tab[y]);
-		exit(1);
+		printf("minishell: export: `%s': not a valid identifier\n", mini->tab[y]);
+		return ;
 	}
 	redir_changeval(mini, str);
 	while (str[i])
@@ -60,10 +60,7 @@ void	new_vars(t_min *mini, char *str, int y)
 		i++;
 	}
 	if (mini->nb_passage_exp == 0)
-	{
-		printf("ici\n");
 		mini->c_exp = add_valexp(mini, str);
-	}
 	mini->nb_passage_exp = 0;
 }
 

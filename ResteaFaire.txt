@@ -58,3 +58,6 @@ Reste à faire:
 	-> gerer le $?;
 	-> finir les signaux(voir la fonction signal);
 	-> verifier les leaks;
+	-> voir pour changer l'environnement (OLDPWD absent au debut);
+
+/!\ Pour lundi mettre en commun les idees de gestion des pipes (cmd multiple)

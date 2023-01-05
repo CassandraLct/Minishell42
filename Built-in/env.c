@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:05:50 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/02 10:48:33 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:06:01 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	ft_env(t_min *mini)
 	int	i;
 
 	i = 1;
-	printf("ici\n");
 	if (mini->tab[i] != NULL)
 	{
 		printf("env: %s: No such file or directory\n", mini->tab[i]);
