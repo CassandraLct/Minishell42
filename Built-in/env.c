@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:05:50 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/05 13:16:55 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/08 18:25:52 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	ft_env(t_min *mini)
 	int	i;
 
 	i = 1;
-	printf("ici\n");
 	if (mini->tab[i] != NULL)
 	{
 		printf("env: %s: No such file or directory\n", mini->tab[i]);

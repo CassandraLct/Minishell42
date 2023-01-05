@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+         #
+#    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2023/01/04 22:10:27 by rdi-marz         ###   ########.fr        #
+#    Updated: 2023/01/05 14:29:25 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,6 @@ $(NAME)	: ${OBJ}
 
 %.o		: %.c
 		@echo "\033[1;35m""Compilation des fichiers sources"
-#		@$(CC) $(CFLAGS) -Imlx -c $< -o $@
 		$(CC) -c $< -o $@ $(CFLAGS) -I. 
 
 clean 	:

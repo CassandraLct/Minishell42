@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:51:31 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/02 11:31:43 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:30:11 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,7 @@ void	ft_exec(t_min *mini, char **all_path, char **cmd)
 		exit(EXIT_FAILURE);
 	}
 	else if (pid == 0)
-	{
 		ft_execve(mini, all_path, cmd);
-	}
 	else
 		waitpid(pid, &mini->ret_err, 0);
 	free(all_path);

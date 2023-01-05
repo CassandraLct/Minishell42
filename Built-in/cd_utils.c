@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 11:06:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/05 13:25:28 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/08 18:25:35 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,19 +76,16 @@ char	*join_var(char *str1, char *new_val)
 	int		i;
 	int		j;
 
-//	i = 45;
+
 	j = 0;
 	cpy = malloc(sizeof(char) * (ft_strlen(new_val) + 1));
 	i = 0;
 	while (new_val[i] != '=')
 		i++;
-//	if (new_val[i] == '=')
-//	{
-		i += 1;
-		while (new_val[i])
-			cpy[j++] = new_val[i++];
-		cpy[j] = '\0';
-//	}
+	i += 1;
+	while (new_val[i])
+		cpy[j++] = new_val[i++];
+	cpy[j] = '\0';
 	dest = ft_strjoin(str1, cpy);
 	free(cpy);
 	return (dest);
