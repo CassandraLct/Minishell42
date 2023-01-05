@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_pwd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/26 14:02:18 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/04 22:00:10 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	change_val_pwdpath(t_min *mini, char **str)
 	path = ft_split(mini->tab[1], '/');
 	while (path[i])
 	{
-		if (strcmp(path[i], "..") == 0)
+		if (ft_strcmp(path[i], "..") == 0)
 			change_value_pwd(str);
-		if (strcmp(path[i], "..") != 0 && strcmp(path[i], ".") != 0)
+		if (ft_strcmp(path[i], "..") != 0 && strcmp(path[i], ".") != 0)
 			add_reponame(str, path[i]);
 		i++;
 	}
@@ -64,7 +64,7 @@ void	pwd(char **c_env)
 	i = 0;
 	while (c_env[i])
 	{
-		if (strncmp(c_env[i], "PWD=", 4) == 0)
+		if (ft_strncmp(c_env[i], "PWD=", 4) == 0)
 		{
 			while (c_env[i])
 			{
@@ -88,7 +88,7 @@ int	verif_arg_exit(t_min *mini, int i)
 		if (mini->tab[i + 1] == NULL)
 		{
 			printf("exit\n");
-			exit(atoi(mini->tab[i]) % 256);
+			exit(ft_atoi(mini->tab[i]) % 256);
 		}
 		else
 		{
@@ -110,7 +110,7 @@ void	exit_min(t_min *mini)
 	int	i;
 
 	i = 1;
-	if (strcmp(mini->tab[0], "exit") == 0)
+	if (ft_strcmp(mini->tab[0], "exit") == 0)
 	{
 		if (mini->tab[i] == NULL)
 		{

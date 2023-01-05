@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_change_val.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:03:34 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/26 10:56:28 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/03 18:00:11 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	**changeval_env(char **c_env, char *str)
 			return (c_env);
 		else
 		{
-			if (strncmp(c_env[i], name_var, ft_strlen(name_var)) == 0)
+			if (ft_strncmp(c_env[i], name_var, ft_strlen(name_var)) == 0)
 			{
 				free(c_env[i]);
 				c_env[i] = ft_strdup(str);
@@ -73,7 +73,7 @@ char	**changeval_exp(char **c_exp, char *str)
 	name_var = recup_name(str, name_var);
 	while (c_exp[i])
 	{
-		if (strncmp(c_exp[i], name_var, ft_strlen(name_var)) == 0)
+		if (ft_strncmp(c_exp[i], name_var, ft_strlen(name_var)) == 0)
 		{
 			free(c_exp[i]);
 			c_exp[i] = ft_strdup(str);

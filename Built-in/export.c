@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/26 14:21:45 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/03 17:57:08 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	verif_modif_var(char **str, char *cmp)
 	name_var = recup_name(cmp, name_var);
 	while (str[i])
 	{
-		if (strncmp(str[i], name_var, ft_strlen(name_var)) == 0)
+		if (ft_strncmp(str[i], name_var, ft_strlen(name_var)) == 0)
 			return (1);
 		i++;
 	}
@@ -78,7 +78,7 @@ int	check_exp(char **cmp, char **c_exp, int index)
 		return (0);
 	while (c_exp[i])
 	{
-		if (strcmp(cmp[index], c_exp[i]) == 0)
+		if (ft_strcmp(cmp[index], c_exp[i]) == 0)
 			return (1);
 		i++;
 	}
@@ -102,7 +102,7 @@ char	**order_exp(char **c_exp, char **cmp)
 			index++;
 		while (cmp[i])
 		{
-			if (strcmp(cmp[index], cmp[i]) > 0
+			if (ft_strcmp(cmp[index], cmp[i]) > 0
 				&& check_exp(cmp, c_exp, i) == 0)
 				index = i;
 			i++;

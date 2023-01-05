@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:36:33 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/26 10:23:17 by clecat           ###   ########.fr       */
+/*   Updated: 2022/12/29 09:15:56 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	init_struct(t_min *mini, char **envp)
 //creer la copie d'export au tout début
 void	init_export(t_min *mini)
 {
-	int	i;
+//	int	i;
 
-	i = 0;
+//	i = 0;
 	mini->c_exp = init_exp(mini->c_env);
 	mini->c_exp = order_exp(mini->c_exp, mini->c_env);
 }
