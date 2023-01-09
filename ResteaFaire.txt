@@ -62,5 +62,9 @@ Reste à faire:
 
 /!\ Pour lundi mettre en commun les idees de gestion des pipes (cmd multiple)
 
-/!\ Fait aujourd'hui :
+/!\ Fait aujourd'hui 09/01 (cassandra):
 	-> norminette
+	-> debut essai gestion des cotes :
+		*reussir a copier et split correctement sur les espaces et des qu'il y a des cotes
+		copier le contenu (sans split sur les espaces) et supprimer celle-ci lors de la copie
+		ex : 'echo' devient echo ; "Hello World" devient Hello World

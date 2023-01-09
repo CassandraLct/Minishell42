@@ -6,15 +6,32 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/09 09:38:29 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/09 11:28:26 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+//fonction essaie
 char	**gestion_cotes(t_min mini)
-{}
+{
+	int	i;
+	int	j;
 
+	i = 0;
+	j = 0;
+	while (mini.line[i])
+	{
+		while (mini.line[i] != 32)
+		{
+			mini.tab[j][i] = mini.line[i];
+		}
+		i++;
+	}
+	return (mini.tab);
+}
+
+//+25lignes
 //a finir (ne gere pas encore les cotes)
 //a modifier (possiblement sous forme de boucle)
 char	**split_line(t_min mini)
@@ -41,7 +58,7 @@ char	**split_line(t_min mini)
 		mini.tab = ft_split(mini.line, ' ');
 	else
 	{
-		printf("ne pas split entre les cotes, redirection vers autre fonction\n");
+		printf("ne pas split entre les cotes,redirection vers autre fonction\n");
 		mini.tab = gestion_cotes(mini);
 	}
 	return (mini.tab);
