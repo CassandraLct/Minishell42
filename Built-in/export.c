@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/05 16:44:19 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/09 09:06:50 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	new_vars(t_min *mini, char *str, int y)
 	i = 0;
 	if (ft_isdigit(str[0]) == 1 || str[0] == '=')
 	{
-		printf("minishell: export: `%s': not a valid identifier\n", mini->tab[y]);
+		printf("minishell: export:`%s': not a valid identifier\n", mini->tab[y]);
 		return ;
 	}
 	redir_changeval(mini, str);

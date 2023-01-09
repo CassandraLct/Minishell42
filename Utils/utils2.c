@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:12:41 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/04 22:02:17 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/09 09:11:53 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//1 fonction
+//2 fonctions
 int	ft_strcmp(char *s1, char *s2)
 {
 	int				l1;
@@ -34,7 +34,7 @@ int	ft_atoi(const char *str)
 
 	i = 0;
 	sign = 1;
-	while (str[i] == ' ' || str[i] == '	' || (str[i] >= 9 && str[i] <= 13 ))
+	while (str[i] == ' ' || str[i] == '	' || (str[i] >= 9 && str[i] <= 13))
 		i++;
 	if (str[i] == '+' || str[i] == '-')
 	{

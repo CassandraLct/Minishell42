@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/03 17:55:06 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/09 09:38:29 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+char	**gestion_cotes(t_min mini)
+{}
+
 //a finir (ne gere pas encore les cotes)
-//+25 lignes
+//a modifier (possiblement sous forme de boucle)
 char	**split_line(t_min mini)
 {
-//	char	c;
 	int		i;
 	int		j;
 
@@ -26,18 +28,22 @@ char	**split_line(t_min mini)
 	{
 		if (mini.line[i] == 34 || mini.line[i] == 39)
 		{
-//			c = mini.line[i];
-			while (mini.line[i] != 34 || mini.line[i] != 39)
+			while (mini.line[i++] != 34 || mini.line[i++] != 39)
 			{
-				printf("gestion des cotes\n");
 				j++;
-				i++;
+				break ;
 			}
 		}
 		i++;
 	}
+	printf("j = %d, i = %d\n", j, i);
 	if (j == 0)
 		mini.tab = ft_split(mini.line, ' ');
+	else
+	{
+		printf("ne pas split entre les cotes, redirection vers autre fonction\n");
+		mini.tab = gestion_cotes(mini);
+	}
 	return (mini.tab);
 }
 

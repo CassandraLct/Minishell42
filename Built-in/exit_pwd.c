@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_pwd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/04 22:00:10 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/09 09:13:11 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	change_val_pwdpath(t_min *mini, char **str)
 	{
 		if (ft_strcmp(path[i], "..") == 0)
 			change_value_pwd(str);
-		if (ft_strcmp(path[i], "..") != 0 && strcmp(path[i], ".") != 0)
+		if (ft_strcmp(path[i], "..") != 0 && ft_strcmp(path[i], ".") != 0)
 			add_reponame(str, path[i]);
 		i++;
 	}

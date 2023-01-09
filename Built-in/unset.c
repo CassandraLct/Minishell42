@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/03 17:59:35 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/09 09:08:05 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void	unset_verif_var(t_min *mini, int y)
 	i = 0;
 	while (mini->c_env[i])
 	{
-		if (ft_strncmp(mini->c_env[i], mini->tab[y], ft_strlen(mini->tab[y])) == 0)
+		if (ft_strncmp(mini->c_env[i], mini->tab[y], ft_strlen(mini->tab[y]))
+			== 0)
 		{
 			mini->c_env = unset_var(mini->c_env, mini->tab[y]);
 			break ;
@@ -61,7 +62,8 @@ void	unset_verif_var(t_min *mini, int y)
 	i = 0;
 	while (mini->c_exp[i])
 	{
-		if (ft_strncmp(mini->c_exp[i], mini->tab[y], ft_strlen(mini->tab[y])) == 0)
+		if (ft_strncmp(mini->c_exp[i], mini->tab[y], ft_strlen(mini->tab[y]))
+			== 0)
 		{
 			mini->c_exp = unset_var(mini->c_exp, mini->tab[y]);
 			break ;

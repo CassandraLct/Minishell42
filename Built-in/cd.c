@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 13:55:50 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/05 14:25:37 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/09 09:04:57 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,17 @@ void	change_value_env(t_min *mini)
 	oldpwd = recup_oldpwd(mini->c_env);
 	if (mini->tab[1][0] == '/')
 		change_val(mini->c_env, mini->tab[1], pwd, oldpwd);
-	else if (ft_strcmp(mini->tab[1], ".") == 0 || ft_strcmp(mini->tab[1], "./") == 0)
+	else if (ft_strcmp(mini->tab[1], ".") == 0 || ft_strcmp(mini->tab[1], "./")
+		== 0)
 		change_value_oldpwd(mini->c_env, pwd, oldpwd);
 	else if (ft_strcmp(mini->tab[1], "..") == 0 || ft_strcmp(mini->tab[1],
-				"../") == 0)
+			"../") == 0)
 	{
 		change_value_pwd(mini->c_env);
 		change_value_oldpwd(mini->c_env, pwd, oldpwd);
 	}
 	else if ((ft_strcmp(mini->tab[1], "./") > 0 || ft_strcmp(mini->tab[1],
-					"../") > 0))
+				"../") > 0))
 	{
 		change_value_oldpwd(mini->c_env, pwd, oldpwd);
 		change_val_pwdpath(mini, mini->c_env);
@@ -103,15 +104,17 @@ void	change_value_exp(t_min *mini)
 	oldpwd = recup_oldpwd(mini->c_exp);
 	if (mini->tab[1][0] == '/')
 		change_val(mini->c_exp, mini->tab[1], pwd, oldpwd);
-	else if (ft_strcmp(mini->tab[1], ".") == 0 || ft_strcmp(mini->tab[1], "./") == 0)
+	else if (ft_strcmp(mini->tab[1], ".") == 0 || ft_strcmp(mini->tab[1], "./")
+		== 0)
 		change_value_oldpwd(mini->c_exp, pwd, oldpwd);
 	else if (ft_strcmp(mini->tab[1], "..") == 0 || ft_strcmp(mini->tab[1],
-				"../") == 0)
+			"../") == 0)
 	{
 		change_value_pwd(mini->c_exp);
 		change_value_oldpwd(mini->c_exp, pwd, oldpwd);
 	}
-	else if (ft_strcmp(mini->tab[1], "./") > 0 || ft_strcmp(mini->tab[1], "../") > 0)
+	else if (ft_strcmp(mini->tab[1], "./") > 0
+		|| ft_strcmp(mini->tab[1], "../") > 0)
 	{
 		change_value_oldpwd(mini->c_exp, pwd, oldpwd);
 		change_val_pwdpath(mini, mini->c_exp);
