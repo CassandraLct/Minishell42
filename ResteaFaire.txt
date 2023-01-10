@@ -68,3 +68,7 @@ Reste à faire:
 		*reussir a copier et split correctement sur les espaces et des qu'il y a des cotes
 		copier le contenu (sans split sur les espaces) et supprimer celle-ci lors de la copie
 		ex : 'echo' devient echo ; "Hello World" devient Hello World
+
+/!\ Mardi 10/01:
+	-> recoder strcmp;
+	-> voir la gestion des pipes;

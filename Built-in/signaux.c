@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:33:18 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/20 14:55:00 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/10 17:48:35 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 // ^D
 /* signaux: ctrl-c / ctrl-d / ctrl-\
 fonction potentiellement utile :signal, sigaction, sigemptyset, sigaddset,
-kill, exit*/
+kill*/
 //fonction d'intteruption du programme ctrl c
 //interrompt le programme mais reste dedans signum = 2
 void	ft_interruption(int signum)
@@ -55,11 +55,16 @@ void	ft_interruption(int signum)
 }
 
 //fonction de sortie du prog ctrl d et '\'
+//controle d fonctionne la premiere fois mais seg fault la deuxieme fois (d'affiler)
+//controle \ quite directement
 void	ft_quit(int signum)
 {
 	(void)signum;
+	// if(signum == SIGQUIT)
+	// 	printf("^\\Quit:3\n");
 	printf("\e[2K");
 	rl_on_new_line();
+	rl_replace_line("", 0);
 	rl_redisplay();
 }
 
@@ -69,3 +74,6 @@ void	signaux(void)
 	signal(SIGINT, ft_interruption);
 	signal(SIGQUIT, ft_quit);
 }
+
+// voir fonction signal, sigaction, sigemptyset, sigaddset, kill
+// si cmd boucle et fait controle \ affiche ^\Quit:3

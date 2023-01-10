@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/09 11:28:26 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/10 16:41:10 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ char	**split_line(t_min mini)
 		}
 		i++;
 	}
-	printf("j = %d, i = %d\n", j, i);
 	if (j == 0)
 		mini.tab = ft_split(mini.line, ' ');
 	else
