@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/04 22:00:10 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/09 18:21:07 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	verif_arg_exit(t_min *mini, int i)
 	{
 		if (mini->tab[i + 1] == NULL)
 		{
-			printf("exit\n");
+			printf("exit\n"); // à supprimer ?
 			exit(ft_atoi(mini->tab[i]) % 256);
 		}
 		else
@@ -114,13 +114,13 @@ void	exit_min(t_min *mini)
 	{
 		if (mini->tab[i] == NULL)
 		{
-			printf("exit\n");
+			printf("exit\n"); // à supprimer ?
 			exit(0);
 		}
-		while (mini->tab[i])
-		{
+//		while (mini->tab[i]) // pourquoi une boucle, on sort par le break
+//		{
 			mini->ret_err = verif_arg_exit(mini, i);
-			break ;
-		}
+//			break ;
+//		}
 	}
 }

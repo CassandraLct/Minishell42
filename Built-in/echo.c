@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:37:12 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/26 10:39:41 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/09 17:12:51 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,17 @@ int	check_arg_opt(char *arg)
 		return (1);
 	return (0);
 }
+/*{
+	int	i;
+
+	i = 1;
+	while (arg[i])
+	{
+		if (arg[i] != 'n')
+			return (1);
+	}
+	return (0);
+}*/
 
 //print les args option valide
 int	print_arg_opt(char **arg, int i)
@@ -89,6 +100,16 @@ int	check_opt(char **arg)
 	}
 	return (0);
 }
+/*{
+	if (check_arg_opt(arg[i]) == 0)
+		print_arg_opt(arg, 1);
+	else
+	{
+		print_arg_opt(arg, 0);
+		printf("\n");
+	}
+	return (0);
+}*/
 
 //verifie si echo a des arguments ou non
 void	echo(t_min *mini)
@@ -103,16 +124,16 @@ void	echo(t_min *mini)
 		printf("\n");
 		return ;
 	}
-	else if (mini->tab[1][0] == 45)
+	else if (mini->tab[1][0] == '-')
 		check_opt(mini->tab);
-	while (mini->tab[i] && (mini->tab[i][j] >= 33 && mini->tab[i][j] <= 126)
-		&& mini->tab[1][0] != 45)
-	{
-		if (mini->tab[i + 1] == NULL)
-			printf("%s\n", mini->tab[i]);
-		else
-			printf("%s ", mini->tab[i]);
-		i++;
-	}
+	else
+		while (mini->tab[i] && (mini->tab[i][j] >= 33 && mini->tab[i][j] <= 126)) // pourquoi un test sur le caractere [j] seulement?
+		{
+			if (mini->tab[i + 1] == NULL)
+				printf("%s\n", mini->tab[i]);
+			else
+				printf("%s ", mini->tab[i]);
+			i++;
+		}
 	return ;
 }

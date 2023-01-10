@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 13:55:50 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/08 18:26:10 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:12:56 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,14 +120,14 @@ void	change_value_exp(t_min *mini)
 	free(oldpwd);
 }
 
-//redirige vers les fonction adéquat
+//redirige vers les fonctions adéquates
 void	cd(t_min *mini)
 {
 	if (mini->tab[1] == NULL || (mini->tab[1][0] == '~' && mini->tab[1][1] == '\0'))
 		cd_noarg(mini);
 	else if (chdir(mini->tab[1]) == -1)
 	{
-		if (checcd tgdk_arg(mini->tab[1]) == 1)
+		if (check_arg(mini->tab[1]) == 1)
 			printf("minishell: cd: %s: Not a directory\n", mini->tab[1]);
 		else
 		{
