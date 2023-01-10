@@ -6,7 +6,7 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2023/01/05 14:29:25 by clecat           ###   ########.fr        #
+#    Updated: 2023/01/10 17:28:33 by rdi-marz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC		=	main.c \
 		Parse/init.c \
 		Parse/lexer.c \
 		Parse/parse.c \
+		Parse/splitline.c \
 		Utils/ft_split.c \
 		Utils/utils.c \
 		Utils/utils2.c
