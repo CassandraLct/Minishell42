@@ -6,13 +6,13 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:12:41 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/11 14:39:24 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:29:48 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//2 fonctions
+//3 fonctions
 int	ft_strcmp(char *s1, char *s2)
 {
 	size_t	i;
@@ -53,4 +53,16 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (sign * result);
+}
+
+void	ft_bzero(void *s, int n)
+{
+	int	i;
+
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char *)s)[i] = 0;
+		i++;
+	}
 }

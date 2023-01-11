@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitline.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:20:02 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/10 17:55:28 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:35:36 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,23 +65,19 @@ int	count_instruct(char *line)
 	return (nbinst + 1);
 }
 
-cahr	*getinst(char *line, int j)
-{
-
-}
-
-
 char	**spliter(t_min mini)
 {
 	char	**result;
 	int		i;
+	int		cote;
+	int		instrucnb;
+	char	*temp;
 	int		j;
-	int		instlen;
+	int		k;
 
 	result = NULL;
 	if (iscotevalid(mini.line) == 0)
 	{
-		// gestion erreur
 		printf("command not valid\n");
 		return (NULL);
 	}
@@ -89,12 +85,35 @@ char	**spliter(t_min mini)
 	result = malloc((i + 1) * sizeof(char *));
 	if (!result)
 		return (NULL);
-	j = 0;
-	while(j < i)
+	temp = malloc((ft_strlen(mini.line) + 1) * sizeof(char *));
+	ft_bzero(temp, ft_strlen(mini.line) + 1);
+	instrucnb = 0;
+	j = 0;  // index du char dans mini.line
+	k = 0;  // index du char dans l instruction
+	cote = 0; // indique si on est dans une cote
+	while(mini.line[j])
 	{
-		result[j] = getinst(mini.line, j);
+		if (mini.line[j] == '|' && mini.line[j + 1] != '|' && cote == 0)
+		{
+			result[instrucnb] = malloc((ft_strlen(temp) + 1) * sizeof (char *));
+			result[instrucnb] = ft_strdup(temp);
+			ft_bzero(temp, ft_strlen(mini.line) + 1);
+			instrucnb++;
+			k = 0;
+		}
+		else
+		{
+			temp[k] = mini.line[j];
+			if (mini.line[j] == '\'' || mini.line[j] == '"')
+				cote = (cote + 1) % 2;
+			k++;
+		}
 		j++;
 	}
+	result[instrucnb + 1] = malloc((ft_strlen(temp) + 1) * sizeof (char *));
+	result[instrucnb + 1] = ft_strdup(temp);
+	result[instrucnb + 2] = NULL;
+	free(temp);
 	return (result);
 }
 

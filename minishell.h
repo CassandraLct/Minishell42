@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/05 13:59:43 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/11 21:31:33 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ char	*ft_strdup(char *s);
 // utils2.c
 int		ft_strcmp(char *s1, char *s2);
 int		ft_atoi(const char *str);
+void	ft_bzero(void *s, int n);
 
 //ft_split.c (split libft)
 char	**ft_split(char const *s, char c);
