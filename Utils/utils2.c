@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:12:41 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/10 14:15:27 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/11 13:03:24 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	ft_strcmp(char *s1, char *s2)
 }
 
 int	ft_atoi(const char *str)
-{	int	i;
+{
+	int	i;
 	int	sign;
 	int	result;
 

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:51:31 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/10 17:26:16 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/11 14:10:06 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,18 +80,16 @@ void	ft_execve(t_min *mini, char **all_path, char **cmd)
 //test chaque path puis execute la cmd si existante
 void	ft_exec(t_min *mini, char **all_path, char **cmd)
 {
-	pid_t	pid;
-
-	pid = fork();
-	if (pid == -1)
+	mini->pid = fork();
+	if (mini->pid == -1)
 	{
 		perror("Fork failed");
 		exit(EXIT_FAILURE);
 	}
-	else if (pid == 0)
+	else if (mini->pid == 0)
 		ft_execve(mini, all_path, cmd);
 	else
-		waitpid(pid, &mini->ret_err, 0);
+		waitpid(mini->pid, &mini->ret_err, 0);
 	free(all_path);
 }
 

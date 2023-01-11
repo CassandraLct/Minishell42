@@ -70,5 +70,13 @@ Reste à faire:
 		ex : 'echo' devient echo ; "Hello World" devient Hello World
 
 /!\ Mardi 10/01:
-	-> recoder strcmp;
-	-> voir la gestion des pipes;
+	-> recoder strcmp; fait
+	-> voir la gestion des pipes; (schéma)
+
+/!\ Mercredi 11/01:
+	-> finir les signaux;
+		->ctrl c fait; ctrl \ fait; ctrl d ne segfault quand line vide
+
+Raph : 
+	-> gestion des cotes;
+	-> decoupage de la ligne par groupe;

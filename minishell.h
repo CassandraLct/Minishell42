@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/10 17:26:20 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/11 15:31:13 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ typedef struct s_min
 	char	**tab;
 	char	*prompt;
 	int		nb_passage_exp;
+	pid_t	pid;
 }	t_min;
+
+t_min	g_mini;
 
 //18 fichiers
 //utils.c 5 fonctions
