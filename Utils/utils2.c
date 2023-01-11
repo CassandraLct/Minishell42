@@ -6,24 +6,28 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:12:41 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/04 22:02:17 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/11 14:39:24 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//1 fonction
+//2 fonctions
 int	ft_strcmp(char *s1, char *s2)
 {
-	int				l1;
-	int				l2;
+	size_t	i;
 
-	l1 = ft_strlen(s1);
-	l2 = ft_strlen(s2);
-	if (l1 == l2)
-		return (ft_strncmp(s1, s2, l1));
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] != '\0')
+	{
+		i++;
+	}
+	if (s1[i] == s2[i])
+		return (0);
+	else if ((unsigned char)s1[i] < (unsigned char)s2[i])
+		return (-1);
 	else
-		return (l1 - l2);
+		return (1);
 }
 
 int	ft_atoi(const char *str)
