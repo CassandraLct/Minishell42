@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/11 21:31:33 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:09:05 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ char	*ft_strdup(char *s);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, int n);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
 
 //ft_split.c (split libft)
 char	**ft_split(char const *s, char c);
@@ -87,6 +89,9 @@ void	free_tab(char **tab);
 char	**init_cpy(char **str, char **dest);
 char	**ft_cpytab(char **tab);
 char	**init_exp(char **tab);
+
+//splitline.c 3 fonctions
+char	**spliter(t_min mini);
 
 //cd.c 5 fonctions
 void	cd(t_min *mini);

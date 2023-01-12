@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:20:02 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/11 21:35:36 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:00:53 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,16 +81,19 @@ char	**spliter(t_min mini)
 		printf("command not valid\n");
 		return (NULL);
 	}
+	else
+		printf("command is valid\n");
 	i = count_instruct(mini.line);
 	result = malloc((i + 1) * sizeof(char *));
 	if (!result)
 		return (NULL);
 	temp = malloc((ft_strlen(mini.line) + 1) * sizeof(char *));
-	ft_bzero(temp, ft_strlen(mini.line) + 1);
+	ft_bzero((void *)temp, ft_strlen(mini.line) + 1);
+	ft_putstr_fd(temp, 2);
 	instrucnb = 0;
 	j = 0;  // index du char dans mini.line
 	k = 0;  // index du char dans l instruction
-	cote = 0; // indique si on est dans une cote
+	cote = 0; // indique si on est dans une cote simple ou double
 	while(mini.line[j])
 	{
 		if (mini.line[j] == '|' && mini.line[j + 1] != '|' && cote == 0)
@@ -110,19 +113,12 @@ char	**spliter(t_min mini)
 		}
 		j++;
 	}
-	result[instrucnb + 1] = malloc((ft_strlen(temp) + 1) * sizeof (char *));
-	result[instrucnb + 1] = ft_strdup(temp);
-	result[instrucnb + 2] = NULL;
-	free(temp);
+	result[instrucnb] = malloc((ft_strlen(temp) + 1) * sizeof (char *));
+	result[instrucnb] = ft_strdup(temp);
+	result[instrucnb + 1] = NULL;
+//	free(temp);
 	return (result);
 }
-
-
-
-
-
-
-
 
 
 

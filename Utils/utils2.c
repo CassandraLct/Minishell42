@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:12:41 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/11 21:29:48 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:09:11 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,36 @@ void	ft_bzero(void *s, int n)
 		((unsigned char *)s)[i] = 0;
 		i++;
 	}
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i] != '\0')
+	{
+		write(fd, &(s[i]), 1);
+		i++;
+	}
+}
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	unsigned int	i;
+	char			c;
+
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		i = (unsigned int)(-n);
+	}
+	else
+		i = (unsigned int)n;
+	if (i / 10 != 0)
+		ft_putnbr_fd((int)(i / 10), fd);
+	c = i % 10 + '0';
+	write(fd, &c, 1);
 }
