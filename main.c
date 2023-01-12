@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/11 15:59:15 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/12 11:17:17 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		g_mini.line = readline(g_mini.prompt);
+		if(g_mini.line == NULL)
+			signal_exit();
 		add_history(g_mini.line);
 		g_mini.tab = split_line(g_mini);
 		redirection(&g_mini);

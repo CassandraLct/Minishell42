@@ -75,7 +75,13 @@ Reste à faire:
 
 /!\ Mercredi 11/01:
 	-> finir les signaux;
-		->ctrl c fait; ctrl \ fait; ctrl d ne segfault quand line vide
+		->ctrl c fait; ctrl \ fait; ctrl d segfault quand line vide
+
+/!\ Jeudi 12/01:
+	-> finir ctrl-d quand il doit exit
+		-> ne passe pas dans les fonctions signaux 
+		-> ctrl-d est un EOF ? utiliser tgets ?
+	-> Signaux fini!
 
 Raph : 
 	-> gestion des cotes;

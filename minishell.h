@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/11 15:31:13 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/12 11:17:01 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ void	redirection(t_min *mini);
 
 //signaux.c
 void	signaux(void);
+void	signal_exit(void);
 void	rl_replace_line(const char *text, int clear_undo);
 
 #endif
