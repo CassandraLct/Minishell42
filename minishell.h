@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/12 15:09:05 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/12 22:01:44 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ int		ft_atoi(const char *str);
 void	ft_bzero(void *s, int n);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+
+// utils3.c
+char	*ft_strtrim(char *s1, char *set);
 
 //ft_split.c (split libft)
 char	**ft_split(char const *s, char c);

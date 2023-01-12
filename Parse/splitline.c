@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:20:02 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/12 16:00:53 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/12 21:56:12 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,10 +116,57 @@ char	**spliter(t_min mini)
 	result[instrucnb] = malloc((ft_strlen(temp) + 1) * sizeof (char *));
 	result[instrucnb] = ft_strdup(temp);
 	result[instrucnb + 1] = NULL;
-//	free(temp);
+	free(temp);
 	return (result);
 }
 
+char **split_inst(char *temp)
+{
+	char	**resu;
+	int		i;
 
+	i = 0;
+	resu = malloc(4 * sizeof(char *));
+	if (temp[0] == '<')
+	{
+		// gestion redir
+	}
+	else
+		resu[0] = NULL;
+	while (temp[i] && temp[i] != '>')
+	{
+		i++;
+	}
+	while (temp[i])
+	{
+		// gestion redir
+	}
+	resu[3] = NULL;
+	return (resu);
+}
 
+char ***spliter3(char **inst)
+{
+	char	***resu;
+	char	**temp;
+	int		i;
 
+	i = 0;
+	temp = malloc((tablen(inst) + 1) * sizeof(char *));
+	resu = malloc((tablen(inst) + 1) * sizeof(char *));
+	while(inst[i])
+	{
+		temp[i] = ft_strtrim(inst[i], " ");
+		resu = malloc((ft_strlen(temp[i]) + 1) * sizeof(char *));
+		i++;
+	}
+	temp[i] = NULL;
+	resu[i] = NULL;
+	i = 0;
+	while(temp[i])
+	{
+		resu[i] = split_inst(temp[i]);
+		i++;
+	}
+	return (resu);
+}
