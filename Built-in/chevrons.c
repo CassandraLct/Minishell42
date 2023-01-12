@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 11:55:54 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/12 14:45:02 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/12 15:11:47 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,14 @@ void	dleft_patern(void)
 
 	if (g_mini.tab[1] == NULL)
 		printf("minishell: syntax error near unexpected token `newline'\n");
+//	while (ft_strcmp(strline, arg) != 0)
+//	{
+//		tab[i] = strdup(str);
+//		printf(">"); (recupere la line apres le chevron);
+//		i++;
+//	}
+//	des que c'est egal, donner en entrer de la commande avant si presente
+//	ou affiche le msg d'erreur de la cmd si n'a pas d'arg (gerer par execve?)
 }
+
+/*comme le readline (boucle tant que le mot donné ne soit ecrit)*/
