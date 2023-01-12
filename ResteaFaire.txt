@@ -52,7 +52,7 @@ Reste à faire:
 		*pb : fait 2 fois exit (parfois)
 
 /!\ Objectif 27/12 :
-	-> Faire les chevrons(utiliser dup), heredoc ;
+	-> Faire les chevrons(utiliser dup), heredoc;
 	-> Faire les pipes ();
 	-> gerer les cotes(niveau du split);
 	-> gerer le $?, gestion du $;
@@ -81,8 +81,14 @@ Reste à faire:
 	-> finir ctrl-d quand il doit exit
 		-> ne passe pas dans les fonctions signaux 
 		-> ctrl-d est un EOF ? utiliser tgets ?
-	-> Signaux fini!
+	-> Signaux fini! (a tester si fonctionne correctement avec heredoc)
 
-Raph : 
+Raph :
 	-> gestion des cotes;
-	-> decoupage de la ligne par groupe;
+	-> decoupage de la ligne par groupe puis par commande;
+
+si le $VAR est cotes ou entre double affiche la valeur de la var
+sinon affiche juste le nom
+pour le message d'erreur si dans le term ecrit ex: $COLORTERM
+-> bash: truecolor: command not found (for for "$COLORTERM")
+et '$COLORTERM' -> bash: $COLORTERM: command not found

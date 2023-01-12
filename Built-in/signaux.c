@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:33:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/12 11:24:39 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/12 11:47:47 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	ft_quit(int signum)
 	}
 }
 
+//exit du ctrl-d
 void	signal_exit(void)
 {
 	printf("exit\n");

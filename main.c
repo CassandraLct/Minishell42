@@ -6,13 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/12 11:23:57 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/12 11:47:34 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-// grep >test < Makefile "minishell" | cat test
-// commencer le lexer split la line et checker premier arg si une commande
+//grep >test < Makefile "minishell" | cat test
+//commencer le lexer split la line et checker premier arg si une commande
 //modifier le split de la line
 int	main(int argc, char **argv, char **envp)
 {
