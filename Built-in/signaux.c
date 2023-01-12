@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:33:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/12 11:16:54 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/12 11:24:39 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 //fonction d'interuption du programme ctrl c
 void	ft_interruption(int signum)
 {
-	if(g_mini.pid != 0)
+	if (g_mini.pid != 0)
 	{
-		if(!kill(g_mini.pid, signum))
+		if (!kill(g_mini.pid, signum))
 		{
 			printf("\n");
 			g_mini.ret_err = 130;
@@ -37,7 +37,7 @@ void	ft_interruption(int signum)
 //ctrl\ fonction quit
 void	ft_quit(int signum)
 {
-	if(g_mini.pid != 0)
+	if (g_mini.pid != 0)
 	{
 		if (!kill(g_mini.pid, signum))
 		{
@@ -60,7 +60,7 @@ void	signal_exit(void)
 }
 
 //numero_du_signal, procedure a faire
-void	signaux()
+void	signaux(void)
 {
 	signal(SIGINT, ft_interruption);
 	signal(SIGQUIT, ft_quit);

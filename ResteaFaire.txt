@@ -56,7 +56,7 @@ Reste à faire:
 	-> Faire les pipes ();
 	-> gerer les cotes(niveau du split);
 	-> gerer le $?, gestion du $;
-	-> finir les signaux(voir la fonction signal);
+	-> finir les signaux(voir la fonction signal); fait
 	-> verifier les leaks;
 	-> voir pour changer l'environnement (OLDPWD absent au debut);
 
