@@ -87,8 +87,30 @@ Raph :
 	-> gestion des cotes;
 	-> decoupage de la ligne par groupe puis par commande;
 
-si le $VAR est cotes ou entre double affiche la valeur de la var
+si le $VAR est ente cotes ou double affiche la valeur de la var
 sinon affiche juste le nom
 pour le message d'erreur si dans le term ecrit ex: $COLORTERM
 -> bash: truecolor: command not found (for for "$COLORTERM")
 et '$COLORTERM' -> bash: $COLORTERM: command not found
+
+si pipe sans rien affiche une erreur
+si cmd pipe et rien le prog demande une deuxieme cmd
+ex :
+	bash-3.2$ cat test |
+	> echo bonjour
+	bonjour
+
+heredoc :
+bash-3.2$ cat << end
+> $PWD
+> END
+> end
+/Users/clecat/Desktop/Cursus/Minishell42
+END
+bash-3.2$ cat
+$PWD
+$PWD
+"$PWD"
+"$PWD"
+^C
+bash-3.2$

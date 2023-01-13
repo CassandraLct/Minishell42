@@ -6,12 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/10 16:41:10 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/12 15:43:11 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+//3 fonctions
 //fonction essaie
 char	**gestion_cotes(t_min mini)
 {
@@ -32,8 +33,6 @@ char	**gestion_cotes(t_min mini)
 }
 
 //+25lignes
-//a finir (ne gere pas encore les cotes)
-//a modifier (possiblement sous forme de boucle)
 char	**split_line(t_min mini)
 {
 	int		i;

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/12 11:17:01 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/13 15:40:30 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,17 @@
 # include <termios.h>
 
 //structure
+
+typedef struct s_cmd
+{
+	char	**cmd;
+	char	**stdin;
+	char	**stdout;
+}	t_cmd;
+
 typedef struct s_min
 {
+	t_cmd	**cmd;
 	char	**c_env;
 	char	**c_exp;
 	int		ret_err;
@@ -123,6 +132,9 @@ void	ft_set_pathexec(t_min *mini);
 //lexer.c 2 fonctions
 char	**split_line(t_min mini);
 void	redirection(t_min *mini);
+
+//lexer2.c
+char	**split_onpipe(t_min mini);
 
 //signaux.c
 void	signaux(void);
