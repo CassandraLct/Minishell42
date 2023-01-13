@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 13:55:50 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/09 09:04:57 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/13 18:20:20 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,8 @@ void	cd(t_min *mini)
 {
 	if (mini->tab[1] == NULL)
 		cd_noarg(mini);
+	else if(mini->tab[1][0] == '~')
+		change_valcdtild(mini);
 	else if (chdir(mini->tab[1]) == -1)
 	{
 		if (check_arg(mini->tab[1]) == 1)

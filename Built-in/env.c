@@ -6,13 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:05:50 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/05 14:06:01 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/13 18:19:11 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//1 fonctions
+//5 fonctions
 void	ft_env(t_min *mini)
 {
 	int	i;
@@ -51,6 +51,7 @@ void	change_val(char **str, char *new_pwd, char *pwd, char *oldpwd)
 	str[i] = ft_strjoin("PWD=", new_pwd);
 }
 
+//ajoute le nom du dossier a la fin
 void	add_reponame(char **str, char *repo)
 {
 	char	*new_pwd;
@@ -79,18 +80,17 @@ void	add_reponame(char **str, char *repo)
 	free(new_pwd);
 }
 
+//cd et cd ~
 void	cd_noarg(t_min *mini)
 {
-	char	*str;
 	char	*pwd;
 	char	*oldpwd;
 
 	pwd = recup_pwd(mini->c_env);
 	oldpwd = recup_oldpwd(mini->c_env);
-	str = "/Users/clecat";
-	change_val(mini->c_env, str, pwd, oldpwd);
-	change_val(mini->c_exp, str, pwd, oldpwd);
-	chdir(str);
+	change_val(mini->c_env, mini->val_home, pwd, oldpwd);
+	change_val(mini->c_exp, mini->val_home, pwd, oldpwd);
+	chdir(mini->val_home);
 	free(pwd);
 	free(oldpwd);
 }

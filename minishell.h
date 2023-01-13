@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/13 15:40:30 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/13 18:18:24 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_min
 	char	*prompt;
 	int		nb_passage_exp;
 	pid_t	pid;
+	char	*val_home;
 }	t_min;
 
 t_min	g_mini;
@@ -60,6 +61,8 @@ char	*ft_strdup(char *s);
 // utils2.c
 int		ft_strcmp(char *s1, char *s2);
 int		ft_atoi(const char *str);
+char	*cd_tildpwd(char *str);
+void	change_valcdtild(t_min *mini);
 
 //ft_split.c (split libft)
 char	**ft_split(char const *s, char c);
@@ -120,6 +123,7 @@ void	change_val_pwdpath(t_min *mini, char **str);
 void	init_struct(t_min *mini, char **envp);
 void	init_export(t_min *mini);
 void	free_all(t_min mini);
+char	*recup_valhome(char	**c_env);
 
 //unset.c 4 fonctions
 void	unset(t_min *mini);
@@ -132,9 +136,6 @@ void	ft_set_pathexec(t_min *mini);
 //lexer.c 2 fonctions
 char	**split_line(t_min mini);
 void	redirection(t_min *mini);
-
-//lexer2.c
-char	**split_onpipe(t_min mini);
 
 //signaux.c
 void	signaux(void);

@@ -114,3 +114,5 @@ $PWD
 "$PWD"
 ^C
 bash-3.2$
+
+/!\ a regler lundi : cd ~/Desktop ne va pas au dossier;
