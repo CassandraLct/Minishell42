@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitline.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:20:02 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/10 17:55:28 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/13 15:56:53 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,10 @@ int	iscotevalid(char *line)
 	doublecote = 0;
 	while(line[i])
 	{
-		if (line[i] == '\'')
+		if (line[i] == '\'' && doublecote == 0)
 			simplecote = (simplecote + 1) % 2;
-		else if (line[i] == '"')
+		else if (line[i] == '"' && simplecote == 0)
 			doublecote = (doublecote + 1) % 2;
-		if (simplecote == 1 && doublecote == 1)
-			return (0);	
 		i++;
 	}
 	if (simplecote == 1 || doublecote == 1)
@@ -65,10 +63,10 @@ int	count_instruct(char *line)
 	return (nbinst + 1);
 }
 
-cahr	*getinst(char *line, int j)
-{
+// char	*getinst(char *line, int j)
+// {
 
-}
+// }
 
 
 char	**spliter(t_min mini)
