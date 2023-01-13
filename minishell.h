@@ -26,6 +26,13 @@
 # include <termios.h>
 
 //structure
+typedef struct s_cmd
+{
+	char	**cmd;
+	char	**stdin;
+	char	**stdout;
+}	t_cmd;
+
 typedef struct s_min
 {
 	char	**c_env;

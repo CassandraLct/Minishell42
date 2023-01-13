@@ -30,6 +30,7 @@ SRC		=	main.c \
 		Parse/init.c \
 		Parse/lexer.c \
 		Parse/parse.c \
+		Parse/splitcmd.c \
 		Parse/splitline.c \
 		Utils/ft_split.c \
 		Utils/utils.c \

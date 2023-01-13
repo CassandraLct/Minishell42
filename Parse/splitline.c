@@ -22,7 +22,7 @@ int	iscotevalid(char *line)
 	i = 0;
 	simplecote = 0;
 	doublecote = 0;
-	while(line[i])
+	while (line[i])
 	{
 		if (line[i] == '\'' && doublecote == 0)
 			simplecote = (simplecote + 1) % 2;
@@ -46,14 +46,14 @@ int	count_instruct(char *line)
 	{
 		if (line[i] == '\'')
 		{
-			i++;	
-			while(line[i] && line[i] != '\'')
-			   i++;	
+			i++;
+			while (line[i] && line[i] != '\'')
+				i++;
 		}
 		else if (line[i] == '"')
 		{
 			i++;
-			while(line[i] && line[i] != '"')
+			while (line[i] && line[i] != '"')
 				i++;
 		}
 		else if (line[i] == '|' && line[i + 1] != '|')
@@ -89,10 +89,10 @@ char	**spliter(t_min mini)
 	ft_bzero((void *)temp, ft_strlen(mini.line) + 1);
 	ft_putstr_fd(temp, 2);
 	instrucnb = 0;
-	j = 0;  // index du char dans mini.line
-	k = 0;  // index du char dans l instruction
+	j = 0; // index du char dans mini.line
+	k = 0; // index du char dans l instruction
 	cote = 0; // indique si on est dans une cote simple ou double
-	while(mini.line[j])
+	while (mini.line[j])
 	{
 		if (mini.line[j] == '|' && mini.line[j + 1] != '|' && cote == 0)
 		{
@@ -116,55 +116,4 @@ char	**spliter(t_min mini)
 	result[instrucnb + 1] = NULL;
 	free(temp);
 	return (result);
-}
-
-char **split_inst(char *temp)
-{
-	char	**resu;
-	int		i;
-
-	i = 0;
-	resu = malloc(4 * sizeof(char *));
-	if (temp[0] == '<')
-	{
-		// gestion redir
-	}
-	else
-		resu[0] = NULL;
-	while (temp[i] && temp[i] != '>')
-	{
-		i++;
-	}
-	while (temp[i])
-	{
-		// gestion redir
-	}
-	resu[3] = NULL;
-	return (resu);
-}
-
-char ***spliter3(char **inst)
-{
-	char	***resu;
-	char	**temp;
-	int		i;
-
-	i = 0;
-	temp = malloc((tablen(inst) + 1) * sizeof(char *));
-	resu = malloc((tablen(inst) + 1) * sizeof(char *));
-	while(inst[i])
-	{
-		temp[i] = ft_strtrim(inst[i], " ");
-		resu = malloc((ft_strlen(temp[i]) + 1) * sizeof(char *));
-		i++;
-	}
-	temp[i] = NULL;
-	resu[i] = NULL;
-	i = 0;
-	while(temp[i])
-	{
-		resu[i] = split_inst(temp[i]);
-		i++;
-	}
-	return (resu);
 }
