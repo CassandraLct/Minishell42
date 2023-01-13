@@ -25,7 +25,7 @@ void	change_val_pwdpath(t_min *mini, char **str)
 	{
 		if (ft_strcmp(path[i], "..") == 0)
 			change_value_pwd(str);
-		if (ft_strcmp(path[i], "..") != 0 && strcmp(path[i], ".") != 0)
+		if (ft_strcmp(path[i], "..") != 0 && ft_strcmp(path[i], ".") != 0)
 			add_reponame(str, path[i]);
 		i++;
 	}

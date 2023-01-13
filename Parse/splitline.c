@@ -5,10 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 16:20:02 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/13 15:56:53 by clecat           ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/01/13 16:05:03 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+
+
+
+
 
 #include "minishell.h"
 
@@ -63,46 +69,108 @@ int	count_instruct(char *line)
 	return (nbinst + 1);
 }
 
-// char	*getinst(char *line, int j)
-// {
-
-// }
-
-
 char	**spliter(t_min mini)
 {
 	char	**result;
 	int		i;
+	int		cote;
+	int		instrucnb;
+	char	*temp;
 	int		j;
-	int		instlen;
+	int		k;
 
 	result = NULL;
 	if (iscotevalid(mini.line) == 0)
 	{
-		// gestion erreur
 		printf("command not valid\n");
 		return (NULL);
 	}
+	else
+		printf("command is valid\n");
 	i = count_instruct(mini.line);
 	result = malloc((i + 1) * sizeof(char *));
 	if (!result)
 		return (NULL);
-	j = 0;
-	while(j < i)
+	temp = malloc((ft_strlen(mini.line) + 1) * sizeof(char *));
+	ft_bzero((void *)temp, ft_strlen(mini.line) + 1);
+	ft_putstr_fd(temp, 2);
+	instrucnb = 0;
+	j = 0;  // index du char dans mini.line
+	k = 0;  // index du char dans l instruction
+	cote = 0; // indique si on est dans une cote simple ou double
+	while(mini.line[j])
 	{
-		result[j] = getinst(mini.line, j);
+		if (mini.line[j] == '|' && mini.line[j + 1] != '|' && cote == 0)
+		{
+			result[instrucnb] = malloc((ft_strlen(temp) + 1) * sizeof (char *));
+			result[instrucnb] = ft_strdup(temp);
+			ft_bzero(temp, ft_strlen(mini.line) + 1);
+			instrucnb++;
+			k = 0;
+		}
+		else
+		{
+			temp[k] = mini.line[j];
+			if (mini.line[j] == '\'' || mini.line[j] == '"')
+				cote = (cote + 1) % 2;
+			k++;
+		}
 		j++;
 	}
+	result[instrucnb] = malloc((ft_strlen(temp) + 1) * sizeof (char *));
+	result[instrucnb] = ft_strdup(temp);
+	result[instrucnb + 1] = NULL;
+	free(temp);
 	return (result);
 }
 
+char **split_inst(char *temp)
+{
+	char	**resu;
+	int		i;
 
+	i = 0;
+	resu = malloc(4 * sizeof(char *));
+	if (temp[0] == '<')
+	{
+		// gestion redir
+	}
+	else
+		resu[0] = NULL;
+	while (temp[i] && temp[i] != '>')
+	{
+		i++;
+	}
+	while (temp[i])
+	{
+		// gestion redir
+	}
+	resu[3] = NULL;
+	return (resu);
+}
 
+char ***spliter3(char **inst)
+{
+	char	***resu;
+	char	**temp;
+	int		i;
 
-
-
-
-
-
-
-
+	i = 0;
+	temp = malloc((tablen(inst) + 1) * sizeof(char *));
+	resu = malloc((tablen(inst) + 1) * sizeof(char *));
+	while(inst[i])
+	{
+		temp[i] = ft_strtrim(inst[i], " ");
+		resu = malloc((ft_strlen(temp[i]) + 1) * sizeof(char *));
+		i++;
+	}
+	temp[i] = NULL;
+	resu[i] = NULL;
+	i = 0;
+	while(temp[i])
+	{
+		resu[i] = split_inst(temp[i]);
+		i++;
+	}
+	return (resu);
+}
