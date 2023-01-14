@@ -1,5 +1,5 @@
 
-#include "../minishell.h"
+#include "minishell.h"
 
 static int	ft_isinlist(char c, char *list)
 {
