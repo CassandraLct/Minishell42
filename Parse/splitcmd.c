@@ -1,6 +1,7 @@
 
 #include "minishell.h"
 
+// remove all the muliple psaces to keep one space only
 char *remove_double_space(char *line)
 {
     char    *resu;
@@ -24,6 +25,7 @@ char *remove_double_space(char *line)
 	return (resu);
 }
 
+// count the commands, possible problem with the redirection without space
 int count_cmd(char *line)
 {
     int count;
@@ -51,7 +53,7 @@ int count_cmd(char *line)
     }
     return (count + 1);
 }
-
+// trasform the char* in char** delimited by space
 char **pre_split(char *line)
 {
     int     index;
@@ -96,11 +98,17 @@ char **pre_split(char *line)
             j = 0;
             index++;
         }
+        else
+        {
+            resu[index][j] = line[i];
+            j++;
+        }
         i++;
     }
     return (resu);
 }
 
+// transform the command from char* to t_cmd type
 t_cmd	*split_inst(char *temp)
 {
 	t_cmd	*resu;
@@ -117,8 +125,9 @@ t_cmd	*split_inst(char *temp)
 
 	while(tmpclean[i])
 	{
-
+        list[i] =
 	}
+    free(list);
 	return (resu);
 }
 
