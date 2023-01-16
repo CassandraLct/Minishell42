@@ -100,6 +100,13 @@ char	**init_cpy(char **str, char **dest);
 char	**ft_cpytab(char **tab);
 char	**init_exp(char **tab);
 
+// printstruc.c
+void    printstruc(t_cmd *cmd);
+void    printstruc2(t_cmd **cmd);
+
+//splitcmd.c
+t_cmd	**spliter3(char **inst);
+
 //splitline.c 3 fonctions
 char	**spliter(t_min mini);
 

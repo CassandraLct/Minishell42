@@ -22,6 +22,7 @@ t_min	g_mini;
 int	main(int argc, char **argv, char **envp)
 {
 	char	**tstspl;
+	t_cmd	**instruc;
 	
 	tstspl = NULL;
 	(void)argc;
@@ -34,12 +35,8 @@ int	main(int argc, char **argv, char **envp)
 	//	g_mini.tab = split_line(g_mini);
 		
 		tstspl = spliter(g_mini);
-		if (tstspl && tstspl[0])
-			printf("tstspl[0]=[%s]\n", tstspl[0]);
-		if (tstspl && tstspl[0] && tstspl[1])
-			printf("tstspl[1]=[%s]\n", tstspl[1]);
-		if (tstspl && tstspl[0] && tstspl[1] && tstspl[2])
-			printf("tstspl[2]=[%s]\n", tstspl[2]);
+		instruc = spliter3(tstspl);
+		printstruc2(instruc);
 
 	//	redirection(&g_mini);
 	//	signaux();
