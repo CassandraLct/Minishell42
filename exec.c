@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:51:31 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/11 14:10:06 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/16 16:10:52 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,10 @@ void	ft_execve(t_min *mini, char **all_path, char **cmd)
 		i++;
 	}
 	if (j == i)
+	{
 		printf("minishell: %s: command not found\n", mini->tab[0]);
+		return ;
+	}
 }
 
 //test chaque path puis execute la cmd si existante
@@ -87,7 +90,10 @@ void	ft_exec(t_min *mini, char **all_path, char **cmd)
 		exit(EXIT_FAILURE);
 	}
 	else if (mini->pid == 0)
+	{
 		ft_execve(mini, all_path, cmd);
+		exit (1);
+	}
 	else
 		waitpid(mini->pid, &mini->ret_err, 0);
 	free(all_path);

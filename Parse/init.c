@@ -6,11 +6,22 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:36:33 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/16 10:55:24 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/16 11:10:58 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	aff_err(void)
+{
+	if (check_arg(g_mini.tab[1]) == 1)
+		printf("minishell: cd: %s: Not a directory\n", g_mini.tab[1]);
+	else
+	{
+		printf("minishell: cd: %s: ", g_mini.tab[1]);
+		printf("No such file or directory\n");
+	}
+}
 
 //initialise la structure
 void	init_struct(t_min *mini, char **envp)

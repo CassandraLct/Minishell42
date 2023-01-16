@@ -115,4 +115,14 @@ $PWD
 ^C
 bash-3.2$
 
-/!\ a regler lundi : cd ~/Desktop ne va pas au dossier;
+/!\ a regler lundi : cd ~/Desktop ne va pas au dossier; Fait
+
+/!\Lundi 16/01:
+	-> finir cd ~; fait
+	-> faire fonction $; commencer seg fault pour la suite du parcours
+	-> fixe exit : minishell> $PWD
+				   minishell: $PWD: command not found
+				   minishell> exit
+				   exit
+				   minishell> exit
+				   exit	

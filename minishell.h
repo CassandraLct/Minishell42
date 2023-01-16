@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/16 10:47:06 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/16 14:04:10 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,11 +122,12 @@ void	pwd(char **c_env);
 int		recup_new_pwd(char **str);
 void	change_val_pwdpath(t_min *mini, char **str);
 
-//init.c 3 fonctions
+//init.c 5 fonctions
 void	init_struct(t_min *mini, char **envp);
 void	init_export(t_min *mini);
 void	free_all(t_min mini);
 char	*recup_valhome(char	**c_env);
+void	aff_err(void);
 
 //unset.c 4 fonctions
 void	unset(t_min *mini);
@@ -136,9 +137,15 @@ int		check_var(char *str);
 void	ft_exec(t_min *mini, char **all_path, char **cmd);
 void	ft_set_pathexec(t_min *mini);
 
-//lexer.c 2 fonctions
+//split_line1.c 2 fonctions
 char	**split_line(t_min mini);
+
+//lexer.c 2 fonctions
 void	redirection(t_min *mini);
+void	parcour_line(t_min *mini);
+
+//dollar_var 1 fonction
+void	ft_dollar(char *str);
 
 //signaux.c
 void	signaux(void);

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 09:59:22 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/16 11:02:02 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/16 11:12:28 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,7 @@ void	change_valcdtild(t_min *mini)
 	{
 		change_valtab(mini);
 		if (chdir(mini->tab[1]) == -1)
-		{
-			printf("minishell: cd: %s: ", mini->tab[1]);
-			printf("No such file or directory\n");
-		}
+			aff_err();
 		else
 		{
 			change_value_oldpwd(mini->c_env, pwd, oldpwd);

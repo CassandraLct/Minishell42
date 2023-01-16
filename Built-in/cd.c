@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 13:55:50 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/16 10:52:35 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/16 11:12:18 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,15 +131,7 @@ void	cd(t_min *mini)
 	if (mini->tab[1][0] == '~')
 		change_valcdtild(mini);
 	else if (chdir(mini->tab[1]) == -1)
-	{
-		if (check_arg(mini->tab[1]) == 1)
-			printf("minishell: cd: %s: Not a directory\n", mini->tab[1]);
-		else
-		{
-			printf("minishell: cd: %s: ", mini->tab[1]);
-			printf("No such file or directory\n");
-		}
-	}
+		aff_err();
 	else
 	{
 		change_value_env(mini);

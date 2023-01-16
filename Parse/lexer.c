@@ -6,60 +6,35 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/12 15:43:11 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/16 16:53:55 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//3 fonctions
-//fonction essaie
-char	**gestion_cotes(t_min mini)
-{
-	int	i;
-	int	j;
+//1 fonctions
 
-	i = 0;
-	j = 0;
-	while (mini.line[i])
-	{
-		while (mini.line[i] != 32)
-		{
-			mini.tab[j][i] = mini.line[i];
-		}
-		i++;
-	}
-	return (mini.tab);
-}
-
-//+25lignes
-char	**split_line(t_min mini)
+void	parcour_line(t_min *mini)
 {
+	char	*name;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	while (mini.line[i])
+	name = malloc(sizeof(char) * ft_strlen(mini->line));
+	while(mini->line[i] != '$')
+		i++;
+	i += 1;
+	while(mini->line[i] != ' ' && mini->line[i] != '\0')
 	{
-		if (mini.line[i] == 34 || mini.line[i] == 39)
-		{
-			while (mini.line[i++] != 34 || mini.line[i++] != 39)
-			{
-				j++;
-				break ;
-			}
-		}
+		name[j] = mini->line[i];
+		j++;
 		i++;
 	}
-	if (j == 0)
-		mini.tab = ft_split(mini.line, ' ');
-	else
-	{
-		printf("ne pas split entre les cotes,redirection vers autre fonction\n");
-		mini.tab = gestion_cotes(mini);
-	}
-	return (mini.tab);
+	name[j] = '\0';
+	printf("name = %s\n", name);
+	ft_dollar(name);
 }
 
 //built-in : cd/echo/env/exit/export/unset
