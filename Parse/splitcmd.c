@@ -109,6 +109,84 @@ char **pre_split(char *line)
 }
 
 // transform the command from char* to t_cmd type
+int count_redir(char **list, char c)
+{
+    int i;
+    int resu;
+
+    i = 0;
+    resu = 0;
+    while(list[i])
+    {
+        if(list[i][0] == c)
+            resu++;
+        i++;
+    }
+    return (resu);
+}
+
+t_cmd   *alloc_cmd(char **list)
+{
+    t_cmd   *resu;
+    int     i;
+    int     j;
+    int     k;
+
+    i = count_redir(list, '<');
+    j = count_redir(list, '>');
+    resu = malloc(sizeof(t_cmd *));
+    resu->stdin = malloc((i + 1) * sizeof(char *));
+    resu->stdout = malloc((j + 1) * sizeof(char *));
+    resu->cmd = malloc((tablen(list) - i - j + 1) * sizeof(char *));
+    i = 0;
+    j = 0;
+    while (list[i])
+    {
+        if (list[i][0] == '<')
+        {
+            resu->stdin[j] = ft_strdup(list[i]);
+            resu->stdin[j + 1] = ft_strdup(list[i + 1]);
+            j = j + 2;
+            k = i;
+            while (list[k])
+            {
+                free(list[k]);
+                list[k] = list[k + 2]; // put 2 null at the end of list
+                k++;
+            }
+        }
+        i++;
+    }
+    i = 0;
+    j = 0;
+    while (list[i])
+    {
+        if (list[i][0] == '>')
+        {
+            resu->stdout[j] = ft_strdup(list[i]);
+            resu->stdout[j + 1] = ft_strdup(list[i + 1]);
+            j = j + 2;
+            k = i;
+            while (list[k])
+            {
+                free(list[k]);
+                list[k] = list[k + 2]; // put 2 null at the end of list
+                k++;
+            }
+        }
+        i++;
+    }
+    i = 0;
+    j = 0;
+    while (list[i])
+    {
+        resu->cmd[j] = ft_strdup(list[i]);
+        i++;
+        j++;
+    }
+    return (resu);
+}
+
 t_cmd	*split_inst(char *temp)
 {
 	t_cmd	*resu;
@@ -121,13 +199,10 @@ t_cmd	*split_inst(char *temp)
 	tmpclean = malloc(i * sizeof(char *));
 	ft_bzero(tmpclean, i);
 	tmpclean = remove_double_space(temp);
-    list = malloc((count_cmd(tmpclean) + 1) * sizeof(char *)); // possible double malloc
+    list = pre_split(tmpclean);
+    resu = alloc_cmd(list);
 
-	while(tmpclean[i])
-	{
-        list[i] =
-	}
-    free(list);
+	
 	return (resu);
 }
 
