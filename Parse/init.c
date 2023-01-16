@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:36:33 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/13 17:29:56 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/16 10:55:24 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,22 +51,21 @@ char	*recup_valhome(char	**c_env)
 	i = 0;
 	j = 0;
 	y = 0;
-	while(c_env[i])
+	while (c_env[i++])
 	{
-		if(ft_strncmp(c_env[i], "HOME=", 5) == 0)
-			break;
-		i++;
+		if (ft_strncmp(c_env[i], "HOME=", 5) == 0)
+			break ;
 	}
 	tmp = malloc(sizeof(char) * (ft_strlen(c_env[i])));
-	while(c_env[i][j] != '=')
+	while (c_env[i][j] != '=')
 		j++;
 	j += 1;
-	while(c_env[i][j])
+	while (c_env[i][j])
 	{
 		tmp[y] = c_env[i][j];
 		j++;
 		y++;
 	}
 	tmp[y] = '\0';
-	return(tmp);
+	return (tmp);
 }

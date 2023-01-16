@@ -6,7 +6,7 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2023/01/13 16:28:30 by clecat           ###   ########.fr        #
+#    Updated: 2023/01/16 10:16:23 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC		=	main.c \
 		exec.c \
 		Built-in/cd.c \
 		Built-in/cd_utils.c \
+		Built-in/cd_tild.c \
 		Built-in/echo.c \
 		Built-in/env.c \
 		Built-in/exit_pwd.c \

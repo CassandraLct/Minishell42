@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/13 18:18:24 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/16 10:47:06 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ char	*ft_strdup(char *s);
 // utils2.c
 int		ft_strcmp(char *s1, char *s2);
 int		ft_atoi(const char *str);
-char	*cd_tildpwd(char *str);
-void	change_valcdtild(t_min *mini);
 
 //ft_split.c (split libft)
 char	**ft_split(char const *s, char c);
@@ -112,6 +110,11 @@ int		check_arg(char *str);
 char	*recup_pwd(char **str);
 char	*recup_oldpwd(char **str);
 void	cpy_value(char *name_var, char **str, char *new_val);
+
+//cd_tild.c 3 fonctions
+void	change_valtab(t_min *mini);
+char	*cd_tildpwd(char *str);
+void	change_valcdtild(t_min *mini);
 
 //exit_pwd.c 5 fonctions
 void	exit_min(t_min *mini);

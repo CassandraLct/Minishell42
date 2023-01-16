@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:23:50 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/13 15:33:31 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/16 10:56:32 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,20 @@
 
 int	verif_quotes(char *line)
 {
-	int	i;
-	int	count;
 	char	c;
+	int		i;
+	int		count;
 
 	i = 0;
 	while (line[i] == 32 || line[i] >= 9 && line[i] <= 13)
 		i++;
-	while(line[i] != )
 }
 
 //premier split sur les pipes 
 //pipe en fin de ligne et cotes penser a enlever les espaces
 char	**split_onpipe(t_min mini)
 {
-	if(verif_quote(mini.line) == 0)
+	if (verif_quote(mini.line) == 0)
 		printf("cotes presente\n");
 	else
 		mini.tab = ft_split(mini.line, '|');
