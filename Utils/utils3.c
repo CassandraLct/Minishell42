@@ -55,3 +55,20 @@ char	*ft_strtrim(char *s1, char *set)
 	resu = ft_mallocresu(lens1, trimdeb, trimfin, s1);
 	return (resu);
 }
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*resu;
+	size_t	i;
+
+	resu = malloc(count * size);
+	if (!resu)
+		return (0);
+	i = 0;
+	while (i < count * size)
+	{
+		((unsigned char *)resu)[i] = 0;
+		i++;
+	}
+	return (resu);
+}

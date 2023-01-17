@@ -61,6 +61,7 @@ void	ft_putnbr_fd(int n, int fd);
 
 // utils3.c
 char	*ft_strtrim(char *s1, char *set);
+void	*ft_calloc(size_t count, size_t size);
 
 //ft_split.c (split libft)
 char	**ft_split(char const *s, char c);

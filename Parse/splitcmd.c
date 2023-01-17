@@ -7,8 +7,8 @@ char	*remove_double_space(char *line)
 	int		j;
 
 	i = ft_strlen(line) + 1;
-	resu = malloc(i * sizeof(*resu));
-	ft_bzero(resu, i);
+	resu = ft_calloc(i, sizeof(*resu));
+//	ft_bzero(resu, i);
 	i = 0;
 	j = 0;
 	while (line[i])
@@ -61,14 +61,14 @@ char	**pre_split(char *line)
 	char	**resu;
 
 	i = count_cmd(line) + 1;
-	resu = malloc(i * sizeof(*resu));
+	resu = ft_calloc(i, sizeof(*resu));
 	index = 0;
 	j = ft_strlen(line) + 1;
 	printf("pre_split\n");
 	while (index < i - 1)
 	{
-		resu[index] = malloc(j * sizeof(*resu[index]));
-		ft_bzero((void *)resu[index], j);
+		resu[index] = ft_calloc(j, sizeof(*resu[index]));
+//		ft_bzero((void *)resu[index], j);
 		printf("resu[%d]=[%s] ", index, resu[index]);
 		index++;
 	}
@@ -151,13 +151,11 @@ t_cmd	*alloc_cmd(char **list)
 
 	i = count_redir(list, '<');
 	j = count_redir(list, '>');
-	resu = malloc(sizeof(*resu));
-	resu->stdin = malloc((i + 1) * sizeof(*resu->stdin));
-	ft_bzero((void *)resu->stdin, i + 1); // size ?
-	resu->stdout = malloc((j + 1) * sizeof(*resu->stdout));
-	ft_bzero((void *)resu->stdout, j + 1); // size ?
-	resu->cmd = malloc((tablen(list) - i - j + 1) * sizeof(*resu->cmd));
-	ft_bzero((void *)resu->cmd, tablen(list) - i - j + 1); // size ?
+	printf("i=[%d], j=[%d]\n", i, j);
+	resu = ft_calloc(1, sizeof(*resu));
+	resu->stdin = ft_calloc(2 * i + 1, sizeof(*resu->stdin));
+	resu->stdout = ft_calloc(2 * j + 1, sizeof(*resu->stdout));
+	resu->cmd = ft_calloc((tablen(list) - i - j + 1), sizeof(*resu->cmd));
 	// test
 	i = 0;
 	while (list[i])
@@ -259,8 +257,8 @@ t_cmd	*split_inst(char *temp)
 
 	resu = NULL;
 	i = ft_strlen(temp) + 1;
-	tmpclean = malloc(i * sizeof(*tmpclean));
-	ft_bzero(tmpclean, i);
+	tmpclean = ft_calloc(i, sizeof(*tmpclean));
+	printf("size of tmpcleam=[%lu], i=[%d]\n", sizeof(tmpclean), i);
 	tmpclean = remove_double_space(temp);
 	printf("split_inst, after remove double space\n");
 	printf("tmpclean=[%s]\n", tmpclean);
@@ -271,7 +269,7 @@ t_cmd	*split_inst(char *temp)
 	return (resu);
 }
 
-// < a1 <  b2 >   c3 > d4  ls | < e5 < f6  ls  > g7 >  k8
+// < a1 <  b2 >   c3 > d4  ls | < e5 < "f6"  ls -la > g7 >  k8 | grep -v 'toto | tata' > l9 
 t_cmd	**spliter3(char **inst)
 {
 	t_cmd	**resu;
@@ -280,8 +278,8 @@ t_cmd	**spliter3(char **inst)
 
 	i = 0;
 	printf("tablen(inst)=%d\n", tablen(inst));
-	temp = malloc((tablen(inst) + 1) * sizeof(*temp));
-	resu = malloc((tablen(inst) + 1) * sizeof(*resu));
+	temp = ft_calloc((tablen(inst) + 1), sizeof(*temp));
+	resu = ft_calloc((tablen(inst) + 1), sizeof(*resu));
 	while (inst[i])
 	{
 		printf("spliter3, inst[%d]=[%s]\n", i, inst[i]);
