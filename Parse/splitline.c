@@ -82,10 +82,10 @@ char	**spliter(t_min mini)
 	else
 		printf("command is valid\n");
 	i = count_instruct(mini.line);
-	result = malloc((i + 1) * sizeof(char *));
+	result = malloc((i + 1) * sizeof(*result));
 	if (!result)
 		return (NULL);
-	temp = malloc((ft_strlen(mini.line) + 1) * sizeof(char *));
+	temp = malloc((ft_strlen(mini.line) + 1) * sizeof(*temp));
 	ft_bzero((void *)temp, ft_strlen(mini.line) + 1);
 	ft_putstr_fd(temp, 2);
 	instrucnb = 0;
@@ -96,7 +96,7 @@ char	**spliter(t_min mini)
 	{
 		if (mini.line[j] == '|' && mini.line[j + 1] != '|' && cote == 0)
 		{
-			result[instrucnb] = malloc((ft_strlen(temp) + 1) * sizeof (char *));
+			result[instrucnb] = malloc((ft_strlen(temp) + 1) * sizeof (*result[instrucnb]));
 			result[instrucnb] = ft_strdup(temp);
 			ft_bzero(temp, ft_strlen(mini.line) + 1);
 			instrucnb++;
@@ -111,7 +111,7 @@ char	**spliter(t_min mini)
 		}
 		j++;
 	}
-	result[instrucnb] = malloc((ft_strlen(temp) + 1) * sizeof (char *));
+	result[instrucnb] = malloc((ft_strlen(temp) + 1) * sizeof (*result[instrucnb]));
 	result[instrucnb] = ft_strdup(temp);
 	result[instrucnb + 1] = NULL;
 	free(temp);
