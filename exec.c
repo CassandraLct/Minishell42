@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:51:31 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/16 16:10:52 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/17 14:21:46 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	ft_execve(t_min *mini, char **all_path, char **cmd)
 void	ft_exec(t_min *mini, char **all_path, char **cmd)
 {
 	mini->pid = fork();
+	// if(mini->pid != 0)
+	// 	printf("pid = %d\n", mini->pid);
 	if (mini->pid == -1)
 	{
 		perror("Fork failed");

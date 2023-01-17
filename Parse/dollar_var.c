@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:43:29 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/17 11:35:51 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/17 17:36:56 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ char	*recup_valvar(char *str)
 		j++;
 	}
 	tmp[j] = '\0';
-	printf("tmp = %s\n", tmp);
 	return (tmp);
 }
 
@@ -116,7 +115,6 @@ void	change_linevar(char *str)
 		free(tmp);
 		free(end);
 	}
-	printf("line = %s\n", g_mini.line);
 }
 
 //gestion dollar //segfault
@@ -141,7 +139,6 @@ void	ft_dollar(char *str)
 		str = recup_valvar(g_mini.c_env[i]);
 		change_linevar(str);
 	}
-	free(str);
 }
 
 /*

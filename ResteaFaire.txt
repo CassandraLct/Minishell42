@@ -54,7 +54,7 @@ Reste à faire:
 /!\ Objectif 27/12 :
 	-> Faire les chevrons(utiliser dup), heredoc;
 	-> Faire les pipes ();
-	-> gerer les cotes(niveau du split);
+	-> gerer les cotes(niveau du split); fait 
 	-> gerer le $?, gestion du $;
 	-> finir les signaux(voir la fonction signal); fait
 	-> verifier les leaks;
@@ -125,4 +125,11 @@ bash-3.2$
 				   minishell> exit
 				   exit
 				   minishell> exit
-				   exit	
+				   exit
+
+/!\ Mardi : finir fonction $ : fait
+
+pour demain :
+	-> mettre a la norme;
+	-> fix echo -n -n qui fait un -n basique
+

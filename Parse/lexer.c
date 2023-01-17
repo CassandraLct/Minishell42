@@ -6,35 +6,84 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/16 16:53:55 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/17 17:37:06 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 //1 fonctions
-
-void	parcour_line(t_min *mini)
+//supprime les $$
+void	rm_d_dollar(char *line)
 {
-	char	*name;
+	char	*tmp;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	name = malloc(sizeof(char) * ft_strlen(mini->line));
-	while(mini->line[i] != '$')
-		i++;
-	i += 1;
-	while(mini->line[i] != ' ' && mini->line[i] != '\0')
+	tmp = malloc(sizeof(char) * ft_strlen(line));
+	while(line[i])
 	{
-		name[j] = mini->line[i];
+		if (line[i] == '$' && line[i + 1] == '$')
+			i += 2;
+		tmp[j] = line[i];
 		j++;
 		i++;
 	}
-	name[j] = '\0';
-	printf("name = %s\n", name);
-	ft_dollar(name);
+	tmp[j] = '\0';
+	free(line);
+	line = ft_strdup(tmp);
+	free(tmp);
+}
+
+//rempli le tab
+void	recup_dollarvar(int nb_dollar)
+{
+	char	*tmp;
+	int		i;
+	int		j;
+	int		k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	while(k != nb_dollar)
+	{
+		tmp = malloc(sizeof(char) * (ft_strlen(g_mini.line) + 1));
+		while(g_mini.line[i] != '$')
+			i++;
+		i += 1;
+		while(g_mini.line[i] != ' ' && g_mini.line[i] != '\0')
+		{
+			tmp[j] = g_mini.line[i];
+			j++;
+			i++;
+		}
+		tmp[j] = '\0';
+		j = 0;
+		i = 0;
+		ft_dollar(tmp);
+		free(tmp);
+		k++;
+	}
+}
+
+void	parcour_line(t_min *mini)
+{
+	int		i;
+	int		nb_dollar;
+
+	i = 0;
+	nb_dollar = 0;
+	rm_d_dollar(mini->line);
+	while (mini->line[i])
+	{
+		if (mini->line[i] == '$')
+			nb_dollar += 1;
+		i++;
+	}
+	recup_dollarvar(nb_dollar);
 }
 
 //built-in : cd/echo/env/exit/export/unset
