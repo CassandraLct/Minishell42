@@ -79,19 +79,15 @@ char	**spliter(t_min mini)
 		printf("command not valid\n");
 		return (NULL);
 	}
-	else
-		printf("command is valid\n");
 	i = count_instruct(mini.line);
 	result = malloc((i + 1) * sizeof(*result));
 	if (!result)
 		return (NULL);
-	temp = malloc((ft_strlen(mini.line) + 1) * sizeof(*temp));
-	ft_bzero((void *)temp, ft_strlen(mini.line) + 1);
-	ft_putstr_fd(temp, 2);
+	temp = ft_calloc(ft_strlen(mini.line) + 1, sizeof(*temp));
 	instrucnb = 0;
-	j = 0; // index du char dans mini.line
-	k = 0; // index du char dans l instruction
-	cote = 0; // indique si on est dans une cote simple ou double
+	j = 0;
+	k = 0;
+	cote = 0;
 	while (mini.line[j])
 	{
 		if (mini.line[j] == '|' && mini.line[j + 1] != '|' && cote == 0)

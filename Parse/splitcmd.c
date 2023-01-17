@@ -52,7 +52,7 @@ int	count_cmd(char *line)
 	return (count + 1);
 }
 
-// trasform the char* in char** delimited by space
+// transform the char* in char** delimited by space
 char	**pre_split(char *line)
 {
 	int		index;
@@ -124,7 +124,8 @@ char	**pre_split(char *line)
 	return (resu);
 }
 
-// count the number of redirection defined in ched c
+// count the number of redirection defined in ched c but also in cotes
+// no bigdeal as the use is for malloc, bigger is not a problem
 int	count_redir(char **list, char c)
 {
 	int	i;
@@ -269,32 +270,91 @@ t_cmd	*split_inst(char *temp)
 	return (resu);
 }
 
-// < a1 <  b2 >   c3 > d4  ls | < e5 < "f6"  ls -la > g7 >  k8 | grep -v 'toto | tata' > l9 
+// count the number of > >> < or << even if in cotes
+int	count_all_redir(char *temp)
+{
+	int	i;
+	int	resu;
+
+	i = 0;
+	resu = 0;
+	while (temp[i])
+	{
+		if (temp[i] == '>' && temp[i + 1] != '>')
+			resu++;
+		else if (temp[i] == '<' && temp[i + 1] != '>')
+			resu++;
+		i++;
+	}
+	return (resu);
+}
+
+char	*ft_space_bracket(char *s)
+{
+	char	*resu;
+	int		i;
+	int		k;
+
+	i = 2 * count_all_redir(s) + 1;
+	resu = ft_calloc((ft_strlen(s) + i), sizeof(*s));
+	i = 0;
+	k = 0;
+	while(s[i])
+	{
+		if (i != 0 && s[i] == '>' && s[i - 1] != ' ' && s[i - 1] != '>')
+		{
+			resu[k] = ' ';
+			k++;
+		}
+		if (i != 0 && s[i] == '<' && s[i - 1] != ' ' && s[i - 1] != '<')
+		{
+			resu[k] = ' ';
+			k++;
+		}
+		resu[k] = s[i];
+		k++;
+		if (s[i + 1] && s[i] == '>' && s[i + 1] != ' ' && s[i + 1] != '>')
+		{
+			resu[k] = ' ';
+			k++;
+		}
+		if (s[i + 1] && s[i] == '<' && s[i + 1] != ' ' && s[i + 1] != '<')
+		{
+			resu[k] = ' ';
+			k++;
+		}
+		i++;
+	}
+	return (resu);
+}
+
+//  < a1 <  b2 >   c3 > d4  ls | < e5 < "f6"  ls -la > g7 >  k8 | grep -v 'toto | tata' > l9
 t_cmd	**spliter3(char **inst)
 {
 	t_cmd	**resu;
 	char	**temp;
+	char	**tempclean;
 	int		i;
 
 	i = 0;
-	printf("tablen(inst)=%d\n", tablen(inst));
 	temp = ft_calloc((tablen(inst) + 1), sizeof(*temp));
+	tempclean = ft_calloc((tablen(inst) + 1), sizeof(*temp));
 	resu = ft_calloc((tablen(inst) + 1), sizeof(*resu));
 	while (inst[i])
 	{
-		printf("spliter3, inst[%d]=[%s]\n", i, inst[i]);
 		temp[i] = ft_strtrim(inst[i], " ");
-		printf("spliter3, temp[%d]=[%s]\n", i, temp[i]);
+		tempclean[i] = ft_space_bracket(temp[i]);
+		printf("tempclean[%d]=%s\n", i, tempclean[i]);
 		// ajouter ici le traitement de < et > sans espace
 		i++;
 	}
-	printf("spliter3, out of first while\n");
 	temp[i] = NULL;
+	tempclean[i] = NULL;
 	i = 0;
-	while (temp[i])
+	while (tempclean[i])
 	{
 		printf("spliter3, processing resu[%d]...\n", i);
-		resu[i] = split_inst(temp[i]);
+		resu[i] = split_inst(tempclean[i]);
 //		free(temp[i]);
 		i++;
 	}
