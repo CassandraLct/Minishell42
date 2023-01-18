@@ -6,7 +6,7 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2023/01/16 14:07:40 by clecat           ###   ########.fr        #
+#    Updated: 2023/01/18 13:32:25 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,10 @@ SRC		=	main.c \
 		Parse/split_line1.c \
 		Parse/lexer.c \
 		Parse/dollar_var.c \
+		Parse/utils_dollar.c \
 		Parse/parse.c \
 		Utils/ft_split.c \
+		Utils/ft_itoa.c \
 		Utils/utils.c \
 		Utils/utils2.c
 

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:51:31 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/17 14:21:46 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/18 09:48:40 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char	**init_cmd(char **tab, char **cmd)
 	return (cmd);
 }
 
-//execute la cmd donner
+//execute la cmd donner + 25 lignes
 void	ft_execve(t_min *mini, char **all_path, char **cmd)
 {
 	char	*gd_path;
@@ -84,18 +84,13 @@ void	ft_execve(t_min *mini, char **all_path, char **cmd)
 void	ft_exec(t_min *mini, char **all_path, char **cmd)
 {
 	mini->pid = fork();
-	// if(mini->pid != 0)
-	// 	printf("pid = %d\n", mini->pid);
 	if (mini->pid == -1)
 	{
 		perror("Fork failed");
 		exit(EXIT_FAILURE);
 	}
 	else if (mini->pid == 0)
-	{
 		ft_execve(mini, all_path, cmd);
-		exit (1);
-	}
 	else
 		waitpid(mini->pid, &mini->ret_err, 0);
 	free(all_path);

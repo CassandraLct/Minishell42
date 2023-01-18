@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/16 14:04:10 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/18 13:39:46 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,12 @@ char	**split_line(t_min mini);
 void	redirection(t_min *mini);
 void	parcour_line(t_min *mini);
 
+//utils_dollar 
+char	*recup_endline(int i, char *line);
+char	*recup_startline(char *line);
+void	recup_dollarvar(int nb_dollar);
+void	rm_d_dollar(void);
+
 //dollar_var 1 fonction
 void	ft_dollar(char *str);
 
@@ -151,5 +157,8 @@ void	ft_dollar(char *str);
 void	signaux(void);
 void	signal_exit(void);
 void	rl_replace_line(const char *text, int clear_undo);
+
+//itoa (libft)
+char	*ft_itoa(int nb);
 
 #endif

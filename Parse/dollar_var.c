@@ -6,19 +6,19 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:43:29 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/17 17:36:56 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/18 13:47:56 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
+//5 fonctions
 //recupere la valeur de la variable
 char	*recup_valvar(char *str)
 {
 	char	*tmp;
-	int	i;
-	int	j;
-	
+	int		i;
+	int		j;
+
 	i = 0;
 	j = 0;
 	tmp = malloc(sizeof(char) * ft_strlen(str));
@@ -35,38 +35,28 @@ char	*recup_valvar(char *str)
 	return (tmp);
 }
 
-void	rm_dollarvar(char *name)
+//supprime la variable non existante de la line +25lignes
+void	rm_dollarvar(void)
 {
 	char	*start;
 	char	*end;
 	int		i;
-	int		j;
-	
+
 	i = 0;
-	j = 0;
-	start = malloc(sizeof(char) * (ft_strlen(g_mini.line) - (ft_strlen(name) + 1)));
-	while(g_mini.line[i] != '$')
-	{
-		start[i] = g_mini.line[i];
+	start = recup_startline(g_mini.line);
+	while (g_mini.line[i] && g_mini.line[i] != '$')
 		i++;
-	}
-	start[i] = '\0';
-	while(g_mini.line[i] != ' ' && g_mini.line[i] != '\0')
+	while (g_mini.line[i] != ' ' && g_mini.line[i] != '\0')
 		i++;
-	if(i == ft_strlen(g_mini.line))
+	if (i == ft_strlen(g_mini.line))
 	{
 		free(g_mini.line);
 		g_mini.line = ft_strdup(start);
+		free(start);
 	}
 	else
 	{
-		end = malloc(sizeof(char) * (ft_strlen(g_mini.line) - (ft_strlen(name) + 1)));
-		while(g_mini.line[i])
-		{
-			end[j] = g_mini.line[i];
-			i++;
-		}
-		end[j] = '\0';
+		end = recup_endline(i, g_mini.line);
 		free(g_mini.line);
 		g_mini.line = ft_strjoin(start, end);
 		free(start);
@@ -74,42 +64,29 @@ void	rm_dollarvar(char *name)
 	}
 }
 
+//change valeur de la var dans la line +25 lignes
 void	change_linevar(char *str)
 {
 	char	*tmp;
 	char	*start;
 	char	*end;
 	int		i;
-	int		j;
 
-	i = 0;
-	j = 0;
-	start = malloc(sizeof(char) * ft_strlen(g_mini.line));
-	while (g_mini.line[i] != '$')
-	{
-		start[i] = g_mini.line[i];
-		i++;
-	}
-	start[i] = '\0';
+	start = recup_startline(g_mini.line);
+	i = ft_strlen(start) + 1;
 	tmp = ft_strjoin(start, str);
 	free(start);
-	while (g_mini.line[i] != ' '  && g_mini.line[i] != '\0')
+	while (g_mini.line[i] != ' ' && g_mini.line[i] != '\0')
 		i++;
-	if(i == ft_strlen(g_mini.line))
+	if (i == ft_strlen(g_mini.line))
 	{
 		free(g_mini.line);
 		g_mini.line = ft_strdup(tmp);
+		free(tmp);
 	}
 	else
 	{
-		end = malloc(sizeof(char) * ft_strlen(g_mini.line));
-		while (g_mini.line[i])
-		{
-			end[j] = g_mini.line[i];
-			j++;
-			i++;
-		}
-		end[j] = '\0';
+		end = recup_endline(i, g_mini.line);
 		free(g_mini.line);
 		g_mini.line = ft_strjoin(tmp, end);
 		free(tmp);
@@ -117,31 +94,58 @@ void	change_linevar(char *str)
 	}
 }
 
-//gestion dollar //segfault
+void	dollar_reterr(char *line)
+{
+	char	*tmp;
+	char	*start;
+	char	*end;
+	int		i;
+
+	start = recup_startline(line);
+	i = ft_strlen(start) + 1;
+	tmp = ft_strjoin(start, ft_itoa(g_mini.ret_err));
+	free(start);
+	while (line[i] && line[i] != ' ' && line[i] != '\0')
+		i++;
+	if (i == ft_strlen(line))
+	{
+		free(line);
+		line = ft_strdup(tmp);
+		free(tmp);
+	}
+	else
+	{
+		end = recup_endline(i, g_mini.line);
+		free(line);
+		line = ft_strjoin(tmp, end);
+		free(tmp);
+		free(end);
+	}
+}
+
+//gestion dollar 
 void	ft_dollar(char *str)
 {
 	char	*tmp;
 	int		i;
 
 	i = 0;
+	if (str[i] == '?')
+		dollar_reterr(g_mini.line);
 	tmp = ft_strjoin(str, "=");
-	while(g_mini.c_env[i])
+	while (g_mini.c_env[i])
 	{
-		if(ft_strncmp(g_mini.c_env[i], tmp, ft_strlen(tmp)) == 0)
+		if (ft_strncmp(g_mini.c_env[i], tmp, ft_strlen(tmp)) == 0)
 			break ;
 		i++;
 	}
 	free(tmp);
 	if (i == tablen(g_mini.c_env))
-		rm_dollarvar(str);
+		rm_dollarvar();
 	else
 	{
-		str = recup_valvar(g_mini.c_env[i]);
-		change_linevar(str);
+		tmp = recup_valvar(g_mini.c_env[i]);
+		change_linevar(tmp);
+		free(tmp);
 	}
 }
-
-/*
-	si variable existante mais aucune commande 
-	printf("minishell: (valeur variable): is a directory\n");
-*/

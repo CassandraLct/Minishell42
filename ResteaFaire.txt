@@ -127,9 +127,19 @@ bash-3.2$
 				   minishell> exit
 				   exit
 
-/!\ Mardi : finir fonction $ : fait
+/!\ Mardi 17/12:
+	-> finir fonction $ : fait
 
-pour demain :
-	-> mettre a la norme;
+pour demain:
+	-> faire le $?; condition faite 
+	(faire fonction cette aprem et verifier qu'il y est les ret_err partout)
+	-> mettre a la norme; commencer
 	-> fix echo -n -n qui fait un -n basique
+	-> commencer a verifier les leaks (fait pour le $)
 
+/!\ Mercredi 18/12:
+	-> fix segfault de gestion $; Fait
+	-> $?; fait
+	-> debut norme; (exec.c + 25 lignes)
+	-> pas de leaks pour fonctions gestion dollar
+	-> verifier tout les ret_erreur;

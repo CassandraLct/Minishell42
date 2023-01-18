@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/17 17:26:47 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/18 13:35:05 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv, char **envp)
 		if (g_mini.line == NULL)
 			signal_exit();
 		add_history(g_mini.line);
-		parcour_line(&g_mini); // parcour la ligne pour le $
+		parcour_line(&g_mini);
 		g_mini.tab = split_line(g_mini);
 		redirection(&g_mini);
 		free(g_mini.line);
