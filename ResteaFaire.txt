@@ -131,15 +131,29 @@ bash-3.2$
 	-> finir fonction $ : fait
 
 pour demain:
-	-> faire le $?; condition faite 
+	-> faire le $?; condition faite FAITE
 	(faire fonction cette aprem et verifier qu'il y est les ret_err partout)
 	-> mettre a la norme; commencer
-	-> fix echo -n -n qui fait un -n basique
+	-> fix echo -n -n qui fait un -n basique FAIT
 	-> commencer a verifier les leaks (fait pour le $)
 
 /!\ Mercredi 18/12:
 	-> fix segfault de gestion $; Fait
 	-> $?; fait
-	-> debut norme; (exec.c + 25 lignes)
+	-> debut norme; FAIT (sauf exec.c 2 fonctions + 25 lignes)
 	-> pas de leaks pour fonctions gestion dollar
-	-> verifier tout les ret_erreur;
+	-> verifier tout les ret_erreur; en cours
+	-> echo -n -n (-nnnnn -nnnnn aussi); Fait
+	-> a gerer : si unset PATH : Fait
+			bash-3.2$ unset PATH
+			bash-3.2$ ls
+			bash: ls: No such file or directory
+			bash-3.2$ $?
+			bash: 127: No such file or directory
+			bash-3.2$ env
+			bash: env: No such file or directory
+
+/!\demain : regler le soucis d'exit (du aux forks)
+*unset PWD : unset pwd mais la cmd pwd fonctionne
+	a gerer comme le bash ou faire gestion d'erreur
+

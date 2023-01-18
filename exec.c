@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:51:31 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/18 09:48:40 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/18 17:25:40 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,16 @@ static char	**recup_path(t_min *mini)
 		}
 		i++;
 	}
-	i = 0;
 	if (b_path == NULL)
-		return (NULL);
-	all_path = ft_split(b_path, ':');
-	free(b_path);
+	{
+		all_path = NULL;
+		g_mini.ret_err = 127;
+	}
+	else
+	{
+		all_path = ft_split(b_path, ':');
+		free(b_path);
+	}
 	return (all_path);
 }
 
@@ -75,7 +80,8 @@ void	ft_execve(t_min *mini, char **all_path, char **cmd)
 	}
 	if (j == i)
 	{
-		printf("minishell: %s: command not found\n", mini->tab[0]);
+		mini->ret_err = 127;
+		printf("minishell: %s: No such file or directory\n", mini->tab[0]);
 		return ;
 	}
 }
@@ -105,5 +111,11 @@ void	ft_set_pathexec(t_min *mini)
 	cmd = NULL;
 	cmd = init_cmd(mini->tab, cmd);
 	all_path = recup_path(mini);
+	if (all_path == NULL)
+	{
+		mini->ret_err = 127;
+		printf("minishell: %s: No such file or directory\n", mini->tab[0]);
+		return ;
+	}
 	ft_exec(mini, all_path, cmd);
 }
