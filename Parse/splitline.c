@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitline.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/01/13 16:15:49 by clecat           ###   ########.fr       */
+/*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
+/*   Updated: 2023/01/18 23:40:56 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	iscotevalid(char *line)
 	return (1);
 }
 
+// count how many instructions are between the real pipes
 int	count_instruct(char *line)
 {
 	int	i;
@@ -63,53 +64,142 @@ int	count_instruct(char *line)
 	return (nbinst + 1);
 }
 
-char	**spliter(t_min mini)
+// test if a the variable is different from error
+// used to test if the malloc are ok
+void	*ft_test(void *var, void *error)
 {
-	char	**result;
-	int		i;
-	int		cote;
-	int		instrucnb;
-	char	*temp;
+	if (var == error)
+	{
+		perror(NULL);
+		exit(1);
+	}
+	return (var);
+}
+
+// return one if the char j is a real pipe
+// a real pipe is a pipe that is not inside a cote
+int	is_single_pipe(int j)
+{
+	int	i;
+	int	cote;
+
+	i = 0;
+	cote = 0;
+	if (g_mini.line[0] == '|' && g_mini.line[0] != '|')
+	{
+		printf("minishell: parse error near `|'\n");
+		exit (1);
+	}
+	while (i < j)
+	{
+		if (g_mini.line[i] == '\'' || g_mini.line[i] == '"')
+				cote = (cote + 1) % 2;
+		i++;
+	}
+	if (j == 0)
+		return (0);
+	if (cote != 1 && g_mini.line[j] == '|' && g_mini.line[j + 1] != '|'
+		&& g_mini.line[j - 1] != '|')
+		return (1);
+	return (0);
+}
+
+// main loop of spliter 
+char	**spliter_loop(char **resu, char *temp)
+{
+	int		inb;
 	int		j;
 	int		k;
 
-	result = NULL;
-	if (iscotevalid(mini.line) == 0)
-	{
-		printf("command not valid\n");
-		return (NULL);
-	}
-	i = count_instruct(mini.line);
-	result = malloc((i + 1) * sizeof(*result));
-	if (!result)
-		return (NULL);
-	temp = ft_calloc(ft_strlen(mini.line) + 1, sizeof(*temp));
-	instrucnb = 0;
+	inb = 0;
 	j = 0;
 	k = 0;
-	cote = 0;
-	while (mini.line[j])
+	while (g_mini.line[j])
 	{
-		if (mini.line[j] == '|' && mini.line[j + 1] != '|' && cote == 0)
+		if (is_single_pipe(j) == 1)
 		{
-			result[instrucnb] = malloc((ft_strlen(temp) + 1) * sizeof (*result[instrucnb]));
-			result[instrucnb] = ft_strdup(temp);
-			ft_bzero(temp, ft_strlen(mini.line) + 1);
-			instrucnb++;
+			resu[inb++] = ft_strdup(temp);
 			k = 0;
 		}
 		else
 		{
-			temp[k] = mini.line[j];
-			if (mini.line[j] == '\'' || mini.line[j] == '"')
-				cote = (cote + 1) % 2;
-			k++;
+			temp[k++] = g_mini.line[j];
+			temp[k] = '\0';
 		}
 		j++;
 	}
-	result[instrucnb] = malloc((ft_strlen(temp) + 1) * sizeof (*result[instrucnb]));
-	result[instrucnb] = ft_strdup(temp);
-	result[instrucnb + 1] = NULL;
+	resu[inb] = ft_strdup(temp);
+	resu[inb + 1] = NULL;
+//	free(temp);
+	return (resu);
+}
+
+// cut the line received from readline, the separator are real pipes 
+char	**spliter(void)
+{
+	char	**resu;
+	int		i;
+	char	*temp;
+
+	resu = NULL;
+	if (iscotevalid(g_mini.line) == 0)
+	{
+		printf("minishell: cote not closed\n");
+		return (NULL);
+	}
+	i = count_instruct(g_mini.line);
+	resu = ft_test(ft_calloc(i + 1, sizeof(*resu)), NULL);
+	temp = ft_test(ft_calloc(ft_strlen(g_mini.line) + 1, sizeof(*temp)), NULL);
+	resu = spliter_loop(resu, temp);
 	free(temp);
-	return (result);
+	return (resu);
+}
+
+// cut the line received from readline, the separator are real pipes 
+char	**spliter_old(void)
+{
+	char	**resu;
+	int		i;
+	int		cote;
+	int		inb;
+	char	*temp;
+	int		j;
+	int		k;
+
+	resu = NULL;
+	if (iscotevalid(g_mini.line) == 0)
+	{
+		printf("minishell: cote not closed\n");
+		return (NULL);
+	}
+	i = count_instruct(g_mini.line);
+	resu = ft_test(ft_calloc(i + 1, sizeof(*resu)), NULL);
+	temp = ft_test(ft_calloc(ft_strlen(g_mini.line) + 1, sizeof(*temp)), NULL);
+	inb = 0;
+	j = 0;
+	k = 0;
+	cote = 0;
+	while (g_mini.line[j])
+	{
+		if (g_mini.line[j] == '|' && g_mini.line[j + 1] != '|' && cote == 0)
+		{
+			resu[inb] = ft_strdup(temp);
+			inb++;
+			k = 0;
+		}
+		else
+		{
+			temp[k] = g_mini.line[j];
+			if (g_mini.line[j] == '\'' || g_mini.line[j] == '"')
+				cote = (cote + 1) % 2;
+			k++;
+			temp[k] = '\0';
+		}
+		j++;
+	}
+	resu[inb] = malloc((ft_strlen(temp) + 1) * sizeof (*resu[inb]));
+	resu[inb] = ft_strdup(temp);
+	resu[inb + 1] = NULL;
+	free(temp);
+	return (resu);
 }

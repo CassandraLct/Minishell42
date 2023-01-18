@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 18:24:15 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/29 09:16:54 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/17 22:00:27 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,7 @@ static void	ft_assembleall(char const *s, char c, char **str)
 char	**ft_split(char const *s, char c)
 {
 	char	**str;
-//	int		x;
-//	int		y;
 
-//	x = 0;
-//	y = 0;
 	str = malloc((sizeof(char *) * (cmp_nb_word(s, c) + 1)));
 	if (!str)
 		return (NULL);

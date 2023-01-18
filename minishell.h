@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/14 22:09:39 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/18 22:20:48 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct s_min
 	char	*prompt;
 	int		nb_passage_exp;
 }	t_min;
+
+extern t_min	g_mini;
 
 //18 fichiers
 //utils.c 5 fonctions
@@ -109,7 +111,7 @@ void    printstruc2(t_cmd **cmd);
 t_cmd	**spliter3(char **inst);
 
 //splitline.c 3 fonctions
-char	**spliter(t_min mini);
+char	**spliter(void);
 
 //cd.c 5 fonctions
 void	cd(t_min *mini);

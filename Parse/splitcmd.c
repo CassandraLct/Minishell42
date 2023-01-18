@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   splitcmd.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
+/*   Updated: 2023/01/18 11:00:53 by rdi-marz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 char	*remove_double_space(char *line)
@@ -155,7 +167,7 @@ t_cmd	*alloc_cmd(char **list)
 		{
 			resu->stdin[j] = ft_strdup(list[i]);
 			resu->stdin[j + 1] = ft_strdup(list[i + 1]);
-			resu->stdin[j + 2] = NULL; // to remove if bzero ok
+//			resu->stdin[j + 2] = NULL; // to remove if bzero ok
 			j = j + 2;
 			k = i;
 			while (list[k])
@@ -246,7 +258,7 @@ char	*ft_space_bracket(char *s)
 	resu = ft_calloc((ft_strlen(s) + i), sizeof(*s));
 	i = 0;
 	k = 0;
-	while(s[i])
+	while (s[i])
 	{
 		if (i != 0 && s[i] == '>' && s[i - 1] != ' ' && s[i - 1] != '>')
 		{
@@ -275,7 +287,7 @@ char	*ft_space_bracket(char *s)
 	return (resu);
 }
 
-//  < a1 <  b2 >   c3 > d4  ls | < e5 < "f6"  ls -la > g7 >  k8 | grep -v 'toto | tata' > l9
+//  < a1 <  b2 >   c3 ls | < "f6"  ls -la > g7 >  k8 | grep -v 'to | ta' >l9
 t_cmd	**spliter3(char **inst)
 {
 	t_cmd	**resu;

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils3.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/17 21:59:04 by rdi-marz          #+#    #+#             */
+/*   Updated: 2023/01/17 21:59:17 by rdi-marz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
+// used in ft_strstrim
 static int	ft_isinlist(char c, char *list)
 {
 	int	i;
@@ -15,6 +27,7 @@ static int	ft_isinlist(char c, char *list)
 	return (0);
 }
 
+// used in ft_strstrim
 static char	*ft_mallocresu(int lens1, int trimdeb, int trimfin, char *s1)
 {
 	char	*resu;
@@ -36,6 +49,7 @@ static char	*ft_mallocresu(int lens1, int trimdeb, int trimfin, char *s1)
 	return (resu);
 }	
 
+// remove the char contained in set at the beginning aand the end os s1
 char	*ft_strtrim(char *s1, char *set)
 {
 	int		lens1;
@@ -56,6 +70,7 @@ char	*ft_strtrim(char *s1, char *set)
 	return (resu);
 }
 
+// malloc with 0 everywhere inse=ide the vaiable
 void	*ft_calloc(size_t count, size_t size)
 {
 	void	*resu;

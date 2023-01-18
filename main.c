@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/12 16:08:32 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/18 22:19:54 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc, char **argv, char **envp)
 		add_history(g_mini.line);
 	//	g_mini.tab = split_line(g_mini);
 		
-		tstspl = spliter(g_mini);
+		tstspl = spliter();
 		instruc = spliter3(tstspl);
 		printstruc2(instruc);
 

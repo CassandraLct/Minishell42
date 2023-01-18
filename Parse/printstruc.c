@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   printstruc.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/17 22:01:13 by rdi-marz          #+#    #+#             */
+/*   Updated: 2023/01/17 22:07:31 by rdi-marz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -10,34 +21,24 @@ void	printstruc(t_cmd *cmd)
 	ft_putstr_fd("\nlist of in-redirections\n", 1);
 	while (cmd->stdin[i])
 	{
-		write(1, "[", 1);
-		ft_putstr_fd(cmd->stdin[i], 1);
-		write(1, "] -> [", 6);
-		ft_putstr_fd(cmd->stdin[i + 1], 1);
-		write(1, "]\n", 2);
+		printf("[%s] -> [%s]\n", cmd->stdin[i], cmd->stdin[i + 1]);
 		i += 2;
 	}
 	i = 0;
 	ft_putstr_fd("list of out-redirections\n", 1);
 	while (cmd->stdout[i])
 	{
-		write(1, "[", 1);
-		ft_putstr_fd(cmd->stdout[i], 1);
-		write(1, "] -> [", 6);
-		ft_putstr_fd(cmd->stdout[i + 1], 1);
-		write(1, "]\n", 2);
+		printf("[%s] -> [%s]\n", cmd->stdout[i], cmd->stdout[i + 1]);
 		i += 2;
 	}
 	i = 0;
 	ft_putstr_fd("list of cmd and arg\n", 1);
 	while (cmd->cmd[i])
 	{
-		write(1, "[", 1);
-		ft_putstr_fd(cmd->cmd[i], 1);
-		write(1, "] ", 3);
+		printf("[%s] ", cmd->cmd[i]);
 		i++;
 	}
-	write(1, "\n", 1);
+	printf("\n");
 }
 
 // print what is inside the t_cmd struct
@@ -46,7 +47,7 @@ void	printstruc2(t_cmd **cmd)
 	int	i;
 
 	i = 0;
-	ft_putstr_fd("\nlist of all the instructions\n", 1);
+	printf("\nlist of all the instructions\n");
 	while (cmd[i])
 	{
 		printf("********** instruction[%d] **********\n", i);
@@ -54,5 +55,5 @@ void	printstruc2(t_cmd **cmd)
 		printf("************ pipe or end ************\n");
 		i++;
 	}
-	ft_putstr_fd("the end\n", 1);
+	printf("the end\n");
 }
