@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/18 22:20:48 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/19 11:19:38 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,20 @@ char	**init_exp(char **tab);
 void    printstruc(t_cmd *cmd);
 void    printstruc2(t_cmd **cmd);
 
+// splitcmd_utils.c
+char	*remove_double_space(char *line);
+int		count_cmd(char *line);
+int		count_redir(char **list, char c);
+int		count_all_redir(char *temp);
+
 //splitcmd.c
 t_cmd	**spliter3(char **inst);
+
+// splitline_utils.c
+int		iscotevalid(char *line);
+int		count_instruct(char *line);
+void	*ft_test(void *var, void *error);
+int		is_single_pipe(int j);
 
 //splitline.c 3 fonctions
 char	**spliter(void);
