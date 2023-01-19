@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/19 12:19:27 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/19 17:38:39 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,11 @@ int		tablen(char **s1);
 int		check_exp(char **s1, char **s2, int index);
 
 //export_addvar.c 3 fonctions
-char	**add_valexp(t_min *mini, char *str);
-char	**add_valenv(t_min *mini, char *str);
+void	add_valexp(t_min *mini, char *str);
+void	add_valenv(t_min *mini, char *str);
 
 //export_change_val 5 fonctions
-char	*recup_name(char *cmp, char *name_var);
+char	*recup_name(char *cmp);
 void	redir_changeval(t_min *mini, char *str);
 
 //echo.c 4 fonctions
@@ -139,7 +139,8 @@ void	ft_set_pathexec(t_min *mini);
 
 //exec_utils 2 fonctions
 char	*recup_pathexec(t_min *mini);
-void	aff_errcmd(void);
+int		aff_errcmd(void);
+int		verif_cmd(char **all_path, char **cmd);
 
 //split_line1.c 2 fonctions
 char	**split_line(t_min mini);

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/18 14:23:49 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/19 17:43:18 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,14 @@ int	verif_modif_var(char **str, char *cmp)
 	int		i;
 
 	i = 0;
-	name_var = malloc(sizeof(char) * (ft_strlen(cmp) + 1));
-	name_var = recup_name(cmp, name_var);
+	name_var = recup_name(cmp);
 	while (str[i])
 	{
 		if (ft_strncmp(str[i], name_var, ft_strlen(name_var)) == 0)
+		{
+			free(name_var);
 			return (1);
+		}
 		i++;
 	}
 	free(name_var);
@@ -54,14 +56,14 @@ void	new_vars(t_min *mini, char *str, int y)
 	{
 		if (str[i] == '=' && str[i + 1] != '\0' && mini->nb_passage_exp == 0)
 		{
-			mini->c_env = add_valenv(mini, str);
-			mini->c_exp = add_valexp(mini, str);
+			add_valenv(mini, str);
+			add_valexp(mini, str);
 			mini->nb_passage_exp += 1;
 		}
 		i++;
 	}
 	if (mini->nb_passage_exp == 0)
-		mini->c_exp = add_valexp(mini, str);
+		add_valexp(mini, str);
 	mini->nb_passage_exp = 0;
 }
 

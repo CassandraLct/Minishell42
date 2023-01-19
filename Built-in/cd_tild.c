@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 09:59:22 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/16 11:12:28 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/19 13:27:20 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ void	change_valtab(t_min *mini)
 	char	*tmp;
 
 	tmp = cd_tildpwd(mini->tab[1]);
+	free(mini->tab[1]);
 	mini->tab[1] = ft_strjoin(g_mini.val_home, tmp);
+	free(tmp);
 }
 
 //change le pwd
@@ -83,4 +85,6 @@ void	change_valcdtild(t_min *mini)
 	}
 	else
 		cd_noarg(mini);
+	free(pwd);
+	free(oldpwd);
 }

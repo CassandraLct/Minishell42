@@ -160,9 +160,9 @@ pour demain:
 /!\ Jeudi 19/01:
 	-> gerer le unset pwd; Fait
 	-> norme (parse splitline pas fait car sera changer); Fait
-	-> regler le soucis du exit avec les forks (voir avec Thomas);
+	-> regler le soucis du exit avec les forks (voir avec Thomas); Fait
 	-> reverifier les retour erreur $?; Fait
-	-> leaks ;
+	-> leaks ; en cours
 
 ret_erreur : *export;Fait
 			*exit; Fait
@@ -172,3 +172,14 @@ ret_erreur : *export;Fait
 			*signaux; Fait
 			*cd; Fait (niveau de chdir)
 			*chevrons; Fait
+
+leaks : *echo : 0 leaks
+		*cmd execve ne leaks plus;
+		*export: 0 leaks
+		*cd : ~(2 leaks) regler; ~/Desktop(2 leaks) regler; built-in 0 leak; cd ./Buil-in 0 leaks; cd ../Libft42 0 leaks
+			././.././Libft42/ 0 leaks
+		$: $PWD fait 3 leaks (surement )
+
+-> si line est juste $PWD doit renvoyer bash: /Users/clecat/Desktop/Cursus: is a directory
+
+/!\ demain: finir les leaks, faire fonction de verif directory

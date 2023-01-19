@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/18 16:05:18 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/19 16:28:31 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	init_struct(&g_mini, envp);
-	signaux();
+	//signaux();
 	while (1)
 	{
 		g_mini.line = readline(g_mini.prompt);
@@ -26,7 +26,7 @@ int	main(int argc, char **argv, char **envp)
 			signal_exit();
 		add_history(g_mini.line);
 		parcour_line(&g_mini);
-		g_mini.tab = split_line(g_mini);
+		g_mini.tab = ft_split(g_mini.line, 32);
 		redirection(&g_mini);
 		free(g_mini.line);
 		free_tab(g_mini.tab);
