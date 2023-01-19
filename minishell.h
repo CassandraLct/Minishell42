@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/18 13:39:46 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/19 12:19:27 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,9 +133,13 @@ void	aff_err(void);
 void	unset(t_min *mini);
 int		check_var(char *str);
 
-//exec.c 4 fonctions
+//exec.c 5 fonctions
 void	ft_exec(t_min *mini, char **all_path, char **cmd);
 void	ft_set_pathexec(t_min *mini);
+
+//exec_utils 2 fonctions
+char	*recup_pathexec(t_min *mini);
+void	aff_errcmd(void);
 
 //split_line1.c 2 fonctions
 char	**split_line(t_min mini);
@@ -150,7 +154,7 @@ char	*recup_startline(char *line);
 void	recup_dollarvar(int nb_dollar);
 void	rm_d_dollar(void);
 
-//dollar_var 1 fonction
+//dollar_var 5 fonction
 void	ft_dollar(char *str);
 
 //signaux.c

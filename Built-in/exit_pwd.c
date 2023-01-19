@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/18 15:32:49 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/19 11:50:39 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,12 @@ void	pwd(char **c_env)
 			}
 		}
 		i++;
+	}
+	if (i == tablen(c_env))
+	{
+		g_mini.ret_err = 127;
+		printf("minishell: %s: No such file or directory\n", g_mini.tab[0]);
+		return ;
 	}
 }
 

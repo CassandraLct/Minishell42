@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 11:55:54 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/16 10:54:10 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/19 12:40:24 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ void	right_patern(void)
 	int	fd;
 
 	fd = open(g_mini.tab, O_WRONLY | O_CREAT);
+	if (fd == O_DIRECTORY)
+	{
+		printf("minishell: %s: Is a directory\n", g_mini.tab[0]);
+		g_mini.ret_err = 1;
+		return ;
+	}
 }
 
 //chevron < stdin // si le fichier est un directory doit afficher 
@@ -37,14 +43,26 @@ void	left_patern(void)
 		g_mini.ret_err == 1;
 		exit(1);
 	}
+	if (fd == O_DIRECTORY)
+	{
+		printf("minishell: %s: Is a directory\n", "stdin");
+		g_mini.ret_err = 1;
+		return ;
+	}
 }
 
-//chevron >> stdout, ecrit au niv EOF
+//chevron >> stdout, ecrit au niv EOF g_mini_tab a changer avec structure
 void	dright_patern(void)
 {
 	int	fd;
 
 	fd = open(g_mini.tab, O_RDWR | O_CREAT);
+	if (fd == O_DIRECTORY)
+	{
+		printf("minishell: %s: Is a directory\n", g_mini.tab[0]);
+		g_mini.ret_err = 1;
+		return ;
+	}
 }
 
 //chevron << (heredoc) peut etre utiliser sans cmd mais doit avoir un arg
@@ -56,7 +74,11 @@ void	dleft_patern(void)
 	int	fd;
 
 	if (g_mini.tab[1] == NULL)
+	{
 		printf("minishell: syntax error near unexpected token `newline'\n");
+		g_mini.ret_err = 258;
+		return ;
+	}
 }
 
 /*comme le readline (boucle tant que le mot donné ne soit ecrit)*/

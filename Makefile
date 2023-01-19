@@ -6,7 +6,7 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2023/01/18 13:32:25 by clecat           ###   ########.fr        #
+#    Updated: 2023/01/19 12:05:52 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ NAME	= minishell
 LIBPATH	= ~/.brew/Cellar/readline/8.2.1/lib/ 
 SRC		=	main.c \
 		exec.c \
+		exec_utils.c \
 		Built-in/cd.c \
 		Built-in/cd_utils.c \
 		Built-in/cd_tild.c \

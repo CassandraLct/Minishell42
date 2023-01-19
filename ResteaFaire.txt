@@ -127,7 +127,7 @@ bash-3.2$
 				   minishell> exit
 				   exit
 
-/!\ Mardi 17/12:
+/!\ Mardi 17/01:
 	-> finir fonction $ : fait
 
 pour demain:
@@ -137,7 +137,7 @@ pour demain:
 	-> fix echo -n -n qui fait un -n basique FAIT
 	-> commencer a verifier les leaks (fait pour le $)
 
-/!\ Mercredi 18/12:
+/!\ Mercredi 18/01:
 	-> fix segfault de gestion $; Fait
 	-> $?; fait
 	-> debut norme; FAIT (sauf exec.c 2 fonctions + 25 lignes)
@@ -154,6 +154,21 @@ pour demain:
 			bash: env: No such file or directory
 
 /!\demain : regler le soucis d'exit (du aux forks)
-*unset PWD : unset pwd mais la cmd pwd fonctionne
+*unset PWD : unset pwd mais la cmd pwd fonctionne | Fait
 	a gerer comme le bash ou faire gestion d'erreur
 
+/!\ Jeudi 19/01:
+	-> gerer le unset pwd; Fait
+	-> norme (parse splitline pas fait car sera changer); Fait
+	-> regler le soucis du exit avec les forks (voir avec Thomas);
+	-> reverifier les retour erreur $?; Fait
+	-> leaks ;
+
+ret_erreur : *export;Fait
+			*exit; Fait
+			*pwd; Fait
+			*echo; Pas de ret_err
+			*unset; Fait
+			*signaux; Fait
+			*cd; Fait (niveau de chdir)
+			*chevrons; Fait

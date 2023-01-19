@@ -6,12 +6,12 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:51:31 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/18 17:25:40 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/19 12:19:06 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+// 5 fonctions
 //recupere les paths possible
 static char	**recup_path(t_min *mini)
 {
@@ -21,15 +21,7 @@ static char	**recup_path(t_min *mini)
 
 	i = 0;
 	b_path = NULL;
-	while (mini->c_env[i])
-	{
-		if (ft_strncmp(mini->c_env[i], "PATH=", 5) == 0)
-		{
-			b_path = ft_strdup(mini->c_env[i] + 5);
-			break ;
-		}
-		i++;
-	}
+	b_path = recup_pathexec(mini);
 	if (b_path == NULL)
 	{
 		all_path = NULL;
@@ -53,7 +45,7 @@ static char	**init_cmd(char **tab, char **cmd)
 	return (cmd);
 }
 
-//execute la cmd donner + 25 lignes
+//execute la cmd donner
 void	ft_execve(t_min *mini, char **all_path, char **cmd)
 {
 	char	*gd_path;
@@ -79,11 +71,7 @@ void	ft_execve(t_min *mini, char **all_path, char **cmd)
 		i++;
 	}
 	if (j == i)
-	{
-		mini->ret_err = 127;
-		printf("minishell: %s: No such file or directory\n", mini->tab[0]);
-		return ;
-	}
+		aff_errcmd();
 }
 
 //test chaque path puis execute la cmd si existante
