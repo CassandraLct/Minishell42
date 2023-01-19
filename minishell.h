@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/19 15:55:27 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/19 23:31:53 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,12 +107,18 @@ char	**init_exp(char **tab);
 void    printstruc(t_cmd *cmd);
 void    printstruc2(t_cmd **cmd);
 
-// splitcmd_utils.c
+// splitcmd_utils1.c
 char	*remove_double_space(char *line);
 int		count_cmd(char *line);
 int		count_redir(char **list, char c);
 int		count_all_redir(char *temp);
 char	*ft_space_bracket(char *s);
+
+// splitcmd_utils2.c
+char	**ft_init_resu(char *line);
+void	ft_copy_inside_simple_cote(char **res, char *line, int *i, int *j);
+void	ft_copy_inside_double_cote(char **res, char *line, int *i, int *j);
+t_cmd	*ft_malloc_resu(char **list);
 
 //splitcmd.c
 t_cmd	**spliter3(char **inst);
