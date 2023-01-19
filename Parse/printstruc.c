@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 22:01:13 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/17 22:07:31 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:43:40 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,21 @@ void	printstruc2(t_cmd **cmd)
 
 	i = 0;
 	printf("\nlist of all the instructions\n");
+	if (!cmd)
+	{
+		printf("no cmd\n");
+		return ;
+	}
+	if (!cmd[0])
+	{
+		printf("no cmd[0]\n");
+		return ;
+	}
+	if (!cmd[0]->stdin || !cmd[0]->stdout || !cmd[0]->cmd)
+	{
+		printf("struct empty\n");
+		return ;
+	}
 	while (cmd[i])
 	{
 		printf("********** instruction[%d] **********\n", i);

@@ -6,12 +6,13 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/19 11:20:50 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/19 15:56:52 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// remove all the multiple space to keep only one
 char	*remove_double_space(char *line)
 {
 	char	*resu;
@@ -19,7 +20,7 @@ char	*remove_double_space(char *line)
 	int		j;
 
 	i = ft_strlen(line) + 1;
-	resu = ft_calloc(i, sizeof(*resu));
+	resu = ft_test(ft_calloc(i, sizeof(*resu)), NULL);
 	i = 0;
 	j = 0;
 	while (line[i])
@@ -34,7 +35,7 @@ char	*remove_double_space(char *line)
 	return (resu);
 }
 
-// count the commands, possible problem with the redirection without space
+// count the commands
 int	count_cmd(char *line)
 {
 	int	count;
@@ -82,6 +83,7 @@ int	count_redir(char **list, char c)
 }
 
 // count the number of > >> < or << even if in cotes
+// only used for malloc
 int	count_all_redir(char *temp)
 {
 	int	i;
@@ -95,6 +97,34 @@ int	count_all_redir(char *temp)
 			resu++;
 		else if (temp[i] == '<' && temp[i + 1] != '>')
 			resu++;
+		i++;
+	}
+	return (resu);
+}
+
+// put space before and after < > << >> if there are missing
+char	*ft_space_bracket(char *s)
+{
+	char	*resu;
+	int		i;
+	int		k;
+
+	i = 2 * count_all_redir(s) + 1;
+	resu = ft_test(ft_calloc((ft_strlen(s) + i), sizeof(*s)), NULL);
+	i = 0;
+	k = 0;
+	while (s[i])
+	{
+		if (i != 0 && s[i] == '>' && s[i - 1] != ' ' && s[i - 1] != '>')
+			resu[k++] = ' ';
+		if (i != 0 && s[i] == '<' && s[i - 1] != ' ' && s[i - 1] != '<')
+			resu[k++] = ' ';
+		resu[k] = s[i];
+		k++;
+		if (s[i + 1] && s[i] == '>' && s[i + 1] != ' ' && s[i + 1] != '>')
+			resu[k++] = ' ';
+		if (s[i + 1] && s[i] == '<' && s[i + 1] != ' ' && s[i + 1] != '<')
+			resu[k++] = ' ';
 		i++;
 	}
 	return (resu);

@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:36:33 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/29 09:15:56 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:01:03 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@ void	init_struct(t_min *mini, char **envp)
 //creer la copie d'export au tout début
 void	init_export(t_min *mini)
 {
-//	int	i;
-
-//	i = 0;
 	mini->c_exp = init_exp(mini->c_env);
 	mini->c_exp = order_exp(mini->c_exp, mini->c_env);
 }

@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/19 11:19:38 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/19 15:55:27 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ char	*remove_double_space(char *line);
 int		count_cmd(char *line);
 int		count_redir(char **list, char c);
 int		count_all_redir(char *temp);
+char	*ft_space_bracket(char *s);
 
 //splitcmd.c
 t_cmd	**spliter3(char **inst);
