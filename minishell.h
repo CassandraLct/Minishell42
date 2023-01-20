@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/20 16:58:56 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/20 17:50:10 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_cmd
 
 typedef struct s_min
 {
-	t_cmd	**cmd;
+	t_cmd	**struct_cmd;
 	char	**c_env;
 	char	**c_exp;
 	int		ret_err;
@@ -150,7 +150,7 @@ char	*cd_tildpwd(char *str);
 void	change_valcdtild(t_min *mini);
 
 //exit_pwd.c 5 fonctions
-void	exit_min(t_min *mini);
+void	exit_min(char **cmd);
 void	pwd(char **c_env);
 int		recup_new_pwd(char **str);
 void	change_val_pwdpath(t_min *mini, char **str);
@@ -179,7 +179,8 @@ int		verif_cmd(char **all_path, char **cmd);
 char	**split_line(t_min mini);
 
 //lexer.c 2 fonctions
-void	redirection(t_min *mini);
+void	redir_pipe(t_cmd **cmd);
+void	redirection(t_cmd **cmd);
 void	parcour_line(t_min *mini);
 
 //utils_dollar 

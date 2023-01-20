@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/20 17:00:25 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/20 17:44:56 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,19 +112,20 @@ void	verif_arg_exit(t_min *mini, int i)
 }
 
 // la fonction sort de minishell ou redirige vers la verif des arguments
-void	exit_min(t_min *mini)
+void	exit_min(char **cmd)
 {
 	int	i;
 
 	i = 1;
-	if (ft_strcmp(mini->tab[0], "exit") == 0)
+	if (ft_strcmp(cmd[0], "exit") == 0)
 	{
-		if (mini->tab[i] == NULL)
+		if (cmd[i] == NULL)
 		{
 			printf("exit\n");
 			exit(0);
 		}
 		else
-			verif_arg_exit(mini, i);
+			printf("verif_argument\n");
+		// 	verif_arg_exit(mini, i);
 	}
 }

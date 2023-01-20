@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:37:12 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/18 14:08:01 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/20 17:34:31 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,8 @@ void	echo(t_min *mini)
 	else if (mini->tab[1][0] == '-')
 		check_opt(mini->tab);
 	else
-		while (mini->tab[i] && (mini->tab[i][j] >= 33 && mini->tab[i][j] <= 126)) // pourquoi un test sur le caractere [j] seulement?
+	{
+		while (mini->tab[i] && (mini->tab[i][j] >= 33 && mini->tab[i][j] <= 126))
 		{
 			if (mini->tab[i + 1] == NULL)
 				printf("%s\n", mini->tab[i]);
@@ -138,5 +139,6 @@ void	echo(t_min *mini)
 				printf("%s ", mini->tab[i]);
 			i++;
 		}
+	}
 	return ;
 }
