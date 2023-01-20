@@ -105,8 +105,8 @@ char	**ft_cpytab(char **tab);
 char	**init_exp(char **tab);
 
 // printstruc.c
-void    printstruc(t_cmd *cmd);
-void    printstruc2(t_cmd **cmd);
+void	printstruc(t_cmd *cmd);
+void	printstruc2(t_cmd **cmd);
 
 // splitcmd_utils1.c
 char	*remove_double_space(char *line);

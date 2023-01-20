@@ -47,7 +47,7 @@ int	verif_cmd(char **all_path, char **cmd)
 		if (access(gd_path, R_OK) == 0)
 		{
 			free(gd_path);
-			return(0);
+			return (0);
 		}
 		else
 			j++;
@@ -55,7 +55,7 @@ int	verif_cmd(char **all_path, char **cmd)
 		i++;
 	}
 	if (j == i)
-		return(aff_errcmd());
+		return (aff_errcmd());
 	return (0);
 }
 

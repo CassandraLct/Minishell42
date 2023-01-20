@@ -121,7 +121,7 @@ void	exit_min(t_min *mini)
 	{
 		if (mini->tab[i] == NULL)
 		{
-			printf("exit\n"); // à supprimer ?
+			printf("exit\n");
 			exit(0);
 		}
 		verif_arg_exit(mini, i);

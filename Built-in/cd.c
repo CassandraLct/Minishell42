@@ -126,7 +126,8 @@ void	change_value_exp(t_min *mini)
 //redirige vers les fonctions adéquates
 void	cd(t_min *mini)
 {
-	if (mini->tab[1] == NULL || (mini->tab[1][0] == '~' && mini->tab[1][1] == '\0'))
+	if (mini->tab[1] == NULL || (mini->tab[1][0] == '~'
+		&& mini->tab[1][1] == '\0'))
 		cd_noarg(mini);
 	else if (mini->tab[1][0] == '~')
 		change_valcdtild(mini);

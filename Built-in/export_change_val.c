@@ -108,7 +108,7 @@ void	redir_changeval(t_min *mini, char *str)
 char	*recup_name(char *cmp)
 {
 	char	*tmp;
-	int	i;
+	int		i;
 
 	i = 0;
 	tmp = malloc(sizeof(char) * (ft_strlen(cmp) + 1));
