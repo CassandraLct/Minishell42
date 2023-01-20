@@ -71,3 +71,10 @@ t_cmd	*ft_malloc_resu(char **list)
 	resu->cmd = ft_test(ft_calloc(k, sizeof(*resu->cmd)), NULL);
 	return (resu);
 }
+
+// free the t_cmd struct after each line
+void	free_t_cmd(void)
+{
+	int	i;
+
+}

@@ -41,6 +41,7 @@ int	main(int argc, char **argv, char **envp)
 			// free_tab(g_mini.tab);
 			printf("ici 3\n");
 		}
+		free_t_cmd();
 	}
 	free_all(g_mini);
 }

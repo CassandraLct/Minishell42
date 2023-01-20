@@ -120,6 +120,7 @@ char	**ft_init_resu(char *line);
 void	ft_copy_inside_simple_cote(char **res, char *line, int *i, int *j);
 void	ft_copy_inside_double_cote(char **res, char *line, int *i, int *j);
 t_cmd	*ft_malloc_resu(char **list);
+void	free_t_cmd(void);
 
 //splitcmd.c
 t_cmd	**spliter3(char **inst);
