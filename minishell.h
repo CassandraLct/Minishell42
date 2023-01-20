@@ -61,7 +61,6 @@ char	*ft_strdup(char *s);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, int n);
-void	ft_putstr_fd(char *s, int fd);
 
 // utils3.c
 char	*ft_strtrim(char *s1, char *set);

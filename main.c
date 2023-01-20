@@ -16,7 +16,7 @@
 int	main(int argc, char **argv, char **envp)
 {
 	char	**tstspl;
-	t_cmd	**instruc;
+//	t_cmd	**instruc;
 	
 	tstspl = NULL;
 	(void)argc;

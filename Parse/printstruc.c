@@ -18,21 +18,21 @@ void	printstruc(t_cmd *cmd)
 	int	i;
 
 	i = 0;
-	ft_putstr_fd("\nlist of in-redirections\n", 1);
+	printf("\nlist of in-redirections\n");
 	while (cmd->stdin[i])
 	{
 		printf("[%s] -> [%s]\n", cmd->stdin[i], cmd->stdin[i + 1]);
 		i += 2;
 	}
 	i = 0;
-	ft_putstr_fd("list of out-redirections\n", 1);
+	printf("list of out-redirections\n");
 	while (cmd->stdout[i])
 	{
 		printf("[%s] -> [%s]\n", cmd->stdout[i], cmd->stdout[i + 1]);
 		i += 2;
 	}
 	i = 0;
-	ft_putstr_fd("list of cmd and arg\n", 1);
+	printf("list of cmd and arg\n");
 	while (cmd->cmd[i])
 	{
 		printf("[%s] ", cmd->cmd[i]);
