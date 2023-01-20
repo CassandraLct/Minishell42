@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/19 11:50:39 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/20 13:00:35 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,10 +124,7 @@ void	exit_min(t_min *mini)
 			printf("exit\n");
 			exit(0);
 		}
-		while (mini->tab[i])
-		{
+		else
 			verif_arg_exit(mini, i);
-			break ;
-		}
 	}
 }

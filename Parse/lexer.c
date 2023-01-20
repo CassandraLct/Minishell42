@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/18 12:54:28 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/20 16:56:55 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,30 @@
 //faire une copie de la line avant ?
 void	parcour_line(t_min *mini)
 {
+	// char	*line;
+	char	*tmp;
 	int		i;
 	int		nb_dollar;
 
 	i = 0;
 	nb_dollar = 0;
-	rm_d_dollar();
+	tmp = ft_strdup(mini->line);
+	// free(mini->line);
+	//mini->line = rm_d_dollar(tmp);
 	while (mini->line[i])
 	{
 		if (mini->line[i] == '$')
 			nb_dollar += 1;
 		i++;
 	}
-	recup_dollarvar(nb_dollar);
+	// line = redir_gestdollar(nb_dollar, mini);
+	// free(g_mini.line);
+	// g_mini.line = ft_strdup(line);
+	// free(line);
+	// printf("line5 = %s\n", g_mini.line);
+	free(tmp);
+	if(!g_mini.line)
+		return ;
 }
 
 //built-in : cd/echo/env/exit/export/unset

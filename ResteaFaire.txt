@@ -183,3 +183,8 @@ leaks : *echo : 0 leaks
 -> si line est juste $PWD doit renvoyer bash: /Users/clecat/Desktop/Cursus: is a directory
 
 /!\ demain: finir les leaks, faire fonction de verif directory
+
+/!\ Vendredi 20/12:
+	->soucis de segfault su cd$bonjour$$$HOME regler;
+	->
+	->

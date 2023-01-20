@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/19 16:28:31 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/20 16:50:19 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,16 @@ int	main(int argc, char **argv, char **envp)
 			signal_exit();
 		add_history(g_mini.line);
 		parcour_line(&g_mini);
-		g_mini.tab = ft_split(g_mini.line, 32);
-		redirection(&g_mini);
-		free(g_mini.line);
-		free_tab(g_mini.tab);
+		if(g_mini.line != NULL)
+		{
+			g_mini.tab = ft_split(g_mini.line, 32);
+			redirection(&g_mini);
+			printf("ici 1\n");
+			free(g_mini.line);
+			printf("ici 2\n");
+			free_tab(g_mini.tab);
+			printf("ici 3\n");
+		}
 	}
 	free_all(g_mini);
 }

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/19 17:38:39 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/20 16:48:00 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,18 +152,23 @@ void	parcour_line(t_min *mini);
 //utils_dollar 
 char	*recup_endline(int i, char *line);
 char	*recup_startline(char *line);
-void	recup_dollarvar(int nb_dollar);
-void	rm_d_dollar(void);
+// void	recup_dollarvar(int nb_dollar);
+// void	rm_d_dollar(void);
 
 //dollar_var 5 fonction
-void	ft_dollar(char *str);
+// void	ft_dollar(char *str);
 
 //signaux.c
 void	signaux(void);
 void	signal_exit(void);
 void	rl_replace_line(const char *text, int clear_undo);
 
-//itoa (libft)
+//itoa.c (libft)
 char	*ft_itoa(int nb);
+
+//brouillon.c
+char	*redir_gestdollar(int nb_dollar, t_min *mini);
+char	*recup_dollarvar(char *line);
+char	*rm_d_dollar(char *tmp);
 
 #endif
