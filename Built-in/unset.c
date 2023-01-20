@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/09 09:08:05 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/20 18:41:00 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,18 +94,18 @@ int	check_var(char *str)
 }
 
 // l'arg ne doit pas avoir de egale
-void	unset(t_min *mini)
+void	unset(t_min *mini, char **cmd)
 {
 	int	i;
 
 	i = 1;
-	while (mini->tab[i])
+	while (cmd[i])
 	{
-		if (check_var(mini->tab[i]) == 0)
-			unset_verif_var(mini, i);
+		if (check_var(cmd[i]) == 0)
+			unset_verif_var(mini, i); //passer en param le cmd
 		else
 		{
-			printf("minishell: unset: `%s':", mini->tab[1]);
+			printf("minishell: unset: `%s':", cmd[1]);
 			printf(" not a valid identifier\n");
 			mini->ret_err = 1;
 		}

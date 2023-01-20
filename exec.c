@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:51:31 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/19 16:38:54 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/20 18:44:35 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,20 +105,20 @@ void	ft_exec(t_min *mini, char **all_path, char **cmd)
 }
 
 //a gerer avec un fork pour empecher de sortir de minishell
-void	ft_set_pathexec(t_min *mini)
+void	ft_set_pathexec(t_min *mini, char **cmd)
 {
 	char	**all_path;
-	char	**cmd;
+	char	**pathcmd;
 
-	cmd = NULL;
-	cmd = init_cmd(mini->tab, cmd);
+	pathcmd = NULL;
+	pathcmd = init_cmd(cmd, pathcmd);
 	all_path = recup_path(mini);
 	if (all_path == NULL)
 	{
 		mini->ret_err = 127;
-		printf("minishell: %s: No such file or directory\n", mini->tab[0]);
-		free_tab(cmd);
+		printf("minishell: %s: No such file or directory\n", cmd[0]);
+		free_tab(pathcmd);
 		return ;
 	}
-	ft_exec(mini, all_path, cmd);
+	ft_exec(mini, all_path, pathcmd);
 }

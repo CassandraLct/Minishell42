@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/20 17:44:56 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/20 18:29:35 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	recup_new_pwd(char **str)
 }
 
 //affiche le pwd (voir si modifier lors du changement)
-void	pwd(char **c_env)
+void	pwd(char **c_env, char **cmd)
 {
 	int	i;
 
@@ -77,24 +77,24 @@ void	pwd(char **c_env)
 	if (i == tablen(c_env))
 	{
 		g_mini.ret_err = 127;
-		printf("minishell: %s: No such file or directory\n", g_mini.tab[0]);
+		printf("minishell: %s: No such file or directory\n", cmd[0]);
 		return ;
 	}
 }
 
 /*verifie si les arguments d'exit sont valide ou non et si il y en a plus qu'un 
 et renvoie le code erreur approprié(bash)*/
-void	verif_arg_exit(t_min *mini, int i)
+void	verif_arg_exit(t_min *mini, int i, char **cmd)
 {
 	char	*err;
 
 	err = "numeric argument required";
-	if (strdigit(mini->tab[i]) == 0)
+	if (strdigit(cmd[i]) == 0)
 	{
-		if (mini->tab[i + 1] == NULL)
+		if (cmd[i + 1] == NULL)
 		{
 			printf("exit\n");
-			mini->ret_err = ft_atoi(mini->tab[i]) % 256;
+			mini->ret_err = ft_atoi(cmd[i]) % 256;
 			exit(mini->ret_err);
 		}
 		else
@@ -103,16 +103,16 @@ void	verif_arg_exit(t_min *mini, int i)
 			mini->ret_err = 1;
 		}
 	}
-	else if (strdigit(mini->tab[i]) == 1)
+	else if (strdigit(cmd[i]) == 1)
 	{
-		printf("exit\nminishell: exit: %s: %s\n", mini->tab[i], err);
+		printf("exit\nminishell: exit: %s: %s\n", cmd[i], err);
 		mini->ret_err = 255;
-		exit(255);
+		exit(mini->ret_err);
 	}
 }
 
 // la fonction sort de minishell ou redirige vers la verif des arguments
-void	exit_min(char **cmd)
+void	exit_min(t_min *mini, char **cmd)
 {
 	int	i;
 
@@ -125,7 +125,6 @@ void	exit_min(char **cmd)
 			exit(0);
 		}
 		else
-			printf("verif_argument\n");
-		// 	verif_arg_exit(mini, i);
+			verif_arg_exit(mini, i, cmd);
 	}
 }
