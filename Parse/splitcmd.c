@@ -43,65 +43,32 @@ char	**pre_split(char *line)
 }
 
 //  < a1 <  b2>   c3 ls | <"f6"  ls -la > g7>k8 | grep -v 'to | ta' >l9
-
 // transform the command from char** to t_cmd type
 t_cmd	*alloc_cmd(char **list)
 {
 	t_cmd	*resu;
 	int		i;
-	int		j;
-	int		k;
+	int		index[3];
 
 	resu = ft_malloc_resu(list);
 	i = 0;
-	j = 0;
+	index[0] = 0;
+	index[1] = 0;
+	index[2] = 0;
 	while (list[i])
 	{
 		if (list[i][0] == '<')
 		{
-			resu->stdin[j] = ft_strdup(list[i]);
-			resu->stdin[j + 1] = ft_strdup(list[i + 1]);
-			j = j + 2;
-			k = i;
-			while (list[k])
-			{
-				//free(list[k]);
-				list[k] = list[k + 2]; // put 2 null at the end of list ?
-				k++;
-			}
-			i--;
+			resu->stdin[index[0]++] = ft_strdup(list[i++]);
+			resu->stdin[index[0]++] = ft_strdup(list[i++]);
 		}
-		i++;
-	}
-	i = 0;
-	j = 0;
-	while (list[i])
-	{
-		if (list[i][0] == '>')
-		
+		else if (list[i][0] == '>')
 		{
-			resu->stdout[j] = ft_strdup(list[i]);
-			resu->stdout[j + 1] = ft_strdup(list[i + 1]);
-			j = j + 2;
-			k = i;
-			while (list[k])
-			{
-				//free(list[k]);
-				list[k] = list[k + 2]; // put 2 null at the end of list ?
-				k++;
-			}
-			i--;
+			resu->stdout[index[1]++] = ft_strdup(list[i++]);
+			resu->stdout[index[1]++] = ft_strdup(list[i++]);
 		}
-		i++;
-	}
-	i = 0;
-	j = 0;
-	while (list[i])
-	{
-		resu->cmd[j] = ft_strdup(list[i]);
-		resu->cmd[j + 1] = NULL;
-		i++;
-		j++;
+		else
+			resu->cmd[index[2]++] = ft_strdup(list[i++]);
 	}
 	return (resu);
 }

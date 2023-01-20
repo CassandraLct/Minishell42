@@ -53,11 +53,6 @@ void	printstruc2(t_cmd **cmd)
 		printf("no cmd\n");
 		return ;
 	}
-	if (!cmd[0])
-	{
-		printf("no cmd[0]\n");
-		return ;
-	}
 	if (!cmd[0]->stdin || !cmd[0]->stdout || !cmd[0]->cmd)
 	{
 		printf("struct empty\n");
