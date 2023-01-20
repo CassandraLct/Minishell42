@@ -52,12 +52,134 @@ Reste à faire:
 		*pb : fait 2 fois exit (parfois)
 
 /!\ Objectif 27/12 :
-	-> Faire les chevrons(utiliser dup), heredoc ;
+	-> Faire les chevrons(utiliser dup), heredoc;
 	-> Faire les pipes ();
-	-> gerer les cotes(niveau du split);
-	-> gerer le $?;
-	-> finir les signaux(voir la fonction signal);
+	-> gerer les cotes(niveau du split); fait 
+	-> gerer le $?, gestion du $;
+	-> finir les signaux(voir la fonction signal); fait
 	-> verifier les leaks;
 	-> voir pour changer l'environnement (OLDPWD absent au debut);
 
 /!\ Pour lundi mettre en commun les idees de gestion des pipes (cmd multiple)
+
+/!\ Fait aujourd'hui 09/01 (cassandra):
+	-> norminette
+	-> debut essai gestion des cotes :
+		*reussir a copier et split correctement sur les espaces et des qu'il y a des cotes
+		copier le contenu (sans split sur les espaces) et supprimer celle-ci lors de la copie
+		ex : 'echo' devient echo ; "Hello World" devient Hello World
+
+/!\ Mardi 10/01:
+	-> recoder strcmp; fait
+	-> voir la gestion des pipes; (schéma)
+
+/!\ Mercredi 11/01:
+	-> finir les signaux;
+		->ctrl c fait; ctrl \ fait; ctrl d segfault quand line vide
+
+/!\ Jeudi 12/01:
+	-> finir ctrl-d quand il doit exit
+		-> ne passe pas dans les fonctions signaux 
+		-> ctrl-d est un EOF ? utiliser tgets ?
+	-> Signaux fini! (a tester si fonctionne correctement avec heredoc)
+
+Raph :
+	-> gestion des cotes;
+	-> decoupage de la ligne par groupe puis par commande;
+
+si le $VAR est ente cotes ou double affiche la valeur de la var
+sinon affiche juste le nom
+pour le message d'erreur si dans le term ecrit ex: $COLORTERM
+-> bash: truecolor: command not found (for for "$COLORTERM")
+et '$COLORTERM' -> bash: $COLORTERM: command not found
+
+si pipe sans rien affiche une erreur
+si cmd pipe et rien le prog demande une deuxieme cmd
+ex :
+	bash-3.2$ cat test |
+	> echo bonjour
+	bonjour
+
+heredoc :
+bash-3.2$ cat << end
+> $PWD
+> END
+> end
+/Users/clecat/Desktop/Cursus/Minishell42
+END
+bash-3.2$ cat
+$PWD
+$PWD
+"$PWD"
+"$PWD"
+^C
+bash-3.2$
+
+/!\ a regler lundi : cd ~/Desktop ne va pas au dossier; Fait
+
+/!\Lundi 16/01:
+	-> finir cd ~; fait
+	-> faire fonction $; commencer seg fault pour la suite du parcours
+	-> fixe exit : minishell> $PWD
+				   minishell: $PWD: command not found
+				   minishell> exit
+				   exit
+				   minishell> exit
+				   exit
+
+/!\ Mardi 17/01:
+	-> finir fonction $ : fait
+
+pour demain:
+	-> faire le $?; condition faite FAITE
+	(faire fonction cette aprem et verifier qu'il y est les ret_err partout)
+	-> mettre a la norme; commencer
+	-> fix echo -n -n qui fait un -n basique FAIT
+	-> commencer a verifier les leaks (fait pour le $)
+
+/!\ Mercredi 18/01:
+	-> fix segfault de gestion $; Fait
+	-> $?; fait
+	-> debut norme; FAIT (sauf exec.c 2 fonctions + 25 lignes)
+	-> pas de leaks pour fonctions gestion dollar
+	-> verifier tout les ret_erreur; en cours
+	-> echo -n -n (-nnnnn -nnnnn aussi); Fait
+	-> a gerer : si unset PATH : Fait
+			bash-3.2$ unset PATH
+			bash-3.2$ ls
+			bash: ls: No such file or directory
+			bash-3.2$ $?
+			bash: 127: No such file or directory
+			bash-3.2$ env
+			bash: env: No such file or directory
+
+/!\demain : regler le soucis d'exit (du aux forks)
+*unset PWD : unset pwd mais la cmd pwd fonctionne | Fait
+	a gerer comme le bash ou faire gestion d'erreur
+
+/!\ Jeudi 19/01:
+	-> gerer le unset pwd; Fait
+	-> norme (parse splitline pas fait car sera changer); Fait
+	-> regler le soucis du exit avec les forks (voir avec Thomas); Fait
+	-> reverifier les retour erreur $?; Fait
+	-> leaks ; en cours
+
+ret_erreur : *export;Fait
+			*exit; Fait
+			*pwd; Fait
+			*echo; Pas de ret_err
+			*unset; Fait
+			*signaux; Fait
+			*cd; Fait (niveau de chdir)
+			*chevrons; Fait
+
+leaks : *echo : 0 leaks
+		*cmd execve ne leaks plus;
+		*export: 0 leaks
+		*cd : ~(2 leaks) regler; ~/Desktop(2 leaks) regler; built-in 0 leak; cd ./Buil-in 0 leaks; cd ../Libft42 0 leaks
+			././.././Libft42/ 0 leaks
+		$: $PWD fait 3 leaks (surement )
+
+-> si line est juste $PWD doit renvoyer bash: /Users/clecat/Desktop/Cursus: is a directory
+
+/!\ demain: finir les leaks, faire fonction de verif directory

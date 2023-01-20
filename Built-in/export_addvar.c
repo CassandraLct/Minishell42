@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:48:06 by clecat            #+#    #+#             */
-/*   Updated: 2022/12/26 15:53:09 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/19 17:18:12 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	**fill_cpy(t_min *mini, char **cpy, char *str)
 }
 
 //ajoute la variable dans export
-char	**add_valexp(t_min *mini, char *str)
+void	add_valexp(t_min *mini, char *str)
 {
 	char	**cpy;
 	char	**new_exp;
@@ -61,16 +61,14 @@ char	**add_valexp(t_min *mini, char *str)
 	i = tablen(cpy);
 	ft_remp(new_exp, i);
 	new_exp = order_exp(new_exp, cpy);
-	free_tab(mini->c_exp);
 	free_tab(cpy);
-	mini->c_exp = malloc(sizeof(char *) * (tablen(new_exp) + 1));
+	free_tab(mini->c_exp);
 	mini->c_exp = ft_cpytab(new_exp);
 	free_tab(new_exp);
-	return (mini->c_exp);
 }
 
 //ajoute une var sur la derniere ligne d'env
-char	**add_valenv(t_min *mini, char *str)
+void	add_valenv(t_min *mini, char *str)
 {
 	int		i;
 	char	**cpy;
@@ -90,5 +88,4 @@ char	**add_valenv(t_min *mini, char *str)
 	free_tab(mini->c_env);
 	mini->c_env = ft_cpytab(cpy);
 	free_tab(cpy);
-	return (mini->c_env);
 }

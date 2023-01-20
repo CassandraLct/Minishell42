@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
 /*   Updated: 2023/01/19 23:31:53 by rdi-marz         ###   ########.fr       */
@@ -35,6 +35,7 @@ typedef struct s_cmd
 
 typedef struct s_min
 {
+	t_cmd	**cmd;
 	char	**c_env;
 	char	**c_exp;
 	int		ret_err;
@@ -42,9 +43,11 @@ typedef struct s_min
 	char	**tab;
 	char	*prompt;
 	int		nb_passage_exp;
+	pid_t	pid;
+	char	*val_home;
 }	t_min;
 
-extern t_min	g_mini;
+t_min	g_mini;
 
 //18 fichiers
 //utils.c 5 fonctions
@@ -59,7 +62,6 @@ int		ft_strcmp(char *s1, char *s2);
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, int n);
 void	ft_putstr_fd(char *s, int fd);
-void	ft_putnbr_fd(int n, int fd);
 
 // utils3.c
 char	*ft_strtrim(char *s1, char *set);
@@ -87,11 +89,11 @@ int		tablen(char **s1);
 int		check_exp(char **s1, char **s2, int index);
 
 //export_addvar.c 3 fonctions
-char	**add_valexp(t_min *mini, char *str);
-char	**add_valenv(t_min *mini, char *str);
+void	add_valexp(t_min *mini, char *str);
+void	add_valenv(t_min *mini, char *str);
 
 //export_change_val 5 fonctions
-char	*recup_name(char *cmp, char *name_var);
+char	*recup_name(char *cmp);
 void	redir_changeval(t_min *mini, char *str);
 
 //echo.c 4 fonctions
@@ -143,31 +145,59 @@ char	*recup_pwd(char **str);
 char	*recup_oldpwd(char **str);
 void	cpy_value(char *name_var, char **str, char *new_val);
 
+//cd_tild.c 3 fonctions
+void	change_valtab(t_min *mini);
+char	*cd_tildpwd(char *str);
+void	change_valcdtild(t_min *mini);
+
 //exit_pwd.c 5 fonctions
 void	exit_min(t_min *mini);
 void	pwd(char **c_env);
 int		recup_new_pwd(char **str);
 void	change_val_pwdpath(t_min *mini, char **str);
 
-//init.c 3 fonctions
+//init.c 5 fonctions
 void	init_struct(t_min *mini, char **envp);
 void	init_export(t_min *mini);
 void	free_all(t_min mini);
+char	*recup_valhome(char	**c_env);
+void	aff_err(void);
 
 //unset.c 4 fonctions
 void	unset(t_min *mini);
 int		check_var(char *str);
 
-//exec.c 4 fonctions
+//exec.c 5 fonctions
 void	ft_exec(t_min *mini, char **all_path, char **cmd);
 void	ft_set_pathexec(t_min *mini);
 
-//lexer.c 2 fonctions
+//exec_utils 2 fonctions
+char	*recup_pathexec(t_min *mini);
+int		aff_errcmd(void);
+int		verif_cmd(char **all_path, char **cmd);
+
+//split_line1.c 2 fonctions
 char	**split_line(t_min mini);
+
+//lexer.c 2 fonctions
 void	redirection(t_min *mini);
+void	parcour_line(t_min *mini);
+
+//utils_dollar 
+char	*recup_endline(int i, char *line);
+char	*recup_startline(char *line);
+void	recup_dollarvar(int nb_dollar);
+void	rm_d_dollar(void);
+
+//dollar_var 5 fonction
+void	ft_dollar(char *str);
 
 //signaux.c
 void	signaux(void);
+void	signal_exit(void);
 void	rl_replace_line(const char *text, int clear_undo);
+
+//itoa (libft)
+char	*ft_itoa(int nb);
 
 #endif

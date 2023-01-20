@@ -6,7 +6,7 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 13:45:49 by clecat            #+#    #+#              #
-#    Updated: 2022/12/20 12:47:18 by clecat           ###   ########.fr        #
+#    Updated: 2023/01/12 13:20:01 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,23 +101,18 @@ chevron << : HEREDOC
 
 /!\ Comprendre ce qu'est le lexer et comment le faire 
 
-->chose possible a faire pour le moment :
-	*echo
-	*exit
-	*creer la variable $? -> code de retour de la derniere fonction
-	*pwd
-
-
 Chose a faire aujourd'hui:
 Si vous comptez Split vous allez devoir faire un split arrangé à votre sauce
 En gros un split qui ne splittera pas lorsque les espaces seront entre des quotes
 Par exemple
 Mais c'est un peu compliqué à faire dans un premier temps si  t'es plus habituée
-Pour ce qui est de mettre en place le reste du lexer, il faut que tu vois chacune des parties avant de les implémenter
+Pour ce qui est de mettre en place le reste du lexer, il faut que tu vois chacune
+des parties avant de les implémenter
 Mais si vous comptez Split tu peux déjà mettre en place la fonction de redirection
 Qui se basera sur le premier élément du split et regardera si c'est un des built-in (echo etc)
 
-Encore une fois c'est ton lexer qui permettra que ça soit le premier élément de la liste s'il n'était pas censé l'être avec la ligne que t'as envoyé
+Encore une fois c'est ton lexer qui permettra que ça soit le premier élément de la liste
+s'il n'était pas censé l'être avec la ligne que t'as envoyé
 Il faut aussi que vous sachiez comment gérer les pipés
 Pipes, enfin comment vous comptez faire
 Ya plusieurs options, c'est à vous de voir
@@ -126,8 +121,8 @@ Entraîne toi à créer un fichier
 Dup2 la sortie standard
 Et executer une fonction de base avec execve
 (Dup2 la sortie standard par le fichier en question )
-Normalement si tu sais faire ça tu réussiras à faire le reste, mais il faut voir quelle partie tu comptes coder
-cette partie sert pour "lexer" la partie chevron / pour les pipes
+Normalement si tu sais faire ça tu réussiras à faire le reste, mais il faut voir
+quelle partie tu comptes coder cette partie sert pour "lexer" la partie chevron / pour les pipes
 
 
 /*Test2*/

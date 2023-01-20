@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 18:24:15 by clecat            #+#    #+#             */
 /*   Updated: 2023/01/17 22:00:27 by rdi-marz         ###   ########.fr       */
@@ -103,19 +103,3 @@ char	**ft_split(char const *s, char c)
 	ft_assembleall(s, c, str);
 	return (str);
 }
-
-// int	main(void)
-// {
-// 	char	*line;
-// 	char	**tab;
-// 	int		x;
-
-// 	line = "minishell> cat file1";
-// 	x = 0;
-// 	tab = ft_split(line, ' ');
-// 	while (tab[x] != NULL)
-// 	{
-// 		printf("%s\n", tab[x]);
-// 		x++;
-// 	}
-// }

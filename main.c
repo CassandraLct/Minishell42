@@ -6,18 +6,12 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/19 16:14:22 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:28:31 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-// grep >test < Makefile "minishell" | cat test
-// commencer le lexer split la line et puis checker premier arg si c'est une 
-// commande
-
-t_min	g_mini;
-
-//probleme a regler: valeur modifier non remonter, probleme avec l'historique
+//grep >test < Makefile "minishell" | cat test
 //modifier le split de la line
 int	main(int argc, char **argv, char **envp)
 {
@@ -28,20 +22,16 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	init_struct(&g_mini, envp);
+	//signaux();
 	while (1)
 	{
 		g_mini.line = readline(g_mini.prompt);
+		if (g_mini.line == NULL)
+			signal_exit();
 		add_history(g_mini.line);
-	//	g_mini.tab = split_line(g_mini);
-		
-		tstspl = spliter();
-		printf("split the pipes OK\n");
-		if (tstspl)
-			instruc = spliter3(tstspl);
-		printstruc2(instruc);
-
-	//	redirection(&g_mini);
-	//	signaux();
+		parcour_line(&g_mini);
+		g_mini.tab = ft_split(g_mini.line, 32);
+		redirection(&g_mini);
 		free(g_mini.line);
 	//	free_tab(g_mini.tab);
 	}

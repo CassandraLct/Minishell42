@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:12:41 by clecat            #+#    #+#             */
 /*   Updated: 2023/01/17 21:57:49 by rdi-marz         ###   ########.fr       */
@@ -12,7 +12,7 @@
 
 #include "../minishell.h"
 
-//3 fonctions
+//4 fonctions
 int	ft_strcmp(char *s1, char *s2)
 {
 	size_t	i;
@@ -80,20 +80,3 @@ void	ft_putstr_fd(char *s, int fd)
 		i++;
 	}
 }
-// void	ft_putnbr_fd(int n, int fd)
-// {
-// 	unsigned int	i;
-// 	char			c;
-
-// 	if (n < 0)
-// 	{
-// 		write(fd, "-", 1);
-// 		i = (unsigned int)(-n);
-// 	}
-// 	else
-// 		i = (unsigned int)n;
-// 	if (i / 10 != 0)
-// 		ft_putnbr_fd((int)(i / 10), fd);
-// 	c = i % 10 + '0';
-// 	write(fd, &c, 1);
-// }

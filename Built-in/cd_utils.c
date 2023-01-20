@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 11:06:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/08 18:26:06 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/09 09:05:39 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ char	*join_var(char *str1, char *new_val)
 	int		i;
 	int		j;
 
-
 	j = 0;
 	cpy = malloc(sizeof(char) * (ft_strlen(new_val) + 1));
 	i = 0;
@@ -94,14 +93,10 @@ char	*join_var(char *str1, char *new_val)
 //modifie la valeur de oldpwd
 void	cpy_value(char *name_var, char **str, char *new_val)
 {
-//	char	*s1;
 	char	*ret;
 	int		i;
 
 	i = 0;
-//	s1 = ft_strdup(name_var);
-//	ret = join_var(s1, new_val);
-//	free(s1);
 	ret = join_var(name_var, new_val);
 	while (str[i])
 	{

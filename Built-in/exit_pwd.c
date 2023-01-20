@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_pwd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/09 18:21:07 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/19 11:50:39 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,17 @@ void	pwd(char **c_env)
 		}
 		i++;
 	}
+	if (i == tablen(c_env))
+	{
+		g_mini.ret_err = 127;
+		printf("minishell: %s: No such file or directory\n", g_mini.tab[0]);
+		return ;
+	}
 }
 
 /*verifie si les arguments d'exit sont valide ou non et si il y en a plus qu'un 
 et renvoie le code erreur approprié(bash)*/
-int	verif_arg_exit(t_min *mini, int i)
+void	verif_arg_exit(t_min *mini, int i)
 {
 	char	*err;
 
@@ -87,8 +93,9 @@ int	verif_arg_exit(t_min *mini, int i)
 	{
 		if (mini->tab[i + 1] == NULL)
 		{
-			printf("exit\n"); // à supprimer ?
-			exit(ft_atoi(mini->tab[i]) % 256);
+			printf("exit\n");
+			mini->ret_err = ft_atoi(mini->tab[i]) % 256;
+			exit(mini->ret_err);
 		}
 		else
 		{
@@ -99,9 +106,9 @@ int	verif_arg_exit(t_min *mini, int i)
 	else if (strdigit(mini->tab[i]) == 1)
 	{
 		printf("exit\nminishell: exit: %s: %s\n", mini->tab[i], err);
+		mini->ret_err = 255;
 		exit(255);
 	}
-	return (mini->ret_err);
 }
 
 // la fonction sort de minishell ou redirige vers la verif des arguments
@@ -117,10 +124,6 @@ void	exit_min(t_min *mini)
 			printf("exit\n"); // à supprimer ?
 			exit(0);
 		}
-//		while (mini->tab[i]) // pourquoi une boucle, on sort par le break
-//		{
-			mini->ret_err = verif_arg_exit(mini, i);
-//			break ;
-//		}
+		verif_arg_exit(mini, i);
 	}
 }

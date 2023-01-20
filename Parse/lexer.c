@@ -3,42 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/03 17:55:06 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/18 12:54:28 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//a finir (ne gere pas encore les cotes)
-//+25 lignes
-char	**split_line(t_min mini)
+//4 fonctions
+
+//faire une copie de la line avant ?
+void	parcour_line(t_min *mini)
 {
-//	char	c;
 	int		i;
-	int		j;
+	int		nb_dollar;
 
 	i = 0;
-	j = 0;
-	while (mini.line[i])
+	nb_dollar = 0;
+	rm_d_dollar();
+	while (mini->line[i])
 	{
-		if (mini.line[i] == 34 || mini.line[i] == 39)
-		{
-//			c = mini.line[i];
-			while (mini.line[i] != 34 || mini.line[i] != 39)
-			{
-				printf("gestion des cotes\n");
-				j++;
-				i++;
-			}
-		}
+		if (mini->line[i] == '$')
+			nb_dollar += 1;
 		i++;
 	}
-	if (j == 0)
-		mini.tab = ft_split(mini.line, ' ');
-	return (mini.tab);
+	recup_dollarvar(nb_dollar);
 }
 
 //built-in : cd/echo/env/exit/export/unset

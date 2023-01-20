@@ -3,34 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:05:50 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/09 18:25:57 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:29:45 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//1 fonctions
+//4 fonctions
+
+int	verif_path(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		if (ft_strncmp(tab[i], "PATH=", 5) == 0)
+			break ;
+		i++;
+	}
+	if (i == tablen(tab))
+		return (1);
+	return (0);
+}
+
 void	ft_env(t_min *mini)
 {
 	int	i;
 
 	i = 1;
+	if (verif_path(mini->c_env) == 1)
+	{
+		printf("minishell: %s: No such file or directory\n", mini->tab[0]);
+		mini->ret_err = 127;
+		return ;
+	}
 	if (mini->tab[i] != NULL)
 	{
 		printf("env: %s: No such file or directory\n", mini->tab[i]);
+		mini->ret_err = 127;
 		return ;
 	}
 	else
 	{
 		i = 0;
 		while (mini->c_env[i])
-		{
-			printf("%s\n", mini->c_env[i]);
-			i++;
-		}
+			printf("%s\n", mini->c_env[i++]);
 	}
 }
 
@@ -51,6 +72,7 @@ void	change_val(char **str, char *new_pwd, char *pwd, char *oldpwd)
 	str[i] = ft_strjoin("PWD=", new_pwd);
 }
 
+//ajoute le nom du dossier a la fin
 void	add_reponame(char **str, char *repo)
 {
 	char	*new_pwd;
@@ -79,18 +101,17 @@ void	add_reponame(char **str, char *repo)
 	free(new_pwd);
 }
 
+//cd et cd ~
 void	cd_noarg(t_min *mini)
 {
-	char	*str;
 	char	*pwd;
 	char	*oldpwd;
 
 	pwd = recup_pwd(mini->c_env);
 	oldpwd = recup_oldpwd(mini->c_env);
-	str = "/Users/clecat";
-	change_val(mini->c_env, str, pwd, oldpwd);
-	change_val(mini->c_exp, str, pwd, oldpwd);
-	chdir(str);
+	change_val(mini->c_env, mini->val_home, pwd, oldpwd);
+	change_val(mini->c_exp, mini->val_home, pwd, oldpwd);
+	chdir(mini->val_home);
 	free(pwd);
 	free(oldpwd);
 }

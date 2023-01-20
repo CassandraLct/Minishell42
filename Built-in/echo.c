@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:37:12 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/09 17:12:51 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:08:01 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ int	print_arg_opt(char **arg, int i)
 		return (0);
 	else if (arg[i + 1] != NULL)
 	{
-		i += 1;
+		if (check_arg_opt(arg[i + 1]) == 0)
+			i += 2;
+		else
+			i += 1;
 		while (arg[i] != NULL)
 		{
 			if (arg[i + 1] == NULL)

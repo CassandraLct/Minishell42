@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 13:55:50 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/09 17:12:56 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/18 10:17:29 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,17 @@ void	change_value_env(t_min *mini)
 	oldpwd = recup_oldpwd(mini->c_env);
 	if (mini->tab[1][0] == '/')
 		change_val(mini->c_env, mini->tab[1], pwd, oldpwd);
-	else if (ft_strcmp(mini->tab[1], ".") == 0 || ft_strcmp(mini->tab[1], "./") == 0)
+	else if (ft_strcmp(mini->tab[1], ".") == 0 || ft_strcmp(mini->tab[1], "./")
+		== 0)
 		change_value_oldpwd(mini->c_env, pwd, oldpwd);
 	else if (ft_strcmp(mini->tab[1], "..") == 0 || ft_strcmp(mini->tab[1],
-				"../") == 0)
+			"../") == 0)
 	{
 		change_value_pwd(mini->c_env);
 		change_value_oldpwd(mini->c_env, pwd, oldpwd);
 	}
 	else if ((ft_strcmp(mini->tab[1], "./") > 0 || ft_strcmp(mini->tab[1],
-					"../") > 0))
+				"../") > 0))
 	{
 		change_value_oldpwd(mini->c_env, pwd, oldpwd);
 		change_val_pwdpath(mini, mini->c_env);
@@ -103,15 +104,17 @@ void	change_value_exp(t_min *mini)
 	oldpwd = recup_oldpwd(mini->c_exp);
 	if (mini->tab[1][0] == '/')
 		change_val(mini->c_exp, mini->tab[1], pwd, oldpwd);
-	else if (ft_strcmp(mini->tab[1], ".") == 0 || ft_strcmp(mini->tab[1], "./") == 0)
+	else if (ft_strcmp(mini->tab[1], ".") == 0 || ft_strcmp(mini->tab[1], "./")
+		== 0)
 		change_value_oldpwd(mini->c_exp, pwd, oldpwd);
 	else if (ft_strcmp(mini->tab[1], "..") == 0 || ft_strcmp(mini->tab[1],
-				"../") == 0)
+			"../") == 0)
 	{
 		change_value_pwd(mini->c_exp);
 		change_value_oldpwd(mini->c_exp, pwd, oldpwd);
 	}
-	else if (ft_strcmp(mini->tab[1], "./") > 0 || ft_strcmp(mini->tab[1], "../") > 0)
+	else if (ft_strcmp(mini->tab[1], "./") > 0
+		|| ft_strcmp(mini->tab[1], "../") > 0)
 	{
 		change_value_oldpwd(mini->c_exp, pwd, oldpwd);
 		change_val_pwdpath(mini, mini->c_exp);
@@ -125,16 +128,10 @@ void	cd(t_min *mini)
 {
 	if (mini->tab[1] == NULL || (mini->tab[1][0] == '~' && mini->tab[1][1] == '\0'))
 		cd_noarg(mini);
+	else if (mini->tab[1][0] == '~')
+		change_valcdtild(mini);
 	else if (chdir(mini->tab[1]) == -1)
-	{
-		if (check_arg(mini->tab[1]) == 1)
-			printf("minishell: cd: %s: Not a directory\n", mini->tab[1]);
-		else
-		{
-			printf("minishell: cd: %s: ", mini->tab[1]);
-			printf("No such file or directory\n");
-		}
-	}
+		aff_err();
 	else
 	{
 		change_value_env(mini);

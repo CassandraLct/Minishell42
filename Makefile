@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+         #
+#    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
 #    Updated: 2023/01/19 23:31:38 by rdi-marz         ###   ########.fr        #
@@ -16,8 +16,10 @@ NAME	= minishell
 LIBPATH	= ~/.brew/Cellar/readline/8.2.1/lib/ 
 SRC		=	main.c \
 		exec.c \
+		exec_utils.c \
 		Built-in/cd.c \
 		Built-in/cd_utils.c \
+		Built-in/cd_tild.c \
 		Built-in/echo.c \
 		Built-in/env.c \
 		Built-in/exit_pwd.c \
@@ -28,7 +30,10 @@ SRC		=	main.c \
 		Built-in/unset.c \
 		Built-in/signaux.c \
 		Parse/init.c \
+		Parse/split_line1.c \
 		Parse/lexer.c \
+		Parse/dollar_var.c \
+		Parse/utils_dollar.c \
 		Parse/parse.c \
 		Parse/printstruc.c \
 		Parse/splitcmd_utils1.c \
@@ -37,6 +42,7 @@ SRC		=	main.c \
 		Parse/splitline_utils.c \
 		Parse/splitline.c \
 		Utils/ft_split.c \
+		Utils/ft_itoa.c \
 		Utils/utils.c \
 		Utils/utils2.c \
 		Utils/utils3.c

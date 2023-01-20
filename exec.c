@@ -6,12 +6,12 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:51:31 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/05 14:30:11 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/19 16:38:54 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+// 5 fonctions
 //recupere les paths possible
 static char	**recup_path(t_min *mini)
 {
@@ -21,30 +21,30 @@ static char	**recup_path(t_min *mini)
 
 	i = 0;
 	b_path = NULL;
-	while (mini->c_env[i])
-	{
-		if (ft_strncmp(mini->c_env[i], "PATH=", 5) == 0)
-		{
-			b_path = ft_strdup(mini->c_env[i] + 5);
-			break ;
-		}
-		i++;
-	}
-	i = 0;
+	b_path = recup_pathexec(mini);
 	if (b_path == NULL)
-		return (NULL);
-	all_path = ft_split(b_path, ':');
-	free(b_path);
+	{
+		all_path = NULL;
+		g_mini.ret_err = 127;
+	}
+	else
+	{
+		all_path = ft_split(b_path, ':');
+		free(b_path);
+	}
 	return (all_path);
 }
 
 //initialise le tableau
 static char	**init_cmd(char **tab, char **cmd)
 {
-	cmd = NULL;
-	cmd = init_cpy(tab, cmd);
+	char	*tmp;
+
 	cmd = ft_cpytab(tab);
-	cmd[0] = ft_strjoin("/", cmd[0]);
+	tmp = ft_strjoin("/", cmd[0]);
+	free(cmd[0]);
+	cmd[0] = ft_strdup(tmp);
+	free(tmp);
 	return (cmd);
 }
 
@@ -62,6 +62,7 @@ void	ft_execve(t_min *mini, char **all_path, char **cmd)
 		gd_path = ft_strjoin(all_path[i], cmd[0]);
 		if (access(gd_path, R_OK) == 0)
 		{
+			free(gd_path);
 			if (execve(gd_path, cmd, mini->c_env) == -1)
 			{
 				perror("Execve : ");
@@ -74,25 +75,33 @@ void	ft_execve(t_min *mini, char **all_path, char **cmd)
 		i++;
 	}
 	if (j == i)
-		printf("minishell: %s: command not found\n", mini->tab[0]);
+		aff_errcmd();
 }
 
 //test chaque path puis execute la cmd si existante
 void	ft_exec(t_min *mini, char **all_path, char **cmd)
 {
-	pid_t	pid;
-
-	pid = fork();
-	if (pid == -1)
+	if(verif_cmd(all_path, cmd) != 0)
 	{
-		perror("Fork failed");
-		exit(EXIT_FAILURE);
+		free_tab(all_path);
+		free_tab(cmd);
+		return;
 	}
-	else if (pid == 0)
-		ft_execve(mini, all_path, cmd);
 	else
-		waitpid(pid, &mini->ret_err, 0);
-	free(all_path);
+	{
+		mini->pid = fork();
+		if (mini->pid == -1)
+		{
+			perror("Fork failed");
+			exit(EXIT_FAILURE);
+		}
+		else if (mini->pid == 0)
+			ft_execve(mini, all_path, cmd);
+		else
+			waitpid(mini->pid, &mini->ret_err, 0);
+		free_tab(all_path);
+		free_tab(cmd);
+	}
 }
 
 //a gerer avec un fork pour empecher de sortir de minishell
@@ -104,5 +113,12 @@ void	ft_set_pathexec(t_min *mini)
 	cmd = NULL;
 	cmd = init_cmd(mini->tab, cmd);
 	all_path = recup_path(mini);
+	if (all_path == NULL)
+	{
+		mini->ret_err = 127;
+		printf("minishell: %s: No such file or directory\n", mini->tab[0]);
+		free_tab(cmd);
+		return ;
+	}
 	ft_exec(mini, all_path, cmd);
 }
