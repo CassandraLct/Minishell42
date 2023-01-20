@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
 /*   Updated: 2023/01/19 16:28:31 by clecat           ###   ########.fr       */
@@ -15,6 +15,10 @@
 //modifier le split de la line
 int	main(int argc, char **argv, char **envp)
 {
+	char	**tstspl;
+	t_cmd	**instruc;
+	
+	tstspl = NULL;
 	(void)argc;
 	(void)argv;
 	init_struct(&g_mini, envp);
@@ -29,7 +33,7 @@ int	main(int argc, char **argv, char **envp)
 		g_mini.tab = ft_split(g_mini.line, 32);
 		redirection(&g_mini);
 		free(g_mini.line);
-		free_tab(g_mini.tab);
+	//	free_tab(g_mini.tab);
 	}
 	free_all(g_mini);
 }

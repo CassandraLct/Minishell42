@@ -6,7 +6,7 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2023/01/19 12:05:52 by clecat           ###   ########.fr        #
+#    Updated: 2023/01/19 23:31:38 by rdi-marz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,10 +35,17 @@ SRC		=	main.c \
 		Parse/dollar_var.c \
 		Parse/utils_dollar.c \
 		Parse/parse.c \
+		Parse/printstruc.c \
+		Parse/splitcmd_utils1.c \
+		Parse/splitcmd_utils2.c \
+		Parse/splitcmd.c \
+		Parse/splitline_utils.c \
+		Parse/splitline.c \
 		Utils/ft_split.c \
 		Utils/ft_itoa.c \
 		Utils/utils.c \
-		Utils/utils2.c
+		Utils/utils2.c \
+		Utils/utils3.c
 
 OBJ		= $(SRC:.c=.o)
 

@@ -6,13 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:12:41 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/16 10:00:28 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/17 21:57:49 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//2 fonctions
+//4 fonctions
 int	ft_strcmp(char *s1, char *s2)
 {
 	size_t	i;
@@ -53,4 +53,30 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (sign * result);
+}
+
+void	ft_bzero(void *s, int n)
+{
+	int	i;
+
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char *)s)[i] = 0;
+		i++;
+	}
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i] != '\0')
+	{
+		write(fd, &(s[i]), 1);
+		i++;
+	}
 }
