@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/20 16:48:00 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/20 16:58:56 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # include <termios.h>
 
 //structure
-
 typedef struct s_cmd
 {
 	char	**cmd;
@@ -61,6 +60,11 @@ char	*ft_strdup(char *s);
 // utils2.c
 int		ft_strcmp(char *s1, char *s2);
 int		ft_atoi(const char *str);
+void	ft_bzero(void *s, int n);
+
+// utils3.c
+char	*ft_strtrim(char *s1, char *set);
+void	*ft_calloc(size_t count, size_t size);
 
 //ft_split.c (split libft)
 char	**ft_split(char const *s, char c);
@@ -99,6 +103,35 @@ void	free_tab(char **tab);
 char	**init_cpy(char **str, char **dest);
 char	**ft_cpytab(char **tab);
 char	**init_exp(char **tab);
+
+// printstruc.c
+void	printstruc(t_cmd *cmd);
+void	printstruc2(t_cmd **cmd);
+
+// splitcmd_utils1.c
+char	*remove_double_space(char *line);
+int		count_cmd(char *line);
+int		count_redir(char **list, char c);
+int		count_all_redir(char *temp);
+char	*ft_space_bracket(char *s);
+
+// splitcmd_utils2.c
+char	**ft_init_resu(char *line);
+void	ft_copy_inside_simple_cote(char **res, char *line, int *i, int *j);
+void	ft_copy_inside_double_cote(char **res, char *line, int *i, int *j);
+t_cmd	*ft_malloc_resu(char **list);
+
+//splitcmd.c
+t_cmd	**spliter3(char **inst);
+
+// splitline_utils.c
+int		iscotevalid(char *line);
+int		count_instruct(char *line);
+void	*ft_test(void *var, void *error);
+int		is_single_pipe(int j);
+
+//splitline.c 3 fonctions
+char	**spliter(void);
 
 //cd.c 5 fonctions
 void	cd(t_min *mini);

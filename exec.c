@@ -81,11 +81,11 @@ void	ft_execve(t_min *mini, char **all_path, char **cmd)
 //test chaque path puis execute la cmd si existante
 void	ft_exec(t_min *mini, char **all_path, char **cmd)
 {
-	if(verif_cmd(all_path, cmd) != 0)
+	if (verif_cmd(all_path, cmd) != 0)
 	{
 		free_tab(all_path);
 		free_tab(cmd);
-		return;
+		return ;
 	}
 	else
 	{

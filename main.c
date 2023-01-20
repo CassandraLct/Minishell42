@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/20 16:50:19 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/20 16:59:44 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 //modifier le split de la line
 int	main(int argc, char **argv, char **envp)
 {
+	char	**tstspl;
+//	t_cmd	**instruc;
+	
+	tstspl = NULL;
 	(void)argc;
 	(void)argv;
 	init_struct(&g_mini, envp);
