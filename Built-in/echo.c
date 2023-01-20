@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:37:12 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/20 17:34:31 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/20 18:11:25 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,28 +115,28 @@ int	check_opt(char **arg)
 }*/
 
 //verifie si echo a des arguments ou non
-void	echo(t_min *mini)
+void	echo(char **cmd)
 {
 	int	i;
 	int	j;
 
 	i = 1;
 	j = 0;
-	if (!mini->tab[1])
+	if (!cmd[1])
 	{
 		printf("\n");
 		return ;
 	}
-	else if (mini->tab[1][0] == '-')
-		check_opt(mini->tab);
+	else if (cmd[1][0] == '-')
+		check_opt(cmd);
 	else
 	{
-		while (mini->tab[i] && (mini->tab[i][j] >= 33 && mini->tab[i][j] <= 126))
+		while (cmd[i] && (cmd[i][j] >= 33 && cmd[i][j] <= 126))
 		{
-			if (mini->tab[i + 1] == NULL)
-				printf("%s\n", mini->tab[i]);
+			if (cmd[i + 1] == NULL)
+				printf("%s\n", cmd[i]);
 			else
-				printf("%s ", mini->tab[i]);
+				printf("%s ", cmd[i]);
 			i++;
 		}
 	}

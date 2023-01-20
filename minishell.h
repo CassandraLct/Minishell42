@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/20 17:50:10 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/20 18:43:36 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ void	*ft_calloc(size_t count, size_t size);
 char	**ft_split(char const *s, char c);
 
 //env.c 3 fonction
-void	ft_env(t_min *mini);
+void	ft_env(t_min *mini, char **cmd);
 void	change_val(char **str, char *new_pwd, char *pwd, char *oldpwd);
 void	add_reponame(char **str, char *repo);
 void	cd_noarg(t_min *mini);
 
 //export.c 5 fonctions
-void	export(t_min *mini);
+void	export(t_min *mini, char **cmd);
 char	**order_exp(char **s1, char **s2);
 int		verif_modif_var(char **str, char *cmp);
 
@@ -96,7 +96,7 @@ char	*recup_name(char *cmp);
 void	redir_changeval(t_min *mini, char *str);
 
 //echo.c 4 fonctions
-void	echo(t_min *mini);
+void	echo(char **cmd);
 
 //parse.c 4 fonctions
 void	free_tab(char **tab);
@@ -135,7 +135,7 @@ int		is_single_pipe(int j);
 char	**spliter(void);
 
 //cd.c 5 fonctions
-void	cd(t_min *mini);
+void	cd(t_min *mini, char **cmd);
 void	change_value_pwd(char **str);
 void	change_value_oldpwd(char **str, char *pwd, char *oldpwd);
 
@@ -151,8 +151,8 @@ char	*cd_tildpwd(char *str);
 void	change_valcdtild(t_min *mini);
 
 //exit_pwd.c 5 fonctions
-void	exit_min(char **cmd);
-void	pwd(char **c_env);
+void	exit_min(t_min *mini, char **cmd);
+void	pwd(char **c_env, char **cmd);
 int		recup_new_pwd(char **str);
 void	change_val_pwdpath(t_min *mini, char **str);
 
@@ -164,12 +164,12 @@ char	*recup_valhome(char	**c_env);
 void	aff_err(void);
 
 //unset.c 4 fonctions
-void	unset(t_min *mini);
+void	unset(t_min *mini, char **cmd);
 int		check_var(char *str);
 
 //exec.c 5 fonctions
 void	ft_exec(t_min *mini, char **all_path, char **cmd);
-void	ft_set_pathexec(t_min *mini);
+void	ft_set_pathexec(t_min *mini, char **cmd);
 
 //exec_utils 2 fonctions
 char	*recup_pathexec(t_min *mini);
@@ -180,8 +180,8 @@ int		verif_cmd(char **all_path, char **cmd);
 char	**split_line(t_min mini);
 
 //lexer.c 2 fonctions
-void	redir_pipe(t_cmd **cmd);
-void	redirection(t_cmd **cmd);
+void	redir_pipe(t_min *mini, t_cmd **cmd);
+void	redirection(t_min *mini, t_cmd **cmd);
 void	parcour_line(t_min *mini);
 
 //utils_dollar 

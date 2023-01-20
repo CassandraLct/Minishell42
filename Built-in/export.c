@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/19 17:43:18 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/20 18:38:34 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,18 +115,18 @@ char	**order_exp(char **c_exp, char **cmp)
 }
 
 //add new_var ou affiche export
-void	export(t_min *mini)
+void	export(t_min *mini, char **cmd)
 {
 	int	i;
 
 	i = 1;
-	if (mini->tab[1] == NULL)
+	if (cmd[1] == NULL)
 		print_export(mini->c_exp);
 	else
 	{
-		while (mini->tab[i] != NULL)
+		while (cmd[i] != NULL)
 		{
-			new_vars(mini, mini->tab[i], i);
+			new_vars(mini, cmd[i], i);
 			i++;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:05:50 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/18 16:29:45 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/20 18:17:53 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,20 @@ int	verif_path(char **tab)
 	return (0);
 }
 
-void	ft_env(t_min *mini)
+void	ft_env(t_min *mini, char **cmd)
 {
 	int	i;
 
 	i = 1;
 	if (verif_path(mini->c_env) == 1)
 	{
-		printf("minishell: %s: No such file or directory\n", mini->tab[0]);
+		printf("minishell: %s: No such file or directory\n", cmd[0]);
 		mini->ret_err = 127;
 		return ;
 	}
-	if (mini->tab[i] != NULL)
+	if (cmd[i] != NULL)
 	{
-		printf("env: %s: No such file or directory\n", mini->tab[i]);
+		printf("env: %s: No such file or directory\n", cmd[i]);
 		mini->ret_err = 127;
 		return ;
 	}

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 13:55:50 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/18 10:17:29 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/20 18:20:46 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,14 +124,14 @@ void	change_value_exp(t_min *mini)
 }
 
 //redirige vers les fonctions adéquates
-void	cd(t_min *mini)
+void	cd(t_min *mini, char **cmd)
 {
-	if (mini->tab[1] == NULL || (mini->tab[1][0] == '~'
-		&& mini->tab[1][1] == '\0'))
+	if (cmd[1] == NULL || (cmd[1][0] == '~'
+		&& cmd[1][1] == '\0'))
 		cd_noarg(mini);
-	else if (mini->tab[1][0] == '~')
+	else if (cmd[1][0] == '~')
 		change_valcdtild(mini);
-	else if (chdir(mini->tab[1]) == -1)
+	else if (chdir(cmd[1]) == -1)
 		aff_err();
 	else
 	{
