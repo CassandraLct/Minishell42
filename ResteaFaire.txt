@@ -190,10 +190,19 @@ leaks : *echo : 0 leaks
 /!\ Samedi 21/01:
 	-> regler le soucis de la fonction $;
 	-> changer les dernier built-in avec la structure cmd; Fait
-	-> faire la norme;
-	-> faire fonction de verification dossier; (pour redirection et )
+	-> faire la norme; commencer
+	-> faire fonction de verification dossier; (pour redirection et $PWD)
+	-> organiser le .h; Fait
+	-> faire fonction free de struct_cmd; Fait
+		* cd Desktop/Cursus/ segfault (segfault regler)
 
-	* cd Desktop/Cursus/ segfault (segfault regler)
+norme : *export_change_val.c : 2 fonctions +25lignes
+		*gestion_dollar.c : 1 fonction +25lignes
+
+demain : 
+	*finir le $;
+	*faire la norme;
+	*verifier les leaks;
 
 reste a faire lundi :
 	*gerer les multi_pipes;

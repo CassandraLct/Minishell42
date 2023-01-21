@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitcmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/19 23:36:47 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/21 19:43:19 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_cmd	*split_inst(char *temp)
 
 	resu = NULL;
 	i = ft_strlen(temp) + 1;
-	//tmpclean = ft_test(ft_calloc(i, sizeof(*tmpclean)), NULL);
+	tmpclean = ft_test(ft_calloc(i, sizeof(*tmpclean)), NULL);
 	tmpclean = remove_double_space(temp);
 	list = pre_split(tmpclean);
 	free(tmpclean);
@@ -111,22 +111,14 @@ t_cmd	**spliter3(char **inst)
 		temp[i] = ft_strtrim(inst[i], " ");
 		free(inst[i]);
 		tempclean[i] = ft_space_bracket(temp[i]);
-		printf("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ cut 1 ++++++\n");
-		system("leaks minishell");
 		free(temp[i]);
 		resu[i] = split_inst(tempclean[i]);
-		printf("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ cut 2 ++++++\n");
-		system("leaks minishell");
 		free(tempclean[i]);
 		i++;
-		printf("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ cut 3 ++++++\n");
-		system("leaks minishell");
 	}
 	free(temp);
 	free(tempclean);
 	free(inst);
 	resu[i] = NULL;
-	printf("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ cut 4 ++++++\n");
-	system("leaks minishell");
 	return (resu);
 }

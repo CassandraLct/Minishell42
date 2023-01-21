@@ -6,13 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:04:33 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/21 11:17:11 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/21 17:51:03 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//2 fonctions
+//3 fonctions
 //recupe path pour fonction recup_path
 char	*recup_pathexec(t_min *mini)
 {
@@ -68,13 +68,13 @@ int	aff_errcmd(char **cmd)
 	int	i;
 
 	i = 0;
-	while(cmd[0][i])
+	while (cmd[0][i])
 	{
-		if(cmd[0][i] == '/')
+		if (cmd[0][i] == '/')
 		{
 			g_mini.ret_err = 127;
 			printf("minishell: %s: No such file or directory\n", cmd[0]);
-			return (1);
+			return (-1);
 		}
 		i++;
 	}

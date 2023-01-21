@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/21 12:33:12 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/21 19:41:36 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,19 +115,20 @@ int		check_var(char *str);
 
 /*------------------------PARSE-------------------------------------------*/
 
-//brouillon.c
-char	*redir_gestdollar(int nb_dollar, t_min *mini);
-char	*recup_dollarvar(char *line);
+//gestion_dollar.c 4 fonctions
+char	*change_line(char *line, int nb_dollar);
+char	*rm_multispace(char *line, char *new_line);
+
+//gestion_dollar_utils.c 5 fonctions
+int		verif_dollarcase(char *line);
+int		verif_var(char *name_var);
+char	*recup_namevar(char *line);
 char	*rm_d_dollar(char *tmp);
+int		count_nbdollar(char *line);
 
-//dollar_var 5 fonction
-// void	ft_dollar(char *str);
-
-//dollar_utils.c 
-char	*recup_endline(int i, char *line);
+//gestion_dollar_line.c
 char	*recup_startline(char *line);
-// void	recup_dollarvar(int nb_dollar);
-// void	rm_d_dollar(void);
+char	*recup_endline(int i, char *line);
 
 //init.c 5 fonctions
 void	init_struct(t_min *mini, char **envp);
@@ -166,7 +167,7 @@ char	**ft_init_resu(char *line);
 void	ft_copy_inside_simple_cote(char **res, char *line, int *i, int *j);
 void	ft_copy_inside_double_cote(char **res, char *line, int *i, int *j);
 t_cmd	*ft_malloc_resu(char **list);
-void	free_t_cmd(void);
+void	free_t_cmd(t_cmd **cmd);
 
 //splitline.c 3 fonctions
 char	**spliter(void);

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/21 12:00:20 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/21 12:57:39 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,18 @@ t_cmd	*ft_malloc_resu(char **list)
 }
 
 // free the t_cmd struct after each line
-// void	free_t_cmd(void)
-// {
-// 	int	i;
+void	free_t_cmd(t_cmd **cmd)
+{
+	int	i;
 
-// 	i = 0;
-// }
+	i = 0;
+	while (cmd[i])
+	{
+		free_tab(cmd[i]->cmd);
+		free_tab(cmd[i]->stdin);
+		free_tab(cmd[i]->stdout);
+		free(cmd[i]);
+		i++;
+	}
+	free(cmd);
+}
