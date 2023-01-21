@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/20 18:29:35 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/21 10:49:55 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 //5 fonctions
 
-void	change_val_pwdpath(t_min *mini, char **str)
+void	change_val_pwdpath(char **str, char **cmd)
 {
 	char	**path;
 	int		i;
 
 	i = 0;
-	path = ft_split(mini->tab[1], '/');
+	path = ft_split(cmd[1], '/');
 	while (path[i])
 	{
 		if (ft_strcmp(path[i], "..") == 0)

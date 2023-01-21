@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/20 18:44:46 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/21 10:32:58 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ void	redirection(t_min *mini, t_cmd **cmd)
 		echo(cmd[0]->cmd);
 	else if (ft_strcmp(cmd[0]->cmd[0], "env") == 0)
 	 	ft_env(mini, cmd[0]->cmd);
-	else if (ft_strcmp(cmd[0]->cmd[0], "cd") == 0) //commencer
+	else if (ft_strcmp(cmd[0]->cmd[0], "cd") == 0)
 		cd(mini, cmd[0]->cmd);
-	else if (ft_strcmp(cmd[0]->cmd[0], "export") == 0) //commencer
+	else if (ft_strcmp(cmd[0]->cmd[0], "export") == 0)
 		export(mini, cmd[0]->cmd);
-	else if (ft_strcmp(cmd[0]->cmd[0], "unset") == 0) //commencer
+	else if (ft_strcmp(cmd[0]->cmd[0], "unset") == 0)
 		unset(mini, cmd[0]->cmd);
 	else if (ft_strcmp(cmd[0]->cmd[0], "pwd") == 0)
 		pwd(mini->c_env, cmd[0]->cmd);

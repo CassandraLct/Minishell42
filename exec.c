@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:51:31 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/20 18:44:35 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/21 10:38:31 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,20 @@ static char	**recup_path(t_min *mini)
 }
 
 //initialise le tableau
-static char	**init_cmd(char **tab, char **cmd)
+static char	**init_cmd(char **cmd, char **pathcmd)
 {
 	char	*tmp;
 
-	cmd = ft_cpytab(tab);
-	tmp = ft_strjoin("/", cmd[0]);
-	free(cmd[0]);
-	cmd[0] = ft_strdup(tmp);
+	pathcmd = ft_cpytab(cmd);
+	tmp = ft_strjoin("/", pathcmd[0]);
+	free(pathcmd[0]);
+	pathcmd[0] = ft_strdup(tmp);
 	free(tmp);
-	return (cmd);
+	return (pathcmd);
 }
 
 //execute la cmd donner
-void	ft_execve(t_min *mini, char **all_path, char **cmd)
+void	ft_execve(t_min *mini, char **all_path, char **pathcmd, char **cmd)
 {
 	char	*gd_path;
 	int		i;
@@ -59,11 +59,11 @@ void	ft_execve(t_min *mini, char **all_path, char **cmd)
 	j = 0;
 	while (all_path[i])
 	{
-		gd_path = ft_strjoin(all_path[i], cmd[0]);
+		gd_path = ft_strjoin(all_path[i], pathcmd[0]);
 		if (access(gd_path, R_OK) == 0)
 		{
 			free(gd_path);
-			if (execve(gd_path, cmd, mini->c_env) == -1)
+			if (execve(gd_path, pathcmd, mini->c_env) == -1)
 			{
 				perror("Execve : ");
 				exit(EXIT_FAILURE);
@@ -75,16 +75,16 @@ void	ft_execve(t_min *mini, char **all_path, char **cmd)
 		i++;
 	}
 	if (j == i)
-		aff_errcmd();
+		aff_errcmd(cmd);
 }
 
 //test chaque path puis execute la cmd si existante
-void	ft_exec(t_min *mini, char **all_path, char **cmd)
+void	ft_exec(t_min *mini, char **all_path, char **pathcmd, char **cmd)
 {
-	if (verif_cmd(all_path, cmd) != 0)
+	if (verif_cmd(all_path, pathcmd, cmd) != 0)
 	{
 		free_tab(all_path);
-		free_tab(cmd);
+		free_tab(pathcmd);
 		return ;
 	}
 	else
@@ -96,11 +96,11 @@ void	ft_exec(t_min *mini, char **all_path, char **cmd)
 			exit(EXIT_FAILURE);
 		}
 		else if (mini->pid == 0)
-			ft_execve(mini, all_path, cmd);
+			ft_execve(mini, all_path, pathcmd, cmd);
 		else
 			waitpid(mini->pid, &mini->ret_err, 0);
 		free_tab(all_path);
-		free_tab(cmd);
+		free_tab(pathcmd);
 	}
 }
 
@@ -120,5 +120,5 @@ void	ft_set_pathexec(t_min *mini, char **cmd)
 		free_tab(pathcmd);
 		return ;
 	}
-	ft_exec(mini, all_path, pathcmd);
+	ft_exec(mini, all_path, pathcmd, cmd);
 }

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:04:33 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/19 16:30:41 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/21 11:17:11 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*recup_pathexec(t_min *mini)
 	return (tmp);
 }
 
-int	verif_cmd(char **all_path, char **cmd)
+int	verif_cmd(char **all_path, char **pathcmd, char **cmd)
 {
 	char	*gd_path;
 	int		i;
@@ -43,7 +43,7 @@ int	verif_cmd(char **all_path, char **cmd)
 	j = 0;
 	while (all_path[i])
 	{
-		gd_path = ft_strjoin(all_path[i], cmd[0]);
+		gd_path = ft_strjoin(all_path[i], pathcmd[0]);
 		if (access(gd_path, R_OK) == 0)
 		{
 			free(gd_path);
@@ -55,13 +55,30 @@ int	verif_cmd(char **all_path, char **cmd)
 		i++;
 	}
 	if (j == i)
-		return (aff_errcmd());
+		return (aff_errcmd(cmd));
 	return (0);
 }
 
-int	aff_errcmd(void)
+// bash-3.2$ cd./../
+// bash: cd./../: No such file or directory
+// bash-3.2$ bonjour
+// bash: bonjour: command not found
+int	aff_errcmd(char **cmd)
 {
+	int	i;
+
+	i = 0;
+	while(cmd[0][i])
+	{
+		if(cmd[0][i] == '/')
+		{
+			g_mini.ret_err = 127;
+			printf("minishell: %s: No such file or directory\n", cmd[0]);
+			return (1);
+		}
+		i++;
+	}
 	g_mini.ret_err = 127;
-	printf("minishell: %s: command not found\n", g_mini.tab[0]);
+	printf("minishell: %s: command not found\n", cmd[0]);
 	return (-1);
 }

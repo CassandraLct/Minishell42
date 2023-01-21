@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/20 18:41:00 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/21 10:29:28 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,47 @@
 
 //bash-3.2$ unset bonjour=
 //bash: unset: `bonjour=': not a valid identifier
-char	**unset_var(char **tab, char *str)
+char	**unset_var(char **tab_cmd, char *str)
 {
 	char	**cpy;
 	int		i;
 
 	i = 0;
-	cpy = malloc(sizeof(char *) * (tablen(tab)));
-	while (tab[i])
+	cpy = malloc(sizeof(char *) * (tablen(tab_cmd)));
+	while (tab_cmd[i])
 	{
-		if (ft_strncmp(tab[i], str, ft_strlen(str)) == 0)
+		if (ft_strncmp(tab_cmd[i], str, ft_strlen(str)) == 0)
 		{
-			while (i < tablen(tab) && tab[i + 1])
+			while (i < tablen(tab_cmd) && tab_cmd[i + 1])
 			{
-				cpy[i] = ft_strdup(tab[i + 1]);
+				cpy[i] = ft_strdup(tab_cmd[i + 1]);
 				i++;
 			}
 			cpy[i] = NULL;
-			free_tab(tab);
-			tab = ft_cpytab(cpy);
-			tab[i] = NULL;
+			free_tab(tab_cmd);
+			tab_cmd = ft_cpytab(cpy);
+			tab_cmd[i] = NULL;
 			free_tab(cpy);
-			return (tab);
+			return (tab_cmd);
 		}
-		cpy[i] = ft_strdup(tab[i]);
+		cpy[i] = ft_strdup(tab_cmd[i]);
 		i++;
 	}
-	return (tab);
+	return (tab_cmd);
 }
 
 // verifie si argument present ou non dans env
-void	unset_verif_var(t_min *mini, int y)
+void	unset_verif_var(t_min *mini, int y, char **cmd)
 {
 	int	i;
 
 	i = 0;
 	while (mini->c_env[i])
 	{
-		if (ft_strncmp(mini->c_env[i], mini->tab[y], ft_strlen(mini->tab[y]))
+		if (ft_strncmp(mini->c_env[i], cmd[y], ft_strlen(cmd[y]))
 			== 0)
 		{
-			mini->c_env = unset_var(mini->c_env, mini->tab[y]);
+			mini->c_env = unset_var(mini->c_env, cmd[y]);
 			break ;
 		}
 		i++;
@@ -62,10 +62,10 @@ void	unset_verif_var(t_min *mini, int y)
 	i = 0;
 	while (mini->c_exp[i])
 	{
-		if (ft_strncmp(mini->c_exp[i], mini->tab[y], ft_strlen(mini->tab[y]))
+		if (ft_strncmp(mini->c_exp[i], cmd[y], ft_strlen(cmd[y]))
 			== 0)
 		{
-			mini->c_exp = unset_var(mini->c_exp, mini->tab[y]);
+			mini->c_exp = unset_var(mini->c_exp, cmd[y]);
 			break ;
 		}
 		i++;
@@ -102,7 +102,7 @@ void	unset(t_min *mini, char **cmd)
 	while (cmd[i])
 	{
 		if (check_var(cmd[i]) == 0)
-			unset_verif_var(mini, i); //passer en param le cmd
+			unset_verif_var(mini, i, cmd);
 		else
 		{
 			printf("minishell: unset: `%s':", cmd[1]);

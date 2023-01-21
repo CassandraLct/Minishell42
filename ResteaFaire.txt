@@ -184,7 +184,17 @@ leaks : *echo : 0 leaks
 
 /!\ demain: finir les leaks, faire fonction de verif directory
 
-/!\ Vendredi 20/12:
+/!\ Vendredi 20/01:
 	->soucis de segfault su cd$bonjour$$$HOME regler;
-	->
-	->
+
+/!\ Samedi 21/01:
+	-> regler le soucis de la fonction $;
+	-> changer les dernier built-in avec la structure cmd; Fait
+	-> faire la norme;
+	-> faire fonction de verification dossier; (pour redirection et )
+
+	* cd Desktop/Cursus/ segfault (segfault regler)
+
+reste a faire lundi :
+	*gerer les multi_pipes;
+	*faire les redirections;

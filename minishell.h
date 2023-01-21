@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/20 18:43:36 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/21 10:50:00 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,35 +145,35 @@ char	*recup_oldpwd(char **str);
 void	cpy_value(char *name_var, char **str, char *new_val);
 
 //cd_tild.c 3 fonctions
-void	change_valtab(t_min *mini);
+void	change_valtab(t_min *mini, char **cmd);
 char	*cd_tildpwd(char *str);
-void	change_valcdtild(t_min *mini);
+void	change_valcdtild(t_min *mini, char **cmd);
 
 //exit_pwd.c 5 fonctions
 void	exit_min(t_min *mini, char **cmd);
 void	pwd(char **c_env, char **cmd);
 int		recup_new_pwd(char **str);
-void	change_val_pwdpath(t_min *mini, char **str);
+void	change_val_pwdpath(char **str, char **cmd);
 
 //init.c 5 fonctions
 void	init_struct(t_min *mini, char **envp);
 void	init_export(t_min *mini);
 void	free_all(t_min mini);
 char	*recup_valhome(char	**c_env);
-void	aff_err(void);
+void	aff_err(char **cmd);
 
 //unset.c 4 fonctions
 void	unset(t_min *mini, char **cmd);
 int		check_var(char *str);
 
 //exec.c 5 fonctions
-void	ft_exec(t_min *mini, char **all_path, char **cmd);
+void	ft_exec(t_min *mini, char **all_path, char **pathcmd, char **cmd);
 void	ft_set_pathexec(t_min *mini, char **cmd);
 
 //exec_utils 2 fonctions
 char	*recup_pathexec(t_min *mini);
-int		aff_errcmd(void);
-int		verif_cmd(char **all_path, char **cmd);
+int		aff_errcmd(char **cmd);
+int		verif_cmd(char **all_path, char **pathcmd, char **cmd);
 
 //split_line1.c 2 fonctions
 char	**split_line(t_min mini);

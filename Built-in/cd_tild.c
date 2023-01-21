@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 09:59:22 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/19 13:27:20 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/21 10:14:08 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ char	*cd_tildpwd(char *str)
 	return (tmp);
 }
 
-void	change_valtab(t_min *mini)
+void	change_valtab(t_min *mini, char **cmd)
 {
 	char	*tmp;
 
-	tmp = cd_tildpwd(mini->tab[1]);
-	free(mini->tab[1]);
-	mini->tab[1] = ft_strjoin(g_mini.val_home, tmp);
+	tmp = cd_tildpwd(cmd[1]);
+	free(cmd[1]);
+	cmd[1] = ft_strjoin(mini->val_home, tmp);
 	free(tmp);
 }
 
@@ -62,25 +62,25 @@ void	cd_tildrepo(char **str, char *tab)
 	str[i] = ft_strjoin("PWD=", tab);
 }
 
-void	change_valcdtild(t_min *mini)
+void	change_valcdtild(t_min *mini, char **cmd)
 {
 	char	*pwd;
 	char	*oldpwd;
 
 	pwd = recup_pwd(mini->c_env);
 	oldpwd = recup_oldpwd(mini->c_env);
-	if (ft_strcmp(mini->tab[1], "~/") > 0)
+	if (ft_strcmp(cmd[1], "~/") > 0)
 	{
-		change_valtab(mini);
-		if (chdir(mini->tab[1]) == -1)
-			aff_err();
+		change_valtab(mini, cmd);
+		if (chdir(cmd[1]) == -1)
+			aff_err(cmd);
 		else
 		{
 			change_value_oldpwd(mini->c_env, pwd, oldpwd);
 			change_value_oldpwd(mini->c_exp, pwd, oldpwd);
-			cd_tildrepo(mini->c_env, mini->tab[1]);
-			cd_tildrepo(mini->c_exp, mini->tab[1]);
-			chdir(mini->tab[1]);
+			cd_tildrepo(mini->c_env, cmd[1]);
+			cd_tildrepo(mini->c_exp, cmd[1]);
+			chdir(cmd[1]);
 		}
 	}
 	else

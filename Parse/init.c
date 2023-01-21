@@ -6,19 +6,19 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:36:33 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/19 16:01:03 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/21 10:06:06 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	aff_err(void)
+void	aff_err(char **cmd) // a changer avec cmd
 {
-	if (check_arg(g_mini.tab[1]) == 1)
-		printf("minishell: cd: %s: Not a directory\n", g_mini.tab[1]);
+	if (check_arg(cmd[1]) == 1)
+		printf("minishell: cd: %s: Not a directory\n", cmd[1]);
 	else
 	{
-		printf("minishell: cd: %s: ", g_mini.tab[1]);
+		printf("minishell: cd: %s: ", cmd[1]);
 		printf("No such file or directory\n");
 	}
 	g_mini.ret_err = 1;
