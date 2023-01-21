@@ -6,13 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 13:51:02 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/21 19:20:58 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/21 19:51:35 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//4 fonctions
+//5 fonctions
 //change le $?
 char	*var_reterr(char *line)
 {

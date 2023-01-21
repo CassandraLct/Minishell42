@@ -6,13 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:31:40 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/21 19:42:40 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/21 19:51:22 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//2 fonctions
+//4 fonctions
 //recupere le debut de la ligne
 char	*recup_startline(char *line)
 {

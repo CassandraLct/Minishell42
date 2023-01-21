@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/21 19:41:36 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/21 19:52:18 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int		check_var(char *str);
 
 /*------------------------PARSE-------------------------------------------*/
 
-//gestion_dollar.c 4 fonctions
+//gestion_dollar.c 5 fonctions
 char	*change_line(char *line, int nb_dollar);
 char	*rm_multispace(char *line, char *new_line);
 
@@ -126,7 +126,7 @@ char	*recup_namevar(char *line);
 char	*rm_d_dollar(char *tmp);
 int		count_nbdollar(char *line);
 
-//gestion_dollar_line.c
+//gestion_dollar_line.c 4 fonctions
 char	*recup_startline(char *line);
 char	*recup_endline(int i, char *line);
 
