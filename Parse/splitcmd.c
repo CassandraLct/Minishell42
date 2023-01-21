@@ -82,10 +82,15 @@ t_cmd	*split_inst(char *temp)
 
 	resu = NULL;
 	i = ft_strlen(temp) + 1;
-	tmpclean = ft_test(ft_calloc(i, sizeof(*tmpclean)), NULL);
+	//tmpclean = ft_test(ft_calloc(i, sizeof(*tmpclean)), NULL);
 	tmpclean = remove_double_space(temp);
 	list = pre_split(tmpclean);
+	free(tmpclean);
 	resu = alloc_cmd(list);
+	i = 0;
+	while (list[i])
+		free(list[i++]);
+	free(list);
 	return (resu);
 }
 
@@ -104,12 +109,24 @@ t_cmd	**spliter3(char **inst)
 	while (inst[i])
 	{
 		temp[i] = ft_strtrim(inst[i], " ");
+		free(inst[i]);
 		tempclean[i] = ft_space_bracket(temp[i]);
+		printf("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ cut 1 ++++++\n");
+		system("leaks minishell");
+		free(temp[i]);
 		resu[i] = split_inst(tempclean[i]);
+		printf("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ cut 2 ++++++\n");
+		system("leaks minishell");
+		free(tempclean[i]);
 		i++;
+		printf("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ cut 3 ++++++\n");
+		system("leaks minishell");
 	}
-	temp[i] = NULL;
-	tempclean[i] = NULL;
+	free(temp);
+	free(tempclean);
+	free(inst);
 	resu[i] = NULL;
+	printf("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ cut 4 ++++++\n");
+	system("leaks minishell");
 	return (resu);
 }
