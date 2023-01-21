@@ -6,12 +6,14 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:15:41 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/18 11:35:54 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/21 12:24:43 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+//split_line1.c 2 fonctions makefile
+//char	**split_line(t_min mini);
 //fonction essaie
 char	**gestion_cotes(t_min mini)
 {

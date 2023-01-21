@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:05:50 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/20 18:17:53 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/21 12:13:51 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,19 +99,4 @@ void	add_reponame(char **str, char *repo)
 		free(all_addup);
 	}
 	free(new_pwd);
-}
-
-//cd et cd ~
-void	cd_noarg(t_min *mini)
-{
-	char	*pwd;
-	char	*oldpwd;
-
-	pwd = recup_pwd(mini->c_env);
-	oldpwd = recup_oldpwd(mini->c_env);
-	change_val(mini->c_env, mini->val_home, pwd, oldpwd);
-	change_val(mini->c_exp, mini->val_home, pwd, oldpwd);
-	chdir(mini->val_home);
-	free(pwd);
-	free(oldpwd);
 }

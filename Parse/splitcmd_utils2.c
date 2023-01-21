@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitcmd_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/19 23:29:43 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/21 12:00:20 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,9 @@ t_cmd	*ft_malloc_resu(char **list)
 }
 
 // free the t_cmd struct after each line
-void	free_t_cmd(void)
-{
-	int	i;
+// void	free_t_cmd(void)
+// {
+// 	int	i;
 
-}
+// 	i = 0;
+// }
