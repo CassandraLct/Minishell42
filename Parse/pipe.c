@@ -92,28 +92,30 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 	return (pp[1]);
 }
 
-void	ft_child(int *pp)
+void	ft_child(int *pp, int i)
 {
-	int	fdin;
+//	int	fdin;
 
-	fdin = open(pp->filein, O_RDONLY);
-	if (pp->fdin == -1)
-	{
-		perror(pp->filein);
-		return ;
-	}
-	pp->cmdpath[0] = ft_findcmdpath(pp->path, pp->cmdarg[0][0]);
-	dup2(pp->fdin, 0);
-	dup2(pp->pip[1], 1);
-	close(pp->pip[0]);
-	close(pp->pip[1]);
-	close(pp->fdin);
-	if (pp->cmdpath[0] != NULL)
-	{
-		if (execve(pp->cmdpath[0], pp->cmdarg[0], envp) == -1)
-			ft_freeallexit(pp, 127);
-	}
-	ft_freeallexit(pp, 127);
+	(void)pp;
+	(void)i;
+//	fdin = open(pp->filein, O_RDONLY);
+//	if (pp->fdin == -1)
+//	{
+//		perror(pp->filein);
+//		return ;
+//	}
+//	pp->cmdpath[0] = ft_findcmdpath(pp->path, pp->cmdarg[0][0]);
+//	dup2(pp->fdin, 0);
+//	dup2(pp->pip[1], 1);
+//	close(pp->pip[0]);
+//	close(pp->pip[1]);
+//	close(pp->fdin);
+//	if (pp->cmdpath[0] != NULL)
+//	{
+//		if (execve(pp->cmdpath[0], pp->cmdarg[0], envp) == -1)
+//			ft_freeallexit(pp, 127);
+//	}
+//	ft_freeallexit(pp, 127);
 }
 
 /*
@@ -133,14 +135,25 @@ void	ft_pipe(t_cmd **cmd, int i, int fdin, int fdout)
 int	piping(void)
 {
 	int	i;
+	int	nbcmd;
 //	int	ppin;
 //	int	ppout;
 	int	pid;
-	int	pp[2];
+	int	**pp;
 
-	i = 0;
 	if (!g_mini.struct_cmd)
 		exit (66);
+	nbcmd = 0;
+	i = 0;
+	while (g_mini.struct_cmd[i]->cmd[0] != NULL) // bug ici avec i
+		nbcmd++;
+	pp = ft_calloc(nbcmd + 1, sizeof(*pp));
+	i = 0;
+	while (i < nbcmd)
+	{
+		pp[i] = ft_calloc(2, sizeof(int));
+	}
+	i = 0;
 	while (g_mini.struct_cmd[i])
 	{
 		if (!g_mini.struct_cmd[i + 1])
@@ -152,12 +165,18 @@ int	piping(void)
 			//ppin = ft_redir_in(g_mini.struct_cmd, i);
 			//ppout = ft_redir_out(g_mini.struct_cmd, i);
 			//ft_pipe(g_mini.struct_cmd, i, ppin, ppout);
-			pipe(pp);
+			pipe(pp[i]);
 			pid = fork();
 			if (pid == -1)
 				exit (127);
 			if (pid == 0)
-				ft_child(pp);
+				ft_child(pp[i], i);
+			else
+			{
+				if (i > 0)
+					close(pp[i - 1][0]);
+				close(pp[i][1]);
+			}
 		}
 	}
 	// ft_parent; ?
