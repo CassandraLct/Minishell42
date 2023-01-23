@@ -49,7 +49,8 @@ typedef struct s_min
 	char	*val_home;
 }	t_min;
 
-extern t_min	g_mini;
+//extern t_min	g_mini;
+t_min	g_mini;
 
 /*--------------------------BUILT-IN-----------------------------------*/
 //cd.c 5 fonctions

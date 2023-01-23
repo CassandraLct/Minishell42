@@ -13,7 +13,7 @@
 #include "minishell.h"
 //grep >test < Makefile "minishell" | cat test
 
-t_min g_mini;
+// t_min g_mini;
 
 //modifier le split de la line
 int	main(int argc, char **argv, char **envp)

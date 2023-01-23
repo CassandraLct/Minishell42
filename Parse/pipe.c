@@ -12,77 +12,91 @@
 
 #include "minishell.h"
 
-void	ft_redir_in(int instnb)
+int	ft_redir_in(t_cmd **cmd, int nb)
 {
 	int	i;
+	int	fd;
+	int	pp[2];
 
 	i = 0;
-	while (g_mini.struct_cmd[instnb].stdin[i])
+	pipe(pp);
+	while (cmd[nb]->stdin[i])
 	{
-		if (g_mini.struct_cmd[instnb].stdin[i + 1] == NULL)
+		if (cmd[nb]->stdin[i + 1] == NULL)
 			exit (66);
-		if (g_mini.struct_cmd[instnb].stdin[i] = '<')
+		if (ft_strcmp(cmd[nb]->stdin[i], "<") == 0)
 		{
-			fd = open(g_mini.struct_cmd[instnb].stdin[i + 1], O_RDONLY);
+			fd = open(cmd[nb]->stdin[i + 1], O_RDONLY);
 			if (fd == -1)
 			{
-				perror(g_mini.struct_cmd[instnb].stdin[i + 1]);
+				perror(cmd[nb]->stdin[i + 1]);
 				exit (66);
+			}	
+			dup2(fd, 0);
+			dup2(pp[1], 1);
+			close(fd);
 			}
-			// send to pipe ?
-			}
-		else
+		else if (ft_strcmp(cmd[nb]->stdin[i], "<<") == 0)
+		{
 			// heredoc
-		i += 2;
-	}
-}
-
-void	ft_redir_out(int instnb)
-{
-	int	i;
-
-	i = 0;
-	while (g_mini.struct_cmd[instnb].stdout[i])
-	{
-		if (g_mini.struct_cmd[instnb].stdout[i + 1] == NULL)
-			exit (0);
-		if (g_mini.struct_cmd[instnb].stdout[i] = '>')
-		{
-			fd = open(g_mini.struct_cmd[instnb].stdout[i + 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-			if (fd == -1)
-			{
-				perror(g_mini.struct_cmd[instnb].stdout[i + 1]);
-				exit (66);
-			}
-			// gestion fd = -1
-			// gestion du dernier
 		}
 		else
-		{
-			fd = open(pp->fileout, O_WRONLY | O_CREAT | O_TRUNC, 0644); // parametrer pour >>
-			// gestion fd = -1
-		} 
+			exit (66);
 		i += 2;
 	}
+	close(pp[1]);
+	return (pp[0]);
 }
 
-int	piping(void)
+int	ft_redir_out(t_cmd **cmd, int nb)
 {
 	int	i;
+	int	fd;
+	int	pp[2];
 
 	i = 0;
-	while (g.mini.struct_cmd && g.mini.struct_cmd[i] && g.mini.struct_cmd[i + 1])
+	pipe(pp);
+	while (cmd[nb]->stdout[i])
 	{
-		ft_redir_in(g.mini.struct_cmd, i);
-		ft_redir_out(g.mini.struct_cmd, i);
-		ft_pipe(g.mini.struct_cmd, i);
+		if (cmd[nb]->stdout[i + 1] == NULL)
+			exit (67);
+		if (ft_strcmp(cmd[nb]->stdout[i], ">") == 0)
+		{
+			fd = open(cmd[nb]->stdout[i + 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+			if (fd == -1)
+			{
+				perror(cmd[nb]->stdout[i + 1]);
+				exit (67);
+			}
+			dup2(fd, 1);
+			dup2(pp[0], 0);
+			close(fd);
+		}
+		else if (ft_strcmp(cmd[nb]->stdout[i], ">>") == 0)
+		{
+			fd = open(cmd[nb]->stdout[i + 1], O_WRONLY | O_CREAT | O_APPEND, 0644); // parametrer pour >>
+			if (fd == -1)
+			{
+				perror(cmd[nb]->stdout[i + 1]);
+				exit (67);
+			}
+			dup2(fd, 1);
+			dup2(pp[0], 0);
+			close(fd);
+		}
+		else
+			exit (67);
+		i += 2;
 	}
-	return (1);
+	close(pp[0]);
+	return (pp[1]);
 }
 
-void	ft_child(t_pipe *pp, char **envp)
+void	ft_child(int *pp)
 {
-	pp->fdin = open(pp->filein, O_RDONLY);
+	int	fdin;
+
+	fdin = open(pp->filein, O_RDONLY);
 	if (pp->fdin == -1)
 	{
 		perror(pp->filein);
@@ -102,41 +116,50 @@ void	ft_child(t_pipe *pp, char **envp)
 	ft_freeallexit(pp, 127);
 }
 
-void	ft_parent(t_pipe *pp, char **envp)
+/*
+void	ft_pipe(t_cmd **cmd, int i, int fdin, int fdout)
 {
-	waitpid(0, NULL, 0);
-	pp->fdout = open(pp->fileout, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (pp->fdout == -1)
-	{
-		perror(pp->fileout);
-		ft_freeallexit(pp, 1);
-	}
-	pp->cmdpath[1] = ft_findcmdpath(pp->path, pp->cmdarg[1][0]);
-	dup2(pp->fdout, 1);
-	dup2(pp->pip[0], 0);
-	close(pp->pip[0]);
-	close(pp->fdout);
-	close(pp->pip[1]);
-	if (pp->cmdpath[1] != NULL)
-	{
-		if (execve(pp->cmdpath[1], pp->cmdarg[1], envp) == -1)
-			exit(127);
-	}
-	ft_freeallexit(pp, 127);
-}
+	int	pid;
 
-int	pipex(int argc, char **argv, char **envp)
-{
-	t_pipe	*pp;
-
-	pp = ft_init(argc, argv, envp);
-	pipe(pp->pip);
-	pp->pin = fork();
-	if (pp->pin == -1)
+	pid = fork();
+	if (pid == -1)
 		exit(127);
-	if (pp->pin == 0)
-		ft_child(pp, envp);
-	else
-		ft_parent(pp, envp);
+	if (pid == 0)
+		ft_child();
+	return (1);
+}
+*/
+
+int	piping(void)
+{
+	int	i;
+//	int	ppin;
+//	int	ppout;
+	int	pid;
+	int	pp[2];
+
+	i = 0;
+	if (!g_mini.struct_cmd)
+		exit (66);
+	while (g_mini.struct_cmd[i])
+	{
+		if (!g_mini.struct_cmd[i + 1])
+		{
+			// last pipe or single command
+		}
+		else
+		{
+			//ppin = ft_redir_in(g_mini.struct_cmd, i);
+			//ppout = ft_redir_out(g_mini.struct_cmd, i);
+			//ft_pipe(g_mini.struct_cmd, i, ppin, ppout);
+			pipe(pp);
+			pid = fork();
+			if (pid == -1)
+				exit (127);
+			if (pid == 0)
+				ft_child(pp);
+		}
+	}
+	// ft_parent; ?
 	return (1);
 }

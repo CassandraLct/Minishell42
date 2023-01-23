@@ -35,6 +35,7 @@ SRC		=	main.c \
 		Parse/gestion_dollar_line.c \
 		Parse/gestion_dollar_utils.c \
 		Parse/parse.c \
+		Parse/pipe.c \
 		Parse/printstruc.c \
 		Parse/splitcmd_utils1.c \
 		Parse/splitcmd_utils2.c \
