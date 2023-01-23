@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 11:55:54 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/21 15:39:41 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/23 09:42:31 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	right_patern(t_cmd **cmd)
 {
 	int	fd;
 
-	fd = open(cmd[0]->__stdinp[0], O_WRONLY | O_CREAT);
+	fd = open(cmd[0]->stdin[0], O_WRONLY | O_CREAT);
 	if (fd == O_DIRECTORY)
 	{
-		printf("minishell: %s: Is a directory\n", cmd[0]->__stdinp[0]);
+		printf("minishell: %s: Is a directory\n", cmd[0]->stdin[0]);
 		g_mini.ret_err = 1;
 		return ;
 	}
@@ -36,7 +36,7 @@ void	left_patern(t_cmd **cmd)
 {
 	int	fd;
 
-	fd = open(cmd[0]->__stdinp[0], O_RDONLY);
+	fd = open(cmd[0]->stdin[0], O_RDONLY);
 	if (fd == -1)
 	{
 		printf("minishell: %s: No such file or directory\n", cmd[0]->stdin[0]);
@@ -56,10 +56,10 @@ void	dright_patern(t_cmd **cmd)
 {
 	int	fd;
 
-	fd = open(cmd[0]->__stdinp[0], O_RDWR | O_CREAT);
+	fd = open(cmd[0]->stdin[0], O_RDWR | O_CREAT);
 	if (fd == O_DIRECTORY)
 	{
-		printf("minishell: %s: Is a directory\n", cmd[0]->__stdinp[0][0]);
+		printf("minishell: %s: Is a directory\n", cmd[0]->stdin[0][0]);
 		g_mini.ret_err = 1;
 		return ;
 	}

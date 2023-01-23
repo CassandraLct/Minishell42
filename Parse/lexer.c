@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/21 19:21:36 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/23 14:02:02 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,20 @@ void	parcour_line(t_min *mini)
 
 	nb_dollar = 0;
 	line = malloc(sizeof(char) * (ft_strlen(mini->line) + 1));
-	tmp = rm_multispace(mini->line, line);
-	free(line);
-	nb_dollar = count_nbdollar(tmp);
+	tmp = NULL;
+	line = ft_strdup(mini->line);
+	nb_dollar = count_nbdollar(line);
 	if (nb_dollar == 0)
 		return ;
 	free(mini->line);
-	mini->line = rm_d_dollar(tmp);
-	free(tmp);
+	mini->line = rm_d_dollar(line);
+	//free(tmp);
 	nb_dollar = count_nbdollar(mini->line);
 	if (nb_dollar > 0)
 	{
 		tmp = ft_strdup(mini->line);
 		free(mini->line);
-		mini->line = change_line(tmp, nb_dollar);
-		printf("mini.line = %s\n", mini->line);
+		mini->line = redir_line(tmp, nb_dollar);
 	}
 	return ;
 }
