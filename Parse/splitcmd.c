@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/21 19:43:19 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/23 19:26:08 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,12 @@ t_cmd	*split_inst(char *temp)
 
 	resu = NULL;
 	i = ft_strlen(temp) + 1;
-	tmpclean = ft_test(ft_calloc(i, sizeof(*tmpclean)), NULL);
 	tmpclean = remove_double_space(temp);
 	list = pre_split(tmpclean);
 	free(tmpclean);
 	resu = alloc_cmd(list);
 	i = 0;
-	while (list[i])
-		free(list[i++]);
-	free(list);
+	free_tab(list);
 	return (resu);
 }
 
@@ -109,16 +106,13 @@ t_cmd	**spliter3(char **inst)
 	while (inst[i])
 	{
 		temp[i] = ft_strtrim(inst[i], " ");
-		free(inst[i]);
 		tempclean[i] = ft_space_bracket(temp[i]);
-		free(temp[i]);
 		resu[i] = split_inst(tempclean[i]);
-		free(tempclean[i]);
 		i++;
 	}
-	free(temp);
-	free(tempclean);
-	free(inst);
+	free_tab(temp);
+	free_tab(tempclean);
+	free_tab(inst);
 	resu[i] = NULL;
 	return (resu);
 }

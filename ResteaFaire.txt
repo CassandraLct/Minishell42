@@ -211,6 +211,12 @@ a commencer lundi :
 Lundi 23/01 :
 	-> finir la gestion du $; fait
 	-> faire la norme;
-	-> verifier les leaks;
+	-> verifier les leaks; Fait
 	-> commencer les pipes;
 	-> commencer les redirections;
+
+verifier pourquoi le minishell ne se supprime pas au moment du make fclean
+
+pour demain :
+	-> gerer le $cotes;
+	-> faire la norme;

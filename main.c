@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/23 14:21:53 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/23 19:38:37 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,10 @@ int	main(int argc, char **argv, char **envp)
 		if(g_mini.line[0] != '\0')
 		{
 			g_mini.struct_cmd = spliter3(spliter());
-			free(g_mini.line);
 			redir_pipe(&g_mini, g_mini.struct_cmd);
 			free_t_cmd(g_mini.struct_cmd);
 		}
-		else
-			free(g_mini.line);
-		printf("fin main\n");
+		free(g_mini.line);
 	}
 	free_all(g_mini);
 }

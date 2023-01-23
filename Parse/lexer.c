@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/23 14:02:02 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/23 19:39:09 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,27 @@ void	parcour_line(t_min *mini)
 {
 	char	*tmp;
 	char	*line;
+	char	*tmp2;
 	int		nb_dollar;
 
-	nb_dollar = 0;
-	line = malloc(sizeof(char) * (ft_strlen(mini->line) + 1));
 	tmp = NULL;
-	line = ft_strdup(mini->line);
-	nb_dollar = count_nbdollar(line);
+	nb_dollar = 0;
+	nb_dollar = count_nbdollar(mini->line);
 	if (nb_dollar == 0)
 		return ;
+	line = ft_strdup(mini->line);
 	free(mini->line);
 	mini->line = rm_d_dollar(line);
-	//free(tmp);
 	nb_dollar = count_nbdollar(mini->line);
 	if (nb_dollar > 0)
 	{
 		tmp = ft_strdup(mini->line);
 		free(mini->line);
-		mini->line = redir_line(tmp, nb_dollar);
+		tmp2 = redir_line(tmp, nb_dollar);
+		mini->line = ft_strdup(tmp2);
+		free(tmp2);
 	}
-	return ;
+	free(line);
 }
 
 //faire fonction de redir cmd simple ou multiple

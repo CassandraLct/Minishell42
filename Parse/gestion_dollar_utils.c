@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 17:30:01 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/23 15:19:02 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/23 16:16:43 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	verif_var(char *name_var)
 	int		i;
 
 	i = 0;
-	// printf("name_var = %s\n", name_var);
 	tmp = ft_strjoin(name_var, "=");
 	while (g_mini.c_env[i])
 	{

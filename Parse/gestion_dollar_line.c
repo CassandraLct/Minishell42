@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:31:40 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/23 15:15:46 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/23 19:49:59 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 //3 fonctions
 
+//recupere la ligne de la var correspondante
 char	*recup_val(char *str)
 {
 	char	*tmp;
-	char	*val;
-	int	i;
+	int		i;
 
 	i = 0;
 	tmp = ft_strjoin(str, "=");
@@ -30,8 +30,9 @@ char	*recup_val(char *str)
 		}
 		i++;
 	}
-	val = ft_strdup(g_mini.c_env[i]);
-	return (val);
+	free(str);
+	free(tmp);
+	return (g_mini.c_env[i]);
 }
 
 //recupere la valeur de la variable a partir du egale
@@ -44,11 +45,10 @@ char	*recup_valvar(char *name_var)
 	i = 0;
 	j = 0;
 	tmp = recup_val(name_var);
-	free(name_var);
 	while (tmp[i] != '=')
 		i++;
 	i += 1;
-	name_var = malloc(sizeof(char) * (i + 1));
+	name_var = malloc(sizeof(char) * (ft_strlen(tmp + i) + 1));
 	while (tmp[i] && tmp[i] != '\0')
 	{
 		name_var[j] = tmp[i];
@@ -59,7 +59,7 @@ char	*recup_valvar(char *name_var)
 	return (name_var);
 }
 
-//change la line en fonction de name_var
+//change la line en fonction de name_var +25lignes
 char	*change_line(char *name_var, char *line)
 {
 	char	*tmp;
@@ -73,7 +73,6 @@ char	*change_line(char *name_var, char *line)
 		i++;
 	if (i == 0)
 	{
-		tmp = NULL;
 		new_line = ft_strdup(name_var);
 		i += 1;
 	}
@@ -108,8 +107,8 @@ char	*change_line(char *name_var, char *line)
 		}
 		tmp[j] = '\0';
 		new_line = ft_strjoin(tmp2, tmp);
-		free(tmp);
 		free(tmp2);
 	}
+	free(name_var);
 	return (new_line);
 }
