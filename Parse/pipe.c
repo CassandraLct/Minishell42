@@ -80,7 +80,7 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 		}
 		else if (ft_strcmp(cmd[nb]->stdout[i], ">>") == 0)
 		{
-			fd = open(cmd[nb]->stdout[i + 1], O_WRONLY | O_CREAT | O_APPEND, 0644); // parametrer pour >>
+			fd = open(cmd[nb]->stdout[i + 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
 			if (fd == -1)
 			{
 				perror(cmd[nb]->stdout[i + 1]);
@@ -99,6 +99,8 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 	return (pp[1]);
 }
 
+// gerer les redir out
+// gerer le cas de la derniere cmd qui ne doit pas pipe
 void	ft_child(t_cmd **cmd, int **pp, int i)
 {
 	int	fdin;
@@ -126,19 +128,9 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 	dprintf(2, "pp[%d][0]=[%d], pp[%d][0]=[%d]\n", i, pp[i][0], i, pp[i][1]);
 	dprintf(2, "cmd[%d][0]=[%s]\n", i, cmd[i]->cmd[0]);
 	dprintf(2, "end of child\n");
-	// test
 	ft_set_pathexec(&g_mini, cmd[i]->cmd);
-	
 	exit (68);
 }
-//	pp->cmdpath[0] = ft_findcmdpath(pp->path, pp->cmdarg[0][0]);
-//	if (pp->cmdpath[0] != NULL)
-//	{
-//		if (execve(pp->cmdpath[0], pp->cmdarg[0], envp) == -1)
-//			ft_freeallexit(pp, 127);
-//	}
-//	ft_freeallexit(pp, 127);
-
 
 /*
 void	ft_pipe(t_cmd **cmd, int i, int fdin, int fdout)
