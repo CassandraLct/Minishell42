@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/23 19:26:08 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/24 12:38:33 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ t_cmd	**spliter3(char **inst)
 	temp = ft_test(ft_calloc((tablen(inst) + 1), sizeof(*temp)), NULL);
 	tempclean = ft_test(ft_calloc((tablen(inst) + 1), sizeof(*temp)), NULL);
 	resu = ft_test(ft_calloc((tablen(inst) + 1), sizeof(*resu)), NULL);
+	if (inst == NULL)
+		return (NULL);
 	while (inst[i])
 	{
 		temp[i] = ft_strtrim(inst[i], " ");

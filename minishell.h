@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/23 14:55:30 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/24 19:47:36 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ void	unset(t_min *mini, char **cmd);
 //12 fichiers
 //gestion_dollar.c 5 fonctions
 char	*redir_line(char *line, int nb_dollar);
-// char	*rm_multispace(char *line, char *new_line);
 
 //gestion_dollar_utils.c 5 fonctions
 char	*recup_namevar(char *line);
@@ -130,6 +129,12 @@ int		count_nbdollar(char *line);
 //gestion_dollar_line.c 4 fonctions
 char	*recup_valvar(char *name_var);
 char	*change_line(char *name_var, char *line);
+int		verif_cotes(char *line);
+char	*rm_dollarcotes(char *line, int i, int savedollar);
+
+//gestion_dollar_quotes.c
+char	*rmd_bf_cotes(char *line, int savedollar);
+void	d_outside_cotes(int i, char *line);
 
 //init.c 5 fonctions
 char	*recup_valhome(char	**c_env);
@@ -142,6 +147,7 @@ void	aff_err(char **cmd);
 void	redir_pipe(t_min *mini, t_cmd **cmd);
 void	redirection(t_min *mini, t_cmd **cmd);
 void	parcour_line(t_min *mini);
+char	*modif_line(char *line, int nb_dollar);
 
 //parse.c 4 fonctions
 char	**init_cpy(char **str, char **dest);

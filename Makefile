@@ -6,7 +6,7 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2023/01/23 09:44:15 by clecat           ###   ########.fr        #
+#    Updated: 2023/01/24 18:08:37 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC		=	main.c \
 		Parse/gestion_dollar.c \
 		Parse/gestion_dollar_line.c \
 		Parse/gestion_dollar_utils.c \
+		Parse/gestion_dollar_quotes.c \
 		Parse/parse.c \
 		Parse/printstruc.c \
 		Parse/splitcmd_utils1.c \

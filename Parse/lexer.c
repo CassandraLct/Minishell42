@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/23 19:39:09 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/24 19:51:54 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,9 @@
 //faire une copie de la line avant ?/ +25 lignes
 void	parcour_line(t_min *mini)
 {
-	char	*tmp;
 	char	*line;
-	char	*tmp2;
 	int		nb_dollar;
 
-	tmp = NULL;
 	nb_dollar = 0;
 	nb_dollar = count_nbdollar(mini->line);
 	if (nb_dollar == 0)
@@ -30,16 +27,39 @@ void	parcour_line(t_min *mini)
 	line = ft_strdup(mini->line);
 	free(mini->line);
 	mini->line = rm_d_dollar(line);
+	free(line);
+	nb_dollar = count_nbdollar(mini->line);
+	line = ft_strdup(mini->line);
+	if (verif_cotes(line) == 1)
+	{
+		free(mini->line);
+		mini->line = ft_strdup(line);
+		free(line);
+		return ;
+	}
+	free(mini->line);
+	mini->line = ft_strdup(line);
+	free(line);
 	nb_dollar = count_nbdollar(mini->line);
 	if (nb_dollar > 0)
 	{
-		tmp = ft_strdup(mini->line);
+		line = ft_strdup(mini->line);
 		free(mini->line);
-		tmp2 = redir_line(tmp, nb_dollar);
-		mini->line = ft_strdup(tmp2);
-		free(tmp2);
+		mini->line = modif_line(line, nb_dollar);
 	}
+}
+
+char	*modif_line(char *line, int nb_dollar)
+{
+	char	*tmp;
+	char	*tmp2;
+
+	tmp = ft_strdup(line);
+	tmp2 = redir_line(tmp, nb_dollar);
 	free(line);
+	line = ft_strdup(tmp2);
+	free(tmp2);
+	return (line);
 }
 
 //faire fonction de redir cmd simple ou multiple

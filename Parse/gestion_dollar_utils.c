@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 17:30:01 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/23 16:16:43 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/24 17:51:02 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ int	verif_dollarcase(char *line)
 	else
 	{
 		name_var = recup_namevar(line);
-		if (verif_var(name_var) == 0)
+		if (name_var == '\0')
+			return (4);
+		else if (verif_var(name_var) == 0)
 		{
 			free(name_var);
 			return (2);
@@ -73,14 +75,14 @@ char	*recup_namevar(char *line)
 	while (line[i] && line[i] != '$')
 		i++;
 	j = i;
-	while (line[i] != '\0' && line[i] != '$' && line[i] != ' ')
-	{
+	while (line[i] && line[i] != '\0' && line[i] != '$'
+		&& line[i] != ' ' && line[i] != '\'' && line[i] != '"')
 		i++;
-	}
 	tmp = malloc(sizeof(char) * (i - j + 1));
 	i = j + 1;
 	j = 0;
-	while (line[i] != '\0' && line[i] != '$' && line[i] != ' ')
+	while (line[i] != '\0' && line[i] != '$'
+		&& line[i] != ' ' && line[i] != '\'' && line[i] != '"')
 	{
 		tmp[j] = line[i];
 		j++;

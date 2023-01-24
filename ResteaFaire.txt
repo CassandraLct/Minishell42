@@ -220,3 +220,12 @@ verifier pourquoi le minishell ne se supprime pas au moment du make fclean
 pour demain :
 	-> gerer le $cotes;
 	-> faire la norme;
+	-> faire la suppression des cotes;
+	-> revoir la gestion des cotes lors du split (seg fault);
+
+Mardi 24/01 :
+	-> faire gestion quotes dollar ; Fait 
+	-> verifier les leaks ; Fait
+	-> Faire la norme ;
+
+apres la fonction de decoupage, parcourir les tableau de commande pour supprimer les quotes exterieur
