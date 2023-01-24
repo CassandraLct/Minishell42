@@ -48,7 +48,10 @@ void	redir_pipe(t_min *mini, t_cmd **cmd)
 	if (cmd[1] == NULL)
 		redirection(mini, cmd);
 	else
+	{
 		printf("gestion_pipe\n");
+		piping();
+	}
 }
 
 //built-in : cd/echo/env/exit/export/unset

@@ -149,6 +149,9 @@ char	**init_cpy(char **str, char **dest);
 char	**ft_cpytab(char **tab);
 char	**init_exp(char **tab);
 
+//pipe.c
+int	piping(void);
+
 // printstruc.c
 void	printstruc(t_cmd *cmd);
 void	printstruc2(t_cmd **cmd);
