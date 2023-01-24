@@ -181,6 +181,12 @@ void	modif_cmd(char **cmd);
 void	modif_stdin(char **stdin);
 void	modif_stdout(char **stdout);
 char	*verif_cmdcotes(char *line);
+//pipe.c
+int	piping(void);
+
+// printstruc.c
+void	printstruc(t_cmd *cmd);
+void	printstruc2(t_cmd **cmd);
 
 // redir_utils.c
 int		heredoc(char *cond);
