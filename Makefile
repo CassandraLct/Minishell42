@@ -6,7 +6,7 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2023/01/24 18:08:37 by clecat           ###   ########.fr        #
+#    Updated: 2023/01/25 11:56:26 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,8 @@ SRC		=	main.c \
 		Parse/gestion_dollar_line.c \
 		Parse/gestion_dollar_utils.c \
 		Parse/gestion_dollar_quotes.c \
+		Parse/modif_tcmd.c \
 		Parse/parse.c \
-		Parse/printstruc.c \
 		Parse/splitcmd_utils1.c \
 		Parse/splitcmd_utils2.c \
 		Parse/splitcmd.c \
@@ -46,7 +46,8 @@ SRC		=	main.c \
 		Utils/ft_itoa.c \
 		Utils/utils.c \
 		Utils/utils2.c \
-		Utils/utils3.c
+		Utils/utils3.c \
+		Utils/printstruc.c 
 
 OBJ		= $(SRC:.c=.o)
 

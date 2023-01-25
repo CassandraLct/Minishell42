@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/25 09:52:11 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/25 12:14:59 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ void	init_export(t_min *mini);
 void	free_all(t_min mini);
 void	aff_err(char **cmd);
 
-//lexer.c 2 fonctions
+//lexer.c 5 fonctions
 void	redir_pipe(t_min *mini, t_cmd **cmd);
 void	redirection(t_min *mini, t_cmd **cmd);
 void	parcour_line(t_min *mini);
@@ -155,10 +155,12 @@ char	**init_cpy(char **str, char **dest);
 char	**ft_cpytab(char **tab);
 char	**init_exp(char **tab);
 void	free_tab(char **tab);
+void	verif_struct_cmd(t_cmd **tab_cmd);
 
-// printstruc.c
-void	printstruc(t_cmd *cmd);
-void	printstruc2(t_cmd **cmd);
+//modif_tcmd.c
+void	modif_cmd(char **cmd);
+void	modif_stdin(char **stdin);
+void	modif_stdout(char **stdout);
 
 //splitcmd.c
 t_cmd	**spliter3(char **inst);
@@ -209,6 +211,10 @@ void	ft_bzero(void *s, int n);
 // utils3.c
 char	*ft_strtrim(char *s1, char *set);
 void	*ft_calloc(size_t count, size_t size);
+
+// printstruc.c
+void	printstruc(t_cmd *cmd);
+void	printstruc2(t_cmd **cmd);
 
 /*-----------------------------------------------------------------------*/
 

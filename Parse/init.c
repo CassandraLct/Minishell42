@@ -6,12 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:36:33 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/25 09:16:16 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/25 10:27:46 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+//5 fonctions
 void	aff_err(char **cmd)
 {
 	if (check_arg(cmd[1]) == 1)

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:12:24 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/19 16:37:11 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/25 12:26:43 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,19 @@ void	free_tab(char **tab)
 		i++;
 	}
 	free(tab);
+}
+
+//renvoie vers les fonction correspondante
+void	verif_struct_cmd(t_cmd **tab_scmd)
+{
+	int	i;
+
+	i = 0;
+	while (tab_scmd[i])
+	{
+		modif_cmd(tab_scmd[i]->cmd);
+		modif_stdin(tab_scmd[i]->stdin);
+		modif_stdout(tab_scmd[i]->stdout);
+		i++;
+	}
 }

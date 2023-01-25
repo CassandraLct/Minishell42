@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/21 12:57:39 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/25 13:44:37 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	**ft_init_resu(char *line)
 // copy what is inside the simple cote
 void	ft_copy_inside_simple_cote(char **res, char *line, int *i, int *j)
 {
-	printf("res=[%s]. line =[%s], i=[%d], j=[%d]\n", *res, line, *i, *j);
+	//printf("res=[%s]. line =[%s], i=[%d], j=[%d]\n", *res, line, *i, *j);
 	(*res)[(*j)++] = line[(*i)++];
 	while (line[*i] != '\'')
 		(*res)[(*j)++] = line[(*i)++];
@@ -47,10 +47,14 @@ void	ft_copy_inside_simple_cote(char **res, char *line, int *i, int *j)
 // copy what is inside the double cote
 void	ft_copy_inside_double_cote(char **res, char *line, int *i, int *j)
 {
+	printf("res0=[%s]. line =[%s], i=[%d], j=[%d]\n", *res, line, *i, *j);
 	(*res)[(*j)++] = line[(*i)++];
+	printf("res1=[%s]. line =[%s], i=[%d], j=[%d]\n", *res, line, *i, *j);
 	while (line[*i] != '"')
 		(*res)[(*j)++] = line[(*i)++];
+	printf("res2=[%s]. line =[%s], i=[%d], j=[%d]\n", *res, line, *i, *j);
 	(*res)[*j] = line[*i];
+	printf("res3=[%s]. line =[%s], i=[%d], j=[%d]\n", *res, line, *i, *j);
 	(*res)[*j + 1] = '\0';
 }
 

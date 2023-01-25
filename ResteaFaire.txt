@@ -232,5 +232,6 @@ apres la fonction de decoupage, parcourir les tableau de commande pour supprimer
 
 Mercredi 25/01 :
 	-> Faire la norme; Fait
-	-> Faire fonction supression cotes exterieur;
-	-> Verifier les leaks;
+	-> Faire fonction supression cotes exterieur; Fait
+	-> Verifier les leaks; Fait
+	-> Regler le pb des cotes au niveau du spliteur;
