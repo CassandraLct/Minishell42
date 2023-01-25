@@ -235,3 +235,7 @@ Mercredi 25/01 :
 	-> Faire fonction supression cotes exterieur; Fait
 	-> Verifier les leaks; Fait
 	-> Regler le pb des cotes au niveau du spliteur; fixe
+
+demain : 
+	-> comprendre la gestion des pipes(code Raph);
+	-> tester tous les cas;
