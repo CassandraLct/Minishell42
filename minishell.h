@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/24 19:47:36 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/25 09:52:11 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void	add_valenv(t_min *mini, char *str);
 //export_change_val 5 fonctions
 char	*recup_name(char *cmp);
 void	redir_changeval(t_min *mini, char *str);
+char	*addegal(char *cmp);
 
 //export_utils.c 5 fonctions
 char	**fill_exp(char **new_val, char *str);
@@ -116,7 +117,7 @@ void	unset(t_min *mini, char **cmd);
 
 /*------------------------PARSE-------------------------------------------*/
 //12 fichiers
-//gestion_dollar.c 5 fonctions
+//gestion_dollar.c 4 fonctions
 char	*redir_line(char *line, int nb_dollar);
 
 //gestion_dollar_utils.c 5 fonctions
@@ -126,15 +127,15 @@ int		verif_dollarcase(char *line);
 int		verif_var(char *name_var);
 int		count_nbdollar(char *line);
 
-//gestion_dollar_line.c 4 fonctions
+//gestion_dollar_line.c 5 fonctions
 char	*recup_valvar(char *name_var);
 char	*change_line(char *name_var, char *line);
-int		verif_cotes(char *line);
-char	*rm_dollarcotes(char *line, int i, int savedollar);
 
 //gestion_dollar_quotes.c
+char	*rm_dollarcotes(char *line, int i, int savedollar);
 char	*rmd_bf_cotes(char *line, int savedollar);
-void	d_outside_cotes(int i, char *line);
+int		verif_cotes(char *line);
+int		d_outside_cotes(int i, char *line);
 
 //init.c 5 fonctions
 char	*recup_valhome(char	**c_env);

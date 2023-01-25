@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 13:51:02 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/24 19:28:24 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/25 09:51:41 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ char	*var_false(char *line)
 	name_var = malloc(sizeof(char) * 1);
 	name_var[0] = '\0';
 	tmp = change_line(name_var, line);
-	printf("tmp = %s\n", tmp);
 	free(line);
 	line = ft_strdup(tmp);
 	free(tmp);
@@ -73,11 +72,17 @@ char	*redir_line(char *line, int nb_dollar)
 	while (nb_dollar != 0)
 	{
 		if (verif_dollarcase(tmp_line) == 1)
+		{
 			line = var_reterr(tmp_line);
+		}
 		else if (verif_dollarcase(tmp_line) == 2)
+		{
 			line = var_true(tmp_line);
+		}
 		else if (verif_dollarcase(tmp_line) == 3)
+		{
 			line = var_false(tmp_line);
+		}
 		tmp_line = ft_strdup(line);
 		nb_dollar--;
 	}

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/24 19:51:54 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/25 10:11:57 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,19 @@
 
 //4 fonctions
 
-//faire une copie de la line avant ?/ +25 lignes
+int	cotes_dollar(t_min *mini, char *line)
+{
+	if (verif_cotes(line) == 1)
+	{
+		free(mini->line);
+		mini->line = ft_strdup(line);
+		free(line);
+		return (1);
+	}
+	return (0);
+}
+
+//verifie si dollar present et modifie mini.line en fonction
 void	parcour_line(t_min *mini)
 {
 	char	*line;
@@ -30,13 +42,8 @@ void	parcour_line(t_min *mini)
 	free(line);
 	nb_dollar = count_nbdollar(mini->line);
 	line = ft_strdup(mini->line);
-	if (verif_cotes(line) == 1)
-	{
-		free(mini->line);
-		mini->line = ft_strdup(line);
-		free(line);
+	if (cotes_dollar(mini, line) == 1)
 		return ;
-	}
 	free(mini->line);
 	mini->line = ft_strdup(line);
 	free(line);

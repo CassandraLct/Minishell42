@@ -6,31 +6,11 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:03:34 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/19 17:46:31 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/25 09:03:38 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-//ajoute le egal
-char	*add_egal(char *name_var, char *str)
-{
-	int	i;
-
-	i = 0;
-	if (check_var(str) != 1)
-		return (name_var);
-	else
-	{
-		while (name_var[i])
-		{
-			i++;
-		}
-		name_var[i] = '=';
-		name_var[i + 1] = '\0';
-	}
-	return (name_var);
-}
 
 //change la valeur dans env, la valeur ne change pas si pas de egal
 void	changeval_env(char **c_env, char *str)
@@ -40,7 +20,6 @@ void	changeval_env(char **c_env, char *str)
 
 	i = 0;
 	name_var = recup_name(str);
-	name_var = add_egal(name_var, str);
 	while (c_env[i])
 	{
 		if (check_var(name_var) != 1)
@@ -58,9 +37,9 @@ void	changeval_env(char **c_env, char *str)
 			i++;
 		}
 	}
-	free(name_var);
 	if (i != tablen(c_env))
 		i++;
+	free(name_var);
 }
 
 //change la valeur dans export
@@ -111,27 +90,36 @@ char	*recup_name(char *cmp)
 	int		i;
 
 	i = 0;
-	tmp = malloc(sizeof(char) * (ft_strlen(cmp) + 1));
+	tmp = NULL;
 	if (check_var(cmp) == 1)
 	{
-		while (cmp[i] != '=')
+		tmp = malloc(sizeof(char) * (ft_strlen(cmp) + 1));
+		while (cmp[i] && cmp[i] != '=')
 		{
 			tmp[i] = cmp[i];
 			i++;
 		}
 		tmp[i] = cmp[i];
-		tmp[i] = '\0';
-		if (cmp[i] != '\0')
-			i++;
+		tmp[i + 1] = '\0';
 	}
 	else if (check_var(cmp) == 0)
+		tmp = addegal(cmp);
+	return (tmp);
+}
+
+char	*addegal(char *cmp)
+{
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = malloc(sizeof(char) * ft_strlen(cmp) + 1);
+	while (cmp[i])
 	{
-		while (cmp[i])
-		{
-			tmp[i] = cmp[i];
-			i++;
-		}
-		tmp[i] = '\0';
+		tmp[i] = cmp[i];
+		i++;
 	}
+	tmp[i] = '=';
+	tmp[i + 1] = '\0';
 	return (tmp);
 }

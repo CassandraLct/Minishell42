@@ -229,3 +229,8 @@ Mardi 24/01 :
 	-> Faire la norme ;
 
 apres la fonction de decoupage, parcourir les tableau de commande pour supprimer les quotes exterieur
+
+Mercredi 25/01 :
+	-> Faire la norme; Fait
+	-> Faire fonction supression cotes exterieur;
+	-> Verifier les leaks;

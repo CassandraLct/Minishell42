@@ -6,14 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:31:40 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/24 19:52:13 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/25 09:50:31 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//3 fonctions
-
+//5 fonctions
 //recupere la ligne de la var correspondante
 char	*recup_val(char *str)
 {
@@ -59,6 +58,7 @@ char	*recup_valvar(char *name_var)
 	return (name_var);
 }
 
+//recupere le debut de la ligne
 char	*startline(char *line, int i, char	*n_var)
 {
 	char	*tmp;
@@ -78,6 +78,7 @@ char	*startline(char *line, int i, char	*n_var)
 	return (new_line);
 }
 
+//recupere la fin de la ligne
 char	*endline(char *line, int i, char *n_line)
 {
 	char	*tmp;
@@ -98,7 +99,7 @@ char	*endline(char *line, int i, char *n_line)
 	return (new_line);
 }
 
-//change la line en fonction de name_var +25lignes
+//change la line en fonction de name_var
 char	*change_line(char *n_var, char *line)
 {
 	char	*n_line;
@@ -119,60 +120,4 @@ char	*change_line(char *n_var, char *line)
 		n_line = endline(line, i, n_line);
 	free(n_var);
 	return (n_line);
-}
-
-//supprime le $ devant les cotes
-char *rm_dollarcotes(char *line, int i, int savedollar)
-{
-	char	*tmp;
-	char	cote;
-	int		j;
-
-	cote = line[i];
-	j = i + 1;
-	tmp = NULL;
-	while (line[j])
-	{
-		if (line[j] == cote)
-			break ;
-		j++;
-	}
-	if (line[j] == '\0')
-		return line;
-	else
-	{
-		tmp = rmd_bf_cotes(line, savedollar);
-		free(line);
-		line = ft_strdup(tmp);
-		free(tmp);
-	}
-	printf(" line = %s\n", line);
-	return line;
-}
-
-//forcement un dollar present car apres fonction +25lignes
-int	verif_cotes(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] == '$' || line[i] == '\'' || line[i] == '"')
-			break ;
-		i++;
-	}
-	if (line[i] == '$')
-	{
-		d_outside_cotes(i, line);
-		return (1);
-	}
-	else
-	{
-		if (line[i] == '\'')
-			return (1);
-		else if (line[i] == '"')
-			return (0);
-	}
-	return (0);
 }
