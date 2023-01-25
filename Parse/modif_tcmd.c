@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:17:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/25 12:32:11 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/25 15:39:04 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	rm_cotesline(char *line)
 	int		i;
 	int		j;
 
-	tmp = malloc(sizeof(char) * ft_strlen(line));
 	cotes = line[0];
 	i = 1;
 	j = 0;
+	tmp = malloc(sizeof(char) * ft_strlen(line));
 	while (line[i] && line[i] != cotes && line[i + 1] != '\0')
 	{
 		tmp[j] = line[i];
@@ -34,7 +34,6 @@ void	rm_cotesline(char *line)
 	tmp[j] = '\0';
 	free(line);
 	line = ft_strdup(tmp);
-	printf("tmp = %s\n", tmp);
 	free(tmp);
 }
 
@@ -48,9 +47,10 @@ void	modif_cmd(char **cmd)
 		return ;
 	while (cmd[i])
 	{
-		printf("cmd[%d] = %s\n", i, cmd[i]);
 		if (cmd[i][0] == '\'' || cmd[i][0] == '"')
+		{
 			rm_cotesline(cmd[i]);
+		}
 		i++;
 	}
 }

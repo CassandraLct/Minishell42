@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 17:30:01 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/25 09:50:55 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/25 14:24:23 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	verif_dollarcase(char *line)
 	else
 	{
 		name_var = recup_namevar(line);
-		if (name_var == '\0')
+		if (name_var[0] == '\0')
 			return (4);
 		else if (verif_var(name_var) == 0)
 		{
