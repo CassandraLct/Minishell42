@@ -182,7 +182,7 @@ void	modif_stdin(char **stdin);
 void	modif_stdout(char **stdout);
 char	*verif_cmdcotes(char *line);
 //pipe.c
-int	piping(void);
+int		piping(void);
 
 // printstruc.c
 void	printstruc(t_cmd *cmd);
