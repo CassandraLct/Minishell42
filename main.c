@@ -6,21 +6,18 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/22 21:47:01 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/25 21:59:24 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 //grep >test < Makefile "minishell" | cat test
 
-// t_min g_mini;
+t_min	g_mini;
 
 //modifier le split de la line
 int	main(int argc, char **argv, char **envp)
 {
-//	char	**tstspl;
-
-//	tstspl = NULL;
 	(void)argc;
 	(void)argv;
 	init_struct(&g_mini, envp);

@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/22 21:38:02 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/25 21:58:48 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ typedef struct s_min
 	char	*val_home;
 }	t_min;
 
-//extern t_min	g_mini;
-t_min	g_mini;
+extern t_min	g_mini;
+//t_min	g_mini;
 
 /*--------------------------BUILT-IN-----------------------------------*/
 //cd.c 5 fonctions
@@ -150,7 +150,7 @@ char	**ft_cpytab(char **tab);
 char	**init_exp(char **tab);
 
 //pipe.c
-int	piping(void);
+int		piping(void);
 
 // printstruc.c
 void	printstruc(t_cmd *cmd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitcmd_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/21 12:57:39 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/25 16:52:21 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	ft_copy_inside_simple_cote(char **res, char *line, int *i, int *j)
 	(*res)[(*j)++] = line[(*i)++];
 	while (line[*i] != '\'')
 		(*res)[(*j)++] = line[(*i)++];
-	(*res)[*j] = line[*i];
-	(*res)[*j + 1] = '\0';
+	(*res)[(*j)++] = line[*i];
+	(*res)[*j] = '\0';
 }
 
 // copy what is inside the double cote
@@ -50,8 +50,8 @@ void	ft_copy_inside_double_cote(char **res, char *line, int *i, int *j)
 	(*res)[(*j)++] = line[(*i)++];
 	while (line[*i] != '"')
 		(*res)[(*j)++] = line[(*i)++];
-	(*res)[*j] = line[*i];
-	(*res)[*j + 1] = '\0';
+	(*res)[(*j)++] = line[*i];
+	(*res)[*j] = '\0';
 }
 
 // malloc the structure that contains all the redir and cmd
