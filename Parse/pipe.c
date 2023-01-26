@@ -21,7 +21,7 @@ int	ft_redir_in(t_cmd **cmd, int nb)
 	char	buf[500];
 	int		nb_read;
 
-	dprintf(2, "inside ft_redir_in\n");
+//	dprintf(2, "inside ft_redir_in\n");
 	if (cmd[nb]->stdin == NULL)
 	{
 		dprintf(2, "no redir in for cmd[%d]", nb);
@@ -79,7 +79,7 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 	int	fd;
 	int	pp[2];
 
-	dprintf(2, "inside ft_redir_out\n");
+//	dprintf(2, "inside ft_redir_out\n");
 	i = 0;
 	if (pipe(pp)  ==-1)
 		exit(70);
