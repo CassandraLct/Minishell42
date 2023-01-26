@@ -129,14 +129,14 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 
 // gerer les redir out
 // gerer le cas de la derniere cmd qui ne doit pas pipe
-void	ft_child(t_cmd **cmd, int **pp, int i)
+void	ft_child(t_cmd **cmd, int **pp, int i, int fdin)
 {
-	int	fdin;
+//	int	fdin;
 	int	fdout;
 
 //	fdin = ft_redir_in(cmd, i);
-	fdin = ft_redir_in2(cmd);
-	dprintf(2, "after ft_redir_in, fdin=[%d]\n", fdin);
+//	fdin = ft_redir_in2(cmd);
+	dprintf(2, "after ft_redir_in");
 	if (fdin == -1)
 	{
 		perror("redirection in : ");
@@ -196,8 +196,8 @@ int	piping(void)
 	int	nbcmd;
 	int	pid;
 	int	**pp;
+	int	fdin;
 
-	dprintf(2, "max FD=[%d]\n", FOPEN_MAX);
 	if (!g_mini.struct_cmd)
 		exit (66);
 	nbcmd = 0;
@@ -212,6 +212,7 @@ int	piping(void)
 		i++;
 	}
 	i = 0;
+	fdin = ft_redir_in2(g_mini.struct_cmd);
 	while (g_mini.struct_cmd[i])
 	{
 		pipe(pp[i]);
@@ -222,7 +223,9 @@ int	piping(void)
 		if (pid == 0)
 		{
 			dprintf(2, "\033[0;32m" "\nbefore child [%d]\n" "\033[0m", i);
-			ft_child(g_mini.struct_cmd, pp, i);
+			if (i == 0 && fdin > 2)
+				dup2(fdin, 0);
+			ft_child(g_mini.struct_cmd, pp, i, fdin);
 		}
 		else
 			waitpid(0, NULL, 0);
