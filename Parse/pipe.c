@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/23 10:50:24 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/26 12:57:14 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 		if (ft_strcmp(cmd[nb]->stdout[i], ">") == 0)
 		{
 			fd = open(cmd[nb]->stdout[i + 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+			dprintf(2, "redir out simple fd=[%d], i=[%d], redir=[%s], file=[%s]\n", fd, i, cmd[nb]->stdout[i], cmd[nb]->stdout[i + 1]);
 			if (fd == -1)
 			{
 				perror(cmd[nb]->stdout[i + 1]);
@@ -102,21 +103,22 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 		else if (ft_strcmp(cmd[nb]->stdout[i], ">>") == 0)
 		{
 			fd = open(cmd[nb]->stdout[i + 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
+			dprintf(2, "redir out double fd=[%d], i=[%d], redir=[%s], file=[%s]\n", fd, i, cmd[nb]->stdout[i], cmd[nb]->stdout[i + 1]);
 			if (fd == -1)
 			{
 				perror(cmd[nb]->stdout[i + 1]);
 				exit (67);
 			}
 			dup2(fd, 1);
-			dup2(pp[0], 0);
 			close(fd);
 		}
 		else
 			exit (67);
 		i += 2;
 	}
+	dup2(pp[0], 0);
 	close(pp[0]);
-	printf("end of ft_redir_out, pp[1]=[%d]\n", pp[1]);
+	dprintf(2, "end of ft_redir_out, pp[1]=[%d]\n", pp[1]);
 	return (pp[1]);
 }
 
@@ -141,11 +143,26 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 		perror("redirection out :");
 		return ;
 	}
-	dup2(fdin, 0);
-	dup2(pp[i][1], 1);
+	if (fdin != -2)
+		dup2(fdin, 0);
+	else
+	{
+		if (i > 0)
+			dup2(pp[i - 1][0], 0);
+		else
+		{
+			// no arg en entree heredoc?
+			dprintf(2, "cas sans arg de cmd qui a besoin d'arg\n");
+		}
+	}
+	if (fdout != -2)
+		dup2(fdout, 1);
+	else
+		dup2(pp[i][1], 1);
 	close(pp[i][0]);
 	close(pp[i][1]);
 	close(fdin);
+	close(fdout);
 	dprintf(2, "pp[%d][0]=[%d], pp[%d][0]=[%d]\n", i, pp[i][0], i, pp[i][1]);
 	dprintf(2, "cmd[%d][0]=[%s]\n", i, cmd[i]->cmd[0]);
 	dprintf(2, "end of child\n");
