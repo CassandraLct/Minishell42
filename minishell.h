@@ -156,6 +156,9 @@ int	piping(void);
 void	printstruc(t_cmd *cmd);
 void	printstruc2(t_cmd **cmd);
 
+// redir.c
+int	ft_redir_in2(t_cmd **cmd);
+
 //splitcmd.c
 t_cmd	**spliter3(char **inst);
 

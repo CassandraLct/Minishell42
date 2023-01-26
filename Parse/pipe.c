@@ -21,17 +21,17 @@ int	ft_redir_in(t_cmd **cmd, int nb)
 	char	buf[500];
 	int		nb_read;
 
-//	dprintf(2, "inside ft_redir_in\n");
+	dprintf(2, "inside ft_redir_in\n");
 	if (cmd[nb]->stdin == NULL)
 	{
 		dprintf(2, "no redir in for cmd[%d]", nb);
 		return (-2);
 	}
-	i = 0;
 	if (pipe(pp) == -1)
 		return (-1);
-	dup2(pp[0], 0);
-	fdglobalin = dup(pp[1]);
+//	fdglobalin = dup(pp[1]);
+	fdglobalin = open("fileresu", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	i = 0;
 	while (cmd[nb]->stdin[i])
 	{
 		if (cmd[nb]->stdin[i + 1] == NULL)
@@ -51,9 +51,12 @@ int	ft_redir_in(t_cmd **cmd, int nb)
 			while(nb_read)
 			{
 				nb_read = read(fd, buf, 500);
+				dprintf(2, "lecture [%s], nb_read=[%d]\n", cmd[nb]->stdin[i + 1], nb_read);
 				if (nb_read)
 				{
+					dprintf(2, "ecriture: nb_read=[%d], buf=[%s]\n", nb_read, buf);
 					write(fdglobalin, buf, nb_read);
+					buf[0] = '\0';
 				}
 			}
 			close(fd);
@@ -61,12 +64,14 @@ int	ft_redir_in(t_cmd **cmd, int nb)
 		else if (ft_strcmp(cmd[nb]->stdin[i], "<<") == 0)
 		{
 			// heredoc
+			// <file1<file2 wc | wc
 		}
 		else
 			exit (66);
 		i += 2;
 	}
-	close(pp[0]);
+	//dup2(pp[0], 0);
+	//close(pp[0]);
 	close(pp[1]);
 	close(fdglobalin);
 	dprintf(2, "end of ft_redir_in, pp[0]=[%d]\n", pp[0]);
@@ -129,7 +134,8 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 	int	fdin;
 	int	fdout;
 
-	fdin = ft_redir_in(cmd, i);
+//	fdin = ft_redir_in(cmd, i);
+	fdin = ft_redir_in2(cmd);
 	dprintf(2, "after ft_redir_in, fdin=[%d]\n", fdin);
 	if (fdin == -1)
 	{
@@ -159,10 +165,10 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 		dup2(fdout, 1);
 	else
 		dup2(pp[i][1], 1);
-	close(pp[i][0]);
-	close(pp[i][1]);
-	close(fdin);
-	close(fdout);
+//	close(pp[i][0]);
+//	close(pp[i][1]);
+//	close(fdin);
+//	close(fdout);
 	dprintf(2, "pp[%d][0]=[%d], pp[%d][0]=[%d]\n", i, pp[i][0], i, pp[i][1]);
 	dprintf(2, "cmd[%d][0]=[%s]\n", i, cmd[i]->cmd[0]);
 	dprintf(2, "end of child\n");
