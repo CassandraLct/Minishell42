@@ -241,16 +241,15 @@ demain :
 	-> tester tous les cas;
 
 Jeudi 26/01 :
-	-> heredoc : // while (1) // a faire dans une fonction
-				 // {
-				 // 	line = readline(">");
-				 // 	if(ft_strncmp(cmd[nb]->stdin[i + 1], line, ft_strlen(line)) != 0)
-				 // 	{
-				 // 		free(line);
-				 // 		close(pp[1]);
-				 // 		return(pp[0]);
-				 // 	}
-				 // 	write(pp[1], line, ft_strlen(line));
-				 // 	write(pp[1], "\n", 1);
-				 // 	free(line);
-				 // }
+	-> heredoc : fait
+
+*comprendre pk "ec"ho(ou autre commande) fonctionne
+
+demain : 
+	-> voir les cas de cmd avec cotes en plein milieu; 
+		-> idée si en enlevant les cotes la commande existe enlever les cotes sinon return;
+reate a faire :
+-> finir les pipes;
+-> finir les redirections;
+-> voir fonction cmd avec redirection;
+-> faire fonction de gestion cmd existante avec cotes au milieu;
