@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 11:55:54 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/23 09:42:31 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/26 14:10:34 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,24 +69,26 @@ void	dright_patern(t_cmd **cmd)
 //affiche l'erreur de grep / cat affiche ce qui a ete ecrit dans le heredoc
 // le heredoc se lance avant la cmd puis une fois fermer la cmd est effectuer
 //bash: syntax error near unexpected token `newline'
-void	dleft_patern(t_cmd **cmd)
+int	heredoc(t_cmd **cmd)
 {
-	int	fd;
-
-	if (g_mini.tab[1] == NULL)
+	char	*line;
+	if (cmd[0]->stdin[1] == NULL)
 	{
 		printf("minishell: syntax error near unexpected token `newline'\n");
 		g_mini.ret_err = 258;
 		return ;
 	}
+	while (1)
+	{
+		line = readline(">");
+		if(ft_strncmp(cmd[nb]->stdin[i + 1], line, ft_strlen(line)) != 0)
+		{
+			free(line);
+			close(pp[1]);
+			return(pp[0]);
+		}
+		write(pp[1], line, ft_strlen(line));
+		write(pp[1], "\n", 1);
+		free(line);
+	}
 }
-
-/*comme le readline (boucle tant que le mot donné ne soit ecrit)*/
-//	while (ft_strcmp(strline, arg) != 0)
-//	{
-//		tab[i] = strdup(str);
-//		printf(">"); (recupere la line apres le chevron);
-//		i++;
-//	}
-//	des que c'est egal, donner en entrer de la commande avant si presente
-//	ou affiche le msg d'erreur de la cmd si n'a pas d'arg (gerer par execve?)
