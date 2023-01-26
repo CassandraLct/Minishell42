@@ -14,20 +14,31 @@
 
 int	ft_redir_in(t_cmd **cmd, int nb)
 {
-	int	i;
-	int	fd;
-	int	pp[2];
+	int		i;
+	int		fd;
+	int		fdglobalin;
+	int		pp[2];
+	char	buf[500];
+	int		nb_read;
 
-	printf("inside ft_redir_in\n");
+	dprintf(2, "inside ft_redir_in\n");
+	if (cmd[nb]->stdin == NULL)
+	{
+		dprintf(2, "no redir in for cmd[%d]", nb);
+		return (-2);
+	}
 	i = 0;
 	if (pipe(pp) == -1)
 		return (-1);
-	if (cmd[nb]->stdin == NULL)
-		return (-2);
+	dup2(pp[0], 0);
+	fdglobalin = dup(pp[1]);
 	while (cmd[nb]->stdin[i])
 	{
 		if (cmd[nb]->stdin[i + 1] == NULL)
+		{
+			dprintf(2, "redir in without file\n");
 			return (-3);
+		}
 		if (ft_strcmp(cmd[nb]->stdin[i], "<") == 0)
 		{
 			fd = open(cmd[nb]->stdin[i + 1], O_RDONLY);
@@ -35,9 +46,16 @@ int	ft_redir_in(t_cmd **cmd, int nb)
 			{
 				perror(cmd[nb]->stdin[i + 1]);
 				exit (66);
-			}	
-			dup2(fd, 0);
-			dup2(pp[1], 1);
+			}
+			nb_read = 1;
+			while(nb_read)
+			{
+				nb_read = read(fd, buf, 500);
+				if (nb_read)
+				{
+					write(fdglobalin, buf, nb_read);
+				}
+			}
 			close(fd);
 		}
 		else if (ft_strcmp(cmd[nb]->stdin[i], "<<") == 0)
@@ -48,8 +66,10 @@ int	ft_redir_in(t_cmd **cmd, int nb)
 			exit (66);
 		i += 2;
 	}
+	close(pp[0]);
 	close(pp[1]);
-	printf("end of ft_redir_in, pp[0]=[%d]\n", pp[0]);
+	close(fdglobalin);
+	dprintf(2, "end of ft_redir_in, pp[0]=[%d]\n", pp[0]);
 	return (pp[0]);
 }
 
@@ -59,9 +79,11 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 	int	fd;
 	int	pp[2];
 
-	printf("inside ft_redir_out\n");
+	dprintf(2, "inside ft_redir_out\n");
 	i = 0;
-	pipe(pp);
+	if (pipe(pp)  ==-1)
+		exit(70);
+	dup2(pp[0], 0);
 	while (cmd[nb]->stdout[i])
 	{
 		if (cmd[nb]->stdout[i + 1] == NULL)
@@ -75,7 +97,6 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 				exit (67);
 			}
 			dup2(fd, 1);
-			dup2(pp[0], 0);
 			close(fd);
 		}
 		else if (ft_strcmp(cmd[nb]->stdout[i], ">>") == 0)
@@ -107,14 +128,14 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 	int	fdout;
 
 	fdin = ft_redir_in(cmd, i);
-	printf("after ft_redir_in, fdin=[%d]\n", fdin);
+	dprintf(2, "after ft_redir_in, fdin=[%d]\n", fdin);
 	if (fdin == -1)
 	{
 		perror("redirection in : ");
 		return ;
 	}
 	fdout = ft_redir_out(cmd, i);
-	printf("child -> after ft_redir_out, fdout=[%d]\n", fdout);
+	dprintf(2, "child -> after ft_redir_out, fdout=[%d]\n", fdout);
 	if (fdout == -1)
 	{
 		perror("redirection out :");
@@ -153,13 +174,13 @@ int	piping(void)
 	int	pid;
 	int	**pp;
 
-	printf("max FD=[%d]\n", FOPEN_MAX);
+	dprintf(2, "max FD=[%d]\n", FOPEN_MAX);
 	if (!g_mini.struct_cmd)
 		exit (66);
 	nbcmd = 0;
 	while (g_mini.struct_cmd[nbcmd])
 		nbcmd++;
-	printf("nbcmd=[%d]\n", nbcmd);
+	dprintf(2, "nbcmd=[%d]\n", nbcmd);
 	pp = ft_test(ft_calloc(nbcmd + 1, sizeof(*pp)), NULL);
 	i = 0;
 	while (i < nbcmd)
@@ -171,13 +192,13 @@ int	piping(void)
 	while (g_mini.struct_cmd[i])
 	{
 		pipe(pp[i]);
-		printf("pp[%d][0]=[%d], pp[%d][1]=[%d]\n", i, pp[i][0], i, pp[i][1]);
+		dprintf(2, "pp[%d][0]=[%d], pp[%d][1]=[%d]\n", i, pp[i][0], i, pp[i][1]);
 		pid = fork();
 		if (pid == -1)
 			exit (127);
 		if (pid == 0)
 		{
-			printf("\033[0;32m" "\nbefore child [%d]\n" "\033[0m", i);
+			dprintf(2, "\033[0;32m" "\nbefore child [%d]\n" "\033[0m", i);
 			ft_child(g_mini.struct_cmd, pp, i);
 		}
 		else

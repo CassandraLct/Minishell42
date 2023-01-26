@@ -17,9 +17,7 @@ static char	**recup_path(t_min *mini)
 {
 	char	**all_path;
 	char	*b_path;
-//	int		i;
 
-//	i = 0;
 	b_path = NULL;
 	b_path = recup_pathexec(mini);
 	if (b_path == NULL)

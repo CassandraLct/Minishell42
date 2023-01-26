@@ -40,8 +40,8 @@ void	ft_copy_inside_simple_cote(char **res, char *line, int *i, int *j)
 	(*res)[(*j)++] = line[(*i)++];
 	while (line[*i] != '\'')
 		(*res)[(*j)++] = line[(*i)++];
-	(*res)[*j] = line[*i];
-	(*res)[*j + 1] = '\0';
+	(*res)[(*j)++] = line[*i];
+	(*res)[*j] = '\0';
 }
 
 // copy what is inside the double cote
@@ -50,8 +50,8 @@ void	ft_copy_inside_double_cote(char **res, char *line, int *i, int *j)
 	(*res)[(*j)++] = line[(*i)++];
 	while (line[*i] != '"')
 		(*res)[(*j)++] = line[(*i)++];
-	(*res)[*j] = line[*i];
-	(*res)[*j + 1] = '\0';
+	(*res)[(*j)++] = line[*i];
+	(*res)[*j] = '\0';
 }
 
 // malloc the structure that contains all the redir and cmd
