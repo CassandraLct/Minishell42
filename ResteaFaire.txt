@@ -253,3 +253,13 @@ reate a faire :
 -> finir les redirections;
 -> voir fonction cmd avec redirection;
 -> faire fonction de gestion cmd existante avec cotes au milieu;
+
+Vendredi 27/01 :
+	-> faire fonctions de suppression cotes en plein milieu d'une commande; Fait
+	-> recuperer ce qu'il y a avant et apres; Fait
+
+a faire demain :
+	-> penser a strjoin la line modifier avec le debut et la fin;
+	-> tester les cas étranges;
+	-> verifier les leaks;
+	-> faire la norme;

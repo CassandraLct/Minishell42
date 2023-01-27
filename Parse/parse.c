@@ -6,13 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:12:24 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/25 12:26:43 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/27 13:47:15 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//4 fonctions
+//5 fonctions
 //malloc la taille du tableau
 char	**init_exp(char **tab)
 {

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/26 17:50:13 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/27 15:51:10 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,11 @@
 // 	}
 // }
 
-//modifier le split de la line
+//modifier le split de la line // test a faire : ec'ho | cat ex'ec.c
 int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
-	int	new_filein;
 	init_struct(&g_mini, envp);
 	signaux();
 	while (1)
@@ -66,8 +65,6 @@ int	main(int argc, char **argv, char **envp)
 			if (g_mini.struct_cmd != NULL)
 			{
 				verif_struct_cmd(g_mini.struct_cmd);
-				// new_filein = heredoc(g_mini.struct_cmd);
-				// printf("filein = %d\n", new_filein);
 				redir_pipe(&g_mini, g_mini.struct_cmd);
 				free_t_cmd(g_mini.struct_cmd);
 			}

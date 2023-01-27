@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/25 12:14:59 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/27 14:17:56 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ void	verif_struct_cmd(t_cmd **tab_cmd);
 void	modif_cmd(char **cmd);
 void	modif_stdin(char **stdin);
 void	modif_stdout(char **stdout);
+void	verif_cmdcotes(char *line);
 
 //splitcmd.c
 t_cmd	**spliter3(char **inst);

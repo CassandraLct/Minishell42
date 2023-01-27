@@ -6,14 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/25 10:25:59 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/27 14:17:21 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 //5 fonctions
-
 int	cotes_dollar(t_min *mini, char *line)
 {
 	if (verif_cotes(line) == 1)
@@ -33,6 +32,7 @@ void	parcour_line(t_min *mini)
 	int		nb_dollar;
 
 	nb_dollar = 0;
+	verif_cmdcotes(mini->line);
 	nb_dollar = count_nbdollar(mini->line);
 	if (nb_dollar == 0)
 		return ;
