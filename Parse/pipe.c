@@ -82,75 +82,120 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 {
 	int	i;
 	int	fd;
-	int	pp[2];
 
-//	dprintf(2, "inside ft_redir_out\n");
 	i = 0;
-	if (pipe(pp)  ==-1)
-		exit(70);
-	dup2(pp[0], 0);
+	fd = 0;
 	while (cmd[nb]->stdout[i])
 	{
 		if (cmd[nb]->stdout[i + 1] == NULL)
 			exit (67);
 		if (ft_strcmp(cmd[nb]->stdout[i], ">") == 0)
 		{
+			if (fd)
+				close(fd);
 			fd = open(cmd[nb]->stdout[i + 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 			dprintf(2, "redir out simple fd=[%d], i=[%d], redir=[%s], file=[%s]\n", fd, i, cmd[nb]->stdout[i], cmd[nb]->stdout[i + 1]);
 			if (fd == -1)
 			{
 				perror(cmd[nb]->stdout[i + 1]);
-				exit (67);
 			}
-			dup2(fd, 1);
-			close(fd);
 		}
 		else if (ft_strcmp(cmd[nb]->stdout[i], ">>") == 0)
 		{
+			if (fd)
+				close(fd);
 			fd = open(cmd[nb]->stdout[i + 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
 			dprintf(2, "redir out double fd=[%d], i=[%d], redir=[%s], file=[%s]\n", fd, i, cmd[nb]->stdout[i], cmd[nb]->stdout[i + 1]);
 			if (fd == -1)
 			{
 				perror(cmd[nb]->stdout[i + 1]);
-				exit (67);
 			}
-			dup2(fd, 1);
-			close(fd);
 		}
 		else
 			exit (67);
 		i += 2;
 	}
-	dup2(pp[0], 0);
-	close(pp[0]);
-	dprintf(2, "end of ft_redir_out, pp[1]=[%d]\n", pp[1]);
-	return (pp[1]);
+	dprintf(2, "end of ft_redir_out, fd=[%d]\n", fd);
+	return (fd);
 }
 
 // gerer les redir out
 // gerer le cas de la derniere cmd qui ne doit pas pipe
-void	ft_child(t_cmd **cmd, int **pp, int i, int fdin)
+void	ft_child(t_cmd **cmd, int **pp, int i)
 {
-//	int	fdin;
+	int	fdin;
 	int	fdout;
 
-//	fdin = ft_redir_in(cmd, i);
-//	fdin = ft_redir_in2(cmd);
-	dprintf(2, "after ft_redir_in");
+	if (i == 0)
+	{
+		fdin = ft_redir_in2(cmd);
+		dprintf(2, "i=0 fdin=[%d]\n", fdin);
+	}
+	else
+	{
+		fdin = pp[i - 1][0];
+		dprintf(2, "i>0 fdin=[%d]\n", fdin);
+	}
 	if (fdin == -1)
 	{
 		perror("redirection in : ");
 		return ;
 	}
+	else if (fdin > 2)
+	{
+		dprintf(2, "dup2(fdin, 0), fdin=[%d]\n", fdin);
+		dup2(fdin, 0);
+	}
+	else
+	{
+		dprintf(2, "cas sans arg de cmd qui a besoin d'arg\n");
+	}
 	fdout = ft_redir_out(cmd, i);
-	dprintf(2, "child -> after ft_redir_out, fdout=[%d]\n", fdout);
+	if (fdout == -1)
+	{
+		perror("redirection out :");
+		return ;
+	}
+	else if (fdout == 0)
+		dup2(pp[i][1], 1);
+	else
+		dup2(fdout, 1);
+	dprintf(2, "child -> i=[%d], fdin=[%d], fdout=[%d], pp[i][1]=[%d]\n", i, fdin, fdout, pp[i][1]);
+//	close(pp[i][0]);
+//	close(pp[i][1]);
+//	close(fdin);
+//	close(fdout);
+	dprintf(2, "pp[%d][0]=[%d], pp[%d][1]=[%d] / ", i, pp[i][0], i, pp[i][1]);
+	dprintf(2, "cmd[%d][0]=[%s]\n", i, cmd[i]->cmd[0]);
+	dprintf(2, "end of child\n");
+	ft_set_pathexec(&g_mini, cmd[i]->cmd);
+	exit (68);
+}
+
+void	ft_parent(t_cmd **cmd, int **pp, int i)
+{
+	int fdin;
+	int	fdout;
+
+//	fdout = ft_redir_out(cmd, i);
+	fdin = 1;
+	fdout = 1; // for testing
+	if (fdin == -1)
+	{
+		perror("redirection in : ");
+		return ;
+	}
+	dprintf(2, "parent -> after ft_redir_out, fdout=[%d]\n", fdout);
 	if (fdout == -1)
 	{
 		perror("redirection out :");
 		return ;
 	}
 	if (fdin != -2)
+	{
+		dprintf(2, "dup2(fdin, 0), fdin=[%d]\n", fdin);
 		dup2(fdin, 0);
+	}
 	else
 	{
 		if (i > 0)
@@ -169,9 +214,9 @@ void	ft_child(t_cmd **cmd, int **pp, int i, int fdin)
 //	close(pp[i][1]);
 //	close(fdin);
 //	close(fdout);
-	dprintf(2, "pp[%d][0]=[%d], pp[%d][0]=[%d]\n", i, pp[i][0], i, pp[i][1]);
+	dprintf(2, "pp[%d][0]=[%d], pp[%d][1]=[%d] / ", i, pp[i][0], i, pp[i][1]);
 	dprintf(2, "cmd[%d][0]=[%s]\n", i, cmd[i]->cmd[0]);
-	dprintf(2, "end of child\n");
+	dprintf(2, "end of parent\n");
 	ft_set_pathexec(&g_mini, cmd[i]->cmd);
 	exit (68);
 }
@@ -196,14 +241,12 @@ int	piping(void)
 	int	nbcmd;
 	int	pid;
 	int	**pp;
-	int	fdin;
 
 	if (!g_mini.struct_cmd)
 		exit (66);
 	nbcmd = 0;
 	while (g_mini.struct_cmd[nbcmd])
 		nbcmd++;
-	dprintf(2, "nbcmd=[%d]\n", nbcmd);
 	pp = ft_test(ft_calloc(nbcmd + 1, sizeof(*pp)), NULL);
 	i = 0;
 	while (i < nbcmd)
@@ -212,25 +255,26 @@ int	piping(void)
 		i++;
 	}
 	i = 0;
-	fdin = ft_redir_in2(g_mini.struct_cmd);
-	while (g_mini.struct_cmd[i])
+	while (g_mini.struct_cmd[i + 1])
 	{
-		pipe(pp[i]);
-		dprintf(2, "pp[%d][0]=[%d], pp[%d][1]=[%d]\n", i, pp[i][0], i, pp[i][1]);
+		if (pipe(pp[i]) == -1)
+		{
+			dprintf(2, "pipe bug\n");
+		}
 		pid = fork();
 		if (pid == -1)
 			exit (127);
 		if (pid == 0)
 		{
 			dprintf(2, "\033[0;32m" "\nbefore child [%d]\n" "\033[0m", i);
-			if (i == 0 && fdin > 2)
-				dup2(fdin, 0);
-			ft_child(g_mini.struct_cmd, pp, i, fdin);
+			ft_child(g_mini.struct_cmd, pp, i);
 		}
 		else
 			waitpid(0, NULL, 0);
 		i++;
 	}
-	dprintf(2, "\033[0;32m" "\n\nafter last cmd i=[%d]\n" "\033[0m", i);
+	dprintf(2, "\033[0;32m" "\nbefore last cmd i=[%d]\n" "\033[0m", i);
+	ft_parent(g_mini.struct_cmd, pp, i);
+	dprintf(2, "\033[0;32m" "\nafter last cmd i=[%d]\n" "\033[0m", i);
 	return (1);
 }

@@ -125,7 +125,7 @@ int	ft_redir_in2(t_cmd **cmd)
 	fd = 0;
 	if (ft_nb_heredoc(cmd) != 0)
 	{
-		dprintf(2, "nb heredoc=[%d]\n", ft_nb_heredoc(cmd));
+//		dprintf(2, "nb heredoc=[%d]\n", ft_nb_heredoc(cmd));
 		i = 0;
 		while (cmd[i])
 		{
@@ -134,7 +134,7 @@ int	ft_redir_in2(t_cmd **cmd)
 			{
 				if (ft_strcmp(cmd[i]->stdin[j], "<<") == 0)
 				{
-					dprintf(2, "found heredoc << at i=[%d], j=[%d]\n", i, j);
+//					dprintf(2, "found heredoc << at i=[%d], j=[%d]\n", i, j);
 					if (cmd[i]->stdin[j + 1] == NULL)
 					{
 						printf("minishell: syntax error near unexpected token `newline'\n");
@@ -145,12 +145,12 @@ int	ft_redir_in2(t_cmd **cmd)
 					{
 						if (fd)
 						{
-							dprintf(2, "closing previous pipe fd=[%d]\n", fd);
+//							dprintf(2, "closing previous pipe fd=[%d]\n", fd);
 							close(fd);
 						}
-						dprintf(2, "keyword=[%s][%s]\n", cmd[i]->stdin[j], cmd[i]->stdin[j + 1]);
+//						dprintf(2, "keyword=[%s][%s]\n", cmd[i]->stdin[j], cmd[i]->stdin[j + 1]);
 						fd = heredoc(cmd[i]->stdin[j + 1]);
-						dprintf(2, "new pipe open fd=[%d]\n", fd);
+//						dprintf(2, "new pipe open fd=[%d]\n", fd);
 					}
 				}
 				j++;
@@ -161,7 +161,7 @@ int	ft_redir_in2(t_cmd **cmd)
 	}
 	if (last_redir == 0) // no redir
 	{
-		dprintf(2, "end of redir, no redir fd=0\n");
+		dprintf(2, "end of redir2, no redir fd=0\n");
 		return (0);
 	}
 	else if (last_redir == 1) // last is <
@@ -169,13 +169,13 @@ int	ft_redir_in2(t_cmd **cmd)
 		if (fd)
 			close(fd);
 		fd = open(ft_last_single_redir_in(cmd), O_RDONLY);
-		dprintf(2, "end of redir, last redir is single fd=[%d]\n", fd);
+		dprintf(2, "end of redir2, last redir is single fd=[%d]\n", fd);
 		return (fd);
 //		return (open(ft_last_single_redir_in(cmd), O_RDONLY));
 	}
 	else if (last_redir == 2) // last is <<
 	{
-		dprintf(2, "end of redir, last is heredoc fd=[%d]\n", fd);
+		dprintf(2, "end of redir2, last is heredoc fd=[%d]\n", fd);
 		return (fd);
 	}
 	return (0);
