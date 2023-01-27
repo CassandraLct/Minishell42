@@ -158,9 +158,9 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 //	else
 //		dup2(fdout, 1);
 	dprintf(2, "child -> i=[%d], fdin=[%d], fdout=[%d], pp[i][1]=[%d]\n", i, fdin, fdout, pp[i][1]);
-//	close(pp[i][0]);
-//	close(pp[i][1]);
-//	close(fdin);
+	close(pp[i][0]);
+	close(pp[i][1]);
+	close(fdin);
 //	close(fdout);
 	dprintf(2, "pp[%d][0]=[%d], pp[%d][1]=[%d] / ", i, pp[i][0], i, pp[i][1]);
 	dprintf(2, "cmd[%d][0]=[%s]\n", i, cmd[i]->cmd[0]);
@@ -206,7 +206,7 @@ void	ft_parent(t_cmd **cmd, int **pp, int i)
 	dup2(fdout, 1);
 //	close(pp[i][0]);
 //	close(pp[i][1]);
-//	close(fdin);
+	close(fdin);
 //	close(fdout);
 	dprintf(2, "pp[%d][0]=[%d], pp[%d][1]=[%d] / ", i, pp[i][0], i, pp[i][1]);
 	dprintf(2, "cmd[%d][0]=[%s]\n", i, cmd[i]->cmd[0]);
@@ -214,20 +214,6 @@ void	ft_parent(t_cmd **cmd, int **pp, int i)
 	ft_set_pathexec(&g_mini, cmd[i]->cmd);
 	exit (68);
 }
-
-/*
-void	ft_pipe(t_cmd **cmd, int i, int fdin, int fdout)
-{
-	int	pid;
-
-	pid = fork();
-	if (pid == -1)
-		exit(127);
-	if (pid == 0)
-		ft_child();
-	return (1);
-}
-*/
 
 int	piping(void)
 {

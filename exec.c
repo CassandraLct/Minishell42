@@ -61,16 +61,7 @@ void	ft_execve(t_min *mini, char **all_path, char **pathcmd, char **cmd)
 		if (access(gd_path, R_OK) == 0)
 		{
 //			free(gd_path);
-/*			if (ft_strcmp(gd_path, "cat") == 0)
-				gd_path = ft_strdup("/bin/cat");
-			if (ft_strcmp(gd_path, "ls") == 0)
-				gd_path = ft_strdup("/bin/ls");
-			if (ft_strcmp(pathcmd[0], "/cat") == 0)
-				pathcmd[0] = ft_strdup("cat");
-			if (ft_strcmp(pathcmd[0], "/ls") == 0)
-				pathcmd[0] = ft_strdup("ls");
-*/
-			dprintf(2, " before execve, gd_path =[%s] / ", gd_path);
+			dprintf(2, "before execve, gd_path =[%s] / ", gd_path);
 			dprintf(2, "pathcmd[0]=[%s] / ", pathcmd[0]);
 			dprintf(2, "pathcmd[1]=[%s]\n", pathcmd[1]);
 //			dprintf(2, "pathcmd[2]=[%s]\n", pathcmd[2]);
@@ -80,6 +71,7 @@ void	ft_execve(t_min *mini, char **all_path, char **pathcmd, char **cmd)
 				perror("Execve : ");
 				exit(EXIT_FAILURE);
 			}
+			dprintf(2, "after execve\n");
 		}
 		else
 			j++;
