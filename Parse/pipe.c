@@ -136,12 +136,7 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 		fdin = pp[i - 1][0];
 		dprintf(2, "i>0 fdin=[%d]\n", fdin);
 	}
-	if (fdin == -1)
-	{
-		perror("redirection in : ");
-		return ;
-	}
-	else if (fdin > 2)
+	if (fdin > 2)
 	{
 		dprintf(2, "dup2(fdin, 0), fdin=[%d]\n", fdin);
 		dup2(fdin, 0);
@@ -151,15 +146,17 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 		dprintf(2, "cas sans arg de cmd qui a besoin d'arg\n");
 	}
 	fdout = ft_redir_out(cmd, i);
+	dprintf(2, "fdout=[%d]\n", fdout);
 	if (fdout == -1)
 	{
 		perror("redirection out :");
 		return ;
 	}
-	else if (fdout == 0)
-		dup2(pp[i][1], 1);
-	else
-		dup2(fdout, 1);
+	dup2(pp[i][1], 1);
+//	else if (fdout == 0)
+//		dup2(pp[i][1], 1);
+//	else
+//		dup2(fdout, 1);
 	dprintf(2, "child -> i=[%d], fdin=[%d], fdout=[%d], pp[i][1]=[%d]\n", i, fdin, fdout, pp[i][1]);
 //	close(pp[i][0]);
 //	close(pp[i][1]);
@@ -178,7 +175,7 @@ void	ft_parent(t_cmd **cmd, int **pp, int i)
 	int	fdout;
 
 //	fdout = ft_redir_out(cmd, i);
-	fdin = 1;
+	fdin = pp[i - 1][0];
 	fdout = 1; // for testing
 	if (fdin == -1)
 	{
@@ -206,10 +203,7 @@ void	ft_parent(t_cmd **cmd, int **pp, int i)
 			dprintf(2, "cas sans arg de cmd qui a besoin d'arg\n");
 		}
 	}
-	if (fdout != -2)
-		dup2(fdout, 1);
-	else
-		dup2(pp[i][1], 1);
+	dup2(fdout, 1);
 //	close(pp[i][0]);
 //	close(pp[i][1]);
 //	close(fdin);
