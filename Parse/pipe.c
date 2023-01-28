@@ -48,7 +48,7 @@ int	ft_redir_in(t_cmd **cmd, int nb)
 				exit (66);
 			}
 			nb_read = 1;
-			while(nb_read)
+			while (nb_read)
 			{
 				nb_read = read(fd, buf, 500);
 				dprintf(2, "lecture [%s], nb_read=[%d]\n", cmd[nb]->stdin[i + 1], nb_read);
@@ -171,7 +171,7 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 
 void	ft_parent(t_cmd **cmd, int **pp, int i)
 {
-	int fdin;
+	int	fdin;
 	int	fdout;
 
 //	fdout = ft_redir_out(cmd, i);

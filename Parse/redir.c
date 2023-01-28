@@ -17,16 +17,16 @@ int	heredoc(char *cond)
 {
 	char	*line;
 	int		pp[2];
-	
+
 	pipe(pp);
 	while (1)
 	{
 		line = readline("> ");
-		if(ft_strncmp(cond, line, ft_strlen(line)) == 0)
+		if (ft_strncmp(cond, line, ft_strlen(line)) == 0)
 		{
 			free(line);
 			close(pp[1]);
-			return(pp[0]);
+			return (pp[0]);
 		}
 		write(pp[1], line, ft_strlen(line));
 		write(pp[1], "\n", 1);
@@ -136,7 +136,7 @@ int	ft_redir_in2(t_cmd **cmd)
 		while (cmd[i])
 		{
 			j = 0;
-			while(cmd[i]->stdin && cmd[i]->stdin[j])
+			while (cmd[i]->stdin && cmd[i]->stdin[j])
 			{
 				if (ft_strcmp(cmd[i]->stdin[j], "<<") == 0)
 				{
