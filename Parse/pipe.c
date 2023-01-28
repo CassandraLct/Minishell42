@@ -250,7 +250,10 @@ int	piping(void)
 			ft_child(g_mini.struct_cmd, pp, i);
 		}
 		else
-			waitpid(0, NULL, 0);
+		{
+//			waitpid(0, NULL, 0);
+			// close ?
+		}
 		i++;
 	}
 	dprintf(2, "\033[0;32m" "\nbefore last cmd i=[%d]\n" "\033[0m", i);
