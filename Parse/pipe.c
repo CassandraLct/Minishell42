@@ -120,51 +120,33 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 }
 
 // gerer les redir out
-// gerer le cas de la derniere cmd qui ne doit pas pipe
 void	ft_child(t_cmd **cmd, int **pp, int i)
 {
 	int	fdin;
 	int	fdout;
 
 	if (i == 0)
-	{
 		fdin = ft_redir_in2(cmd);
-		dprintf(2, "i=0 fdin=[%d]\n", fdin);
-	}
 	else
-	{
 		fdin = pp[i - 1][0];
-		dprintf(2, "i>0 fdin=[%d]\n", fdin);
-	}
-	if (fdin > 2)
+	if (fdin)
 	{
-		dprintf(2, "dup2(fdin, 0), fdin=[%d]\n", fdin);
+		dprintf(2, "child[%d] => i=0, dup2(fdin, 0), fdin=[%d]\n", i, fdin);
 		dup2(fdin, 0);
+		close(fdin);
 	}
 	else
 	{
-		dprintf(2, "cas sans arg de cmd qui a besoin d'arg\n");
+		dprintf(2, "child[%d] => no arg given to the command\n", i);
 	}
-	fdout = ft_redir_out(cmd, i);
-	dprintf(2, "fdout=[%d]\n", fdout);
-	if (fdout == -1)
-	{
-		perror("redirection out :");
-		return ;
-	}
-	dup2(pp[i][1], 1);
-//	else if (fdout == 0)
-//		dup2(pp[i][1], 1);
-//	else
-//		dup2(fdout, 1);
-	dprintf(2, "child -> i=[%d], fdin=[%d], fdout=[%d], pp[i][1]=[%d]\n", i, fdin, fdout, pp[i][1]);
-	close(pp[i][0]);
+	if (i != 0)
+		close(pp[i - 1][0]);
+	fdout = pp[i][1]; // test
+	dup2(fdout, 1);  //test
 	close(pp[i][1]);
-	close(fdin);
-//	close(fdout);
-	dprintf(2, "pp[%d][0]=[%d], pp[%d][1]=[%d] / ", i, pp[i][0], i, pp[i][1]);
-	dprintf(2, "cmd[%d][0]=[%s]\n", i, cmd[i]->cmd[0]);
-	dprintf(2, "end of child\n");
+	dprintf(2, "child[%d] => i=[%d], fdin=[%d], fdout=[%d], pp[i][1]=[%d], pp[i - 1][0]=[%d]\n", i, i, fdin, fdout, pp[i][1], pp[i - 1][0]);
+	dprintf(2, "child[%d] => cmd[%d][0]=[%s]\n", i, i, cmd[i]->cmd[0]);
+	dprintf(2, "child[%d] => end of child\n", i);
 	ft_set_pathexec(&g_mini, cmd[i]->cmd);
 	exit (68);
 }
@@ -174,43 +156,32 @@ void	ft_parent(t_cmd **cmd, int **pp, int i)
 	int	fdin;
 	int	fdout;
 
-//	fdout = ft_redir_out(cmd, i);
-	fdin = pp[i - 1][0];
-	fdout = 1; // for testing
-	if (fdin == -1)
+	if (i == 0)
+		fdin = ft_redir_in2(cmd);
+	else
+		fdin = pp[i - 1][0];
+	if (fdin)
 	{
-		perror("redirection in : ");
-		return ;
+		dprintf(2, "parent => i=0, dup2(fdin, 0), fdin=[%d]\n", fdin);
+		dup2(fdin, 0);
+		close(fdin);
 	}
-	dprintf(2, "parent -> after ft_redir_out, fdout=[%d]\n", fdout);
+	else
+	{
+		dprintf(2, "parent => no arg given to the command\n");
+	}
+
+	fdout = 1; // for testing
+	dprintf(2, "parent => after ft_redir_out, fdout=[%d]\n", fdout);
 	if (fdout == -1)
 	{
 		perror("redirection out :");
 		return ;
 	}
-	if (fdin != -2)
-	{
-		dprintf(2, "dup2(fdin, 0), fdin=[%d]\n", fdin);
-		dup2(fdin, 0);
-	}
-	else
-	{
-		if (i > 0)
-			dup2(pp[i - 1][0], 0);
-		else
-		{
-			// no arg en entree heredoc?
-			dprintf(2, "cas sans arg de cmd qui a besoin d'arg\n");
-		}
-	}
 	dup2(fdout, 1);
-//	close(pp[i][0]);
-//	close(pp[i][1]);
-	close(fdin);
-//	close(fdout);
-	dprintf(2, "pp[%d][0]=[%d], pp[%d][1]=[%d] / ", i, pp[i][0], i, pp[i][1]);
-	dprintf(2, "cmd[%d][0]=[%s]\n", i, cmd[i]->cmd[0]);
-	dprintf(2, "end of parent\n");
+	dprintf(2, "parent => pp[%d][0]=[%d], pp[%d][1]=[%d] / ", i, pp[i][0], i, pp[i][1]);
+	dprintf(2, "parent => cmd[%d][0]=[%s]\n", i, cmd[i]->cmd[0]);
+	dprintf(2, "parent => end of parent\n");
 	ft_set_pathexec(&g_mini, cmd[i]->cmd);
 	exit (68);
 }

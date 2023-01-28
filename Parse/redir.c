@@ -170,7 +170,6 @@ int	ft_redir_in2(t_cmd **cmd)
 			close(fd);
 		fd = open(ft_last_single_redir_in(cmd), O_RDONLY);
 		dprintf(2, "end of redir2, last redir is single fd=[%d]\n", fd);
-//		dprintf(2, "end of redir2, last redir is single fd=[%d], arg=[%s]\n", fd, ft_last_single_redir_in(cmd));
 		return (fd);
 //		return (open(ft_last_single_redir_in(cmd), O_RDONLY));
 	}
