@@ -263,3 +263,12 @@ a faire demain :
 	-> tester les cas étranges;
 	-> verifier les leaks;
 	-> faire la norme;
+
+Samedi 28/01 :
+	-> faire un join si un debut et une fin de line; Fait
+	-> faire gestion du cas $; en cours 
+	-> faire gestion du cas chevrons; fait
+	-> modifier les fonctions des dollars; en cours (compter le nombre de cote)
+	-> si une chevron seul mettre erreur : bash: syntax error near unexpected token `newline';
+
+*pour le cas : minishell> echo "toto 'est' beau" : erreur de malloc (pointeur free est non alloué);

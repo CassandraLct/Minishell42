@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:12:24 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/27 13:47:15 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/28 15:45:11 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,9 @@ void	verif_struct_cmd(t_cmd **tab_scmd)
 {
 	int	i;
 
+	i = 0;
+	while (tab_scmd[0]->__stdinp[i])
+		printf("stdin = {%s}\n", tab_scmd[0]->__stdinp[i++]);
 	i = 0;
 	while (tab_scmd[i])
 	{

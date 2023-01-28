@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:51:31 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/27 13:33:35 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/28 12:54:48 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_execve(t_min *mini, char **all_path, char **pathcmd, char **cmd)
 //test chaque path puis execute la cmd si existante
 void	ft_exec(t_min *mini, char **all_path, char **pathcmd, char **cmd)
 {
-	if (verif_cmd(all_path, pathcmd, cmd) != 0)
+	if (verif_cmd(all_path, pathcmd, cmd) != 0 || cmd[0][0] == '\0')
 	{
 		free_tab(all_path);
 		free_tab(pathcmd);

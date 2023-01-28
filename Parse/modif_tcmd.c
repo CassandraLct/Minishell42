@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:17:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/27 17:55:04 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/28 16:25:20 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,70 +87,124 @@ void	modif_stdout(char **stdout)
 	}
 }
 
-char	*changecotesline(char *line, char cotes)
+char	*get_sline(char *line, char cotes)
 {
 	char	*s_line;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	s_line = NULL;
+	while (line[i] && line[i] != cotes)
+		i++;
+	while (line[i] && line[i] != ' ' && i != 0 && line[i] != '<' && line[i] != '>')
+		i--;
+	j = ft_strlen(line) - i;
+	if (i != 0)
+	{
+		s_line = malloc(sizeof(char) * ((ft_strlen(line) - j) + 1));
+		j = 0;
+		while (line[j] && j <= i)
+		{
+			s_line[j] = line[j];
+			j++;
+		}
+		s_line[j] = '\0';
+		return (s_line);
+	}
+	return (s_line);
+}
+
+char	*get_eline(char *line, char cotes)
+{
 	char	*e_line;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	e_line = NULL;
+	while (line[i] && line[i] != cotes)
+		i++;
+	j = i + 1;
+	while (line[i] && line[i] != ' ' && i != 0 && line[i] != '<' && line[i] != '>')
+		i--;
+	while (line[j] && line[j] != cotes)
+		j++;
+	while (line[j] && line[j] != ' ' && line[j] != '<' && line[j] != '>' && line[j] != '\0')
+		j++;
+	if (line[j] != '\0')
+	{
+		e_line = malloc(sizeof(char) * ((ft_strlen(line) - j) + 1));
+		i = 0;
+		while (line[j] != '\0')
+		{
+			
+			e_line[i] = line[j];
+			i++;
+			j++;
+		}
+		e_line[i] = '\0';
+		return (e_line);
+	}
+	return (e_line);
+}
+
+char	*changecotesline(char *line, char cotes)
+{
 	char	*tmp;
 	int		start;
 	int		end;
 	int		i;
 	int		j;
-	int		w;
 
 	i = 0;
-	w = 0;
 	tmp = malloc(sizeof(char) * ft_strlen(line) + 1);
 	while (line[i] && line[i] != cotes)
 		i++;
 	j = i + 1;
-	while (line[i] && line[i] != ' ' && i != 0)
+	while (line[i] && line[i] != ' ' && i != 0 && line[i] != '<' && line[i] != '>')
 		i--;
 	start = i;
-	s_line = malloc(sizeof(char) * ((j - i) + 2));
-	if (i != 0)
-	{
-		while (line[w] && w <= i)
-		{
-			s_line[w] = line[w];
-			w++;
-		}
-		s_line[w] = '\0';
-		printf("s_line = {%s}\n", s_line);
-	}
 	while (line[j] && line[j] != cotes)
 		j++;
-	while (line[j] && (line[j] != ' ' || line[j] == '\0'))
+	while ((line[j] && line[j] != ' ' && line[j] != '<' && line[j] != '>')|| line[j] == '\0')
 		j++;
 	end = j;
-	printf("ici\n");
-	if (line[j] != '\0')
-	{
-		e_line = malloc(sizeof(char) * ((ft_strlen(line) - j) + 1));
-		printf("apres_malloc\n");
-		w = 0;
-		printf("avant boucle: j = %d\n", j);
-		while (line[j] != '\0')
-		{
-			
-			e_line[w] = line[j];
-			w++;
-			j++;
-		}
-		printf("ici2\n");
-		e_line[w] = '\0';
-		printf("e_line = {%s}\n", e_line);
-	}
 	i = 0;
-	while (line[start] && start <= end)
+	if(line[start] == ' ' || line[start] == '<' || line[start] == '>')
+		start += 1;
+	while (line[start] && start != end)
 	{
 		tmp[i] = line[start];
 		i++;
 		start++;
 	}
 	tmp[i] = '\0';
-	printf("changes cotes line : tmp = %s\n", tmp);
 	return (tmp);
+}
+
+char	*join_line(char *tmp, char *s_line, char *e_line)
+{
+	char	*new_line;
+	char	*tmp2;
+
+	tmp2 = NULL;
+	new_line = NULL;
+	if(s_line != NULL && e_line == NULL)
+		new_line = ft_strjoin(s_line, tmp);
+	else if(s_line != NULL && e_line != NULL)
+	{
+		tmp2 = ft_strjoin(s_line, tmp);
+		new_line = ft_strjoin(tmp2, e_line);
+		free(tmp2);
+	}
+	else if (s_line == NULL && e_line != NULL)
+		new_line = ft_strjoin(tmp, e_line);
+	else
+		new_line = ft_strdup(tmp);
+	return (new_line);
 }
 
 char	*add_cotesout(char *line)
@@ -193,50 +247,70 @@ void	rm_cotes(char *line, char cotes)
 		i++;
 	}
 	tmp[j] = '\0';
-	printf("tmp = %s\n", tmp);
 	free(line);
 	line = add_cotesout(tmp);
-	printf("after add_cote: line = %s\n", line);
 	free(tmp);
 }
 
-void	check_line(char *line)
+char	*check_line(char *line)
 {
 	char	*tmp;
+	char	*s_line;
+	char	*e_line;
 	char	cotes;
 	int		i;
 
 	i = 0;
 	tmp = NULL;
+	s_line = NULL;
+	e_line = NULL;
 	while (line[i])
 	{
-		if(line[i] == '\'' || line[i] == '"')
-			break;
+		if (line[i] == '\'' || line[i] == '"')
+			break ;
 		i++;
 	}
 	if (line[i] == '\0')
-		return ;
+		return (line);
 	cotes = line[i];
+	s_line = get_sline(line, cotes);
+	printf("s_line = {%s}\n", s_line);
+	e_line = get_eline(line, cotes);
+	printf("e_line = {%s}\n", e_line);
 	tmp = changecotesline(line, cotes);
-	printf("tmp = %s\n", line);
+	printf("tmp = {%s}\n", tmp);
 	rm_cotes(tmp, cotes);
 	free(line);
-	line = ft_strdup(tmp);
+	line = join_line(tmp, s_line, e_line);
 	free(tmp);
+	if(s_line != NULL)
+		free(s_line);
+	if(e_line != NULL)
+		free(e_line);
+	return (line);
 }
+
+// int	verif_placecotes(char *line)
+// {
+// 	printf("verification placement des cotes, line = {%s}\n", line);
+// 	return (0);
+// }
 
 //recuperer ce qu'il y avant et apres l'espace
 //gestion des cotes au milieu d'une commande
 void	verif_cmdcotes(char *line)
 {
 	char	*tmp;
+	char	*new_line;
 	int		i;
 
 	i = 0;
-	printf("line = %s\n", line);
+	new_line = NULL;
+	// if (verif_placecotes(line) == 1)
+	// 	return ;
 	tmp = ft_strdup(line);
-	check_line(tmp);
+	new_line = check_line(tmp);
 	free(line);
-	line = ft_strdup(tmp);
-	free(tmp);
+	line = ft_strdup(new_line);
+	free(new_line);
 }
