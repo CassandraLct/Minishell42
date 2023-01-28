@@ -144,9 +144,12 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 	fdout = pp[i][1]; // test
 	dup2(fdout, 1);  //test
 	close(pp[i][1]);
-	dprintf(2, "child[%d] => i=[%d], fdin=[%d], fdout=[%d], pp[i][1]=[%d], pp[i - 1][0]=[%d]\n", i, i, fdin, fdout, pp[i][1], pp[i - 1][0]);
-	dprintf(2, "child[%d] => cmd[%d][0]=[%s]\n", i, i, cmd[i]->cmd[0]);
-	dprintf(2, "child[%d] => end of child\n", i);
+	dprintf(2, "child[%d] => ici\n", i);
+	if (i == 0)
+		dprintf(2, "child[%d] => i=[%d], fdin=[%d], fdout=[%d], pp[i][1]=[%d]\n", i, i, fdin, fdout, pp[i][1]);
+	else
+		dprintf(2, "child[%d] => i=[%d], fdin=[%d], fdout=[%d], pp[i][1]=[%d], pp[i - 1][0]=[%d]\n", i, i, fdin, fdout, pp[i][1], pp[i - 1][0]);
+	dprintf(2, "child[%d] => cmd[%d][0]=[%s] / end of child\n", i, i, cmd[i]->cmd[0]);
 	ft_set_pathexec(&g_mini, cmd[i]->cmd);
 	exit (68);
 }
@@ -156,6 +159,7 @@ void	ft_parent(t_cmd **cmd, int **pp, int i)
 	int	fdin;
 	int	fdout;
 
+	waitpid(0, NULL, 0);
 	if (i == 0)
 		fdin = ft_redir_in2(cmd);
 	else
@@ -179,9 +183,12 @@ void	ft_parent(t_cmd **cmd, int **pp, int i)
 		return ;
 	}
 	dup2(fdout, 1);
+	if (i != 0)
+		close(pp[i - 1][0]);
+	close(pp[i][0]);
+	close(pp[i][1]);	
 	dprintf(2, "parent => pp[%d][0]=[%d], pp[%d][1]=[%d] / ", i, pp[i][0], i, pp[i][1]);
-	dprintf(2, "parent => cmd[%d][0]=[%s]\n", i, cmd[i]->cmd[0]);
-	dprintf(2, "parent => end of parent\n");
+	dprintf(2, "parent => cmd[%d][0]=[%s] / end of parent\n", i, cmd[i]->cmd[0]);
 	ft_set_pathexec(&g_mini, cmd[i]->cmd);
 	exit (68);
 }
@@ -222,12 +229,12 @@ int	piping(void)
 		}
 		else
 		{
-//			waitpid(0, NULL, 0);
 			// close ?
 		}
 		i++;
 	}
 	dprintf(2, "\033[0;32m" "\nbefore last cmd i=[%d]\n" "\033[0m", i);
+	pipe(pp[i]);
 	ft_parent(g_mini.struct_cmd, pp, i);
 	dprintf(2, "\033[0;32m" "\nafter last cmd i=[%d]\n" "\033[0m", i);
 	return (1);

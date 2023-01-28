@@ -127,7 +127,7 @@ int	ft_redir_in2(t_cmd **cmd)
 	int		i;
 	int		j;
 
-	dprintf(2, "inside ft_redir_in2\n");
+//	dprintf(2, "inside ft_redir_in2\n");
 	last_redir = ft_what_is_last_redir_in(cmd);
 	fd = 0;
 	if (ft_nb_heredoc(cmd) != 0)
@@ -158,7 +158,7 @@ int	ft_redir_in2(t_cmd **cmd)
 			i++;
 		}
 	}
-	dprintf(2, "end of all heredoc last fd=[%d]\n", fd);
+//	dprintf(2, "end of all heredoc last fd=[%d]\n", fd);
 	if (last_redir == 0) // no redir
 	{
 		dprintf(2, "end of redir2, no redir fd=0\n");
