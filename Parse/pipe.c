@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/29 10:25:49 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/29 11:51:28 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 	}
 	else
 	{
-		dprintf(2, "child[%d] => no arg given to the command\n", i);
+		dprintf(2, "child[%d] => no arg, when needed execve handles it\n", i);
 	}
 	if (i != 0)
 	{
@@ -163,7 +163,8 @@ void	ft_parent(t_cmd **cmd, int **pp, int i)
 {
 	int		fdin;
 	int		fdout;
-
+//	pid_t	pid;
+	
 //	waitpid(0, NULL, 0);
 	if (i == 0)
 		fdin = ft_redir_in2(cmd);
@@ -181,7 +182,6 @@ void	ft_parent(t_cmd **cmd, int **pp, int i)
 	{
 		dprintf(2, "parent => no arg given to the command\n");
 	}
-
 	fdout = 1; // for testing
 	dprintf(2, "parent => after ft_redir_out, fdout=[%d]\n", fdout);
 	if (fdout == -1)
@@ -191,25 +191,27 @@ void	ft_parent(t_cmd **cmd, int **pp, int i)
 	}
 	dup2(fdout, 1);
 	if (i != 0)
-	
+
 	{
 		close(pp[i - 1][0]);
 		close(pp[i - 1][1]);
 	}
 	close(pp[i][0]);
-	close(pp[i][1]);	
+	close(pp[i][1]);
 	dprintf(2, "parent => pp[%d][0]=[%d], pp[%d][1]=[%d] / ", i, pp[i][0], i, pp[i][1]);
 	dprintf(2, "parent => cmd[%d][0]=[%s] / end of parent\n", i, cmd[i]->cmd[0]);
+//	pid = fork();
+//	if (pid == 0)
 	ft_set_pathexec(&g_mini, cmd[i]->cmd);
-	exit (68);
+	return ;
 }
 
 int	piping(void)
 {
-	int	i;
-	int	nbcmd;
-	int	pid;
-	int	**pp;
+	int		i;
+	int		nbcmd;
+	pid_t	pid;
+	int		**pp;
 
 	if (!g_mini.struct_cmd)
 		exit (66);
