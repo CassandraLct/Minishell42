@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/29 09:51:58 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/29 10:16:51 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,26 +124,12 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 {
 	int		fdin;
 	int		fdout;
-	int		nb_read;
-	char	buf[500];
 
 	if (i == 0)
 		fdin = ft_redir_in2(cmd);
 	else
 	{
-		nb_read = 1;
-		while (nb_read)
-		{
-			nb_read = read(pp[i - 1][0], buf, 500);
-			dprintf(2, "===>>> lecture nb_read=[%d]\n", nb_read);
-			if (nb_read)
-			{
-				dprintf(2, "======>>>>>> ecriture: nb_read=[%d], buf=[%s]\n", nb_read, buf);
-				write(pp[i][1], buf, nb_read);
-				buf[0] = '\0';
-			}
-		}
-		fdin = pp[i][1];
+		fdin = pp[i - 1][0];
 	}
 	if (fdin)
 	{
@@ -177,27 +163,13 @@ void	ft_parent(t_cmd **cmd, int **pp, int i)
 {
 	int		fdin;
 	int		fdout;
-	int		nb_read;
-	char	buf[500];
 
-	waitpid(0, NULL, 0);
+//	waitpid(0, NULL, 0);
 	if (i == 0)
 		fdin = ft_redir_in2(cmd);
 	else
 	{
-		nb_read = 1;
-		while (nb_read)
-		{
-			nb_read = read(pp[i - 1][0], buf, 500);
-			dprintf(2, "===>>> read fron pp[%d][0], nb_read=[%d]\n", i - 1, nb_read);
-			if (nb_read)
-			{
-				dprintf(2, "======>>>>>> write in pp[%d][1]: nb_read=[%d], buf=[%s]\n", i, nb_read, buf);
-				write(pp[i][1], buf, nb_read);
-				buf[0] = '\0';
-			}
-		}
-		fdin = pp[i][1];
+		fdin = pp[i - 1][0];
 	}
 	if (fdin)
 	{
