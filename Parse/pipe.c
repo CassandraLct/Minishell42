@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/26 12:57:14 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/29 09:51:58 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,13 +122,29 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 // gerer les redir out
 void	ft_child(t_cmd **cmd, int **pp, int i)
 {
-	int	fdin;
-	int	fdout;
+	int		fdin;
+	int		fdout;
+	int		nb_read;
+	char	buf[500];
 
 	if (i == 0)
 		fdin = ft_redir_in2(cmd);
 	else
-		fdin = pp[i - 1][0];
+	{
+		nb_read = 1;
+		while (nb_read)
+		{
+			nb_read = read(pp[i - 1][0], buf, 500);
+			dprintf(2, "===>>> lecture nb_read=[%d]\n", nb_read);
+			if (nb_read)
+			{
+				dprintf(2, "======>>>>>> ecriture: nb_read=[%d], buf=[%s]\n", nb_read, buf);
+				write(pp[i][1], buf, nb_read);
+				buf[0] = '\0';
+			}
+		}
+		fdin = pp[i][1];
+	}
 	if (fdin)
 	{
 		dprintf(2, "child[%d] => i=0, dup2(fdin, 0), fdin=[%d]\n", i, fdin);
@@ -140,7 +156,10 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 		dprintf(2, "child[%d] => no arg given to the command\n", i);
 	}
 	if (i != 0)
+	{
 		close(pp[i - 1][0]);
+		close(pp[i - 1][1]);
+	}
 	fdout = pp[i][1]; // test
 	dup2(fdout, 1);  //test
 	close(pp[i][1]);
@@ -156,14 +175,30 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 
 void	ft_parent(t_cmd **cmd, int **pp, int i)
 {
-	int	fdin;
-	int	fdout;
+	int		fdin;
+	int		fdout;
+	int		nb_read;
+	char	buf[500];
 
 	waitpid(0, NULL, 0);
 	if (i == 0)
 		fdin = ft_redir_in2(cmd);
 	else
-		fdin = pp[i - 1][0];
+	{
+		nb_read = 1;
+		while (nb_read)
+		{
+			nb_read = read(pp[i - 1][0], buf, 500);
+			dprintf(2, "===>>> read fron pp[%d][0], nb_read=[%d]\n", i - 1, nb_read);
+			if (nb_read)
+			{
+				dprintf(2, "======>>>>>> write in pp[%d][1]: nb_read=[%d], buf=[%s]\n", i, nb_read, buf);
+				write(pp[i][1], buf, nb_read);
+				buf[0] = '\0';
+			}
+		}
+		fdin = pp[i][1];
+	}
 	if (fdin)
 	{
 		dprintf(2, "parent => i=0, dup2(fdin, 0), fdin=[%d]\n", fdin);
@@ -184,7 +219,10 @@ void	ft_parent(t_cmd **cmd, int **pp, int i)
 	}
 	dup2(fdout, 1);
 	if (i != 0)
+	{
 		close(pp[i - 1][0]);
+		close(pp[i - 1][1]);
+	}
 	close(pp[i][0]);
 	close(pp[i][1]);	
 	dprintf(2, "parent => pp[%d][0]=[%d], pp[%d][1]=[%d] / ", i, pp[i][0], i, pp[i][1]);
@@ -229,7 +267,12 @@ int	piping(void)
 		}
 		else
 		{
+			if (i > 1)
+			{
+				close(pp[i - 2][0]);
+				close(pp[i - 2][1]);
 			// close ?
+			}
 		}
 		i++;
 	}
