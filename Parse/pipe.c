@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/29 10:16:51 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/29 10:25:49 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,7 @@ void	ft_parent(t_cmd **cmd, int **pp, int i)
 	}
 	dup2(fdout, 1);
 	if (i != 0)
+	
 	{
 		close(pp[i - 1][0]);
 		close(pp[i - 1][1]);
