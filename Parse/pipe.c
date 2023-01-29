@@ -151,14 +151,11 @@ void	ft_set_pathexec2(t_min *mini, char **cmd)
 	if (i == 0)
 		fdin = ft_redir_in2(cmd);
 	else
-	{
 		fdin = pp[i - 1][0];
-	}
 	if (fdin)
 	{
 		dprintf(2, "parent => i=0, dup2(fdin, 0), fdin=[%d]\n", fdin);
 		dup2(fdin, 0);
-		close(fdin);
 	}
 	else
 	{
@@ -175,13 +172,10 @@ void	ft_set_pathexec2(t_min *mini, char **cmd)
 	ft_exec2(mini, all_path, pathcmd, cmd);
 	dup2(fdout, 1);
 	if (i != 0)
-
 	{
 		close(pp[i - 1][0]);
 		close(pp[i - 1][1]);
 	}
-	close(pp[i][0]);
-	close(pp[i][1]);
 	dprintf(2, "parent => pp[%d][0]=[%d], pp[%d][1]=[%d] / ", i, pp[i][0], i, pp[i][1]);
 	dprintf(2, "parent => cmd[%d][0]=[%s] / end of parent\n", i, cmd[i]->cmd[0]);
 //	pid = fork();
