@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/29 11:51:28 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/29 12:12:13 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 	{
 		dprintf(2, "child[%d] => i=0, dup2(fdin, 0), fdin=[%d]\n", i, fdin);
 		dup2(fdin, 0);
-		close(fdin);
+//		close(fdin);
 	}
 	else
 	{
@@ -163,7 +163,7 @@ void	ft_parent(t_cmd **cmd, int **pp, int i)
 {
 	int		fdin;
 	int		fdout;
-//	pid_t	pid;
+	pid_t	pid;
 	
 //	waitpid(0, NULL, 0);
 	if (i == 0)
@@ -200,9 +200,9 @@ void	ft_parent(t_cmd **cmd, int **pp, int i)
 	close(pp[i][1]);
 	dprintf(2, "parent => pp[%d][0]=[%d], pp[%d][1]=[%d] / ", i, pp[i][0], i, pp[i][1]);
 	dprintf(2, "parent => cmd[%d][0]=[%s] / end of parent\n", i, cmd[i]->cmd[0]);
-//	pid = fork();
-//	if (pid == 0)
-	ft_set_pathexec(&g_mini, cmd[i]->cmd);
+	pid = fork();
+	if (pid == 0)
+		ft_set_pathexec(&g_mini, cmd[i]->cmd);
 	return ;
 }
 
