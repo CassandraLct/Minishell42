@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/29 12:12:13 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/29 17:53:16 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,11 +135,6 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 	{
 		dprintf(2, "child[%d] => i=0, dup2(fdin, 0), fdin=[%d]\n", i, fdin);
 		dup2(fdin, 0);
-//		close(fdin);
-	}
-	else
-	{
-		dprintf(2, "child[%d] => no arg, when needed execve handles it\n", i);
 	}
 	if (i != 0)
 	{
@@ -148,8 +143,8 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 	}
 	fdout = pp[i][1]; // test
 	dup2(fdout, 1);  //test
+	close(pp[i][0]);
 	close(pp[i][1]);
-	dprintf(2, "child[%d] => ici\n", i);
 	if (i == 0)
 		dprintf(2, "child[%d] => i=[%d], fdin=[%d], fdout=[%d], pp[i][1]=[%d]\n", i, i, fdin, fdout, pp[i][1]);
 	else
@@ -162,42 +157,24 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 void	ft_parent(t_cmd **cmd, int **pp, int i)
 {
 	int		fdin;
-	int		fdout;
+//	int		fdout;
 	pid_t	pid;
 	
 //	waitpid(0, NULL, 0);
 	if (i == 0)
 		fdin = ft_redir_in2(cmd);
 	else
-	{
 		fdin = pp[i - 1][0];
-	}
 	if (fdin)
 	{
 		dprintf(2, "parent => i=0, dup2(fdin, 0), fdin=[%d]\n", fdin);
 		dup2(fdin, 0);
-		close(fdin);
 	}
-	else
-	{
-		dprintf(2, "parent => no arg given to the command\n");
-	}
-	fdout = 1; // for testing
-	dprintf(2, "parent => after ft_redir_out, fdout=[%d]\n", fdout);
-	if (fdout == -1)
-	{
-		perror("redirection out :");
-		return ;
-	}
-	dup2(fdout, 1);
 	if (i != 0)
-
 	{
 		close(pp[i - 1][0]);
 		close(pp[i - 1][1]);
 	}
-	close(pp[i][0]);
-	close(pp[i][1]);
 	dprintf(2, "parent => pp[%d][0]=[%d], pp[%d][1]=[%d] / ", i, pp[i][0], i, pp[i][1]);
 	dprintf(2, "parent => cmd[%d][0]=[%s] / end of parent\n", i, cmd[i]->cmd[0]);
 	pid = fork();
@@ -252,8 +229,10 @@ int	piping(void)
 		i++;
 	}
 	dprintf(2, "\033[0;32m" "\nbefore last cmd i=[%d]\n" "\033[0m", i);
-	pipe(pp[i]);
+//	pipe(pp[i]);
 	ft_parent(g_mini.struct_cmd, pp, i);
+	
 	dprintf(2, "\033[0;32m" "\nafter last cmd i=[%d]\n" "\033[0m", i);
+	dprintf(2, "bye bye\n");
 	return (1);
 }
