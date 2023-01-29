@@ -45,7 +45,23 @@ void	ft_set_pathexec2(t_min *mini, char **cmd)
 		free_tab(pathcmd);
 		return ;
 	}
+<<<<<<< HEAD
 	ft_exec2(mini, all_path, pathcmd, cmd);
+=======
+	dup2(fdout, 1);
+	if (i != 0)
+	
+	{
+		close(pp[i - 1][0]);
+		close(pp[i - 1][1]);
+	}
+	close(pp[i][0]);
+	close(pp[i][1]);	
+	dprintf(2, "parent => pp[%d][0]=[%d], pp[%d][1]=[%d] / ", i, pp[i][0], i, pp[i][1]);
+	dprintf(2, "parent => cmd[%d][0]=[%s] / end of parent\n", i, cmd[i]->cmd[0]);
+	ft_set_pathexec(&g_mini, cmd[i]->cmd);
+	exit (68);
+>>>>>>> 72bf037 (change file1 for testing)
 }
 
 // main function to manage pipes
