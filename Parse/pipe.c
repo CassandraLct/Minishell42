@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/30 12:58:16 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:06:16 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,17 @@ void	ft_set_pathexec2(t_min *mini, char **cmd)
 void	ft_child(t_cmd **cmd, int **pp, int i)
 {
 	int		fdin;
-	int		fdout;
+//	int		fdout;
 
 	if (i == 0)
 		fdin = ft_redir_in(cmd);
 	else
 		fdin = pp[i - 1][0];
 	dup2(fdin, 0);
-	close(fdin);
-	fdout = ft_redir_out(cmd, i);
-	dprintf(2, "fdout=[%d]", fdout);
+	if (fdin)
+		close(fdin);
+//	fdout = ft_redir_out(cmd, i);
+//	dprintf(2, "fdout=[%d]", fdout);
 	dup2(pp[i][1], 1);
 	close(pp[i][0]);
 	close(pp[i][1]);
@@ -132,10 +133,7 @@ int	piping(void)
 	int		nbcmd;
 	pid_t	pid;
 	int		**pp;
-	int		fdin;
 
-	if (!g_mini.struct_cmd)
-		exit (66);
 	nbcmd = 0;
 	while (g_mini.struct_cmd[nbcmd])
 		nbcmd++;
@@ -155,20 +153,7 @@ int	piping(void)
 		if (pid == -1)
 			exit (127);
 		if (pid == 0)
-		{
-			//ft_child(g_mini.struct_cmd, pp, i);
-			if (i == 0)
-				fdin = ft_redir_in(g_mini.struct_cmd);
-			else
-				fdin = pp[i - 1][0];
-			dup2(pp[i][1], 1);
-			dup2(fdin, 0);
-			if (fdin)
-				close(fdin);
-			close(pp[i][1]);
-			close(pp[i][0]);
-			ft_set_pathexec2(&g_mini, g_mini.struct_cmd[i]->cmd);
-		}
+			ft_child(g_mini.struct_cmd, pp, i);
 		else
 			ft_parent(pp, i);
 		i++;
