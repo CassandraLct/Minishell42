@@ -197,7 +197,7 @@ void	ft_parent(int **pp, int i)
 	return ;
 }
 
-// exec the last comande or the only cmd if no pipe
+// exec the last command or the only cmd if no pipe
 void	ft_last_command(t_cmd **cmd, int **pp, int i)
 {
 	pid_t	pid;
