@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/30 11:32:07 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/30 12:55:56 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,14 +170,7 @@ int	piping(void)
 			ft_set_pathexec2(&g_mini, g_mini.struct_cmd[i]->cmd);
 		}
 		else
-		{
-			//ft_parent(pp, i);
-			close(pp[i][1]);
-//			if (fdin)
-//				close(fdin);
-			if (i > 0)
-				close(pp[i - 1][0]);
-		}
+			ft_parent(pp, i);
 		i++;
 	}
 	//ft_last_command(g_mini.struct_cmd, pp, i);
@@ -195,6 +188,10 @@ int	piping(void)
 	ft_wait_all();
 	return (1);
 }
+
+// cat | cat | ls
+// <file1 cat | cat | cat | cat
+
 
 // not in use
 int	piping_expanded(void)

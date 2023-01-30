@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/30 11:35:28 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/30 12:51:19 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,6 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 			exit (67);
 		i += 2;
 	}
-	dprintf(2, "end of ft_redir_out, fd=[%d]\n", fd);
+//	dprintf(2, "end of ft_redir_out, fd=[%d]\n", fd);
 	return (fd);
 }
