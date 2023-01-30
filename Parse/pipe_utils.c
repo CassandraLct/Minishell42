@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/30 16:13:53 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/30 16:55:33 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	ft_child(t_cmd **cmd, int **pp, int i)
 {
 	int		fdin;
-//	int		fdout;
+	int		fdout;
 
 	if (i == 0)
 		fdin = ft_redir_in(cmd);
@@ -26,8 +26,14 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 	if (fdin)
 		close(fdin);
 //	fdout = ft_redir_out(cmd, i);
-//	dprintf(2, "fdout=[%d]", fdout);
-	dup2(pp[i][1], 1);
+	dprintf(2, "fdout=[%d]", fdout);
+	if (fdout)
+	{
+		dup2(fdout, 1);
+		close(fdout);
+	}
+	else
+		dup2(pp[i][1], 1);
 	close(pp[i][0]);
 	close(pp[i][1]);
 	ft_set_pathexec2(&g_mini, cmd[i]->cmd);
