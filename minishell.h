@@ -182,6 +182,16 @@ void	modif_stdin(char **stdin);
 void	modif_stdout(char **stdout);
 char	*verif_cmdcotes(char *line);
 //pipe.c
+// pipe_utils.c
+void	ft_child(t_cmd **cmd, int **pp, int i);
+void	ft_parent(int **pp, int i);
+void	ft_last_command(t_cmd **cmd, int **pp, int i);
+void	ft_wait_all(void);
+int		**ft_create_pipe(t_cmd **cmd);
+
+//pipe.c
+void	ft_exec2(t_min *mini, char **all_path, char **pathcmd, char **cmd);
+void	ft_set_pathexec2(t_min *mini, char **cmd);
 int		piping(void);
 
 // printstruc.c

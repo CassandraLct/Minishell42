@@ -66,6 +66,7 @@ int	ft_redir_in(t_cmd **cmd)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (fd_return_redir_in(cmd, last_redir, fd));
 }
 
@@ -116,6 +117,9 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 		i += 2;
 	}
 	return (fd);
+=======
+	return (fd_return_redir_in(cmd, last_redir, fd));
+>>>>>>> 9ce1322 (some reorganization for the norm)
 }
 
 // return the fd of the redirection out
@@ -129,7 +133,10 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 	while (cmd[nb]->stdout[i])
 	{
 		if (cmd[nb]->stdout[i + 1] == NULL)
+		{
+			dprintf(2, "error\n");
 			exit (67);
+		}
 		if (ft_strcmp(cmd[nb]->stdout[i], ">") == 0)
 		{
 			if (fd)
@@ -151,9 +158,11 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 			}
 		}
 		else
+		{
+			dprintf(2, "unexpected error\n");
 			exit (67);
+		}
 		i += 2;
 	}
-//	dprintf(2, "end of ft_redir_out, fd=[%d]\n", fd);
 	return (fd);
 }
