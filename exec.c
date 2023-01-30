@@ -6,6 +6,10 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:51:31 by clecat            #+#    #+#             */
+<<<<<<< HEAD
+=======
+/*   Updated: 2023/01/28 12:54:48 by clecat           ###   ########.fr       */
+>>>>>>> cf66687 (first vesrion redir in and pipes ok)
 /*   Updated: 2023/01/29 18:43:53 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -67,6 +71,7 @@ void	ft_execve(t_min *mini, char **all_path, char **pathcmd, char **cmd)
 //			dprintf(2, "pathcmd[1]=[%s]\n", pathcmd[1]);
 //			dprintf(2, "pathcmd[2]=[%s]\n", pathcmd[2]);
 //			dprintf(2, "after printing arg for execve\n");
+<<<<<<< HEAD
 			if (ft_strcmp(gd_path, "cat") == 0)
 				gd_path = ft_strdup("/bin/cat");
 			if (ft_strcmp(gd_path, "ls") == 0)
@@ -80,6 +85,8 @@ void	ft_execve(t_min *mini, char **all_path, char **pathcmd, char **cmd)
 			dprintf(2, "pathcmd[0]=[%s]\n", pathcmd[0]);
 			dprintf(2, "pathcmd[1]=[%s]\n", pathcmd[1]);
 			dprintf(2, "after printing arg for execve\n");
+=======
+>>>>>>> cf66687 (first vesrion redir in and pipes ok)
 			if (execve(gd_path, pathcmd, mini->c_env) == -1)
 			{
 				perror("Execve : ");

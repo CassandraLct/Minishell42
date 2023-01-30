@@ -6,7 +6,11 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/01/30 15:40:38 by rdi-marz         ###   ########.fr       */
+=======
+/*   Updated: 2023/01/30 09:44:05 by rdi-marz         ###   ########.fr       */
+>>>>>>> cf66687 (first vesrion redir in and pipes ok)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +70,7 @@ int	ft_redir_in(t_cmd **cmd)
 			i++;
 		}
 	}
+<<<<<<< HEAD
 	return (fd_return_redir_in(cmd, last_redir, fd));
 }
 
@@ -116,4 +121,24 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 		i += 2;
 	}
 	return (fd);
+=======
+	if (last_redir == 0)
+	{
+		dprintf(2, "end of redir2, no redir fd=0\n");
+		return (0);
+	}
+	else if (last_redir == 1)
+	{
+		if (fd)
+			close(fd);
+		fd = open(ft_last_single_redir_in(cmd), O_RDONLY);
+		return (fd);
+	}
+	else if (last_redir == 2)
+	{
+		dprintf(2, "end of redir2, last is heredoc fd=[%d]\n", fd);
+		return (fd);
+	}
+	return (0);
+>>>>>>> cf66687 (first vesrion redir in and pipes ok)
 }

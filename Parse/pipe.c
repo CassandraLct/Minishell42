@@ -12,6 +12,7 @@
 
 #include "minishell.h"
 
+<<<<<<< HEAD
 //test chaque path puis execute la cmd si existante
 void	ft_exec2(t_min *mini, char **all_path, char **pathcmd, char **cmd)
 {
@@ -71,6 +72,8 @@ void	ft_exec2(t_min *mini, char **all_path, char **pathcmd, char **cmd)
 	return (pp[0]);
 }
 
+=======
+>>>>>>> cf66687 (first vesrion redir in and pipes ok)
 int	ft_redir_out(t_cmd **cmd, int nb)
 {
 	int	i;
@@ -87,7 +90,6 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 			if (fd)
 				close(fd);
 			fd = open(cmd[nb]->stdout[i + 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-			dprintf(2, "redir out simple fd=[%d], i=[%d], redir=[%s], file=[%s]\n", fd, i, cmd[nb]->stdout[i], cmd[nb]->stdout[i + 1]);
 			if (fd == -1)
 			{
 				perror(cmd[nb]->stdout[i + 1]);
@@ -98,7 +100,6 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 			if (fd)
 				close(fd);
 			fd = open(cmd[nb]->stdout[i + 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
-			dprintf(2, "redir out double fd=[%d], i=[%d], redir=[%s], file=[%s]\n", fd, i, cmd[nb]->stdout[i], cmd[nb]->stdout[i + 1]);
 			if (fd == -1)
 			{
 				perror(cmd[nb]->stdout[i + 1]);
@@ -139,15 +140,29 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 		close(pp[i - 1][0]);
 		close(pp[i - 1][1]);
 	}
+<<<<<<< HEAD
+=======
+	fdout = pp[i][1];
+	dup2(fdout, 1);
+	close(pp[i][0]);
+	close(pp[i][1]);
+	ft_set_pathexec(&g_mini, cmd[i]->cmd);
+	exit (68);
+>>>>>>> cf66687 (first vesrion redir in and pipes ok)
 }
 
 void	ft_set_pathexec2(t_min *mini, char **cmd)
 {
 	int		fdin;
+<<<<<<< HEAD
 	int		fdout;
 //	pid_t	pid;
 	
 //	waitpid(0, NULL, 0);
+=======
+	pid_t	pid;
+
+>>>>>>> cf66687 (first vesrion redir in and pipes ok)
 	if (i == 0)
 		fdin = ft_redir_in2(cmd);
 	else
@@ -184,6 +199,7 @@ void	ft_set_pathexec2(t_min *mini, char **cmd)
 	return ;
 }
 
+<<<<<<< HEAD
 // main function to manage pipes
 int	piping(void)
 {
@@ -191,6 +207,74 @@ int	piping(void)
 	int	nbcmd;
 	int	pid;
 	int	**pp;
+=======
+// wqit for all the childs to finish
+void	ft_wait_all(void)
+{
+	pid_t	wpid;
+	int		status;
+
+	wpid = wait(&status);
+	while (wpid > 0)
+	{
+		wpid = wait(&status);
+	}
+}
+
+//test chaque path puis execute la cmd si existante
+void	ft_exec2(t_min *mini, char **all_path, char **pathcmd, char **cmd)
+{
+	if (verif_cmd(all_path, pathcmd, cmd) != 0)
+	{
+		dprintf(2, "wrong command\n");
+		free_tab(all_path);
+		free_tab(pathcmd);
+//		return ;
+		exit(1);
+	}
+	else
+	{
+//		mini->pid = fork();
+//		if (mini->pid == -1)
+//		{
+//			perror("Fork failed");
+//			exit(EXIT_FAILURE);
+//		}
+//		else if (mini->pid == 0)
+			ft_execve(mini, all_path, pathcmd, cmd);
+//		else
+//			waitpid(mini->pid, &mini->ret_err, 0);
+		free_tab(all_path);
+		free_tab(pathcmd);
+	}
+}
+
+void	ft_set_pathexec2(t_min *mini, char **cmd)
+{
+	char	**all_path;
+	char	**pathcmd;
+
+	pathcmd = NULL;
+	pathcmd = init_cmd(cmd, pathcmd);
+	all_path = recup_path(mini);
+	if (all_path == NULL)
+	{
+		mini->ret_err = 127;
+		printf("minishell: %s: No such file or directory\n", cmd[0]);
+		free_tab(pathcmd);
+		return ;
+	}
+	ft_exec2(mini, all_path, pathcmd, cmd);
+}
+
+int	piping(void)
+{
+	int		i;
+	int		nbcmd;
+	pid_t	pid;
+	int		**pp;
+	int		fdin;
+>>>>>>> cf66687 (first vesrion redir in and pipes ok)
 
 	pp = ft_create_pipe(g_mini.struct_cmd);
 	i = 0;
@@ -202,12 +286,51 @@ int	piping(void)
 		if (pid == -1)
 			exit (127);
 		if (pid == 0)
+<<<<<<< HEAD
 			ft_child(g_mini.struct_cmd, pp, i);
 		else
 			ft_parent(pp, i);
 		i++;
 	}
 	ft_last_command(g_mini.struct_cmd, pp, i);
+=======
+		{
+			//ft_child(g_mini.struct_cmd, pp, i);
+			if (i == 0)
+				fdin = ft_redir_in2(g_mini.struct_cmd);
+			else
+				fdin = pp[i - 1][0];
+			dup2(pp[i][1], 1);
+			dup2(fdin, 0);
+			if (fdin)
+				close(fdin);
+			close(pp[i][1]);
+			close(pp[i][0]);
+			ft_set_pathexec2(&g_mini, g_mini.struct_cmd[i]->cmd);
+		}
+		else
+		{
+			close(pp[i][1]);
+			if (fdin)
+				close(fdin);
+			if (i > 0)
+				close(pp[i - 1][0]);
+		}
+		i++;
+	}
+	//ft_parent(g_mini.struct_cmd, pp, i);
+	pid = fork();
+	if (pid == 0)
+	{
+		dup2(pp[i - 1][0], 0);
+		//dup out if needed
+		ft_set_pathexec2(&g_mini, g_mini.struct_cmd[i]->cmd);
+	}
+	if (i > 0)
+		close(pp[i - 1][0]);
+	else if (fdin)
+		close(fdin);
+>>>>>>> cf66687 (first vesrion redir in and pipes ok)
 	ft_wait_all();
 	return (1);
 }
