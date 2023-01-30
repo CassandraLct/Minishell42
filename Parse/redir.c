@@ -154,6 +154,6 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 			exit (67);
 		i += 2;
 	}
-	dprintf(2, "end of ft_redir_out, fd=[%d]\n", fd);
+//	dprintf(2, "end of ft_redir_out, fd=[%d]\n", fd);
 	return (fd);
 }
