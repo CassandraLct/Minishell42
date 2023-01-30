@@ -129,21 +129,11 @@ void	ft_exec2(t_min *mini, char **all_path, char **pathcmd, char **cmd)
 		dprintf(2, "wrong command\n");
 		free_tab(all_path);
 		free_tab(pathcmd);
-//		return ;
 		exit(1);
 	}
 	else
 	{
-//		mini->pid = fork();
-//		if (mini->pid == -1)
-//		{
-//			perror("Fork failed");
-//			exit(EXIT_FAILURE);
-//		}
-//		else if (mini->pid == 0)
-			ft_execve(mini, all_path, pathcmd, cmd);
-//		else
-//			waitpid(mini->pid, &mini->ret_err, 0);
+		ft_execve(mini, all_path, pathcmd, cmd);
 		free_tab(all_path);
 		free_tab(pathcmd);
 	}
@@ -194,7 +184,7 @@ void	ft_parent(int **pp, int i)
 {
 	close(pp[i][1]);
 	if (i > 0)
-		close(pp[i - 1][0]);	
+		close(pp[i - 1][0]);
 	return ;
 }
 
@@ -235,13 +225,11 @@ void	ft_wait_all(void)
 	}
 }
 
-// main function to manage pipes
-int	piping(void)
+int	**ft_create_pipe(t_cmd **cmd)
 {
-	int		i;
-	int		nbcmd;
-	pid_t	pid;
-	int		**pp;
+	int	nbcmd;
+	int	**pp;
+	int	i;
 
 	pp = ft_create_pipe(g_mini.struct_cmd);
 	i = 0;
