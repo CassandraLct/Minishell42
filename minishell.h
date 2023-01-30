@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/29 08:56:02 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/29 18:44:06 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,6 +212,9 @@ void	*ft_calloc(size_t count, size_t size);
 /*-----------------------------------------------------------------------*/
 
 //exec.c 5 fonctions
+char	**recup_path(t_min *mini);
+char	**init_cmd(char **cmd, char **pathcmd);
+void	ft_execve(t_min *mini, char **all_path, char **pathcmd, char **cmd);
 void	ft_exec(t_min *mini, char **all_path, char **pathcmd, char **cmd);
 void	ft_set_pathexec(t_min *mini, char **cmd);
 

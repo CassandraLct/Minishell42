@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe.c                                             :+:      :+:    :+:   */
+/*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/26 12:57:14 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/30 09:44:05 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ int	ft_redir_in2(t_cmd **cmd)
 	int		i;
 	int		j;
 
-//	dprintf(2, "inside ft_redir_in2\n");
 	last_redir = ft_what_is_last_redir_in(cmd);
 	fd = 0;
 	if (ft_nb_heredoc(cmd) != 0)
@@ -158,22 +157,19 @@ int	ft_redir_in2(t_cmd **cmd)
 			i++;
 		}
 	}
-//	dprintf(2, "end of all heredoc last fd=[%d]\n", fd);
-	if (last_redir == 0) // no redir
+	if (last_redir == 0)
 	{
 		dprintf(2, "end of redir2, no redir fd=0\n");
 		return (0);
 	}
-	else if (last_redir == 1) // last is <
+	else if (last_redir == 1)
 	{
 		if (fd)
 			close(fd);
 		fd = open(ft_last_single_redir_in(cmd), O_RDONLY);
-		dprintf(2, "end of redir2, last redir is single fd=[%d]\n", fd);
 		return (fd);
-//		return (open(ft_last_single_redir_in(cmd), O_RDONLY));
 	}
-	else if (last_redir == 2) // last is <<
+	else if (last_redir == 2)
 	{
 		dprintf(2, "end of redir2, last is heredoc fd=[%d]\n", fd);
 		return (fd);

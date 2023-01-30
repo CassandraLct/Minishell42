@@ -6,14 +6,15 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:51:31 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/22 19:39:24 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/29 18:43:53 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 // 5 fonctions
 //recupere les paths possible
-static char	**recup_path(t_min *mini)
+//static char	**recup_path(t_min *mini)
+char	**recup_path(t_min *mini)
 {
 	char	**all_path;
 	char	*b_path;
@@ -34,7 +35,8 @@ static char	**recup_path(t_min *mini)
 }
 
 //initialise le tableau
-static char	**init_cmd(char **cmd, char **pathcmd)
+//static char	**init_cmd(char **cmd, char **pathcmd)
+char	**init_cmd(char **cmd, char **pathcmd)
 {
 	char	*tmp;
 
@@ -61,17 +63,17 @@ void	ft_execve(t_min *mini, char **all_path, char **pathcmd, char **cmd)
 		if (access(gd_path, R_OK) == 0)
 		{
 //			free(gd_path);
-			dprintf(2, "before execve, gd_path =[%s] / ", gd_path);
-			dprintf(2, "pathcmd[0]=[%s] / ", pathcmd[0]);
-			dprintf(2, "pathcmd[1]=[%s]\n", pathcmd[1]);
+//			dprintf(2, "before execve, gd_path =[%s] / ", gd_path);
+//			dprintf(2, "pathcmd[0]=[%s] / ", pathcmd[0]);
+//			dprintf(2, "pathcmd[1]=[%s]\n", pathcmd[1]);
 //			dprintf(2, "pathcmd[2]=[%s]\n", pathcmd[2]);
-			dprintf(2, "after printing arg for execve\n");
+//			dprintf(2, "after printing arg for execve\n");
 			if (execve(gd_path, pathcmd, mini->c_env) == -1)
 			{
 				perror("Execve : ");
 				exit(EXIT_FAILURE);
 			}
-			dprintf(2, "after execve\n");
+//			dprintf(2, "after execve\n");
 		}
 		else
 			j++;

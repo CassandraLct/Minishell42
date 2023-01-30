@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/29 16:24:46 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/29 18:15:33 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ void	redir_pipe(t_min *mini, t_cmd **cmd)
 		redirection(mini, cmd);
 	else
 	{
-		printf("in redir_pipe : before pipe\n");
+//		printf("in redir_pipe : before pipe\n");
 		piping();
-		printf("in redir_pipe : after pipe\n");
+//		printf("in redir_pipe : after pipe\n");
 	}
 }
 

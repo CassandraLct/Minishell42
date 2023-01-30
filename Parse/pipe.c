@@ -6,77 +6,11 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/29 17:53:16 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/30 09:49:22 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	ft_redir_in(t_cmd **cmd, int nb)
-{
-	int		i;
-	int		fd;
-	int		fdglobalin;
-	int		pp[2];
-	char	buf[500];
-	int		nb_read;
-
-	dprintf(2, "inside ft_redir_in\n");
-	if (cmd[nb]->stdin == NULL)
-	{
-		dprintf(2, "no redir in for cmd[%d]", nb);
-		return (-2);
-	}
-	if (pipe(pp) == -1)
-		return (-1);
-//	fdglobalin = dup(pp[1]);
-	fdglobalin = open("fileresu", O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	i = 0;
-	while (cmd[nb]->stdin[i])
-	{
-		if (cmd[nb]->stdin[i + 1] == NULL)
-		{
-			dprintf(2, "redir in without file\n");
-			return (-3);
-		}
-		if (ft_strcmp(cmd[nb]->stdin[i], "<") == 0)
-		{
-			fd = open(cmd[nb]->stdin[i + 1], O_RDONLY);
-			if (fd == -1)
-			{
-				perror(cmd[nb]->stdin[i + 1]);
-				exit (66);
-			}
-			nb_read = 1;
-			while (nb_read)
-			{
-				nb_read = read(fd, buf, 500);
-				dprintf(2, "lecture [%s], nb_read=[%d]\n", cmd[nb]->stdin[i + 1], nb_read);
-				if (nb_read)
-				{
-					dprintf(2, "ecriture: nb_read=[%d], buf=[%s]\n", nb_read, buf);
-					write(fdglobalin, buf, nb_read);
-					buf[0] = '\0';
-				}
-			}
-			close(fd);
-		}
-		else if (ft_strcmp(cmd[nb]->stdin[i], "<<") == 0)
-		{
-			// heredoc
-			// <file1<file2 wc | wc
-		}
-		else
-			exit (66);
-		i += 2;
-	}
-	//dup2(pp[0], 0);
-	//close(pp[0]);
-	close(pp[1]);
-	close(fdglobalin);
-	dprintf(2, "end of ft_redir_in, pp[0]=[%d]\n", pp[0]);
-	return (pp[0]);
-}
 
 int	ft_redir_out(t_cmd **cmd, int nb)
 {
@@ -94,7 +28,6 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 			if (fd)
 				close(fd);
 			fd = open(cmd[nb]->stdout[i + 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-			dprintf(2, "redir out simple fd=[%d], i=[%d], redir=[%s], file=[%s]\n", fd, i, cmd[nb]->stdout[i], cmd[nb]->stdout[i + 1]);
 			if (fd == -1)
 			{
 				perror(cmd[nb]->stdout[i + 1]);
@@ -105,7 +38,6 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 			if (fd)
 				close(fd);
 			fd = open(cmd[nb]->stdout[i + 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
-			dprintf(2, "redir out double fd=[%d], i=[%d], redir=[%s], file=[%s]\n", fd, i, cmd[nb]->stdout[i], cmd[nb]->stdout[i + 1]);
 			if (fd == -1)
 			{
 				perror(cmd[nb]->stdout[i + 1]);
@@ -141,15 +73,10 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 		close(pp[i - 1][0]);
 		close(pp[i - 1][1]);
 	}
-	fdout = pp[i][1]; // test
-	dup2(fdout, 1);  //test
+	fdout = pp[i][1];
+	dup2(fdout, 1);
 	close(pp[i][0]);
 	close(pp[i][1]);
-	if (i == 0)
-		dprintf(2, "child[%d] => i=[%d], fdin=[%d], fdout=[%d], pp[i][1]=[%d]\n", i, i, fdin, fdout, pp[i][1]);
-	else
-		dprintf(2, "child[%d] => i=[%d], fdin=[%d], fdout=[%d], pp[i][1]=[%d], pp[i - 1][0]=[%d]\n", i, i, fdin, fdout, pp[i][1], pp[i - 1][0]);
-	dprintf(2, "child[%d] => cmd[%d][0]=[%s] / end of child\n", i, i, cmd[i]->cmd[0]);
 	ft_set_pathexec(&g_mini, cmd[i]->cmd);
 	exit (68);
 }
@@ -157,10 +84,8 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 void	ft_parent(t_cmd **cmd, int **pp, int i)
 {
 	int		fdin;
-//	int		fdout;
 	pid_t	pid;
-	
-//	waitpid(0, NULL, 0);
+
 	if (i == 0)
 		fdin = ft_redir_in2(cmd);
 	else
@@ -183,12 +108,72 @@ void	ft_parent(t_cmd **cmd, int **pp, int i)
 	return ;
 }
 
+// wqit for all the childs to finish
+void	ft_wait_all(void)
+{
+	pid_t	wpid;
+	int		status;
+
+	wpid = wait(&status);
+	while (wpid > 0)
+	{
+		wpid = wait(&status);
+	}
+}
+
+//test chaque path puis execute la cmd si existante
+void	ft_exec2(t_min *mini, char **all_path, char **pathcmd, char **cmd)
+{
+	if (verif_cmd(all_path, pathcmd, cmd) != 0)
+	{
+		dprintf(2, "wrong command\n");
+		free_tab(all_path);
+		free_tab(pathcmd);
+//		return ;
+		exit(1);
+	}
+	else
+	{
+//		mini->pid = fork();
+//		if (mini->pid == -1)
+//		{
+//			perror("Fork failed");
+//			exit(EXIT_FAILURE);
+//		}
+//		else if (mini->pid == 0)
+			ft_execve(mini, all_path, pathcmd, cmd);
+//		else
+//			waitpid(mini->pid, &mini->ret_err, 0);
+		free_tab(all_path);
+		free_tab(pathcmd);
+	}
+}
+
+void	ft_set_pathexec2(t_min *mini, char **cmd)
+{
+	char	**all_path;
+	char	**pathcmd;
+
+	pathcmd = NULL;
+	pathcmd = init_cmd(cmd, pathcmd);
+	all_path = recup_path(mini);
+	if (all_path == NULL)
+	{
+		mini->ret_err = 127;
+		printf("minishell: %s: No such file or directory\n", cmd[0]);
+		free_tab(pathcmd);
+		return ;
+	}
+	ft_exec2(mini, all_path, pathcmd, cmd);
+}
+
 int	piping(void)
 {
 	int		i;
 	int		nbcmd;
 	pid_t	pid;
 	int		**pp;
+	int		fdin;
 
 	if (!g_mini.struct_cmd)
 		exit (66);
@@ -204,35 +189,49 @@ int	piping(void)
 	}
 	i = 0;
 	while (g_mini.struct_cmd[i + 1])
-	{
+	{	
 		if (pipe(pp[i]) == -1)
-		{
 			dprintf(2, "pipe bug\n");
-		}
 		pid = fork();
 		if (pid == -1)
 			exit (127);
 		if (pid == 0)
 		{
-			dprintf(2, "\033[0;32m" "\nbefore child [%d]\n" "\033[0m", i);
-			ft_child(g_mini.struct_cmd, pp, i);
+			//ft_child(g_mini.struct_cmd, pp, i);
+			if (i == 0)
+				fdin = ft_redir_in2(g_mini.struct_cmd);
+			else
+				fdin = pp[i - 1][0];
+			dup2(pp[i][1], 1);
+			dup2(fdin, 0);
+			if (fdin)
+				close(fdin);
+			close(pp[i][1]);
+			close(pp[i][0]);
+			ft_set_pathexec2(&g_mini, g_mini.struct_cmd[i]->cmd);
 		}
 		else
 		{
-			if (i > 1)
-			{
-				close(pp[i - 2][0]);
-				close(pp[i - 2][1]);
-			// close ?
-			}
+			close(pp[i][1]);
+			if (fdin)
+				close(fdin);
+			if (i > 0)
+				close(pp[i - 1][0]);
 		}
 		i++;
 	}
-	dprintf(2, "\033[0;32m" "\nbefore last cmd i=[%d]\n" "\033[0m", i);
-//	pipe(pp[i]);
-	ft_parent(g_mini.struct_cmd, pp, i);
-	
-	dprintf(2, "\033[0;32m" "\nafter last cmd i=[%d]\n" "\033[0m", i);
-	dprintf(2, "bye bye\n");
+	//ft_parent(g_mini.struct_cmd, pp, i);
+	pid = fork();
+	if (pid == 0)
+	{
+		dup2(pp[i - 1][0], 0);
+		//dup out if needed
+		ft_set_pathexec2(&g_mini, g_mini.struct_cmd[i]->cmd);
+	}
+	if (i > 0)
+		close(pp[i - 1][0]);
+	else if (fdin)
+		close(fdin);
+	ft_wait_all();
 	return (1);
 }
