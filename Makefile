@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
+#    By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2023/01/21 18:34:18 by clecat           ###   ########.fr        #
+#    Updated: 2023/01/30 11:26:21 by rdi-marz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC		=	main.c \
 		Parse/parse.c \
 		Parse/pipe.c \
 		Parse/printstruc.c \
+		Parse/redir_utils.c \
 		Parse/redir.c \
 		Parse/splitcmd_utils1.c \
 		Parse/splitcmd_utils2.c \

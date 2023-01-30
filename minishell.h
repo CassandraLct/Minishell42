@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/29 18:44:06 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/30 11:34:22 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,8 +156,15 @@ int	piping(void);
 void	printstruc(t_cmd *cmd);
 void	printstruc2(t_cmd **cmd);
 
+// redir_utils.c
+int		heredoc(char *cond);
+int		ft_nb_heredoc(t_cmd **cmd);
+char	*ft_last_single_redir_in(t_cmd **cmd);
+int		ft_what_is_last_redir_in(t_cmd **cmd);
+
 // redir.c
-int	ft_redir_in2(t_cmd **cmd);
+int	ft_redir_in(t_cmd **cmd);
+int	ft_redir_out(t_cmd **cmd, int nb);
 
 //splitcmd.c
 t_cmd	**spliter3(char **inst);
