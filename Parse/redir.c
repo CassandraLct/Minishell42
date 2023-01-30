@@ -6,11 +6,27 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/30 12:51:19 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/30 15:40:38 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	fd_return_redir_in(t_cmd **cmd, int last_redir, int fd)
+{
+	if (last_redir == 0)
+		return (0);
+	else if (last_redir == 1)
+	{
+		if (fd)
+			close(fd);
+		fd = open(ft_last_single_redir_in(cmd), O_RDONLY);
+		return (fd);
+	}
+	else if (last_redir == 2)
+		return (fd);
+	return (0);
+}
 
 // return the fd of the redir in
 int	ft_redir_in(t_cmd **cmd)
@@ -50,24 +66,7 @@ int	ft_redir_in(t_cmd **cmd)
 			i++;
 		}
 	}
-	if (last_redir == 0)
-	{
-//		dprintf(2, "end of redir2, no redir fd=0\n");
-		return (0);
-	}
-	else if (last_redir == 1)
-	{
-		if (fd)
-			close(fd);
-		fd = open(ft_last_single_redir_in(cmd), O_RDONLY);
-		return (fd);
-	}
-	else if (last_redir == 2)
-	{
-//		dprintf(2, "end of redir2, last is heredoc fd=[%d]\n", fd);
-		return (fd);
-	}
-	return (0);
+	return (fd_return_redir_in(cmd, last_redir, fd));
 }
 
 // return the fd of the redirection out
@@ -81,7 +80,10 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 	while (cmd[nb]->stdout[i])
 	{
 		if (cmd[nb]->stdout[i + 1] == NULL)
+		{
+			dprintf(2, "error\n");
 			exit (67);
+		}
 		if (ft_strcmp(cmd[nb]->stdout[i], ">") == 0)
 		{
 			if (fd)
@@ -103,9 +105,11 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 			}
 		}
 		else
+		{
+			dprintf(2, "unexpected error\n");
 			exit (67);
+		}
 		i += 2;
 	}
-//	dprintf(2, "end of ft_redir_out, fd=[%d]\n", fd);
 	return (fd);
 }

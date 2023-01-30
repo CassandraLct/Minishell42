@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/30 11:34:22 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/30 16:16:16 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,8 +149,17 @@ char	**init_cpy(char **str, char **dest);
 char	**ft_cpytab(char **tab);
 char	**init_exp(char **tab);
 
+// pipe_utils.c
+void	ft_child(t_cmd **cmd, int **pp, int i);
+void	ft_parent(int **pp, int i);
+void	ft_last_command(t_cmd **cmd, int **pp, int i);
+void	ft_wait_all(void);
+int		**ft_create_pipe(t_cmd **cmd);
+
 //pipe.c
-int	piping(void);
+void	ft_exec2(t_min *mini, char **all_path, char **pathcmd, char **cmd);
+void	ft_set_pathexec2(t_min *mini, char **cmd);
+int		piping(void);
 
 // printstruc.c
 void	printstruc(t_cmd *cmd);

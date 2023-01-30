@@ -6,7 +6,7 @@
 #    By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2023/01/30 11:26:21 by rdi-marz         ###   ########.fr        #
+#    Updated: 2023/01/30 16:14:14 by rdi-marz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC		=	main.c \
 		Parse/gestion_dollar_line.c \
 		Parse/gestion_dollar_utils.c \
 		Parse/parse.c \
+		Parse/pipe_utils.c \
 		Parse/pipe.c \
 		Parse/printstruc.c \
 		Parse/redir_utils.c \
