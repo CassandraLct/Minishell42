@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/30 12:55:56 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/30 12:58:16 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	ft_parent(int **pp, int i)
 	return ;
 }
 
-// exec the last comande or the only cmd if no pipe
+// exec the last command or the only cmd if no pipe
 void	ft_last_command(t_cmd **cmd, int **pp, int i)
 {
 	pid_t	pid;
@@ -173,18 +173,7 @@ int	piping(void)
 			ft_parent(pp, i);
 		i++;
 	}
-	//ft_last_command(g_mini.struct_cmd, pp, i);
-	pid = fork();
-	if (pid == 0)
-	{
-		dup2(pp[i - 1][0], 0);
-		//dup out if needed
-		ft_set_pathexec2(&g_mini, g_mini.struct_cmd[i]->cmd);
-	}
-	if (i > 0)
-		close(pp[i - 1][0]);
-	else if (fdin)
-		close(fdin);
+	ft_last_command(g_mini.struct_cmd, pp, i);
 	ft_wait_all();
 	return (1);
 }
