@@ -175,8 +175,8 @@ char	*ft_last_single_redir_in(t_cmd **cmd);
 int		ft_what_is_last_redir_in(t_cmd **cmd);
 
 // redir.c
-int	ft_redir_in(t_cmd **cmd);
-int	ft_redir_out(t_cmd **cmd, int nb);
+int		ft_redir_in(t_cmd **cmd);
+int		ft_redir_out(t_cmd **cmd, int nb);
 
 //splitcmd.c
 t_cmd	**spliter3(char **inst);
