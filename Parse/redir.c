@@ -71,7 +71,7 @@ int	ft_redir_in(t_cmd **cmd)
 
 // open file and return the fd
 // close fd if allready open, open the file how=1 for > and how=2 for >>
-int ft_open_file(char *file, int fd, int how)
+int	ft_open_file(char *file, int fd, int how)
 {
 	if (fd)
 		close(fd);
@@ -102,25 +102,9 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 			exit (67);
 		}
 		if (ft_strcmp(cmd[nb]->stdout[i], ">") == 0)
-		{
-			if (fd)
-				close(fd);
-			fd = open(cmd[nb]->stdout[i + 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-			if (fd == -1)
-			{
-				perror(cmd[nb]->stdout[i + 1]);
-			}
-		}
+			ft_open_file(cmd[nb]->stdout[i + 1], fd, 1);
 		else if (ft_strcmp(cmd[nb]->stdout[i], ">>") == 0)
-		{
-			if (fd)
-				close(fd);
-			fd = open(cmd[nb]->stdout[i + 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
-			if (fd == -1)
-			{
-				perror(cmd[nb]->stdout[i + 1]);
-			}
-		}
+			ft_open_file(cmd[nb]->stdout[i + 1], fd, 2);
 		else
 		{
 			dprintf(2, "unexpected error\n");
