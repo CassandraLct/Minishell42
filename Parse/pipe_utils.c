@@ -53,7 +53,9 @@ void	ft_last_command(t_cmd **cmd, int **pp, int i)
 {
 	pid_t	pid;
 	int		fdin;
+	int		fdout;
 
+	fdout = 0;
 	pid = fork();
 	if (pid == 0)
 	{
@@ -62,7 +64,13 @@ void	ft_last_command(t_cmd **cmd, int **pp, int i)
 		else
 			fdin = pp[i - 1][0];
 		dup2(fdin, 0);
-		//dup out if needed
+		fdout = ft_redir_out(cmd, i);
+		if (fdout)
+		{
+			dup2(fdout, 1);
+			close(fdout);
+		}
+		close(pp[i - 1][0]);
 		ft_set_pathexec2(&g_mini, cmd[i]->cmd);
 	}
 	if (i > 0)

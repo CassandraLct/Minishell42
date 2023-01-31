@@ -76,7 +76,10 @@ int	ft_open_file(char *file, int fd, int how)
 	if (fd)
 		close(fd);
 	if (how == 1)
+	{
 		fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		dprintf(2, "in open, fd=[%d]\n", fd);
+	}
 	else
 		fd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (fd == -1)
@@ -102,9 +105,9 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 			exit (67);
 		}
 		if (ft_strcmp(cmd[nb]->stdout[i], ">") == 0)
-			ft_open_file(cmd[nb]->stdout[i + 1], fd, 1);
+			fd = ft_open_file(cmd[nb]->stdout[i + 1], fd, 1);
 		else if (ft_strcmp(cmd[nb]->stdout[i], ">>") == 0)
-			ft_open_file(cmd[nb]->stdout[i + 1], fd, 2);
+			fd = ft_open_file(cmd[nb]->stdout[i + 1], fd, 2);
 		else
 		{
 			dprintf(2, "unexpected error\n");
