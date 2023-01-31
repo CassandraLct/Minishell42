@@ -57,16 +57,30 @@ int	ft_nb_heredoc(t_cmd **cmd)
 	return (nb_heredoc);
 }
 
+// return the name of the file and an error message if can't open
+void	ft_what_file(char *file, char **resu)
+{
+	int	fd;
+
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		perror(file);
+	else
+		close(fd);
+	if (*resu)
+		free(*resu);
+	*resu = ft_strdup(file);
+	return ;
+}
+
 // return the name of the last file_in from simple redirection <
 char	*ft_last_single_redir_in(t_cmd **cmd)
 {
 	int		i;
 	int		j;
 	char	*resu;
-	int		fd;
 
 	i = 0;
-	fd = 0;
 	resu = NULL;
 	while (cmd[i])
 	{
@@ -76,16 +90,7 @@ char	*ft_last_single_redir_in(t_cmd **cmd)
 			if (ft_strcmp(cmd[i]->stdin[j], "<") == 0)
 			{
 				if (cmd[i]->stdin[j + 1])
-				{
-					fd = open(cmd[i]->stdin[j + 1], O_RDONLY);
-					if (fd == -1)
-						perror(cmd[i]->stdin[j + 1]);
-					else
-						close(fd);
-					if (resu)
-						free(resu);
-					resu = ft_strdup(cmd[i]->stdin[j + 1]);
-				}
+					ft_what_file(cmd[i]->stdin[j + 1], &resu);
 			}
 			j++;
 		}

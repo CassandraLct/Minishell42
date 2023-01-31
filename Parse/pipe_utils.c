@@ -26,7 +26,6 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 	if (fdin)
 		close(fdin);
 	fdout = ft_redir_out(cmd, i);
-//	dprintf(2, "fdout=[%d]", fdout);
 	if (fdout)
 	{
 		dup2(fdout, 1);
