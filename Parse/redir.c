@@ -50,7 +50,7 @@ int	ft_redir_in(t_cmd **cmd)
 				{
 					if (cmd[i]->stdin[j + 1] == NULL)
 					{
-						printf("minishell: syntax error near unexpected token `newline'\n");
+						printf(ERR_HEREDOC);
 						g_mini.ret_err = 258;
 						return (1);
 					}
@@ -67,6 +67,23 @@ int	ft_redir_in(t_cmd **cmd)
 		}
 	}
 	return (fd_return_redir_in(cmd, last_redir, fd));
+}
+
+// open file and return the fd
+// close fd if allready open, open the file how=1 for > and how=2 for >>
+int ft_open_file(char *file, int fd, int how)
+{
+	if (fd)
+		close(fd);
+	if (how == 1)
+		fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	else
+		fd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0644);
+	if (fd == -1)
+	{
+		perror(file);
+	}
+	return (fd);
 }
 
 // return the fd of the redirection out

@@ -25,6 +25,9 @@
 # include <sys/wait.h>
 # include <termios.h>
 
+/*----------ERROR MES-----------*/
+# define ERR_HEREDOC "minishell: syntax error near unexpected token `newline'\n"
+
 /*----------STRUCTURE-----------*/
 //structure tableau de cmd
 typedef struct s_cmd
