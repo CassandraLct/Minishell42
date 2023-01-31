@@ -302,9 +302,9 @@ void	verif_cmdcotes(char *line)
 {
 	char	*tmp;
 	char	*new_line;
-	int		i;
+//	int		i;
 
-	i = 0;
+//	i = 0;
 	new_line = NULL;
 	// if (verif_placecotes(line) == 1)
 	// 	return ;
