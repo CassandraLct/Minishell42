@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/21 10:26:12 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/25 08:37:18 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	verif_modif_var(char **str, char *cmp)
 
 	i = 0;
 	name_var = recup_name(cmp);
+	printf("name_var = %s, str[i] = %s\n", name_var, str[i]);
 	while (str[i])
 	{
 		if (ft_strncmp(str[i], name_var, ft_strlen(name_var)) == 0)

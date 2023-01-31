@@ -34,6 +34,8 @@ SRC		=	main.c \
 		Parse/gestion_dollar.c \
 		Parse/gestion_dollar_line.c \
 		Parse/gestion_dollar_utils.c \
+		Parse/gestion_dollar_quotes.c \
+		Parse/modif_tcmd.c \
 		Parse/parse.c \
 		Parse/pipe_utils.c \
 		Parse/pipe.c \
@@ -49,7 +51,8 @@ SRC		=	main.c \
 		Utils/ft_itoa.c \
 		Utils/utils.c \
 		Utils/utils2.c \
-		Utils/utils3.c
+		Utils/utils3.c \
+		Utils/printstruc.c 
 
 OBJ		= $(SRC:.c=.o)
 

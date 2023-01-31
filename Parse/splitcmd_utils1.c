@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitcmd_utils1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/19 23:26:31 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/01/28 14:23:20 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int	count_all_redir(char *temp)
 }
 
 // put space before and after < > << >> if there are missing
+// cat <'<' end probleme a regler
 char	*ft_space_bracket(char *s)
 {
 	char	*resu;

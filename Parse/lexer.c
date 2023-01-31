@@ -12,34 +12,62 @@
 
 #include "../minishell.h"
 
-//4 fonctions
+//5 fonctions
+int	cotes_dollar(t_min *mini, char *line)
+{
+	if (verif_cotes(line) == 1)
+	{
+		free(mini->line);
+		mini->line = ft_strdup(line);
+		free(line);
+		return (1);
+	}
+	return (0);
+}
 
-//faire une copie de la line avant ?/ +25 lignes
+//verifie si dollar present et modifie mini.line en fonction
 void	parcour_line(t_min *mini)
 {
-	char	*tmp;
 	char	*line;
 	int		nb_dollar;
 
 	nb_dollar = 0;
-	line = malloc(sizeof(char) * (ft_strlen(mini->line) + 1));
-	tmp = rm_multispace(mini->line, line);
-	free(line);
-	nb_dollar = count_nbdollar(tmp);
+	nb_dollar = count_nbdollar(mini->line);
 	if (nb_dollar == 0)
 		return ;
+	line = ft_strdup(mini->line);
 	free(mini->line);
-	mini->line = rm_d_dollar(tmp);
-	free(tmp);
+	mini->line = rm_d_dollar(line);
+	free(line);
+	nb_dollar = count_nbdollar(mini->line);
+	line = ft_strdup(mini->line);
+	if (cotes_dollar(mini, line) == 1)
+		return ;
+	free(mini->line);
+	mini->line = ft_strdup(line);
+	free(line);
 	nb_dollar = count_nbdollar(mini->line);
 	if (nb_dollar > 0)
 	{
-		tmp = ft_strdup(mini->line);
+		line = ft_strdup(mini->line);
 		free(mini->line);
-		mini->line = change_line(tmp, nb_dollar);
-		printf("mini.line = %s\n", mini->line);
+		mini->line = modif_line(line, nb_dollar);
 	}
-	return ;
+	printf("sortie de parcourline: line={%s}\n", mini->line);
+}
+
+//renvoie vers fonction de modif line
+char	*modif_line(char *line, int nb_dollar)
+{
+	char	*tmp;
+	char	*tmp2;
+
+	tmp = ft_strdup(line);
+	tmp2 = redir_line(tmp, nb_dollar);
+	free(line);
+	line = ft_strdup(tmp2);
+	free(tmp2);
+	return (line);
 }
 
 //faire fonction de redir cmd simple ou multiple
