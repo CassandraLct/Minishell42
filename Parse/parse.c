@@ -75,8 +75,8 @@ void	verif_struct_cmd(t_cmd **tab_scmd)
 	int	i;
 
 	i = 0;
-	while (tab_scmd[0]->__stdinp[i])
-		printf("stdin = {%s}\n", tab_scmd[0]->__stdinp[i++]);
+	while (tab_scmd[0]->stdin[i])
+		printf("stdin = {%s}\n", tab_scmd[0]->stdin[i++]);
 	i = 0;
 	while (tab_scmd[i])
 	{

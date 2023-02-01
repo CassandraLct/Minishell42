@@ -78,15 +78,15 @@ t_cmd	*split_inst(char *temp)
 	t_cmd	*resu;
 	char	*tmpclean;
 	char	**list;
-	int		i;
+//	int		i;
 
 	resu = NULL;
-	i = ft_strlen(temp) + 1;
+//	i = ft_strlen(temp) + 1;
 	tmpclean = remove_double_space(temp);
 	list = pre_split(tmpclean);
 	free(tmpclean);
 	resu = alloc_cmd(list);
-	i = 0;
+//	i = 0;
 	free_tab(list);
 	return (resu);
 }
