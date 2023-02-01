@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/28 16:17:19 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/01 09:23:02 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	parcour_line(t_min *mini)
 		free(mini->line);
 		mini->line = modif_line(line, nb_dollar);
 	}
-	printf("sortie de parcourline: line={%s}\n", mini->line);
 }
 
 //renvoie vers fonction de modif line

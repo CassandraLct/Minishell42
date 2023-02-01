@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/28 14:02:52 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/01 10:06:35 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ void	verif_struct_cmd(t_cmd **tab_cmd);
 void	modif_cmd(char **cmd);
 void	modif_stdin(char **stdin);
 void	modif_stdout(char **stdout);
-void	verif_cmdcotes(char *line);
+char	*verif_cmdcotes(char *line);
 
 //splitcmd.c
 t_cmd	**spliter3(char **inst);
@@ -211,7 +211,7 @@ void	ft_bzero(void *s, int n);
 
 // utils3.c
 char	*ft_strtrim(char *s1, char *set);
-void	*ft_calloc(size_t count, size_t size);
+void	*ft_calloc(int count, int size);
 
 // printstruc.c
 void	printstruc(t_cmd *cmd);
