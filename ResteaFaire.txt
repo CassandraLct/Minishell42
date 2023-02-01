@@ -275,4 +275,6 @@ Samedi 28/01 :
 
 Mercredi 01/02:
 	-> Finir la gestion des cotes;
+	-> Faire la norme;
+	-> Verifier les leaks;
 	-> Mise en commun des codes;

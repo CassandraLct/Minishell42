@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 18:05:30 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/28 16:36:44 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/01 11:36:07 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ int	d_outside_cotes(int i, char *line)
 		return (0);
 	else
 	{
-		if(line[i - 1] == '$' && (line[i] == '\'' || line[i] == '"'))
+		if (line[i - 1] == '$' && (line[i] == '\'' || line[i] == '"'))
 			rm_dollarcotes(line, i, savedollar);
-		else //if(verif_poscotes(line, i, save_dollar))
+		else
 			return (0);
 		return (1);
 	}

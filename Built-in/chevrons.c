@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 11:55:54 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/26 14:10:34 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/01 11:35:13 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	dright_patern(t_cmd **cmd)
 int	heredoc(t_cmd **cmd)
 {
 	char	*line;
+
 	if (cmd[0]->stdin[1] == NULL)
 	{
 		printf("minishell: syntax error near unexpected token `newline'\n");
@@ -81,11 +82,11 @@ int	heredoc(t_cmd **cmd)
 	while (1)
 	{
 		line = readline(">");
-		if(ft_strncmp(cmd[nb]->stdin[i + 1], line, ft_strlen(line)) != 0)
+		if (ft_strncmp(cmd[nb]->stdin[i + 1], line, ft_strlen(line)) != 0)
 		{
 			free(line);
 			close(pp[1]);
-			return(pp[0]);
+			return (pp[0]);
 		}
 		write(pp[1], line, ft_strlen(line));
 		write(pp[1], "\n", 1);

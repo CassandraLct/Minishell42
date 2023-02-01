@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/01 10:06:35 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/01 13:23:56 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ int		count_nbdollar(char *line);
 char	*recup_valvar(char *name_var);
 char	*change_line(char *name_var, char *line);
 
-//gestion_dollar_quotes.c
+//gestion_dollar_quotes.c 4 fonctions
 char	*rm_dollarcotes(char *line, int i, int savedollar);
 char	*rmd_bf_cotes(char *line, int savedollar);
 int		verif_cotes(char *line);
@@ -157,11 +157,12 @@ char	**init_exp(char **tab);
 void	free_tab(char **tab);
 void	verif_struct_cmd(t_cmd **tab_cmd);
 
-//modif_tcmd.c
+//modif_tcmd.c 5 fonctionc
+char	*verif_cmdcotes(char *line);
 void	modif_cmd(char **cmd);
 void	modif_stdin(char **stdin);
 void	modif_stdout(char **stdout);
-char	*verif_cmdcotes(char *line);
+void	free_seline(char *s_line, char *e_line);
 
 //splitcmd.c
 t_cmd	**spliter3(char **inst);
@@ -189,6 +190,14 @@ int		count_instruct(char *line);
 int		is_single_pipe(int j);
 void	*ft_test(void *var, void *error);
 
+//verif_cotes.c 5 fonctions
+char	*verif_cmdcotes(char *line);
+
+//verif_cotes_utils.c 5 fonctions
+char	*get_sline(char *line, char cotes);
+char	*get_eline(char *line, char cotes);
+char	*changecotesline(char *line, char cotes);
+
 /*-----------------------UTILS--------------------------------------------*/
 //5 fichiers
 //itoa.c (libft)
@@ -204,12 +213,13 @@ int		ft_strlen(char *str);
 int		strdigit(char *str);
 int		ft_isdigit(char c);
 
-// utils2.c
+// utils2.c 4 fonctions
 int		ft_strcmp(char *s1, char *s2);
 int		ft_atoi(const char *str);
+int		find_cotes(char *line);
 void	ft_bzero(void *s, int n);
 
-// utils3.c
+// utils3.c 5 fonctions
 char	*ft_strtrim(char *s1, char *set);
 void	*ft_calloc(int count, int size);
 

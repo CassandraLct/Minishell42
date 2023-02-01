@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 21:59:04 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/01 11:04:06 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/01 11:44:30 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	*ft_calloc2(int count, int size)
 	return (resu);
 }
 
+//calloc LIBFT cassandra
 void	*ft_calloc(int count, int size)
 {
 	int		i;

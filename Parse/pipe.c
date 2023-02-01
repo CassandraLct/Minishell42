@@ -6,12 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/26 14:53:28 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/01 12:09:47 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+//+25lignes
 int	ft_redir_in(t_cmd **cmd, int nb)
 {
 	int	i;
@@ -54,6 +55,7 @@ int	ft_redir_in(t_cmd **cmd, int nb)
 	return (pp[0]);
 }
 
+//+25 lignes
 int	ft_redir_out(t_cmd **cmd, int nb)
 {
 	int	i;
@@ -69,7 +71,7 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 			exit (67);
 		if (ft_strcmp(cmd[nb]->stdout[i], ">") == 0)
 		{
-			fd = open(cmd[nb]->stdout[i + 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+			fd = open(cmd[nb]->stdout[i + 1], O_WRONLY | O_CREAT | O_TRUNC, 0644); //line too long
 			if (fd == -1)
 			{
 				perror(cmd[nb]->stdout[i + 1]);
@@ -81,7 +83,7 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 		}
 		else if (ft_strcmp(cmd[nb]->stdout[i], ">>") == 0)
 		{
-			fd = open(cmd[nb]->stdout[i + 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
+			fd = open(cmd[nb]->stdout[i + 1], O_WRONLY | O_CREAT | O_APPEND, 0644); //line too long
 			if (fd == -1)
 			{
 				perror(cmd[nb]->stdout[i + 1]);
@@ -100,7 +102,7 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 	return (pp[1]);
 }
 
-// gerer les redir out
+// gerer les redir out / +25 lignes
 // gerer le cas de la derniere cmd qui ne doit pas pipe
 void	ft_child(t_cmd **cmd, int **pp, int i)
 {
@@ -147,6 +149,7 @@ void	ft_pipe(t_cmd **cmd, int i, int fdin, int fdout)
 }
 */
 
+// +25 lignes
 int	piping(void)
 {
 	int	i;

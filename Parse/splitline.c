@@ -6,13 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/01 11:09:32 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/01 12:12:45 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// main loop of spliter 
+// main loop of spliter / +25lignes(printf)
 char	**spliter_loop(char **resu, char *temp)
 {
 	int		inb;
@@ -38,7 +38,7 @@ char	**spliter_loop(char **resu, char *temp)
 		{
 			printf("dans le else\n");
 			temp[k] = g_mini.line[j];
-			printf("temp[k] = %c, g_mini.line = %c\n",temp[k], g_mini.line[j]);
+			printf("temp[k] = %c, g_mini.line = %c\n", temp[k], g_mini.line[j]);
 			temp[++k] = '\0';
 		}
 		j++;
@@ -50,6 +50,7 @@ char	**spliter_loop(char **resu, char *temp)
 	return (resu);
 }
 
+//line too long = printf l.69, l.70, l.72
 // cut the line received from readline, the separator are real pipes 
 char	**spliter(void)
 {
@@ -68,7 +69,6 @@ char	**spliter(void)
 	resu = ft_test(ft_calloc(i + 1, sizeof(ft_strlen(g_mini.line))), NULL);
 	printf("strlenline = %d, strlen(temp)= %d\n", ft_strlen(g_mini.line), ft_strlen(temp));
 	// temp = ft_test(ft_calloc(ft_strlen(g_mini.line) + 1, sizeof(*temp)), NULL);
-	temp = malloc(sizeof(char) * (ft_strlen(g_mini.line) + 1));
 	// printf("strlenline = %d, strlen(temp)= %d\n", ft_strlen(g_mini.line), ft_strlen(temp));
 	// printf("avant split_loop\n");
 	resu = spliter_loop(resu, temp);
