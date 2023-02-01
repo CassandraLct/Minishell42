@@ -272,3 +272,7 @@ Samedi 28/01 :
 	-> si une chevron seul mettre erreur : bash: syntax error near unexpected token `newline';
 
 *pour le cas : minishell> echo "toto 'est' beau" : erreur de malloc (pointeur free est non alloué);
+
+Mercredi 01/02:
+	-> Finir la gestion des cotes;
+	-> Mise en commun des codes;

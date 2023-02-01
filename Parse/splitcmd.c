@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/24 12:38:33 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/01 09:53:47 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ t_cmd	**spliter3(char **inst)
 	int		i;
 
 	i = 0;
+	printf("debut spliter3\n");
 	temp = ft_test(ft_calloc((tablen(inst) + 1), sizeof(*temp)), NULL);
 	tempclean = ft_test(ft_calloc((tablen(inst) + 1), sizeof(*temp)), NULL);
 	resu = ft_test(ft_calloc((tablen(inst) + 1), sizeof(*resu)), NULL);
@@ -116,5 +117,6 @@ t_cmd	**spliter3(char **inst)
 	free_tab(tempclean);
 	free_tab(inst);
 	resu[i] = NULL;
+	printf("fin spliter3\n");
 	return (resu);
 }

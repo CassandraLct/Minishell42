@@ -180,7 +180,7 @@ void	printstruc2(t_cmd **cmd);
 void	modif_cmd(char **cmd);
 void	modif_stdin(char **stdin);
 void	modif_stdout(char **stdout);
-void	verif_cmdcotes(char *line);
+char	*verif_cmdcotes(char *line);
 
 // redir_utils.c
 int		heredoc(char *cond);
@@ -240,7 +240,7 @@ void	ft_bzero(void *s, int n);
 
 // utils3.c
 char	*ft_strtrim(char *s1, char *set);
-void	*ft_calloc(size_t count, size_t size);
+void	*ft_calloc(int count, int size);
 
 // printstruc.c
 void	printstruc(t_cmd *cmd);

@@ -31,20 +31,28 @@ int	main(int argc, char **argv, char **envp)
 //		dprintf(2, "in main, in loop 3\n");
 		add_history(g_mini.line);
 		parcour_line(&g_mini);
-		printf("line main1 = {%s}\n", g_mini.line);
-		verif_cmdcotes(g_mini.line);
-		printf("linemain = {%s}\n", g_mini.line);
+		printf("apres parcourline:linemain = %s\n", g_mini.line);
+		g_mini.line = verif_cmdcotes(g_mini.line);
+		printf("linemain = %s\n", g_mini.line);
 		if (g_mini.line[0] != '\0')
 		{
+			printf("avant split line\n");
 			g_mini.struct_cmd = spliter3(spliter());
+			printf("apres split_line\n");
 			if (g_mini.struct_cmd != NULL)
 			{
+				// printf("avant verif_struct\n");
 				verif_struct_cmd(g_mini.struct_cmd);
+				// printf("avant redir_pipe\n");
 				redir_pipe(&g_mini, g_mini.struct_cmd);
+				// printf("ici main1\n");
 				free_t_cmd(g_mini.struct_cmd);
+				// printf("ici main2\n");
 			}
 		}
+		// printf("line = %s, %p\n", g_mini.line, g_mini.line);
 		free(g_mini.line);
+		printf("apres le free line\n");
 	}
 //	dprintf(2, "in main end 4\n");
 	free_all(g_mini);

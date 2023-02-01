@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 21:59:04 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/17 21:59:17 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/01 11:04:06 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,46 @@ char	*ft_strtrim(char *s1, char *set)
 }
 
 // malloc with 0 everywhere inse=ide the vaiable
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_calloc2(int count, int size)
 {
 	void	*resu;
-	size_t	i;
+	int		i;
 
+	printf("debut calloc\n");
+	printf("count = %d, size = %d\n", count, size);
 	resu = malloc(count * size);
+	printf("malloc resu\n");
 	if (!resu)
 		return (0);
+	printf("apres verif malloc\n");
 	i = 0;
 	while (i < count * size)
 	{
 		((unsigned char *)resu)[i] = 0;
 		i++;
 	}
+	printf("sortie calloc\n");
 	return (resu);
+}
+
+void	*ft_calloc(int count, int size)
+{
+	int		i;
+	char	*ptr;
+
+	i = 0;
+	printf("debut ft_calloc\n");
+	printf("count = %d, size = %d\n", count, size);
+	ptr = malloc((sizeof(char)) * ((count * size) + 1));
+	// printf("apres malloc\n");
+	if (!ptr)
+		return (NULL);
+	// printf("apres verif malloc\n");
+	while (i < (count * size))
+	{
+		ptr[i] = 0;
+		i++;
+	}
+	printf("fin calloc, add_ptr = %p\n", ptr);
+	return (ptr);
 }
