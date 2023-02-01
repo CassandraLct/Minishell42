@@ -3,18 +3,17 @@ ce texte
 contient
 cinq lignes
 et onze mots
-Built-in
-Comments+Docs
-exec.c
-exec_utils.c
+.o
 file1
 file2
 main.c
+main.o
 Makefile
 minishell
 minishell.h
 Parse
 ResteaFaire.txt
-t1
-t2
+t01
+t02
+t03
 Utils

@@ -78,7 +78,7 @@ int	ft_open_file(char *file, int fd, int how)
 	if (how == 1)
 	{
 		fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		dprintf(2, "in open, fd=[%d]\n", fd);
+//		dprintf(2, "in open, fd=[%d]\n", fd);
 	}
 	else
 		fd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0644);
