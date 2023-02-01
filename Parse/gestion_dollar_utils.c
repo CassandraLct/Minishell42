@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 17:30:01 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/21 17:33:26 by clecat           ###   ########.fr       */
+/*   Updated: 2023/01/25 14:24:23 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ int	verif_dollarcase(char *line)
 	else
 	{
 		name_var = recup_namevar(line);
-		if (verif_var(name_var) == 0)
+		if (name_var[0] == '\0')
+			return (4);
+		else if (verif_var(name_var) == 0)
 		{
 			free(name_var);
 			return (2);
@@ -55,6 +57,7 @@ int	verif_var(char *name_var)
 			break ;
 		i++;
 	}
+	free(tmp);
 	if (i == tablen(g_mini.c_env))
 		return (1);
 	return (0);
@@ -69,12 +72,22 @@ char	*recup_namevar(char *line)
 
 	i = 0;
 	j = 0;
-	tmp = malloc(sizeof(char) * (ft_strlen(line) + 1));
 	while (line[i] && line[i] != '$')
 		i++;
-	i += 1;
-	while (line[i] != '$' && line[i] != ' ' && line[i] != '\0')
-		tmp[j++] = line[i++];
+	j = i;
+	while (line[i] && line[i] != '\0' && line[i] != '$'
+		&& line[i] != ' ' && line[i] != '\'' && line[i] != '"')
+		i++;
+	tmp = malloc(sizeof(char) * (i - j + 1));
+	i = j + 1;
+	j = 0;
+	while (line[i] != '\0' && line[i] != '$'
+		&& line[i] != ' ' && line[i] != '\'' && line[i] != '"')
+	{
+		tmp[j] = line[i];
+		j++;
+		i++;
+	}
 	tmp[j] = '\0';
 	return (tmp);
 }

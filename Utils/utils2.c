@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:12:41 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/17 21:57:49 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/01 13:19:50 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,19 @@ void	ft_bzero(void *s, int n)
 		((unsigned char *)s)[i] = 0;
 		i++;
 	}
+}
+
+//find cotes for functions check_line
+int	find_cotes(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '\'' || line[i] == '"')
+			break ;
+		i++;
+	}
+	return (i);
 }

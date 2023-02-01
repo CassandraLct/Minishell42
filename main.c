@@ -6,21 +6,15 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/29 17:28:53 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/01 12:06:16 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-//grep >test < Makefile "minishell" | cat test
 
-t_min g_mini;
-
-//modifier le split de la line
+//modifier le split de la line // test a faire : ec'ho | cat ex'ec.c
 int	main(int argc, char **argv, char **envp)
 {
-//	char	**tstspl;
-
-//	tstspl = NULL;
 	(void)argc;
 	(void)argv;
 	init_struct(&g_mini, envp);
@@ -35,18 +29,23 @@ int	main(int argc, char **argv, char **envp)
 //		dprintf(2, "in main, in loop 3\n");
 		add_history(g_mini.line);
 		parcour_line(&g_mini);
-		if (g_mini.line != NULL)
+		// printf("apres parcourline:linemain = %s\n", g_mini.line);
+		g_mini.line = verif_cmdcotes(g_mini.line);
+		// printf("linemain = %s\n", g_mini.line);
+		if (g_mini.line[0] != '\0')
 		{
+			// printf("avant split line\n");
 			g_mini.struct_cmd = spliter3(spliter());
-//			printf("main avant freeline, g_line = %s\n", g_mini.line);
-			free(g_mini.line);
-//			printf("main apres freeline\n");
-			redir_pipe(&g_mini, g_mini.struct_cmd);
-//			dprintf(2, "in main end 1\n");
-			free_t_cmd(g_mini.struct_cmd);
-//			dprintf(2, "in main end 2\n");
+			// printf("apres split_line\n");
+			if (g_mini.struct_cmd != NULL)
+			{
+				verif_struct_cmd(g_mini.struct_cmd);
+				redir_pipe(&g_mini, g_mini.struct_cmd);
+				free_t_cmd(g_mini.struct_cmd);
+			}
 		}
-//		dprintf(2, "in main end 3\n");
+		free(g_mini.line);
+		// printf("apres le free line\n");
 	}
 //	dprintf(2, "in main end 4\n");
 	free_all(g_mini);

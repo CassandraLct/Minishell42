@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/21 12:57:39 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/01 09:34:13 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ char	**ft_init_resu(char *line)
 // copy what is inside the simple cote
 void	ft_copy_inside_simple_cote(char **res, char *line, int *i, int *j)
 {
-	printf("res=[%s]. line =[%s], i=[%d], j=[%d]\n", *res, line, *i, *j);
 	(*res)[(*j)++] = line[(*i)++];
 	while (line[*i] != '\'')
 		(*res)[(*j)++] = line[(*i)++];
@@ -80,9 +79,12 @@ void	free_t_cmd(t_cmd **cmd)
 	i = 0;
 	while (cmd[i])
 	{
-		free_tab(cmd[i]->cmd);
-		free_tab(cmd[i]->stdin);
-		free_tab(cmd[i]->stdout);
+		if (cmd[i]->cmd != NULL)
+			free_tab(cmd[i]->cmd);
+		if (cmd[i]->stdin != NULL)
+			free_tab(cmd[i]->stdin);
+		if (cmd[i]->stdout != NULL)
+			free_tab(cmd[i]->stdout);
 		free(cmd[i]);
 		i++;
 	}

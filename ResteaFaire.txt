@@ -199,11 +199,82 @@ leaks : *echo : 0 leaks
 norme : *export_change_val.c : 2 fonctions +25lignes
 		*gestion_dollar.c : 1 fonction +25lignes
 
-demain : 
+lundi : 
 	*finir le $;
 	*faire la norme;
 	*verifier les leaks;
 
-reste a faire lundi :
+a commencer lundi :
 	*gerer les multi_pipes;
 	*faire les redirections;
+
+Lundi 23/01 :
+	-> finir la gestion du $; fait
+	-> faire la norme;
+	-> verifier les leaks; Fait
+	-> commencer les pipes;
+	-> commencer les redirections;
+
+verifier pourquoi le minishell ne se supprime pas au moment du make fclean
+
+pour demain :
+	-> gerer le $cotes;
+	-> faire la norme;
+	-> faire la suppression des cotes;
+	-> revoir la gestion des cotes lors du split (seg fault);
+
+Mardi 24/01 :
+	-> faire gestion quotes dollar ; Fait 
+	-> verifier les leaks ; Fait
+	-> Faire la norme ;
+
+apres la fonction de decoupage, parcourir les tableau de commande pour supprimer les quotes exterieur
+
+Mercredi 25/01 :
+	-> Faire la norme; Fait
+	-> Faire fonction supression cotes exterieur; Fait
+	-> Verifier les leaks; Fait
+	-> Regler le pb des cotes au niveau du spliteur; fixe
+
+demain : 
+	-> comprendre la gestion des pipes(code Raph);
+	-> tester tous les cas;
+
+Jeudi 26/01 :
+	-> heredoc : fait
+
+*comprendre pk "ec"ho(ou autre commande) fonctionne
+
+demain : 
+	-> voir les cas de cmd avec cotes en plein milieu; 
+		-> idée si en enlevant les cotes la commande existe enlever les cotes sinon return;
+reate a faire :
+-> finir les pipes;
+-> finir les redirections;
+-> voir fonction cmd avec redirection;
+-> faire fonction de gestion cmd existante avec cotes au milieu;
+
+Vendredi 27/01 :
+	-> faire fonctions de suppression cotes en plein milieu d'une commande; Fait
+	-> recuperer ce qu'il y a avant et apres; Fait
+
+a faire demain :
+	-> penser a strjoin la line modifier avec le debut et la fin;
+	-> tester les cas étranges;
+	-> verifier les leaks;
+	-> faire la norme;
+
+Samedi 28/01 :
+	-> faire un join si un debut et une fin de line; Fait
+	-> faire gestion du cas $; en cours 
+	-> faire gestion du cas chevrons; fait
+	-> modifier les fonctions des dollars; en cours (compter le nombre de cote)
+	-> si une chevron seul mettre erreur : bash: syntax error near unexpected token `newline';
+
+*pour le cas : minishell> echo "toto 'est' beau" : erreur de malloc (pointeur free est non alloué);
+
+Mercredi 01/02:
+	-> Finir la gestion des cotes;
+	-> Faire la norme;
+	-> Verifier les leaks;
+	-> Mise en commun des codes;
