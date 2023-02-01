@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:51:31 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/29 18:43:53 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/01 15:10:52 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	ft_exec(t_min *mini, char **all_path, char **pathcmd, char **cmd)
 {
 	if (verif_cmd(all_path, pathcmd, cmd) != 0 || cmd[0][0] == '\0')
 	{
+		printf("ici1\n");
 		dprintf(2, "wrong command\n");
 		free_tab(all_path);
 		free_tab(pathcmd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/01 12:06:16 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/01 15:12:17 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(int argc, char **argv, char **envp)
 		// printf("apres parcourline:linemain = %s\n", g_mini.line);
 		g_mini.line = verif_cmdcotes(g_mini.line);
 		// printf("linemain = %s\n", g_mini.line);
+		system("leaks minishell");
 		if (g_mini.line[0] != '\0')
 		{
 			// printf("avant split line\n");
