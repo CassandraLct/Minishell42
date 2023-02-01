@@ -39,7 +39,6 @@ SRC		=	main.c \
 		Parse/parse.c \
 		Parse/pipe_utils.c \
 		Parse/pipe.c \
-		Parse/printstruc.c \
 		Parse/redir_utils.c \
 		Parse/redir.c \
 		Parse/splitcmd_utils1.c \

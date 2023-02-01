@@ -12,6 +12,8 @@
 
 #include "minishell.h"
 
+//t_min	g_mini;
+
 //modifier le split de la line // test a faire : ec'ho | cat ex'ec.c
 int	main(int argc, char **argv, char **envp)
 {

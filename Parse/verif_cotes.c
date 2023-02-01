@@ -118,9 +118,7 @@ char	*verif_cmdcotes(char *line)
 {
 	char	*tmp;
 	char	*new_line;
-	int		i;
 
-	i = 0;
 	new_line = NULL;
 	tmp = ft_strdup(line);
 	new_line = check_line(tmp);
