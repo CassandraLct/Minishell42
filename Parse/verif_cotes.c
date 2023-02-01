@@ -99,8 +99,9 @@ char	*check_line(char *line)
 	s_line = NULL;
 	e_line = NULL;
 	i = find_cotes(line);
+//	dprintf(2, "in check_line 1, line=[%s], i=[%d]\n", line, i);
 	if (line[i] == '\0')
-		return (line);
+		return (ft_strdup(line));
 	cotes = line[i];
 	s_line = get_sline(line, cotes);
 	e_line = get_eline(line, cotes);
@@ -121,8 +122,13 @@ char	*verif_cmdcotes(char *line)
 
 	new_line = NULL;
 	tmp = ft_strdup(line);
+//	dprintf(2, "1, line=[%s]\n", line);
 	new_line = check_line(tmp);
+//	dprintf(2, "line=[%p], tmp=[%p], new_line=[%p]\n", line, tmp, new_line);
+//	dprintf(2, "2, new_line=[%s]\n", new_line);
 	free(line);
+//	dprintf(2, "3, new_line=[%s]\n", new_line);
 	free(tmp);
+//	dprintf(2, "4, new_line=[%s]\n", new_line);
 	return (new_line);
 }

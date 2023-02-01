@@ -62,8 +62,7 @@ void	printstruc2(t_cmd **cmd)
 	{
 		printf("********** instruction[%d] **********\n", i);
 		printstruc(cmd[i]);
-		printf("************ pipe or end ************\n");
 		i++;
 	}
-	printf("the end\n");
+	printf("********** the end **********\n");
 }

@@ -74,14 +74,12 @@ void	redir_pipe(t_min *mini, t_cmd **cmd)
 {
 	if (cmd[1] == NULL)
 	{
-		printf("ici\n");
+//		printf("ici\n");
 		redirection(mini, cmd);
 	}
 	else
 	{
-//		printf("in redir_pipe : before pipe\n");
 		piping();
-//		printf("in redir_pipe : after pipe\n");
 	}
 }
 
@@ -89,7 +87,7 @@ void	redir_pipe(t_min *mini, t_cmd **cmd)
 //redirige soit vers les built-in soit vers execve
 void	redirection(t_min *mini, t_cmd **cmd)
 {
-	printf("cmd[0] = %s\n", cmd[0]->cmd[0]);
+//	printf("cmd[0] = %s\n", cmd[0]->cmd[0]);
 	if (cmd[0]->cmd[0] == NULL)
 		return ;
 	if (ft_strcmp(cmd[0]->cmd[0], "exit") == 0)
@@ -102,7 +100,7 @@ void	redirection(t_min *mini, t_cmd **cmd)
 		cd(mini, cmd[0]->cmd);
 	else if (ft_strcmp(cmd[0]->cmd[0], "export") == 0)
 	{
-		printf("dans redirecion vers export\n");
+//		printf("dans redirecion vers export\n");
 		export(mini, cmd[0]->cmd);
 	}
 	else if (ft_strcmp(cmd[0]->cmd[0], "unset") == 0)

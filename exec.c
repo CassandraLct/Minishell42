@@ -89,7 +89,7 @@ void	ft_exec(t_min *mini, char **all_path, char **pathcmd, char **cmd)
 {
 	if (verif_cmd(all_path, pathcmd, cmd) != 0 || cmd[0][0] == '\0')
 	{
-		printf("ici1\n");
+//		printf("ici1\n");
 		dprintf(2, "wrong command\n");
 		free_tab(all_path);
 		free_tab(pathcmd);
@@ -118,6 +118,7 @@ void	ft_set_pathexec(t_min *mini, char **cmd)
 	char	**all_path;
 	char	**pathcmd;
 
+//	dprintf(2, "cmd[0]=[%s]\n", cmd[0]);
 	pathcmd = NULL;
 	pathcmd = init_cmd(cmd, pathcmd);
 	all_path = recup_path(mini);

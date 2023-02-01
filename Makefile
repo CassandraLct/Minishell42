@@ -88,6 +88,10 @@ norme	:
 	| egrep -v "ioctl|getenv|csuetattr|tcgetattr|tgetent|tgetflag" \
 	| egrep -v "tgetnum|tgetstr|tgoto|tputs|dyld_stub_binder" || true
 
+norme2 :
+	@norminette -R CheckForbiddenSourceHeader | egrep -v "OK|WRONG_SCOPE_COMMENT" \
+	| egrep -v "LINE_TOO_LONG|GLOBAL_VAR_DETECTED" || true
+
 re	:	fclean all
 
 .PHONY:	all clean fclean re

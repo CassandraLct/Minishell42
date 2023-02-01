@@ -67,9 +67,9 @@ char	**spliter(void)
 	}
 	i = count_instruct(g_mini.line);
 	resu = ft_test(ft_calloc(i + 1, sizeof(ft_strlen(g_mini.line))), NULL);
-	// printf("strlenline = %d, strlen(temp)= %d\n", ft_strlen(g_mini.line), ft_strlen(temp));
+//	printf("strlenline = %d, strlen(temp)= %d\n", ft_strlen(g_mini.line), ft_strlen(temp));
 	temp = ft_test(ft_calloc(ft_strlen(g_mini.line) + 1, sizeof(*temp)), NULL);
-	// printf("strlenline = %d, strlen(temp)= %d\n", ft_strlen(g_mini.line), ft_strlen(temp));
+//	dprintf(2, "strlenline = %d, strlen(temp)= %d\n", ft_strlen(g_mini.line), ft_strlen(temp));
 	// printf("avant split_loop\n");
 	resu = spliter_loop(resu, temp);
 	// printf("apres spliter_loop\n");
