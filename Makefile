@@ -92,6 +92,11 @@ norme2 :
 	@norminette -R CheckForbiddenSourceHeader | egrep -v "OK|WRONG_SCOPE_COMMENT" \
 	| egrep -v "LINE_TOO_LONG|GLOBAL_VAR_DETECTED" || true
 
+test :
+	./minishell <t01 || true
+	./minishell <t02 || true
+	./minishell <t03 || true
+
 re	:	fclean all
 
 .PHONY:	all clean fclean re
