@@ -116,13 +116,14 @@ char	*check_line(char *line)
 //gestion des cotes au milieu d'une commande
 char	*verif_cmdcotes(char *line)
 {
-	char	*tmp;
+//	char	*tmp;
 	char	*new_line;
 
 	new_line = NULL;
-	tmp = ft_strdup(line);
-	new_line = check_line(tmp);
+//	tmp = ft_strdup(line);
+//	new_line = check_line(tmp);
+	new_line = check_line(line);
 	free(line);
-	free(tmp);
+//	free(tmp);
 	return (new_line);
 }

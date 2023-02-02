@@ -57,7 +57,7 @@ char	**spliter(void)
 		return (NULL);
 	}
 	i = count_instruct(g_mini.line);
-	resu = ft_test(ft_calloc(i + 1, sizeof(ft_strlen(g_mini.line))), NULL);
+	resu = ft_test(ft_calloc(i + 1, sizeof(*resu)), NULL);
 	temp = ft_test(ft_calloc(ft_strlen(g_mini.line) + 1, sizeof(*temp)), NULL);
 	resu = spliter_loop(resu, temp);
 	free(temp);

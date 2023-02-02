@@ -43,7 +43,7 @@ int	main(int argc, char **argv, char **envp)
 			}
 		}
 // double free ici je suis dessus RDM
-//		free(g_mini.line);
+		free(g_mini.line);
 	}
 	free_all(g_mini);
 }
