@@ -72,6 +72,9 @@ int	piping(void)
 	}
 	ft_last_command(g_mini.struct_cmd, pp, i);
 	ft_wait_all();
+	i = 0;
+	while (pp[i])
+		free(pp[i++]);
 	free(pp);
 	return (1);
 }

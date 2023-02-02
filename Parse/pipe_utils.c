@@ -109,7 +109,7 @@ int	**ft_create_pipe(t_cmd **cmd)
 	i = 0;
 	while (i < nbcmd)
 	{
-		pp[i] = ft_test(ft_calloc(2, sizeof(int)), NULL);
+		pp[i] = ft_test(ft_calloc(2, sizeof(**pp)), NULL);
 		i++;
 	}
 	return (pp);
