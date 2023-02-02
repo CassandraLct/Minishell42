@@ -3,17 +3,22 @@ ce texte
 contient
 cinq lignes
 et onze mots
-.o
+Built-in
+Comments+Docs
+Makefile
+Parse
+ResteaFaire.txt
+Utils
+exec.c
+exec.o
+exec_utils.c
+exec_utils.o
 file1
 file2
 main.c
 main.o
-Makefile
 minishell
 minishell.h
-Parse
-ResteaFaire.txt
 t01
 t02
 t03
-Utils

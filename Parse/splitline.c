@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/01 14:50:46 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/02 12:45:58 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ char	**spliter(void)
 	}
 	i = count_instruct(g_mini.line);
 	resu = ft_test(ft_calloc(i + 1, sizeof(ft_strlen(g_mini.line))), NULL);
+
 //	printf("strlenline = %d, strlen(temp)= %d\n", ft_strlen(g_mini.line), ft_strlen(temp));
 	temp = ft_test(ft_calloc(ft_strlen(g_mini.line) + 1, sizeof(*temp)), NULL);
 //	dprintf(2, "strlenline = %d, strlen(temp)= %d\n", ft_strlen(g_mini.line), ft_strlen(temp));

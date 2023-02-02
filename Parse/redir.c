@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/30 15:40:38 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/02 12:30:15 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int	ft_open_file(char *file, int fd, int how)
 	if (fd == -1)
 	{
 		perror(file);
+		g_mini.ret_err = 1;
 	}
 	return (fd);
 }
@@ -101,7 +102,8 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 	{
 		if (cmd[nb]->stdout[i + 1] == NULL)
 		{
-			dprintf(2, "error\n");
+			printf("minishell: syntax error near unexpected token `newline'\n");
+			g_mini.ret_err = 258;
 			exit (67);
 		}
 		if (ft_strcmp(cmd[nb]->stdout[i], ">") == 0)

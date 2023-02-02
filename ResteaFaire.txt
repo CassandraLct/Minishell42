@@ -274,7 +274,15 @@ Samedi 28/01 :
 *pour le cas : minishell> echo "toto 'est' beau" : erreur de malloc (pointeur free est non alloué);
 
 Mercredi 01/02:
-	-> Finir la gestion des cotes;
-	-> Faire la norme;
+	-> Finir la gestion des cotes; Fait
+	-> Faire la norme; Fait
+	-> Verifier les leaks; Fait pour le debut du prog (jusqu'au if du main)
+	-> Mise en commun des codes; sur branch git : merged 2
+
+Jeudi 02/02:
+	-> Faire les test;
 	-> Verifier les leaks;
-	-> Mise en commun des codes;
+
+LEAKS : 
+	->leaks creer lors de l'affectation du resultat de spliter3 dams struct_cmd (main);
+	->4 root leaks creer lorsapres la fonction redir_pipe;

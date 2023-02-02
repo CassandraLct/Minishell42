@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/01 15:07:13 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/02 13:56:44 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,21 +73,15 @@ char	*modif_line(char *line, int nb_dollar)
 void	redir_pipe(t_min *mini, t_cmd **cmd)
 {
 	if (cmd[1] == NULL)
-	{
-//		printf("ici\n");
 		redirection(mini, cmd);
-	}
 	else
-	{
 		piping();
-	}
 }
 
 //built-in : cd/echo/env/exit/export/unset
 //redirige soit vers les built-in soit vers execve
 void	redirection(t_min *mini, t_cmd **cmd)
 {
-//	printf("cmd[0] = %s\n", cmd[0]->cmd[0]);
 	if (cmd[0]->cmd[0] == NULL)
 		return ;
 	if (ft_strcmp(cmd[0]->cmd[0], "exit") == 0)
@@ -99,10 +93,7 @@ void	redirection(t_min *mini, t_cmd **cmd)
 	else if (ft_strcmp(cmd[0]->cmd[0], "cd") == 0)
 		cd(mini, cmd[0]->cmd);
 	else if (ft_strcmp(cmd[0]->cmd[0], "export") == 0)
-	{
-//		printf("dans redirecion vers export\n");
 		export(mini, cmd[0]->cmd);
-	}
 	else if (ft_strcmp(cmd[0]->cmd[0], "unset") == 0)
 		unset(mini, cmd[0]->cmd);
 	else if (ft_strcmp(cmd[0]->cmd[0], "pwd") == 0)
