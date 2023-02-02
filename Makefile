@@ -93,10 +93,11 @@ norme2 :
 	| egrep -v "LINE_TOO_LONG|GLOBAL_VAR_DETECTED" || true
 
 test :
-	./minishell <t01 || true
-	./minishell <t02 || true
-	./minishell <t03 || true
-
+	@./minishell <t01 || true
+	@./minishell <t02 || true
+	@./minishell <t03 || true
+	@./minishell <t04 || true
+	@./minishell <t05 || true
 re	:	fclean all
 
 .PHONY:	all clean fclean re

@@ -177,6 +177,7 @@ int		piping(void);
 // printstruc.c
 void	printstruc(t_cmd *cmd);
 void	printstruc2(t_cmd **cmd);
+
 //modif_tcmd.c 5 fonctionc
 char	*verif_cmdcotes(char *line);
 void	modif_cmd(char **cmd);

@@ -115,13 +115,18 @@ void	verif_arg_exit(t_min *mini, int i, char **cmd)
 void	exit_min(t_min *mini, char **cmd)
 {
 	int	i;
+	int	j;
 
 	i = 1;
+	j = 0;
+	while(mini->struct_cmd[j])
+		j++;
 	if (ft_strcmp(cmd[0], "exit") == 0)
 	{
 		if (cmd[i] == NULL)
 		{
-			printf("exit\n");
+			if (j == 1)
+				printf("exit\n");
 			exit(0);
 		}
 		else

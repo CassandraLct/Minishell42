@@ -72,10 +72,9 @@ char	*modif_line(char *line, int nb_dollar)
 //faire fonction de redir cmd simple ou multiple
 void	redir_pipe(t_min *mini, t_cmd **cmd)
 {
-	if (cmd[1] == NULL)
-		redirection(mini, cmd);
-	else
-		piping();
+	if (ft_strcmp(cmd[0]->cmd[0], "exit") == 0 && cmd[1] == NULL)
+		exit_min(mini, cmd[0]->cmd);
+	piping();
 }
 
 //built-in : cd/echo/env/exit/export/unset
