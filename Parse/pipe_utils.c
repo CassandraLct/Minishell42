@@ -36,7 +36,7 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 	close(pp[i][0]);
 	close(pp[i][1]);
 	redirection2(&g_mini, cmd[i]);
-	exit (68);
+	exit (68); /// or 1 ???
 }
 
 // exec the parent process in the while
@@ -74,6 +74,7 @@ void	ft_last_command(t_cmd **cmd, int **pp, int i)
 		if (i > 0)
 			close(pp[i - 1][0]);
 		redirection2(&g_mini, cmd[i]);
+		exit (0); ///or 1 ??
 	}
 	if (i > 0)
 		close(pp[i - 1][0]);
