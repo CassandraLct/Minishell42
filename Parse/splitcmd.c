@@ -104,14 +104,16 @@ t_cmd	**spliter3(char **inst)
 	while (inst[i])
 	{
 		temp[i] = ft_strtrim(inst[i], " ");
+		free(inst[i]);
 		tempclean[i] = ft_space_bracket(temp[i]);
+		free(temp[i]);
 		resu[i] = split_inst(tempclean[i]);
+		free(tempclean[i]);
 		i++;
 	}
-	free_tab(temp);
-	free_tab(tempclean);
-// double free dans free_tab je suis dessus RDM
-//	free_tab(inst);
+	free(inst);
+	free(temp);
+	free(tempclean);
 	resu[i] = NULL;
 	return (resu);
 }
