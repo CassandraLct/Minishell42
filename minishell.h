@@ -153,6 +153,7 @@ void	redir_pipe(t_min *mini, t_cmd **cmd);
 void	redirection(t_min *mini, t_cmd **cmd);
 void	parcour_line(t_min *mini);
 char	*modif_line(char *line, int nb_dollar);
+void	redirection2(t_min *mini, t_cmd *cmd);
 
 //parse.c 4 fonctions
 char	**init_cpy(char **str, char **dest);
