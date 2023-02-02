@@ -79,30 +79,6 @@ void	redir_pipe(t_min *mini, t_cmd **cmd)
 
 //built-in : cd/echo/env/exit/export/unset
 //redirige soit vers les built-in soit vers execve
-void	redirection(t_min *mini, t_cmd **cmd)
-{
-	if (cmd[0]->cmd[0] == NULL)
-		return ;
-	if (ft_strcmp(cmd[0]->cmd[0], "exit") == 0)
-		exit_min(mini, cmd[0]->cmd);
-	else if (ft_strcmp(cmd[0]->cmd[0], "echo") == 0)
-		echo(cmd[0]->cmd);
-	else if (ft_strcmp(cmd[0]->cmd[0], "env") == 0)
-		ft_env(mini, cmd[0]->cmd);
-	else if (ft_strcmp(cmd[0]->cmd[0], "cd") == 0)
-		cd(mini, cmd[0]->cmd);
-	else if (ft_strcmp(cmd[0]->cmd[0], "export") == 0)
-		export(mini, cmd[0]->cmd);
-	else if (ft_strcmp(cmd[0]->cmd[0], "unset") == 0)
-		unset(mini, cmd[0]->cmd);
-	else if (ft_strcmp(cmd[0]->cmd[0], "pwd") == 0)
-		pwd(mini->c_env, cmd[0]->cmd);
-	else
-		ft_set_pathexec(mini, cmd[0]->cmd);
-}
-
-//built-in : cd/echo/env/exit/export/unset
-//redirige soit vers les built-in soit vers execve
 void	redirection2(t_min *mini, t_cmd *cmd)
 {
 	if (cmd->cmd[0] == NULL)

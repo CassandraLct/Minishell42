@@ -36,7 +36,6 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 	close(pp[i][0]);
 	close(pp[i][1]);
 	redirection2(&g_mini, cmd[i]);
-//	ft_set_pathexec2(&g_mini, cmd[i]->cmd);
 	exit (68);
 }
 
@@ -75,7 +74,6 @@ void	ft_last_command(t_cmd **cmd, int **pp, int i)
 		if (i > 0)
 			close(pp[i - 1][0]);
 		redirection2(&g_mini, cmd[i]);
-//		ft_set_pathexec2(&g_mini, cmd[i]->cmd);
 	}
 	if (i > 0)
 		close(pp[i - 1][0]);

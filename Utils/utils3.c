@@ -100,18 +100,13 @@ void	*ft_calloc(int count, int size)
 	char	*ptr;
 
 	i = 0;
-//	printf("debut ft_calloc\n");
-//	printf("count = %d, size = %d\n", count, size);
 	ptr = malloc((sizeof(char)) * ((count * size) + 1));
-	// printf("apres malloc\n");
 	if (!ptr)
 		return (NULL);
-	// printf("apres verif malloc\n");
 	while (i < (count * size))
 	{
 		ptr[i] = 0;
 		i++;
 	}
-//	printf("fin calloc, add_ptr = %p\n", ptr);
 	return (ptr);
 }

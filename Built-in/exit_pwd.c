@@ -119,7 +119,7 @@ void	exit_min(t_min *mini, char **cmd)
 
 	i = 1;
 	j = 0;
-	while(mini->struct_cmd[j])
+	while (mini->struct_cmd[j])
 		j++;
 	if (ft_strcmp(cmd[0], "exit") == 0)
 	{
