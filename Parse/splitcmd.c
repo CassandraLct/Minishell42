@@ -42,7 +42,6 @@ char	**pre_split(char *line)
 	return (resu);
 }
 
-//  < a1 <  b2>   c3 ls | <"f6"  ls -la > g7>k8 | grep -v 'to | ta' >l9
 // transform the command from char** to t_cmd type
 t_cmd	*alloc_cmd(char **list)
 {
@@ -88,7 +87,7 @@ t_cmd	*split_inst(char *temp)
 	return (resu);
 }
 
-//  < a1 <  b2>   c3 ls | <"f6"  ls -la > g7>k8 | grep -v 'to | ta' >l9
+//
 t_cmd	**spliter3(char **inst)
 {
 	t_cmd	**resu;
@@ -97,10 +96,6 @@ t_cmd	**spliter3(char **inst)
 	int		i;
 
 	i = 0;
-//	printf("debut spliter3\n");
-//	dprintf(2, "inst=[%s]\n", *inst);
-	printf("////////////SPLITER3:1///////////////////\n");
-	system("leaks minishell");
 	temp = ft_test(ft_calloc((tablen(inst) + 1), sizeof(*temp)), NULL);
 	tempclean = ft_test(ft_calloc((tablen(inst) + 1), sizeof(*temp)), NULL);
 	resu = ft_test(ft_calloc((tablen(inst) + 1), sizeof(*resu)), NULL);
@@ -108,24 +103,15 @@ t_cmd	**spliter3(char **inst)
 		return (NULL);
 	while (inst[i])
 	{
-//		dprintf(2, "i=[%d], inst[i]=[%s]\n",i , inst[i]);
 		temp[i] = ft_strtrim(inst[i], " ");
 		tempclean[i] = ft_space_bracket(temp[i]);
-//		dprintf(2, "i=[%d], tempclean[i]=[%s]\n",i , tempclean[i]);
 		resu[i] = split_inst(tempclean[i]);
 		i++;
 	}
-//	dprintf(2, "1end of spliter3\n");
 	free_tab(temp);
-//	dprintf(2, "2end of spliter3\n");
 	free_tab(tempclean);
-//	dprintf(2, "3end of spliter3\n");
 // double free dans free_tab je suis dessus RDM
 //	free_tab(inst);
 	resu[i] = NULL;
-//	dprintf(2, "4end of spliter3\n");
-//	printstruc2(resu);
-	printf("////////////SPLITER3:2///////////////////\n");
-	system("leaks minishell");
 	return (resu);
 }

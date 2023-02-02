@@ -61,18 +61,13 @@ void	free_tab(char **tab)
 	int	i;
 
 	i = 0;
-//	dprintf(2, "in\n");
 	while (tab[i])
 	{
-//		dprintf(2, "i=[%d]\n", i);
-//		dprintf(2, "tab[i]=[%s]\n", tab[i]);
 		if (tab[i])
 			free(tab[i]);
 		i++;
 	}
-//	dprintf(2, "out\n");
-		free(tab);
-//	dprintf(2, "out\n");
+	free(tab);
 }
 
 //renvoie vers les fonction correspondante
