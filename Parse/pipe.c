@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/02 13:55:51 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/03 08:22:15 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,8 @@ int	piping(void)
 			ft_parent(pp, i);
 		i++;
 	}
-	printf("////////PIPING : 1//////////////\n");
-	system("leaks minishell");
 	ft_last_command(g_mini.struct_cmd, pp, i);
 	ft_wait_all();
-	free(pp);
-	printf("////////PIPING : 2//////////////\n");
-	system("leaks minishell");
+	free_tab((char**)pp);
 	return (1);
 }

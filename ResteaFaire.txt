@@ -285,4 +285,8 @@ Jeudi 02/02:
 
 LEAKS : 
 	->leaks creer lors de l'affectation du resultat de spliter3 dams struct_cmd (main);
-	->4 root leaks creer lorsapres la fonction redir_pipe;
+	->4 root leaks creer lorsapres la fonction redir_pipe; Fixe
+
+Vendredi 03/02:
+	-> Fixe les derniers leaks;
+	-> Tester sur la branch raph3;
