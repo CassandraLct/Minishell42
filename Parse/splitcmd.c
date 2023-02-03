@@ -108,8 +108,7 @@ t_cmd	**spliter3(char **inst)
 		tempclean[i] = ft_space_bracket(temp[i]);
 		free(temp[i]);
 		resu[i] = split_inst(tempclean[i]);
-		free(tempclean[i]);
-		i++;
+		free(tempclean[i++]);
 	}
 	free(inst);
 	free(temp);
