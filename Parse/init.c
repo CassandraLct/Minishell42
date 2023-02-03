@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:36:33 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/03 16:37:09 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/03 16:54:47 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	init_struct(t_min *mini, char **envp)
 {
 	mini->ret_err = 0;
 	mini->sig_heredoc = 1;
-	mini->pid = -1;
+	// mini->pid = -1;
 	mini->line = NULL;
 	mini->tab = NULL;
 	mini->prompt = "minishell> ";

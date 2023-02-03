@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/03 14:26:53 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/03 17:08:44 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,6 @@ char	*modif_line(char *line, int nb_dollar)
 //faire fonction de redir cmd simple ou multiple
 void	redir_pipe(t_min *mini, t_cmd **cmd)
 {
-	int	i;
-
-	i = 0;
 	if (cmd[0]->cmd[0] == NULL && cmd[0]->stdin[0] == NULL && cmd[0]->stdout[0] == NULL)
 		return ;
 	else

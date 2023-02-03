@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/03 16:39:15 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/03 16:55:24 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ void	ft_last_command(t_cmd **cmd, int **pp, int i)
 
 	fdout = 0;
 	pid = fork();
-	g_mini.pid = pid;
-	printf("pid2 = %d\n", g_mini.pid);
+	// g_mini.pid = pid;
+	// printf("pid2 = %d\n", g_mini.pid);
 	fdin = 0;
-	if (g_mini.pid == 0)
+	if (pid == 0)
 	{
 		if (i == 0)
 			fdin = ft_redir_in(cmd);

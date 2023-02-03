@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:33:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/03 14:38:45 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/03 17:15:06 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	ft_interruption(int signum)
 //ctrl\ fonction quit
 void	ft_quit(int signum)
 {
+	printf("pid = %d\n", g_mini.pid);
 	if (g_mini.pid != 0)
 	{
 		if (!kill(g_mini.pid, signum))
@@ -53,8 +54,8 @@ void	ft_quit(int signum)
 	}
 	else
 	{
-		rl_on_new_line();
 		rl_replace_line("", 0);
+		rl_on_new_line();
 		rl_redisplay();
 	}
 	g_mini.sig_heredoc = 0;

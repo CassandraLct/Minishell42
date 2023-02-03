@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/03 16:10:10 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/03 17:01:23 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	ft_redir_in(t_cmd **cmd)
 
 	last_redir = ft_what_is_last_redir_in(cmd);
 	fd = 0;
+	// printf("dans redir_in\n");
 	if (ft_nb_heredoc(cmd) != 0)
 	{
 		i = 0;
