@@ -106,7 +106,6 @@ char	*check_line(char *line)
 	e_line = get_eline(line, cotes);
 	tmp = changecotesline(line, cotes);
 	tmp = rm_cotes(tmp, cotes);
-	// free(line);
 	line = join_line(tmp, s_line, e_line);
 	free(tmp);
 	free_seline(s_line, e_line);
@@ -116,14 +115,10 @@ char	*check_line(char *line)
 //gestion des cotes au milieu d'une commande
 char	*verif_cmdcotes(char *line)
 {
-//	char	*tmp;
 	char	*new_line;
 
 	new_line = NULL;
-//	tmp = ft_strdup(line);
-//	new_line = check_line(tmp);
 	new_line = check_line(line);
 	free(line);
-//	free(tmp);
 	return (new_line);
 }

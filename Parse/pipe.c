@@ -72,6 +72,6 @@ int	piping(void)
 	}
 	ft_last_command(g_mini.struct_cmd, pp, i);
 	ft_wait_all();
-	free_tab((char**)pp);
+	free_tab((char **)pp);
 	return (1);
 }

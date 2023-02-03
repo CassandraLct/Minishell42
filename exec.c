@@ -62,7 +62,6 @@ void	ft_execve(t_min *mini, char **all_path, char **pathcmd, char **cmd)
 		gd_path = ft_strjoin(all_path[i], pathcmd[0]);
 		if (access(gd_path, R_OK) == 0)
 		{
-//			free(gd_path);
 			if (execve(gd_path, pathcmd, mini->c_env) == -1)
 			{
 				perror("Execve : ");

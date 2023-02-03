@@ -25,10 +25,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		g_mini.line = readline(g_mini.prompt);
 		if (g_mini.line == NULL)
-		{
-			dprintf(2, "signal ");
 			signal_exit();
-		}
 		add_history(g_mini.line);
 		parcour_line(&g_mini);
 		g_mini.line = verif_cmdcotes(g_mini.line);
@@ -42,7 +39,6 @@ int	main(int argc, char **argv, char **envp)
 				free_t_cmd(g_mini.struct_cmd);
 			}
 		}
-// double free ici je suis dessus RDM
 		free(g_mini.line);
 	}
 	free_all(g_mini);
