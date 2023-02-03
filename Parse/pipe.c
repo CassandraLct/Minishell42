@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/03 14:27:37 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/03 16:38:15 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,11 @@ int	piping(void)
 		if (pipe(pp[i]) == -1)
 			dprintf(2, "pipe bug\n");
 		pid = fork();
-		if (pid == -1)
+		g_mini.pid = pid;
+		printf("pid = %d\n", g_mini.pid);
+		if (g_mini.pid == -1)
 			exit (127);
-		if (pid == 0)
+		if (g_mini.pid == 0)
 			ft_child(g_mini.struct_cmd, pp, i);
 		else
 			ft_parent(pp, i);
