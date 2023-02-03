@@ -286,3 +286,5 @@ Jeudi 02/02:
 LEAKS : 
 	->leaks creer lors de l'affectation du resultat de spliter3 dams struct_cmd (main);
 	->4 root leaks creer lorsapres la fonction redir_pipe;
+	-> regler le soucis de signaux dans le heredoc qui quitte bien le heredoc, affiche le prompt minishell 
+		puis relance un heredoc;

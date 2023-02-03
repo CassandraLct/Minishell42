@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/02 11:04:34 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/03 09:01:47 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	heredoc(char *cond)
 	int		pp[2];
 
 	pipe(pp);
-	signaux();
 	while (1)
 	{
 		line = readline("> ");
