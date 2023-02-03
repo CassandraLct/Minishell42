@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:48:29 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/01 14:52:32 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/03 11:26:00 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	*rm_cotes(char *line, char cotes)
 	tmp = malloc(sizeof(char) * ft_strlen(line) + 1);
 	while (line[i])
 	{
-		if (line[i] == cotes)
+		while (line[i] == cotes && (line[i + 1] != cotes && line[i - 1] != cotes))
 			i += 1;
 		tmp[j] = line[i];
 		j++;

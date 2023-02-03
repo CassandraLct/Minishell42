@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/03 09:01:47 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/03 13:55:26 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,19 @@ int	heredoc(char *cond)
 	int		pp[2];
 
 	pipe(pp);
-	while (1)
+//	pipe(g_mini.fd_hd);
+//	dup2(STDIN_FILENO, g_mini.fd_hd[1]);
+	while (1 && g_mini.sig_heredoc == 1)
 	{
-		line = readline("> ");
+//		printf("dans heredoc\n");
+//		ft_putstr_fd("> ", STDOUT_FILENO);
+//		line = get_next_line(0);
+line = readline("> ");
+		/*if (g_mini.sig_heredoc == 0)
+		{
+			free(line);
+			break ;
+		}*/
 		if (ft_strncmp(cond, line, ft_strlen(line)) == 0)
 		{
 			free(line);
@@ -32,6 +42,9 @@ int	heredoc(char *cond)
 		write(pp[1], "\n", 1);
 		free(line);
 	}
+//	close(g_mini.fd_hd[0]);
+//	close(g_mini.fd_hd[1]);
+	return (pp[0]);
 }
 
 // count how many heredoc

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/02 13:56:44 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/03 14:26:53 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,29 @@ char	*modif_line(char *line, int nb_dollar)
 //faire fonction de redir cmd simple ou multiple
 void	redir_pipe(t_min *mini, t_cmd **cmd)
 {
-	if (ft_strcmp(cmd[0]->cmd[0], "exit") == 0 && cmd[1] == NULL)
-		exit_min(mini, cmd[0]->cmd);
-	else if (ft_strcmp(cmd[0]->cmd[0], "cd") == 0 && cmd[1] == NULL)
-		cd(mini, cmd[0]->cmd);
-	else if (ft_strcmp(cmd[0]->cmd[0], "export") == 0 && cmd[1] == NULL)
-		export(mini, cmd[0]->cmd);
-	else if (ft_strcmp(cmd[0]->cmd[0], "unset") == 0 && cmd[1] == NULL)
-		unset(mini, cmd[0]->cmd);
+	int	i;
+
+	i = 0;
+	if (cmd[0]->cmd[0] == NULL && cmd[0]->stdin[0] == NULL && cmd[0]->stdout[0] == NULL)
+		return ;
 	else
-		piping();
+	{
+		if (cmd[0]->cmd[0] == NULL && (cmd[0]->stdin != NULL || cmd[0]->stdout != NULL))
+			piping();
+		else
+		{
+			if (ft_strcmp(cmd[0]->cmd[0], "exit") == 0 && cmd[1] == NULL)
+				exit_min(mini, cmd[0]->cmd);
+			else if (ft_strcmp(cmd[0]->cmd[0], "cd") == 0 && cmd[1] == NULL)
+				cd(mini, cmd[0]->cmd);
+			else if (ft_strcmp(cmd[0]->cmd[0], "export") == 0 && cmd[1] == NULL)
+				export(mini, cmd[0]->cmd);
+			else if (ft_strcmp(cmd[0]->cmd[0], "unset") == 0 && cmd[1] == NULL)
+				unset(mini, cmd[0]->cmd);
+			else
+				piping();
+		}
+	}
 }
 
 //built-in : cd/echo/env/exit/export/unset

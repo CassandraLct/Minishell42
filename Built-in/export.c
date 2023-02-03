@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/03 09:13:49 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/03 11:27:33 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ void	export(t_min *mini, char **cmd)
 	int	i;
 
 	i = 1;
-	printf("cmd[1] = %s\n", cmd[1]);
 	if (cmd[1] == NULL)
 		print_export(mini->c_exp);
 	else

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+         #
+#    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2023/02/01 11:57:57 by clecat           ###   ########.fr        #
+#    Updated: 2023/02/03 14:33:14 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,24 +48,27 @@ SRC		=	main.c \
 		Parse/splitline.c \
 		Parse/verif_cotes.c \
 		Parse/verif_cotes_utils.c \
+		GNL/get_next_line.c \
+		GNL/get_next_line_utils.c \
 		Utils/ft_split.c \
 		Utils/ft_itoa.c \
 		Utils/utils.c \
 		Utils/utils2.c \
 		Utils/utils3.c \
-		Utils/printstruc.c 
+		Utils/printstruc.c \
+		Utils/ft_putstr_fd.c
 
 OBJ		= $(SRC:.c=.o)
 
 all		: ${NAME}
 
-$(NAME)	: ${OBJ}
+$(NAME)	: ${OBJ} 
 		@echo "\033[1;35m""Compilation de ${NAME}"
 		$(CC) $(OBJ) $(CFLAGS) -lreadline -L $(LIBPATH) -o $(NAME)
 
 %.o		: %.c
 		@echo "\033[1;35m""Compilation des fichiers sources"
-		$(CC) -c $< -o $@ $(CFLAGS) -I. 
+		$(CC) -c $< -o $@ $(CFLAGS) -I.
 
 clean 	:
 		@echo "\033[1;34m""Suppression des .o de ${NAME}"

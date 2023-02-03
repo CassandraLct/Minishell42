@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/01 13:23:56 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/03 14:34:45 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,13 @@ typedef struct s_min
 	char	**c_env;
 	char	**c_exp;
 	int		ret_err;
+	int		fd_hd[2];
 	char	*line;
 	char	**tab;
 	char	*prompt;
 	int		nb_passage_exp;
 	pid_t	pid;
+	int		sig_heredoc;
 	char	*val_home;
 }	t_min;
 
@@ -57,6 +59,11 @@ extern t_min	g_mini;
 
 /*--------------------------BUILT-IN-----------------------------------*/
 //13 fichiers
+
+char	*get_next_line(int fd);
+void	ft_putstr_fd(char *s, int fd);
+void	rl_replace_line(const char *text, int clear_undo);
+
 //cd.c 5 fonctions
 void	cd(t_min *mini, char **cmd);
 void	change_value_pwd(char **str);
@@ -113,7 +120,6 @@ void	print_export(char **str);
 //signaux.c
 void	signaux(void);
 void	signal_exit(void);
-void	rl_replace_line(const char *text, int clear_undo);
 
 //unset.c 4 fonctions
 int		check_var(char *str);

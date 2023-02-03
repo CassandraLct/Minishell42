@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/02 12:30:15 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/03 13:17:08 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ int	ft_redir_in(t_cmd **cmd)
 	if (ft_nb_heredoc(cmd) != 0)
 	{
 		i = 0;
-		while (cmd[i])
+		while (cmd[i] && g_mini.sig_heredoc != 0)
 		{
 			j = 0;
-			while (cmd[i]->stdin && cmd[i]->stdin[j])
+			while (cmd[i]->stdin && cmd[i]->stdin[j] && g_mini.sig_heredoc != 0)
 			{
 				if (ft_strcmp(cmd[i]->stdin[j], "<<") == 0)
 				{
