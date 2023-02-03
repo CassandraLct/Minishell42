@@ -74,7 +74,14 @@ void	redir_pipe(t_min *mini, t_cmd **cmd)
 {
 	if (ft_strcmp(cmd[0]->cmd[0], "exit") == 0 && cmd[1] == NULL)
 		exit_min(mini, cmd[0]->cmd);
-	piping();
+	else if (ft_strcmp(cmd[0]->cmd[0], "cd") == 0 && cmd[1] == NULL)
+		cd(mini, cmd[0]->cmd);
+	else if (ft_strcmp(cmd[0]->cmd[0], "export") == 0 && cmd[1] == NULL)
+		export(mini, cmd[0]->cmd);
+	else if (ft_strcmp(cmd[0]->cmd[0], "unset") == 0 && cmd[1] == NULL)
+		unset(mini, cmd[0]->cmd);
+	else
+		piping();
 }
 
 //built-in : cd/echo/env/exit/export/unset
