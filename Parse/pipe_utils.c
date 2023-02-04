@@ -57,8 +57,7 @@ void	ft_last_command(t_cmd **cmd, int **pp, int i)
 
 	fdout = 0;
 	pid = fork();
-	// g_mini.pid = pid;
-	// printf("pid2 = %d\n", g_mini.pid);
+	g_mini.pid = pid;
 	fdin = 0;
 	if (pid == 0)
 	{

@@ -16,26 +16,30 @@
 //fonction d'interuption du programme ctrl c
 void	ft_interruption(int signum)
 {
-	/*if (g_mini.sig_heredoc == 1)
-	{
-		g_mini.sig_heredoc = 0;
-	}
-	else */if (g_mini.pid != 0)
-	{
-		if (!kill(g_mini.pid, signum))
-		{
-			printf("\n");
-			g_mini.ret_err = 130;
-		}
-	}
-	else
+	if (g_mini.pid == -1) //in prompt
 	{
 		printf("\n");
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
-		//kill(1, SIGINT);
-		g_mini.ret_err = 1;
+		return ;
+	}
+	else if (g_mini.pid > 0) //in parent, kill the child
+	{
+		if (kill(g_mini.pid, signum) == 0)
+		{
+			g_mini.ret_err = 130;
+		}
+		else
+			printf("BOOOOM\n");
+	}
+	else //in child
+	{
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+		printf("\n");
+		exit(130);
 	}
 	g_mini.sig_heredoc = 0;
 }

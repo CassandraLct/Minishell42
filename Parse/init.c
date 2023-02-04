@@ -30,7 +30,7 @@ void	init_struct(t_min *mini, char **envp)
 {
 	mini->ret_err = 0;
 	mini->sig_heredoc = 1;
-	// mini->pid = -1;
+	mini->pid = -1;
 	mini->line = NULL;
 	mini->tab = NULL;
 	mini->prompt = "minishell> ";

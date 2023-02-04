@@ -19,13 +19,8 @@ int	heredoc(char *cond)
 	int		pp[2];
 
 	pipe(pp);
-//	pipe(g_mini.fd_hd);
-//	dup2(STDIN_FILENO, g_mini.fd_hd[1]);
 	while (1 && g_mini.sig_heredoc == 1)
 	{
-		// printf("dans heredoc\n");
-//		ft_putstr_fd("> ", STDOUT_FILENO);
-//		line = get_next_line(0);
 		line = readline("> ");
 		if (ft_strncmp(cond, line, ft_strlen(line)) == 0)
 		{

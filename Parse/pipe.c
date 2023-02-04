@@ -62,8 +62,8 @@ int	piping(void)
 		if (pipe(pp[i]) == -1)
 			dprintf(2, "pipe bug\n");
 		pid = fork();
-		// g_mini.pid = pid;
-		// printf("pid = %d\n", g_mini.pid);
+		g_mini.pid = pid;
+		dprintf(2, "pid = %d\n", g_mini.pid);
 		if (pid == -1)
 			exit (127);
 		if (pid == 0)

@@ -72,7 +72,8 @@ char	*rm_cotes(char *line, char cotes)
 	tmp = malloc(sizeof(char) * ft_strlen(line) + 1);
 	while (line[i])
 	{
-		while (line[i] == cotes && (line[i + 1] != cotes && line[i - 1] != cotes))
+		while (line[i] == cotes && (line[i + 1] != cotes
+				&& line[i - 1] != cotes))
 			i += 1;
 		tmp[j] = line[i];
 		j++;

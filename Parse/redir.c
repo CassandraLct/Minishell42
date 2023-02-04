@@ -38,7 +38,6 @@ int	ft_redir_in(t_cmd **cmd)
 
 	last_redir = ft_what_is_last_redir_in(cmd);
 	fd = 0;
-	// printf("dans redir_in\n");
 	if (ft_nb_heredoc(cmd) != 0)
 	{
 		i = 0;

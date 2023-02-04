@@ -23,6 +23,8 @@ int	main(int argc, char **argv, char **envp)
 	signaux();
 	while (1)
 	{
+		g_mini.pid = -1;
+		g_mini.sig_heredoc = 1;
 		g_mini.line = readline(g_mini.prompt);
 		if (g_mini.line == NULL)
 			signal_exit();
