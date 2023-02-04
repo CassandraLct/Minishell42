@@ -289,4 +289,6 @@ LEAKS :
 	-> regler le soucis de signaux dans le heredoc qui quitte bien le heredoc, affiche le prompt minishell 
 		puis relance un heredoc;
 	-> seg fault lorsque que le heredoc est fait directement sans cmd;
+
+	
 	
