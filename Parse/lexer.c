@@ -72,11 +72,13 @@ char	*modif_line(char *line, int nb_dollar)
 //faire fonction de redir cmd simple ou multiple
 void	redir_pipe(t_min *mini, t_cmd **cmd)
 {
-	if (cmd[0]->cmd[0] == NULL && cmd[0]->stdin[0] == NULL && cmd[0]->stdout[0] == NULL)
+	if (cmd[0]->cmd[0] == NULL && cmd[0]->stdin[0] == NULL
+		&& cmd[0]->stdout[0] == NULL)
 		return ;
 	else
 	{
-		if (cmd[0]->cmd[0] == NULL && (cmd[0]->stdin != NULL || cmd[0]->stdout != NULL))
+		if (cmd[0]->cmd[0] == NULL && (cmd[0]->stdin != NULL
+				|| cmd[0]->stdout != NULL))
 			piping();
 		else
 		{

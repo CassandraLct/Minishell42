@@ -14,9 +14,10 @@
 
 //retour erreur ctrl c : 1 et 130 ; 131 pour ctrl-\ quit et 127 quand rien 
 //fonction d'interuption du programme ctrl c
+// pid = -1 is the case we are un promt, pid = 0 is child, pid > 0 is parent
 void	ft_interruption(int signum)
 {
-	if (g_mini.pid == -1) //in prompt
+	if (g_mini.pid == -1)
 	{
 		printf("\n");
 		rl_replace_line("", 0);
@@ -24,16 +25,14 @@ void	ft_interruption(int signum)
 		rl_redisplay();
 		return ;
 	}
-	else if (g_mini.pid > 0) //in parent, kill the child
+	else if (g_mini.pid > 0)
 	{
 		if (kill(g_mini.pid, signum) == 0)
-		{
 			g_mini.ret_err = 130;
-		}
 		else
 			printf("BOOOOM\n");
 	}
-	else //in child
+	else
 	{
 		rl_replace_line("", 0);
 		rl_on_new_line();
