@@ -28,6 +28,27 @@ int	fd_return_redir_in(t_cmd **cmd, int last_redir, int fd)
 	return (0);
 }
 
+//
+int	heredoc_launcher(t_cmd **cmd, int i, int j, int *fd)
+{
+	if (ft_strcmp(cmd[i]->stdin[j], "<<") == 0)
+	{
+		if (cmd[i]->stdin[j + 1] == NULL)
+		{
+			printf(ERR_HEREDOC);
+			g_mini.ret_err = 258;
+			return (1);
+		}
+		else
+		{
+			if (*fd)
+				close(*fd);
+			*fd = heredoc(cmd[i]->stdin[j + 1]);
+		}
+	}
+	return (0);
+}
+
 // return the fd of the redir in
 int	ft_redir_in(t_cmd **cmd)
 {
@@ -46,21 +67,8 @@ int	ft_redir_in(t_cmd **cmd)
 		j = 0;
 		while (cmd[i]->stdin && cmd[i]->stdin[j] && g_mini.sig_heredoc != 0)
 		{
-			if (ft_strcmp(cmd[i]->stdin[j], "<<") == 0)
-			{
-				if (cmd[i]->stdin[j + 1] == NULL)
-				{
-					printf(ERR_HEREDOC);
-					g_mini.ret_err = 258;
-					return (1);
-				}
-				else
-				{
-					if (fd)
-						close(fd);
-					fd = heredoc(cmd[i]->stdin[j + 1]);
-				}
-			}
+			if (heredoc_launcher(cmd, i, j, &fd) == 1)
+				return (1);
 			j++;
 		}
 		i++;

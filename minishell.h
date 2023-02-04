@@ -195,9 +195,7 @@ int		heredoc(char *cond);
 int		ft_nb_heredoc(t_cmd **cmd);
 char	*ft_last_single_redir_in(t_cmd **cmd);
 int		ft_what_is_last_redir_in(t_cmd **cmd);
-
-// redir_utils2.c
-int	ft_open_file(char *file, int fd, int how)
+int		ft_open_file(char *file, int fd, int how);
 
 // redir.c
 int		ft_redir_in(t_cmd **cmd);
