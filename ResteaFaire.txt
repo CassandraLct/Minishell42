@@ -290,5 +290,78 @@ LEAKS :
 		puis relance un heredoc;
 	-> seg fault lorsque que le heredoc est fait directement sans cmd;
 
+<<<<<<< HEAD
 	
 	
+=======
+Test minishell non fonctionnel:
+	-> echo bonjour;|
+		bash: syntax error near unexpected token `|'
+	-> echo bonjour || OK
+	-> | 
+		-> mauvais message d'erreur doit syntax error near unexpected token `|'
+	-> echo bonjour |;
+		-> mauvais message d'erreur doit  syntax error near unexpected token `|'
+	-> echo bonjour ; ls OK
+	-> echo bonjour > test\ 1
+		-> ok mais mauvais nom
+	->  cd $HOME/Documents
+		-> fonctionne mais mauvais pwd (minishell: /Users/clecat && bash: /Users/clecat/Documents)
+	->  echo "\s" & echo "\s" OK
+	-> echo > : seg fault au lieu de :syntax error near unexpected token `newline'
+	-> echo -n -n -nnnn -nnnnm
+		-> -nnnn -nnnnm au lieu de -nnnnm
+	-> cat /dev/random | head -n 1 | cat -e OK
+	-> unset var1 # with undefined var1 OK
+	-> export "" et unset "" et ajoute et; unset; dans export
+		-> segfault au lieu de bash: export: `': not a valid identifier
+								bash: export: `': not a valid identifier
+	-> echo test > file test1 OK
+	-> $ doit mettre command not found et ne le fait pas
+	-> not_cmd bonjour > salut mauvais message d'erreur
+	-> env puis export puis env # vars aren't sorted
+		-> env # fonctionne mais pas dans notre minishell
+	-> cat Makefile | grep pr | head -n 5 | cd test OK mauvais ret_err (0 au lieu de 1)
+	-> cat Makefile | grep pr | head -n 5 | cat test OK mais mauvais message d'erreur comme au dessus
+	-> cat Makefile | grep pr | head -n 5 | hello OK mais mauvaise message d'erreur et mauvais ret_err (0 au lieu de 127)
+		minishell: 0: command not found (affichage fait 2 fois lors $?)
+		wrong command
+	-> echo bonjour >>> test
+		-> mauvais message d'erreur (minishell: unexpected error au lieu de bash: syntax error near unexpected token `>')
+	->  echo bonjour > > out (fonctionne dans mnishell alors qu edans bash: bash: syntax error near unexpected token `>')
+	-> echo 2 >> out1 > out2 OK
+	-> echo 2 > out1 >> out2 OK
+	-> cat < test2(fichier non existant) OK mais cat boucle alors qu'il ne doit pas
+	-> export var; export var=test (var var="test") ne change pas var
+	-> echo bonjour > $test segfault au lieu de bash: $test: ambiguous redirect
+	-> exec.c (fichier dans le repo où l'on se trouve) OK (sauf message d'erreur fait 2 fois)
+	-> cd ../../../../../.. puis pwd: seg fault ai lieu de fonction et pwd= /
+	-> ctrl-C . 130 sur bin(ex : sleep 10)&line vide NON TESTER
+ 	-> ctrl-\ .131 sur bin NON TESTER
+	-> echo "bip | bip ; coyotte > < " " OK
+	-> cat | cat | cat | ls OK
+	-> $bla # with bla not defined OK
+	-> export var ="cat Makefile | grep >" OK
+	-> export "test=ici"=coucou OK
+	-> c$var Makefile # with var=at OK
+	-> $LESS$VAR OK
+	-> /bin/echo bonjour (met command not found au lieu de faire echo bonjour)
+	-> not_cmd OK (message d'erreur afficher 2 fois)
+	-> sleep 5 | exit OK
+	-> echo bonjour > $test w/ t (boucle)
+	-> "exit\n" OK
+	-> minishell # binary not in path without "./" before NON TESTER
+	-> cat diufosgid (#) test avec et sans # : Fonctionnne correctement, bon ret_err, message d'erreur pour # 
+	-> exit #
+	-> exit -10 exit mais affiche message d'erreur, bash exit juste
+	-> exit +10 meme comportement qu'au dessus
+	-> ; : minishell met wrong command bash mets syntax error
+	-> echo coucou | ; meme cas qu'au dessus
+	-> echo "$HOME" pb malloc mais fonctionnait avant
+	-> echo '$HOME' OK
+	-> echo $HOME OK
+
+
+
+
+>>>>>>> b4a828533bc3d9c3bf4a3f65ac48de93bb6ee3dc
