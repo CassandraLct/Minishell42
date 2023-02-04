@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/03 14:34:45 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/04 13:33:04 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,6 @@ extern t_min	g_mini;
 
 /*--------------------------BUILT-IN-----------------------------------*/
 //13 fichiers
-
-char	*get_next_line(int fd);
-void	ft_putstr_fd(char *s, int fd);
 void	rl_replace_line(const char *text, int clear_undo);
 
 //cd.c 5 fonctions
