@@ -35,36 +35,35 @@ int	ft_redir_in(t_cmd **cmd)
 	int		fd;
 	int		i;
 	int		j;
+	int		nbh;
 
 	last_redir = ft_what_is_last_redir_in(cmd);
 	fd = 0;
-	if (ft_nb_heredoc(cmd) != 0)
+	i = 0;
+	nbh = ft_nb_heredoc(cmd);
+	while (nbh > 0 && cmd[i] && g_mini.sig_heredoc != 0)
 	{
-		i = 0;
-		while (cmd[i] && g_mini.sig_heredoc != 0)
+		j = 0;
+		while (cmd[i]->stdin && cmd[i]->stdin[j] && g_mini.sig_heredoc != 0)
 		{
-			j = 0;
-			while (cmd[i]->stdin && cmd[i]->stdin[j] && g_mini.sig_heredoc != 0)
+			if (ft_strcmp(cmd[i]->stdin[j], "<<") == 0)
 			{
-				if (ft_strcmp(cmd[i]->stdin[j], "<<") == 0)
+				if (cmd[i]->stdin[j + 1] == NULL)
 				{
-					if (cmd[i]->stdin[j + 1] == NULL)
-					{
-						printf(ERR_HEREDOC);
-						g_mini.ret_err = 258;
-						return (1);
-					}
-					else
-					{
-						if (fd)
-							close(fd);
-						fd = heredoc(cmd[i]->stdin[j + 1]);
-					}
+					printf(ERR_HEREDOC);
+					g_mini.ret_err = 258;
+					return (1);
 				}
-				j++;
+				else
+				{
+					if (fd)
+						close(fd);
+					fd = heredoc(cmd[i]->stdin[j + 1]);
+				}
 			}
-			i++;
+			j++;
 		}
+		i++;
 	}
 	return (fd_return_redir_in(cmd, last_redir, fd));
 }

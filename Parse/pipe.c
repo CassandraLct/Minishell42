@@ -48,6 +48,25 @@ void	ft_set_pathexec2(t_min *mini, char **cmd)
 	ft_exec2(mini, all_path, pathcmd, cmd);
 }
 
+int	**ft_create_pipe(t_cmd **cmd)
+{
+	int	nbcmd;
+	int	**pp;
+	int	i;
+
+	nbcmd = 0;
+	while (cmd[nbcmd])
+		nbcmd++;
+	pp = ft_test(ft_calloc(nbcmd + 1, sizeof(*pp)), NULL);
+	i = 0;
+	while (i < nbcmd)
+	{
+		pp[i] = ft_test(ft_calloc(2, sizeof(**pp)), NULL);
+		i++;
+	}
+	return (pp);
+}
+
 // main function to manage pipes
 int	piping(void)
 {
@@ -63,7 +82,6 @@ int	piping(void)
 			dprintf(2, "pipe bug\n");
 		pid = fork();
 		g_mini.pid = pid;
-		dprintf(2, "pid = %d\n", g_mini.pid);
 		if (pid == -1)
 			exit (127);
 		if (pid == 0)

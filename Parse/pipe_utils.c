@@ -48,35 +48,40 @@ void	ft_parent(int **pp, int i)
 	return ;
 }
 
+//
+void	last_command_child(t_cmd **cmd, int **pp, int i)
+{
+	int	fdin;
+	int	fdout;
+
+	if (i == 0)
+		fdin = ft_redir_in(cmd);
+	else
+		fdin = pp[i - 1][0];
+	dup2(fdin, 0);
+	fdout = ft_redir_out(cmd, i);
+	if (fdout)
+	{
+		dup2(fdout, 1);
+		close(fdout);
+	}
+	if (i > 0)
+		close(pp[i - 1][0]);
+	redirection2(&g_mini, cmd[i]);
+	exit (0);
+}
+
 // exec the last command or the only cmd if no pipe
 void	ft_last_command(t_cmd **cmd, int **pp, int i)
 {
 	pid_t	pid;
 	int		fdin;
-	int		fdout;
 
-	fdout = 0;
 	pid = fork();
 	g_mini.pid = pid;
 	fdin = 0;
 	if (pid == 0)
-	{
-		if (i == 0)
-			fdin = ft_redir_in(cmd);
-		else
-			fdin = pp[i - 1][0];
-		dup2(fdin, 0);
-		fdout = ft_redir_out(cmd, i);
-		if (fdout)
-		{
-			dup2(fdout, 1);
-			close(fdout);
-		}
-		if (i > 0)
-			close(pp[i - 1][0]);
-		redirection2(&g_mini, cmd[i]);
-		exit (0);
-	}
+		last_command_child(cmd, pp, i);
 	if (i > 0)
 		close(pp[i - 1][0]);
 	else if (fdin)
@@ -95,23 +100,4 @@ void	ft_wait_all(void)
 	{
 		wpid = wait(&status);
 	}
-}
-
-int	**ft_create_pipe(t_cmd **cmd)
-{
-	int	nbcmd;
-	int	**pp;
-	int	i;
-
-	nbcmd = 0;
-	while (cmd[nbcmd])
-		nbcmd++;
-	pp = ft_test(ft_calloc(nbcmd + 1, sizeof(*pp)), NULL);
-	i = 0;
-	while (i < nbcmd)
-	{
-		pp[i] = ft_test(ft_calloc(2, sizeof(**pp)), NULL);
-		i++;
-	}
-	return (pp);
 }

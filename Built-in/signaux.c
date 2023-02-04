@@ -46,7 +46,6 @@ void	ft_interruption(int signum)
 //ctrl\ fonction quit
 void	ft_quit(int signum)
 {
-	printf("pid = %d\n", g_mini.pid);
 	if (g_mini.pid != 0)
 	{
 		if (!kill(g_mini.pid, signum))
