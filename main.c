@@ -14,6 +14,14 @@
 
 t_min	g_mini;
 
+//
+void	inside_main(void)
+{
+	verif_struct_cmd(g_mini.struct_cmd);
+	redir_pipe(&g_mini, g_mini.struct_cmd);
+	free_t_cmd(g_mini.struct_cmd);
+}
+
 //modifier le split de la line // test a faire : ec'ho | cat ex'ec.c
 int	main(int argc, char **argv, char **envp)
 {
@@ -35,11 +43,7 @@ int	main(int argc, char **argv, char **envp)
 		{
 			g_mini.struct_cmd = spliter3(spliter());
 			if (g_mini.struct_cmd != NULL)
-			{
-				verif_struct_cmd(g_mini.struct_cmd);
-				redir_pipe(&g_mini, g_mini.struct_cmd);
-				free_t_cmd(g_mini.struct_cmd);
-			}
+				inside_main();
 		}
 		free(g_mini.line);
 	}
