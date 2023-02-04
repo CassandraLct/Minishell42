@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/03 16:55:01 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/04 15:52:19 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	ft_exec2(t_min *mini, char **all_path, char **pathcmd, char **cmd)
 {
 	if (verif_cmd(all_path, pathcmd, cmd) != 0)
 	{
-		dprintf(2, "wrong command\n");
 		free_tab(all_path);
 		free_tab(pathcmd);
 		exit(1);
@@ -92,6 +91,7 @@ int	piping(void)
 	}
 	ft_last_command(g_mini.struct_cmd, pp, i);
 	ft_wait_all();
+	// printf("ici ret_err = %d\n", g_mini.ret_err);
 	free_tab((char **)pp);
 	return (1);
 }

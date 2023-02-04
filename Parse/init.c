@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:36:33 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/03 16:54:47 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/04 15:42:37 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,17 @@
 void	aff_err(char **cmd)
 {
 	if (check_arg(cmd[1]) == 1)
+	{
 		printf("minishell: cd: %s: Not a directory\n", cmd[1]);
+		g_mini.ret_err = 1;
+	}
 	else
 	{
 		printf("minishell: cd: %s: ", cmd[1]);
 		printf("No such file or directory\n");
+		g_mini.ret_err = 1;
 	}
-	g_mini.ret_err = 1;
+	
 }
 
 //initialise la structure

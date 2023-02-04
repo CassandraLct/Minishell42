@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:51:31 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/01 15:10:52 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/04 15:21:29 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,47 +78,46 @@ void	ft_execve(t_min *mini, char **all_path, char **pathcmd, char **cmd)
 }
 
 //test chaque path puis execute la cmd si existante
-void	ft_exec(t_min *mini, char **all_path, char **pathcmd, char **cmd)
-{
-	if (verif_cmd(all_path, pathcmd, cmd) != 0 || cmd[0][0] == '\0')
-	{
-		dprintf(2, "wrong command\n");
-		free_tab(all_path);
-		free_tab(pathcmd);
-		return ;
-	}
-	else
-	{
-		mini->pid = fork();
-		if (mini->pid == -1)
-		{
-			perror("Fork failed");
-			exit(EXIT_FAILURE);
-		}
-		else if (mini->pid == 0)
-			ft_execve(mini, all_path, pathcmd, cmd);
-		else
-			waitpid(mini->pid, &mini->ret_err, 0);
-		free_tab(all_path);
-		free_tab(pathcmd);
-	}
-}
+// void	ft_exec(t_min *mini, char **all_path, char **pathcmd, char **cmd)
+// {
+// 	if (verif_cmd(all_path, pathcmd, cmd) != 0 || cmd[0][0] == '\0')
+// 	{
+// 		free_tab(all_path);
+// 		free_tab(pathcmd);
+// 		return ;
+// 	}
+// 	else
+// 	{
+// 		mini->pid = fork();
+// 		if (mini->pid == -1)
+// 		{
+// 			perror("Fork failed");
+// 			exit(EXIT_FAILURE);
+// 		}
+// 		else if (mini->pid == 0)
+// 			ft_execve(mini, all_path, pathcmd, cmd);
+// 		else
+// 			waitpid(mini->pid, &mini->ret_err, 0);
+// 		free_tab(all_path);
+// 		free_tab(pathcmd);
+// 	}
+// }
 
-//a gerer avec un fork pour empecher de sortir de minishell
-void	ft_set_pathexec(t_min *mini, char **cmd)
-{
-	char	**all_path;
-	char	**pathcmd;
+// //a gerer avec un fork pour empecher de sortir de minishell
+// void	ft_set_pathexec(t_min *mini, char **cmd)
+// {
+// 	char	**all_path;
+// 	char	**pathcmd;
 
-	pathcmd = NULL;
-	pathcmd = init_cmd(cmd, pathcmd);
-	all_path = recup_path(mini);
-	if (all_path == NULL)
-	{
-		mini->ret_err = 127;
-		printf("minishell: %s: No such file or directory\n", cmd[0]);
-		free_tab(pathcmd);
-		return ;
-	}
-	ft_exec(mini, all_path, pathcmd, cmd);
-}
+// 	pathcmd = NULL;
+// 	pathcmd = init_cmd(cmd, pathcmd);
+// 	all_path = recup_path(mini);
+// 	if (all_path == NULL)
+// 	{
+// 		mini->ret_err = 127;
+// 		printf("minishell: %s: No such file or directory\n", cmd[0]);
+// 		free_tab(pathcmd);
+// 		return ;
+// 	}
+// 	ft_exec(mini, all_path, pathcmd, cmd);
+// }

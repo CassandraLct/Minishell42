@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/03 17:01:23 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/04 15:54:32 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 		{
 			printf("minishell: syntax error near unexpected token `newline'\n");
 			g_mini.ret_err = 258;
-			exit (67);
+			exit (g_mini.ret_err);
 		}
 		if (ft_strcmp(cmd[nb]->stdout[i], ">") == 0)
 			fd = ft_open_file(cmd[nb]->stdout[i + 1], fd, 1);
@@ -116,8 +116,9 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 			fd = ft_open_file(cmd[nb]->stdout[i + 1], fd, 2);
 		else
 		{
-			dprintf(2, "unexpected error\n");
-			exit (67);
+			dprintf(2, "unexpected error\n"); //minishell: syntax error near unexpected token `>'
+			g_mini.ret_err = 258;
+			exit (g_mini.ret_err);
 		}
 		i += 2;
 	}

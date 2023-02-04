@@ -290,52 +290,45 @@ LEAKS :
 		puis relance un heredoc;
 	-> seg fault lorsque que le heredoc est fait directement sans cmd;
 
-<<<<<<< HEAD
-	
-	
-=======
 Test minishell non fonctionnel:
-	-> echo bonjour;|
+	-> echo >>'>' test : OK mais affiche le printf dans le fichier aussi 
+	-> echo bonjour;| PARSING
 		bash: syntax error near unexpected token `|'
 	-> echo bonjour || OK
-	-> | 
+	-> | PARSING
 		-> mauvais message d'erreur doit syntax error near unexpected token `|'
-	-> echo bonjour |;
-		-> mauvais message d'erreur doit  syntax error near unexpected token `|'
+	-> echo bonjour |; OK
 	-> echo bonjour ; ls OK
-	-> echo bonjour > test\ 1
-		-> ok mais mauvais nom
-	->  cd $HOME/Documents
+	-> echo bonjour > test\ 1 (a voir si on pense gerer le \) OK MAIS NOM DIFFERENT DE BASH
+	->  cd $HOME/Documents ne prend le /Documents dans le chemin
 		-> fonctionne mais mauvais pwd (minishell: /Users/clecat && bash: /Users/clecat/Documents)
 	->  echo "\s" & echo "\s" OK
-	-> echo > : seg fault au lieu de :syntax error near unexpected token `newline'
-	-> echo -n -n -nnnn -nnnnm
+	-> echo > : seg fault au lieu de :syntax error near unexpected token `newline' (a voir soit dans le spliter soit faire fonction de verification)
+	-> echo -n -n -nnnn -nnnnm Fonction echo
 		-> -nnnn -nnnnm au lieu de -nnnnm
 	-> cat /dev/random | head -n 1 | cat -e OK
 	-> unset var1 # with undefined var1 OK
-	-> export "" et unset "" et ajoute et; unset; dans export
+	-> export "" et unset "" et ajoute et; unset; dans export ajouter une verification dans export
 		-> segfault au lieu de bash: export: `': not a valid identifier
 								bash: export: `': not a valid identifier
 	-> echo test > file test1 OK
-	-> $ doit mettre command not found et ne le fait pas
-	-> not_cmd bonjour > salut mauvais message d'erreur
+	-> $ doit mettre command not found et ne le fait pas faire fonction de verification de la line
+	-> not_cmd bonjour > salut fonctionne differement (minishell: creer le fichier et mets le message d'erreur dedans ;bash ne creer pas le fichier et met le message d'erreur)
 	-> env puis export puis env # vars aren't sorted
-		-> env # fonctionne mais pas dans notre minishell
-	-> cat Makefile | grep pr | head -n 5 | cd test OK mauvais ret_err (0 au lieu de 1)
-	-> cat Makefile | grep pr | head -n 5 | cat test OK mais mauvais message d'erreur comme au dessus
-	-> cat Makefile | grep pr | head -n 5 | hello OK mais mauvaise message d'erreur et mauvais ret_err (0 au lieu de 127)
-		minishell: 0: command not found (affichage fait 2 fois lors $?)
-		wrong command
+		-> env # fonctionne mais pas dans notre minishell (sujet ne dis pas de gerer le #)
+	-> cat Makefile | grep pr | head -n 5 | cd test OK mauvais ret_err (0 au lieu de 1)  ret_err pas changer car chils pas fini au moment de l'affichage de l'erreur du parent
+	-> cat Makefile | grep pr | head -n 5 | cat test OK mais mauvais message d'erreur comme au dessus 
+	-> cat Makefile | grep pr | head -n 5 | hello OK et mauvais ret_err (0 au lieu de 127)
 	-> echo bonjour >>> test
 		-> mauvais message d'erreur (minishell: unexpected error au lieu de bash: syntax error near unexpected token `>')
-	->  echo bonjour > > out (fonctionne dans mnishell alors qu edans bash: bash: syntax error near unexpected token `>')
+	-> echo bonjour > > out (fonctionne dans mnishell alors que et creer un fichier > dans bash: bash: syntax error near unexpected token `>') PARSING
 	-> echo 2 >> out1 > out2 OK
 	-> echo 2 > out1 >> out2 OK
 	-> cat < test2(fichier non existant) OK mais cat boucle alors qu'il ne doit pas
-	-> export var; export var=test (var var="test") ne change pas var
+	-> export var; export var=test (var var="test") ne change pas var Fonction export
 	-> echo bonjour > $test segfault au lieu de bash: $test: ambiguous redirect
-	-> exec.c (fichier dans le repo où l'on se trouve) OK (sauf message d'erreur fait 2 fois)
-	-> cd ../../../../../.. puis pwd: seg fault ai lieu de fonction et pwd= /
+	-> exec.c (fichier dans le repo où l'on se trouve) OK
+	-> cd ../../../../../.. puis pwd: seg fault ai lieu de fonction et pwd= / Probleme de cd a fix
 	-> ctrl-C . 130 sur bin(ex : sleep 10)&line vide NON TESTER
  	-> ctrl-\ .131 sur bin NON TESTER
 	-> echo "bip | bip ; coyotte > < " " OK
@@ -346,22 +339,68 @@ Test minishell non fonctionnel:
 	-> c$var Makefile # with var=at OK
 	-> $LESS$VAR OK
 	-> /bin/echo bonjour (met command not found au lieu de faire echo bonjour)
-	-> not_cmd OK (message d'erreur afficher 2 fois)
+	-> not_cmd OK
 	-> sleep 5 | exit OK
 	-> echo bonjour > $test w/ t (boucle)
 	-> "exit\n" OK
 	-> minishell # binary not in path without "./" before NON TESTER
 	-> cat diufosgid (#) test avec et sans # : Fonctionnne correctement, bon ret_err, message d'erreur pour # 
 	-> exit #
-	-> exit -10 exit mais affiche message d'erreur, bash exit juste
-	-> exit +10 meme comportement qu'au dessus
-	-> ; : minishell met wrong command bash mets syntax error
-	-> echo coucou | ; meme cas qu'au dessus
+	-> exit -10 exit mais affiche message d'erreur, bash exit juste FONCTION exit 
+	-> exit +10 meme comportement qu'au dessus Fonction exit
+	-> ; minishell OK ret_err doit etre a 258
+	-> echo coucou | ; OK
 	-> echo "$HOME" pb malloc mais fonctionnait avant
 	-> echo '$HOME' OK
 	-> echo $HOME OK
 
+Autre Test:
+ > log echo coucou => OK
+ echo hudifg d | | hugdfihd => bug bash: syntax error near unexpected token `|' PARSING
+ echo => OK
+ echo simple =>OK
+ echo -n simple => OK
+ echo '' => bug ('' non enlever dans minishell)
+ echo "" => bug (pas de retour a la ligne)
+ echo "\" => OK car hors sujet
+ echo "\n \n \n" => OK
+ echo "\n \n \\n" => Ok car Hors sujet
+ echo ;; => OK
+ echo hi";" hihi => OK
+ echo hi " ; " hihi => doit tout afficher comme un arg mais affiche que hi et a la meme comportement que echo -n
+ cd => OK
+ cd . => OK
+ cd ~ => OK
+ cd / => OK
+ cd .. => bug a la racine sinon OK
+ cd no_file => OK
+ cd a b c d => OK
+ pwd a => OK
+ pwd a b c d => OK
+ export LOL=lala ROR=rara => OK
+ unset LOL ROR => OK
+ export "HI= hi" => OK
+ export "HI =hi" => bug `HI =hi': not a valid identifier (verfier si espace present dans l'arg)
+ /bin/ls => bug au niveau du execve
+ # write something the press ctrl+c => bug ne dois pas ecrire ^C
+ # write something then press ctrl+d
+ # write something then press ctrl+\
+ echo $? => OK
+ l^Ds => OK
+ echo | => bug
+ | echo =>bug bash: syntax error near unexpected token `>'
+ sort | ls # check output order => OK
+ cat < > => bug bash: syntax error near unexpected token `>'
+ cat < < => bug bash: syntax error near unexpected token `>'
+ cat > > => bug bash: syntax error near unexpected token `>'
+ > a ls > b < Makefile => OK
+ echo > a Hello World! => OK
+ > a echo Hello World! => OK
+ cat < Makefile | grep gcc > output => OK
+ exit 0 | exit 1 => bug print exit et ret_err a 0 au lieu de 1
+ exit 1 | exit 0 => bug meme cas
+ exit 9999999999999999999999999999999999999999999999999999999999999999999999 pas de message d'erreur alors que dans bash oui 
+ cat > PARSING
 
 
 
->>>>>>> b4a828533bc3d9c3bf4a3f65ac48de93bb6ee3dc

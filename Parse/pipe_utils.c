@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/03 16:55:24 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/04 15:52:27 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ void	last_command_child(t_cmd **cmd, int **pp, int i)
 	if (i > 0)
 		close(pp[i - 1][0]);
 	redirection2(&g_mini, cmd[i]);
-	exit (0);
+	// printf("ici ret_err = %d\n", g_mini.ret_err);
+	exit (g_mini.ret_err);
 }
 
 // exec the last command or the only cmd if no pipe
