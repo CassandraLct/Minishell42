@@ -12,84 +12,33 @@
 
 #include "minishell.h"
 
-// transform the char* in char** delimited by space
-char	**pre_split(char *line)
+// check some bad instructions or redirections
+t_cmd	**validation_cmd(t_cmd **resu)
 {
-	int		index;
-	int		i;
-	int		j;
-	char	**resu;
+	int	i;
+	int	j;
 
-	resu = ft_init_resu(line);
 	i = 0;
-	j = 0;
-	index = 0;
-	while (line[i])
+	dprintf(2, "ici\n");
+	while(resu[i])
 	{
-		if (line[i] == '\'')
-			ft_copy_inside_simple_cote(&(resu[index]), line, &i, &j);
-		else if (line[i] == '"')
-			ft_copy_inside_double_cote(&(resu[index]), line, &i, &j);
-		else if (line[i] == ' ')
+		j = 0;
+		while(resu[i]->stdin[j])
 		{
-			j = 0;
-			index++;
+			if ((resu[i]->stdin[j][0] == '<' && resu[i]->stdin[j + 1] == NULL)
+				|| (resu[i]->stdout[j][0] == '>' && resu[i]->stdout[j + 1] == NULL))
+			{
+				printf(ERR_TOKEN);
+				g_mini.ret_err = 2; // ??
+				exit (2);
+			}
+			j++;
 		}
-		else
-			resu[index][j++] = line[i];
-		i++;
 	}
 	return (resu);
 }
 
-// transform the command from char** to t_cmd type
-t_cmd	*alloc_cmd(char **list)
-{
-	t_cmd	*resu;
-	int		i;
-	int		index[3];
-
-	resu = ft_malloc_resu(list);
-	i = 0;
-	index[0] = 0;
-	index[1] = 0;
-	index[2] = 0;
-	while (list[i])
-	{
-		if (list[i][0] == '<')
-		{
-			resu->stdin[index[0]++] = ft_strdup(list[i++]);
-			if (list[i] != NULL)
-				resu->stdin[index[0]++] = ft_strdup(list[i++]);
-		}
-		else if (list[i][0] == '>')
-		{
-			resu->stdout[index[1]++] = ft_strdup(list[i++]);
-			if (list[i] != NULL)
-				resu->stdout[index[1]++] = ft_strdup(list[i++]);
-		}
-		else
-			resu->cmd[index[2]++] = ft_strdup(list[i++]);
-	}
-	return (resu);
-}
-
-t_cmd	*split_inst(char *temp)
-{
-	t_cmd	*resu;
-	char	*tmpclean;
-	char	**list;
-
-	resu = NULL;
-	tmpclean = remove_double_space(temp);
-	list = pre_split(tmpclean);
-	free(tmpclean);
-	resu = alloc_cmd(list);
-	free_tab(list);
-	return (resu);
-}
-
-//
+/*
 t_cmd	**spliter3(char **inst)
 {
 	t_cmd	**resu;
@@ -116,6 +65,6 @@ t_cmd	**spliter3(char **inst)
 	free(temp);
 	free(tempclean);
 	resu[i] = NULL;
-	validation_cmd(resu);
 	return (resu);
 }
+*/

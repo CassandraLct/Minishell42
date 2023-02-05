@@ -26,7 +26,7 @@
 # include <termios.h>
 
 /*----------ERROR MES-----------*/
-# define ERR_HEREDOC "minishell: syntax error near unexpected token `newline'\n"
+# define ERR_TOKEN "minishell: syntax error near unexpected token `newline'\n"
 
 /*----------STRUCTURE-----------*/
 //structure tableau de cmd
@@ -208,12 +208,15 @@ int		count_cmd(char *line);
 int		count_redir(char **list, char c);
 int		count_all_redir(char *temp);
 
-// splitcmd_utils2.c
+//splitcmd_utils2.c
 char	**ft_init_resu(char *line);
 t_cmd	*ft_malloc_resu(char **list);
 void	ft_copy_inside_simple_cote(char **res, char *line, int *i, int *j);
 void	ft_copy_inside_double_cote(char **res, char *line, int *i, int *j);
 void	free_t_cmd(t_cmd **cmd);
+
+//splitcmd_valid.c
+t_cmd	**validation_cmd(t_cmd **resu);
 
 //splitline.c 3 fonctions
 char	**spliter(void);

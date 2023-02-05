@@ -43,6 +43,7 @@ SRC		=	main.c \
 		Parse/redir.c \
 		Parse/splitcmd_utils1.c \
 		Parse/splitcmd_utils2.c \
+		Parse/splitcmd_valid.c \
 		Parse/splitcmd.c \
 		Parse/splitline_utils.c \
 		Parse/splitline.c \

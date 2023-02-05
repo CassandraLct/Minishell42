@@ -35,7 +35,7 @@ int	heredoc_launcher(t_cmd **cmd, int i, int j, int *fd)
 	{
 		if (cmd[i]->stdin[j + 1] == NULL)
 		{
-			printf(ERR_HEREDOC);
+			printf(ERR_TOKEN);
 			g_mini.ret_err = 258;
 			return (1);
 		}
