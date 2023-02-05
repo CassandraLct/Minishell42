@@ -26,7 +26,6 @@ void	aff_err(char **cmd)
 		printf("No such file or directory\n");
 		g_mini.ret_err = 1;
 	}
-	
 }
 
 //initialise la structure

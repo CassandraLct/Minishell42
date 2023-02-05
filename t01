@@ -1,1 +1,1 @@
-<file1 cat | cat
+echo bonjour;|

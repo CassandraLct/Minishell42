@@ -91,6 +91,12 @@ int	ft_open_file(char *file, int fd, int how)
 		perror(file);
 		g_mini.ret_err = 1;
 	}
+	else if (fd == O_DIRECTORY)
+	{
+		printf("minishell: %s: Is a directory\n", file);
+		g_mini.ret_err = 1;
+		exit (1);
+	}
 	return (fd);
 }
 
@@ -116,7 +122,7 @@ int	ft_redir_out(t_cmd **cmd, int nb)
 			fd = ft_open_file(cmd[nb]->stdout[i + 1], fd, 2);
 		else
 		{
-			dprintf(2, "unexpected error\n"); //minishell: syntax error near unexpected token `>'
+			dprintf(2, "minishell: syntax error near unexpected token `>'\n");
 			g_mini.ret_err = 258;
 			exit (g_mini.ret_err);
 		}

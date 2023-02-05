@@ -42,6 +42,26 @@ char	**pre_split(char *line)
 	return (resu);
 }
 
+/*
+void	inside_alloc_cmd(char **list, t_cmd **resu, int *i)
+{
+	if (list[*i][0] == '<')
+		{
+			(*resu)->stdin[index[0]++] = ft_strdup(list[(*i)++]);
+			if (list[(*i)] != NULL)
+				(*resu)->stdin[index[0]++] = ft_strdup(list[(*i)++]);
+		}
+		else if (list[i][0] == '>')
+		{
+			(*resu)->stdout[index[1]++] = ft_strdup(list[(*i)++]);
+			if (list[(*i)] != NULL)
+				(*resu)->stdout[index[1]++] = ft_strdup(list[(*i)++]);
+		}
+		else
+			(*resu)->cmd[index[2]++] = ft_strdup(list[(*i)++]);
+}
+*/
+
 // transform the command from char** to t_cmd type
 t_cmd	*alloc_cmd(char **list)
 {
@@ -59,12 +79,14 @@ t_cmd	*alloc_cmd(char **list)
 		if (list[i][0] == '<')
 		{
 			resu->stdin[index[0]++] = ft_strdup(list[i++]);
-			resu->stdin[index[0]++] = ft_strdup(list[i++]);
+			if (list[i] != NULL)
+				resu->stdin[index[0]++] = ft_strdup(list[i++]);
 		}
 		else if (list[i][0] == '>')
 		{
 			resu->stdout[index[1]++] = ft_strdup(list[i++]);
-			resu->stdout[index[1]++] = ft_strdup(list[i++]);
+			if (list[i] != NULL)
+				resu->stdout[index[1]++] = ft_strdup(list[i++]);
 		}
 		else
 			resu->cmd[index[2]++] = ft_strdup(list[i++]);

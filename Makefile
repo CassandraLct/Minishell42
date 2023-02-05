@@ -94,6 +94,12 @@ test :
 	@./minishell <t03 || true
 	@./minishell <t04 || true
 	@./minishell <t05 || true
+	@./minishell <t06 || true
+	@./minishell <t07 || true
+	@./minishell <t08 || true
+	@./minishell <t09 || true
+	@./minishell <t10 || true
+
 re	:	fclean all
 
 .PHONY:	all clean fclean re
