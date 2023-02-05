@@ -1,1 +1,1 @@
-echo |
+echo 'exit_code ->$? user ->$USER home -> $HOME'

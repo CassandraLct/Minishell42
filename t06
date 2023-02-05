@@ -1,1 +1,1 @@
-echo hudifg d | | hugdfihd
+echo "exit_code ->$? user ->$USER home -> $HOME" 

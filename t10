@@ -1,1 +1,1 @@
-cat < <
+cd $PWD hi
