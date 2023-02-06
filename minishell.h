@@ -27,6 +27,7 @@
 
 /*----------ERROR MES-----------*/
 # define ERR_TOKEN "minishell: syntax error near unexpected token `newline'\n"
+# define ERR_TOKEN_SHORT "minishell: syntax error near unexpected token `"
 
 /*----------STRUCTURE-----------*/
 //structure tableau de cmd
@@ -234,6 +235,9 @@ char	*verif_cmdcotes(char *line);
 char	*get_sline(char *line, char cotes);
 char	*get_eline(char *line, char cotes);
 char	*changecotesline(char *line, char cotes);
+
+//verif_pipies.c
+char	*verif_pipes(char *line);
 
 /*-----------------------UTILS--------------------------------------------*/
 //5 fichiers
