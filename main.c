@@ -38,6 +38,7 @@ int	main(int argc, char **argv, char **envp)
 		add_history(g_mini.line);
 		parcour_line(&g_mini);
 		g_mini.line = verif_cmdcotes(g_mini.line);
+		g_mini.line = verif_pipes(g_mini.line);
 		// printf("line main = {%s}\n", g_mini.line);
 		if (g_mini.line[0] != '\0')
 		{

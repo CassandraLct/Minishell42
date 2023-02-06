@@ -49,6 +49,7 @@ SRC		=	main.c \
 		Parse/splitline.c \
 		Parse/verif_cotes.c \
 		Parse/verif_cotes_utils.c \
+		Parse/verif_pipes.c \
 		Utils/ft_split.c \
 		Utils/ft_itoa.c \
 		Utils/utils.c \

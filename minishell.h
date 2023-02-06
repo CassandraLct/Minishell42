@@ -236,6 +236,9 @@ char	*get_sline(char *line, char cotes);
 char	*get_eline(char *line, char cotes);
 char	*changecotesline(char *line, char cotes);
 
+//verif_pipies.c
+char	*verif_pipes(char *line);
+
 /*-----------------------UTILS--------------------------------------------*/
 //5 fichiers
 //itoa.c (libft)
