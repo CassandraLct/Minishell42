@@ -6,10 +6,9 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:16:57 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/06 15:44:42 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/06 16:52:25 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../minishell.h"
 
@@ -25,17 +24,18 @@ int	is_there_double_pipe(char *line)
 	i = 2;
 	while (i < len)
 	{
-		if(line[i - 2] == '|' && line[i - 1] == ' ' && line[i] == '|')
+		if (line[i - 2] == '|' && line[i - 1] == ' ' && line[i] == '|')
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-// return emplty line if pipe is in front or doubled
+// return emplty line if pipe is in front, at the end or doubled
 char	*verif_pipes(char *line)
 {
 	char	*new_line;
+	int		len;
 
 	new_line = NULL;
 	printf("dans verif_pipes\n");
@@ -43,9 +43,18 @@ char	*verif_pipes(char *line)
 	printf("apres rm_d_space, line = %s\n", line);
 	free(line);
 	printf("apres free line\n");
+	len = ft_strlen(new_line);
 	if (new_line[0] == '|' || is_there_double_pipe(line) == 1)
 	{
 		printf("%s|'\n", ERR_TOKEN_SHORT);
+		g_mini.ret_err = 258;
+		free(new_line);
+		new_line = ft_calloc(1, sizeof(char));
+		return (new_line);
+	}
+	if (new_line[len - 1] == '|')
+	{
+		printf("command not found after `|'\n");
 		g_mini.ret_err = 258;
 		free(new_line);
 		new_line = ft_calloc(1, sizeof(char));

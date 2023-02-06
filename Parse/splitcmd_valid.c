@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitcmd_valid.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/06 08:58:07 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/06 13:58:51 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ int	check_in(char *in0, char *in1)
 	if ((in0[0] == '<' && in1 == NULL) || (in0[0] == '>' && in1 == NULL))
 	{
 		printf(ERR_TOKEN);
-		g_mini.ret_err = 2; // ??
-		return (0); // ?
+		g_mini.ret_err = 258;
+		return (0);
 	}	
 	if ((in0[0] == '<' || in0[0] == '>') && (in1[0] == '<' || in1[0] == '>'))
 	{
 		printf(ERR_TOKEN_SHORT);
 		printf("%s'\n", in1);
-		g_mini.ret_err = 2; // ??
-		return (0); // ??
+		g_mini.ret_err = 258;
+		return (0);
 	}
 	return (1);
 }
@@ -42,45 +42,14 @@ t_cmd	**validation_cmd(t_cmd **resu)
 		j = 0;
 		while(resu[i]->stdin[j])
 		{
-			dprintf(2, "in validation\n");
-			if (check_in(resu[i]->stdin[j], resu[i]->stdin[j + 1]) == 0)
-				exit (2);
-			if (check_in(resu[i]->stdout[j], resu[i]->stdout[j + 1]) == 0)
-				exit (2);
+			if ((check_in(resu[i]->stdin[j], resu[i]->stdin[j + 1]) == 0)
+				|| (check_in(resu[i]->stdout[j], resu[i]->stdout[j + 1]) == 0))
+			{
+				return (NULL);
+			}
 			j++;
 		}
 		i++;
 	}
 	return (resu);
 }
-
-/*
-t_cmd	**spliter3(char **inst)
-{
-	t_cmd	**resu;
-	char	**temp;
-	char	**tempclean;
-	int		i;
-
-	i = 0;
-	temp = ft_test(ft_calloc((tablen(inst) + 1), sizeof(*temp)), NULL);
-	tempclean = ft_test(ft_calloc((tablen(inst) + 1), sizeof(*temp)), NULL);
-	resu = ft_test(ft_calloc((tablen(inst) + 1), sizeof(*resu)), NULL);
-	if (inst == NULL)
-		return (NULL);
-	while (inst[i])
-	{
-		temp[i] = ft_strtrim(inst[i], " ");
-		free(inst[i]);
-		tempclean[i] = ft_space_bracket(temp[i]);
-		free(temp[i]);
-		resu[i] = split_inst(tempclean[i]);
-		free(tempclean[i++]);
-	}
-	free(inst);
-	free(temp);
-	free(tempclean);
-	resu[i] = NULL;
-	return (resu);
-}
-*/
