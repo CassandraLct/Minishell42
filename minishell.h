@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/04 13:33:04 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/06 13:53:16 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,6 @@ void	printstruc(t_cmd *cmd);
 void	printstruc2(t_cmd **cmd);
 
 //modif_tcmd.c 5 fonctionc
-char	*verif_cmdcotes(char *line);
 void	modif_cmd(char **cmd);
 void	modif_stdin(char **stdin);
 void	modif_stdout(char **stdout);
@@ -238,6 +237,7 @@ char	*changecotesline(char *line, char cotes);
 
 //verif_pipies.c
 char	*verif_pipes(char *line);
+void	verif_tmp(char *line);
 
 /*-----------------------UTILS--------------------------------------------*/
 //5 fichiers

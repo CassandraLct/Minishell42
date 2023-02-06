@@ -310,13 +310,13 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 	-> echo bonjour > > out (fonctionne dans mnishell alors que et creer un fichier > ;dans bash: bash: syntax error near unexpected token `>') PARSING
 	-> echo bonjour > $test OK mais mauvais message d'erreur bash: $test: ambiguous redirect
 	-> /bin/echo bonjour (met command not found au lieu de faire echo bonjour)
-	-> | echo => mauvais message d'erreur bash: syntax error near unexpected token `|'
-	-> cat < > => bug bash: syntax error near unexpected token `>'
-	-> cat < < => bug bash: syntax error near unexpected token `>'
-	-> cat > > => bug bash: syntax error near unexpected token `>'
-	-> cat > mauvais message d'erreur `newline' au lieu de `>'
-	-> echo hudifg d | | hugdfihd => bug bash: syntax error near unexpected token `|' PARSING
-	-> echo '' => bug ('' non enlever dans minishell)
+	-> | echo => OK
+	-> cat < > => bug bash: syntax error near unexpected token `>' ok
+	-> cat < < => bug bash: syntax error near unexpected token `>' ok
+	-> cat > > => bug bash: syntax error near unexpected token `>' ok
+	-> cat > mauvais message d'erreur `newline' au lieu de `>' ok
+	-> echo hudifg d | | hugdfihd => OK
+	-> echo '' => OK
 	-> echo "" => bug (pas de retour a la ligne)
 *RET_ERR:
 	-> cat Makefile | grep pr | head -n 5 | cd test OK mauvais ret_err (0 au lieu de 1)  ret_err pas changer car chils pas fini au moment de l'affichage de l'erreur du parent

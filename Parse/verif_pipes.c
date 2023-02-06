@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif_pipes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:16:57 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/06 13:16:58 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:44:42 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,11 @@ char	*verif_pipes(char *line)
 	char	*new_line;
 
 	new_line = NULL;
+	printf("dans verif_pipes\n");
 	new_line = remove_double_space(line);
+	printf("apres rm_d_space, line = %s\n", line);
 	free(line);
+	printf("apres free line\n");
 	if (new_line[0] == '|' || is_there_double_pipe(line) == 1)
 	{
 		printf("%s|'\n", ERR_TOKEN_SHORT);

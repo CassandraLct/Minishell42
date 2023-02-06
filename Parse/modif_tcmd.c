@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:17:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/01 13:23:41 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/06 16:50:48 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 char	*rm_cotesline(char *line)
 {
 	char	*tmp;
+
 	char	cotes;
 	int		i;
 	int		j;
