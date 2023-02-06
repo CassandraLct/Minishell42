@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitcmd_valid.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/06 08:58:07 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/06 13:29:13 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,34 +53,3 @@ t_cmd	**validation_cmd(t_cmd **resu)
 	}
 	return (resu);
 }
-
-/*
-t_cmd	**spliter3(char **inst)
-{
-	t_cmd	**resu;
-	char	**temp;
-	char	**tempclean;
-	int		i;
-
-	i = 0;
-	temp = ft_test(ft_calloc((tablen(inst) + 1), sizeof(*temp)), NULL);
-	tempclean = ft_test(ft_calloc((tablen(inst) + 1), sizeof(*temp)), NULL);
-	resu = ft_test(ft_calloc((tablen(inst) + 1), sizeof(*resu)), NULL);
-	if (inst == NULL)
-		return (NULL);
-	while (inst[i])
-	{
-		temp[i] = ft_strtrim(inst[i], " ");
-		free(inst[i]);
-		tempclean[i] = ft_space_bracket(temp[i]);
-		free(temp[i]);
-		resu[i] = split_inst(tempclean[i]);
-		free(tempclean[i++]);
-	}
-	free(inst);
-	free(temp);
-	free(tempclean);
-	resu[i] = NULL;
-	return (resu);
-}
-*/

@@ -1,13 +1,6 @@
 	-> echo >>'>' test : OK mais affiche le printf dans le fichier aussi 
-	-> echo bonjour;| PARSING
-		bash: syntax error near unexpected token `|'
-	-> echo bonjour || OK
-	-> | PARSING
-		-> mauvais message d'erreur doit syntax error near unexpected token `|'
-
 	->  cd $HOME/Documents ne prend le /Documents dans le chemin
 		-> fonctionne mais mauvais pwd (minishell: /Users/clecat && bash: /Users/clecat/Documents)
-	-> echo > : seg fault au lieu de :syntax error near unexpected token `newline' (a voir soit dans le spliter soit faire fonction de verification)
 	-> echo -n -n -nnnn -nnnnm Fonction echo
 		-> -nnnn -nnnnm au lieu de -nnnnm
 	-> cat /dev/random | head -n 1 | cat -e OK
@@ -15,7 +8,6 @@
 	-> export "" et unset "" et ajoute et; unset; dans export ajouter une verification dans export
 		-> segfault au lieu de bash: export: `': not a valid identifier
 								bash: export: `': not a valid identifier
-	-> echo test > file test1 OK
 	-> $ doit mettre command not found et ne le fait pas faire fonction de verification de la line
 	-> not_cmd bonjour > salut fonctionne differement (minishell: creer le fichier et mets le message d'erreur dedans ;bash ne creer pas le fichier et met le message d'erreur)
 	-> env puis export puis env # vars aren't sorted
@@ -35,35 +27,20 @@
 	-> cd ../../../../../.. puis pwd: seg fault ai lieu de fonction et pwd= / Probleme de cd a fix
 	-> ctrl-C . 130 sur bin(ex : sleep 10)&line vide NON TESTER
  	-> ctrl-\ .131 sur bin NON TESTER
-	-> echo "bip | bip ; coyotte > < " " OK
-	-> cat | cat | cat | ls OK
-	-> $bla # with bla not defined OK
-	-> export var ="cat Makefile | grep >" OK
-	-> export "test=ici"=coucou OK
-	-> c$var Makefile # with var=at OK
-	-> $LESS$VAR OK
 	-> /bin/echo bonjour (met command not found au lieu de faire echo bonjour)
-	-> not_cmd OK
-	-> sleep 5 | exit OK
 	-> echo bonjour > $test w/ t (boucle)
-	-> "exit\n" OK
 	-> minishell # binary not in path without "./" before NON TESTER
 	-> cat diufosgid (#) test avec et sans # : Fonctionnne correctement, bon ret_err, message d'erreur pour # 
 	-> exit #
 	-> exit -10 exit mais affiche message d'erreur, bash exit juste FONCTION exit 
 	-> exit +10 meme comportement qu'au dessus Fonction exit
 	-> ; minishell OK ret_err doit etre a 258
-	-> echo coucou | ; OK
 	-> echo "$HOME" pb malloc mais fonctionnait avant
-	-> echo '$HOME' OK
-	-> echo $HOME OK
 
 Autre Test:
  echo hudifg d | | hugdfihd => bug bash: syntax error near unexpected token `|' PARSING
  echo '' => bug ('' non enlever dans minishell)
  echo "" => bug (pas de retour a la ligne)
- echo "\" => OK car hors sujet
- echo "\n \n \\n" => Ok car Hors sujet
  echo hi " ; " hihi => doit tout afficher comme un arg mais affiche que hi et a la meme comportement que echo -n
  cd .. => bug a la racine sinon OK
  export "HI =hi" => bug `HI =hi': not a valid identifier (verfier si espace present dans l'arg)
@@ -72,12 +49,10 @@ Autre Test:
  # write something then press ctrl+d
  # write something then press ctrl+\
  echo | => bug
- | echo =>bug bash: syntax error near unexpected token `>'
  sort | ls # check output order => OK
  cat < > => bug bash: syntax error near unexpected token `>'
  cat < < => bug bash: syntax error near unexpected token `>'
  cat > > => bug bash: syntax error near unexpected token `>'
  exit 0 | exit 1 => bug print exit et ret_err a 0 au lieu de 1
  exit 1 | exit 0 => bug meme cas
- exit 9999999999999999999999999999999999999999999999999999999999999999999999 pas de message d'erreur alors que dans bash oui 
- cat > PARSING
+
