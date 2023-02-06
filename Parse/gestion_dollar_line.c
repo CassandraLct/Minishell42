@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:31:40 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/25 09:50:31 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/06 09:30:49 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ char	*change_line(char *n_var, char *line)
 		n_line = startline(line, i, n_var);
 	i += 1;
 	while (line[i] && line[i] != '\0' && line[i] != '$' && line[i] != 32
-		&& line[i] != '\'' && line[i] != '"')
+		&& line[i] != '\'' && line[i] != '"' && line[i] != '/')
 		i++;
 	if (line[i] != '\0')
 		n_line = endline(line, i, n_line);

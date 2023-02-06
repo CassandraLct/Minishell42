@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 17:30:01 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/25 14:24:23 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/06 09:37:36 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,13 @@ char	*recup_namevar(char *line)
 		i++;
 	j = i;
 	while (line[i] && line[i] != '\0' && line[i] != '$'
-		&& line[i] != ' ' && line[i] != '\'' && line[i] != '"')
+		&& line[i] != ' ' && line[i] != '\'' && line[i] != '"' && line[i] != '/')
 		i++;
 	tmp = malloc(sizeof(char) * (i - j + 1));
 	i = j + 1;
 	j = 0;
 	while (line[i] != '\0' && line[i] != '$'
-		&& line[i] != ' ' && line[i] != '\'' && line[i] != '"')
+		&& line[i] != ' ' && line[i] != '\'' && line[i] != '"' && line[i] != '/')
 	{
 		tmp[j] = line[i];
 		j++;

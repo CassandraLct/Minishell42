@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/03 17:08:44 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/06 10:02:47 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ char	*modif_line(char *line, int nb_dollar)
 {
 	char	*tmp;
 	char	*tmp2;
-
+	if(line[0] == '$' && line[1] == '\0')
+		return(line);
 	tmp = ft_strdup(line);
 	tmp2 = redir_line(tmp, nb_dollar);
 	free(line);
