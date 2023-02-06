@@ -27,6 +27,7 @@
 
 /*----------ERROR MES-----------*/
 # define ERR_TOKEN "minishell: syntax error near unexpected token `newline'\n"
+# define ERR_TOKEN_SHORT "minishell: syntax error near unexpected token `"
 
 /*----------STRUCTURE-----------*/
 //structure tableau de cmd
