@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/06 13:29:13 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/06 13:58:51 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ int	check_in(char *in0, char *in1)
 	if ((in0[0] == '<' && in1 == NULL) || (in0[0] == '>' && in1 == NULL))
 	{
 		printf(ERR_TOKEN);
-		g_mini.ret_err = 2; // ??
-		return (0); // ?
+		g_mini.ret_err = 258;
+		return (0);
 	}	
 	if ((in0[0] == '<' || in0[0] == '>') && (in1[0] == '<' || in1[0] == '>'))
 	{
 		printf(ERR_TOKEN_SHORT);
 		printf("%s'\n", in1);
-		g_mini.ret_err = 2; // ??
-		return (0); // ??
+		g_mini.ret_err = 258;
+		return (0);
 	}
 	return (1);
 }
@@ -42,11 +42,11 @@ t_cmd	**validation_cmd(t_cmd **resu)
 		j = 0;
 		while(resu[i]->stdin[j])
 		{
-			dprintf(2, "in validation\n");
-			if (check_in(resu[i]->stdin[j], resu[i]->stdin[j + 1]) == 0)
-				exit (2);
-			if (check_in(resu[i]->stdout[j], resu[i]->stdout[j + 1]) == 0)
-				exit (2);
+			if ((check_in(resu[i]->stdin[j], resu[i]->stdin[j + 1]) == 0)
+				|| (check_in(resu[i]->stdout[j], resu[i]->stdout[j + 1]) == 0))
+			{
+				return (NULL);
+			}
 			j++;
 		}
 		i++;

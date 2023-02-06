@@ -32,13 +32,8 @@
 	-> minishell # binary not in path without "./" before NON TESTER
 	-> cat diufosgid (#) test avec et sans # : Fonctionnne correctement, bon ret_err, message d'erreur pour # 
 	-> exit #
-	-> exit -10 exit mais affiche message d'erreur, bash exit juste FONCTION exit 
-	-> exit +10 meme comportement qu'au dessus Fonction exit
-	-> ; minishell OK ret_err doit etre a 258
-	-> echo "$HOME" pb malloc mais fonctionnait avant
 
-Autre Test:
- echo hudifg d | | hugdfihd => bug bash: syntax error near unexpected token `|' PARSING
+
  echo '' => bug ('' non enlever dans minishell)
  echo "" => bug (pas de retour a la ligne)
  echo hi " ; " hihi => doit tout afficher comme un arg mais affiche que hi et a la meme comportement que echo -n
