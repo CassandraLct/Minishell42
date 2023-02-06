@@ -335,14 +335,14 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 	-> # write something the press ctrl+c => bug ne dois pas ecrire ^C
 	-> # write something then press ctrl+d
 	-> # write something then press ctrl+\
-*EXIT:
-	-> exit -10 exit mais affiche message d'erreur, bash exit juste FONCTION exit 
-	-> exit +10 meme comportement qu'au dessus Fonction exit
-	-> minishell # binary not in path without "./" before NON TESTER
-	-> exit 9999999999999999999999999999999999999999999999999999999999999999999999 pas de message d'erreur alors que dans bash oui 
+*EXIT: OK
+	-> exit -10 OK
+	-> exit +10 OK
+	-> exit 9999999999999999999999999999999999999999999999999999999999999999999999 OK
 *PB_MALLOC:
 	-> echo "$HOME" pb malloc mais fonctionnait avant
 Autre Test: 19 TESTS
+-> minishell # binary not in path without "./" before NON TESTER
 -> echo | => OK (en discuter (message d'erreur?))
 
 Test OK : (a retester avant de rendre)
@@ -414,3 +414,6 @@ Lundi 06/02:
 	-> export "" et unset "" OK
 	->export var puis export var=test OK
 	-> export "HI =hi" OK
+	-> exit 9999999999999999999999999999999999999999999999999999999999999999999999 OK
+	-> exit -10 OK
+	-> exit +10 OK

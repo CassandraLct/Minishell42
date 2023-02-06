@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/21 10:49:55 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/06 13:09:40 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,12 @@ void	verif_arg_exit(t_min *mini, int i, char **cmd)
 	err = "numeric argument required";
 	if (strdigit(cmd[i]) == 0)
 	{
+		if(ft_strlen(cmd[i]) >= 19)
+		{
+			printf("exit\nminishell: %s: %s: %s\n", cmd[0], cmd[i], err);
+			mini->ret_err = ft_atoi(cmd[i]) % 256;
+			exit(mini->ret_err);
+		}
 		if (cmd[i + 1] == NULL)
 		{
 			printf("exit\n");
