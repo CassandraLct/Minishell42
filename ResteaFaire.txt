@@ -303,7 +303,7 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 	-> cd ../../../../../.. puis pwd: seg fault ai lieu de fonction et pwd= / Probleme de cd a fix
 	-> cd .. => bug a la racine sinon OK
 *PARSING:
-	-> echo bonjour;| PARSING pipe
+	-> echo bonjour;| Mauvais message d'erreur
 		bash: syntax error near unexpected token `|'
 	-> $ OK
 	-> not_cmd bonjour > salut fonctionne differement (minishell: creer le fichier et mets le message d'erreur dedans ;bash ne creer pas le fichier et met le message d'erreur)
@@ -316,13 +316,13 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 	-> cat > > => bug bash: syntax error near unexpected token `>' ok
 	-> cat > mauvais message d'erreur `newline' au lieu de `>' ok
 	-> echo hudifg d | | hugdfihd => OK
-	-> echo '' => OK
-	-> echo "" => bug (pas de retour a la ligne)
+	-> echo '' => OK erreur malloc
+	-> echo "" => bug (pas de retour a la ligne) erreur malloc
 *RET_ERR:
 	-> cat Makefile | grep pr | head -n 5 | cd test OK mauvais ret_err (0 au lieu de 1)  ret_err pas changer car chils pas fini au moment de l'affichage de l'erreur du parent
 	-> cat Makefile | grep pr | head -n 5 | cat test OK mais mauvais message d'erreur comme au dessus 
 	-> cat Makefile | grep pr | head -n 5 | hello OK et mauvais ret_err (0 au lieu de 127)
-	-> ; minishell OK ret_err doit etre a 258
+	-> ; minishell OK ret_err doit etre a 258 OK
 *REDIRECTION/PIPE:
 	-> cat < test2(fichier non existant) OK mais cat boucle alors qu'il ne doit pas
 	-> echo bonjour > $test w/ t (boucle)
@@ -342,8 +342,8 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 *PB_MALLOC:
 	-> echo "$HOME" pb malloc mais fonctionnait avant
 Autre Test: 19 TESTS
--> minishell # binary not in path without "./" before NON TESTER
--> echo | => OK (en discuter (message d'erreur?))
+-> minishell unset PATH OK
+-> echo | => OK
 
 Test OK : (a retester avant de rendre)
 
