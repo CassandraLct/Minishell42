@@ -290,16 +290,14 @@ LEAKS :
 		puis relance un heredoc;
 	-> seg fault lorsque que le heredoc est fait directement sans cmd;
 
-Test minishell non fonctionnel: test fixe ce matin (2)
-*ECHO:
+Test minishell non fonctionnel: test fixe ce matin (6)
+*ECHO: OK
 	-> echo -n -n -nnnn -nnnnm OK
 	-> echo hi " ; " hihi OK
-*EXPORT:
-	-> export "" et unset "" et ajoute et; unset; dans export ajouter une verification dans export
-		-> segfault au lieu de bash: export: `': not a valid identifier
-								bash: export: `': not a valid identifier
-	-> export var; export var=test (var var="test") ne change pas var Fonction export
-	-> export "HI =hi" => bug `HI =hi': not a valid identifier (verfier si espace present dans l'arg)
+*EXPORT: OK
+	-> export "" et unset "" OK
+	-> export var; export var=test OK
+	-> export "HI =hi" OK
 *CD:
 	-> cd $HOME/Documents OK
 	-> cd ../../../../../.. puis pwd: seg fault ai lieu de fonction et pwd= / Probleme de cd a fix
@@ -413,3 +411,6 @@ Lundi 06/02:
 	-> $ OK
 	-> echo hi " ; " hihi OK
 	-> echo -n -n -nnnn -nnnnnm OK
+	-> export "" et unset "" OK
+	->export var puis export var=test OK
+	-> export "HI =hi" OK

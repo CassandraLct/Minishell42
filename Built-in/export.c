@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/03 11:27:33 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/06 11:30:51 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@ la val est bien changer*/
 int	verif_modif_var(char **str, char *cmp)
 {
 	char	*name_var;
+	char	*new_str;
 	int		i;
 
 	i = 0;
 	name_var = recup_name(cmp);
 	while (str[i])
 	{
-		if (ft_strncmp(str[i], name_var, ft_strlen(name_var)) == 0)
+		new_str = ft_strjoin(str[i], "=");
+		if (ft_strncmp(new_str, name_var, ft_strlen(name_var)) == 0)
 		{
 			free(name_var);
 			return (1);
@@ -36,6 +38,7 @@ int	verif_modif_var(char **str, char *cmp)
 		i++;
 	}
 	free(name_var);
+	free(new_str);
 	return (0);
 }
 
@@ -114,6 +117,20 @@ char	**order_exp(char **c_exp, char **cmp)
 	return (c_exp);
 }
 
+int	verif_space(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '=')
+	{
+		if(str[i] == 32)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 //add new_var ou affiche export
 void	export(t_min *mini, char **cmd)
 {
@@ -126,7 +143,18 @@ void	export(t_min *mini, char **cmd)
 	{
 		while (cmd[i] != NULL)
 		{
-			new_vars(mini, cmd[i], i, cmd);
+			if (cmd[i][0] == '\0')
+			{
+				printf("minishell: %s: `': not a valid identifier\n", cmd[0]);
+				g_mini.ret_err = 1;
+			}
+			else if (verif_space(cmd[i]) == 1)
+			{
+				printf("minishell: %s: `%s': not a valid identifier\n", cmd[0], cmd[i]);
+				g_mini.ret_err = 1;
+			}
+			else
+				new_vars(mini, cmd[i], i, cmd);
 			i++;
 		}
 	}
