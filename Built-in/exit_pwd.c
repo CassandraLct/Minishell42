@@ -91,7 +91,7 @@ void	verif_arg_exit(t_min *mini, int i, char **cmd)
 	err = "numeric argument required";
 	if (strdigit(cmd[i]) == 0)
 	{
-		if(ft_strlen(cmd[i]) >= 19)
+		if (ft_strlen(cmd[i]) >= 19)
 		{
 			printf("exit\nminishell: %s: %s: %s\n", cmd[0], cmd[i], err);
 			mini->ret_err = ft_atoi(cmd[i]) % 256;

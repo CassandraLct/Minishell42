@@ -60,8 +60,9 @@ char	*modif_line(char *line, int nb_dollar)
 {
 	char	*tmp;
 	char	*tmp2;
-	if(line[0] == '$' && line[1] == '\0')
-		return(line);
+
+	if (line[0] == '$' && line[1] == '\0')
+		return (line);
 	tmp = ft_strdup(line);
 	tmp2 = redir_line(tmp, nb_dollar);
 	free(line);

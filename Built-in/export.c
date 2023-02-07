@@ -124,7 +124,7 @@ int	verif_space(char *str)
 	i = 0;
 	while (str[i] != '=')
 	{
-		if(str[i] == 32)
+		if (str[i] == 32)
 			return (1);
 		i++;
 	}

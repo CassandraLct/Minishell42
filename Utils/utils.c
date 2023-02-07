@@ -63,7 +63,7 @@ int	strdigit(char *str)
 	}
 	if (str[0] == '-' || str[0] == '+')
 	{
-		if(i != (y - 1))
+		if (i != (y - 1))
 			return (1);
 	}
 	else

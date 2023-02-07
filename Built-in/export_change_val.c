@@ -49,10 +49,10 @@ void	changeval_exp(char **c_exp, char *str)
 	int		i;
 
 	i = 0;
-	while(str[i] != '=')
+	while (str[i] != '=')
 		i++;
 	name_var = malloc(sizeof(char) * (i + 1));
-	while(str[i] != '=')
+	while (str[i] != '=')
 	{
 		name_var[i] = str[i];
 		i++;

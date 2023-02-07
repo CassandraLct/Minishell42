@@ -126,7 +126,7 @@ void	echo(char **cmd)
 
 	i = 1;
 	j = 0;
-	if (cmd[1] == NULL || cmd[1] == '\0')
+	if (cmd[1] == NULL || cmd[1][0] == '\0')
 	{
 		printf("\n");
 		return ;
@@ -135,7 +135,7 @@ void	echo(char **cmd)
 		check_opt(cmd);
 	else
 	{
-		while (cmd[i] && cmd[i] != '\0'&& (cmd[i][j] >= 32 && cmd[i][j] <= 126))
+		while (cmd[i] && cmd[i][0] != '\0' && (cmd[i][j] >= 32 && cmd[i][j] <= 126))
 		{
 			if (cmd[i + 1] == NULL)
 				printf("%s\n", cmd[i]);

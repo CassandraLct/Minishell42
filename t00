@@ -51,3 +51,38 @@
  exit 0 | exit 1 => bug print exit et ret_err a 0 au lieu de 1
  exit 1 | exit 0 => bug meme cas
 
+env | grep "_="
+export TEST
+export ''=''
+export TES=T=""
+export TES^T=123
+echo """"""""$USER""""""""
+echo ' ' ' '
+echo $USER $USER9999 $USER8888 $USER7777 "$USER"
+echo $PWD/file
+exit 42 53 68
+exit -12030
+exit ++++1203020103
+exit ++++++0
+exit azerty
+exit a
+exit "1"
+exit "+102"
+exit "+++1230"
+exit "2"32"32"
+exit '42'"42"42
+exit -'42'"42"42
+exit 9223372036854775808
+exit wrong
+exit something
+exit -1
+exit 0
+exit +++++++000
+exit ---31232103012
+exit q
+exit export
+exit cd ..
+exit 42 42 42 42 42
+exit exit
+cd "wtf" 2>/dev/null
+>>echo>>

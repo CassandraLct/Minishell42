@@ -17,7 +17,6 @@
 char	*rm_cotesline(char *line)
 {
 	char	*tmp;
-
 	char	cotes;
 	int		i;
 	int		j;
