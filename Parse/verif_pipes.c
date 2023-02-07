@@ -54,7 +54,7 @@ char	*verif_pipes(char *line)
 	}
 	if (new_line[len - 1] == '|')
 	{
-		printf("minishell: command not found after `|'\n");
+		printf("minishell: syntax error near unexpected token `|'\n");
 		g_mini.ret_err = 258;
 		free(new_line);
 		new_line = ft_calloc(1, sizeof(char));

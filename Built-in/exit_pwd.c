@@ -107,13 +107,13 @@ void	verif_arg_exit(t_min *mini, int i, char **cmd)
 		else
 		{
 			printf("exit\nminishell: exit: too many arguments\n");
-			mini->ret_err = 1;
+			mini->ret_err = 127; // check here with exit 4 5 6
 		}
 	}
 	else if (strdigit(cmd[i]) == 1)
 	{
 		printf("exit\nminishell: exit: %s: %s\n", cmd[i], err);
-		mini->ret_err = 255;
+		mini->ret_err = 2; // check here with exit toto
 		exit(mini->ret_err);
 	}
 }
