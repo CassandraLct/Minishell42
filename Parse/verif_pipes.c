@@ -38,11 +38,11 @@ char	*verif_pipes(char *line)
 	int		len;
 
 	new_line = NULL;
-	printf("dans verif_pipes\n");
+//	printf("dans verif_pipes\n");
 	new_line = remove_double_space(line);
-	printf("apres rm_d_space, line = %s\n", line);
+//	printf("apres rm_d_space, line = %s\n", line);
 	free(line);
-	printf("apres free line\n");
+//	printf("apres free line\n");
 	len = ft_strlen(new_line);
 	if (new_line[0] == '|' || is_there_double_pipe(line) == 1)
 	{
@@ -54,7 +54,7 @@ char	*verif_pipes(char *line)
 	}
 	if (new_line[len - 1] == '|')
 	{
-		printf("command not found after `|'\n");
+		printf("minishell: command not found after `|'\n");
 		g_mini.ret_err = 258;
 		free(new_line);
 		new_line = ft_calloc(1, sizeof(char));

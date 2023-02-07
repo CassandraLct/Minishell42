@@ -101,6 +101,7 @@ void	verif_arg_exit(t_min *mini, int i, char **cmd)
 		{
 			printf("exit\n");
 			mini->ret_err = ft_atoi(cmd[i]) % 256;
+//			dprintf(2, "cmd[i]=[%s], ret_err=[%d]\n", cmd[i], mini->ret_err);
 			exit(mini->ret_err);
 		}
 		else

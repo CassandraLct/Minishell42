@@ -67,7 +67,7 @@ char	*add_cotesout(char *line)
 	i = 0;
 	j = 0;
 	tmp = NULL;
-	printf("lineadd cotes = {%s}\n", line);
+//	printf("lineadd cotes = {%s}\n", line);
 	if (line[0] == '\0')
 		return (line);
 	tmp = malloc(sizeof(char) * (ft_strlen(line) + 3));
@@ -133,7 +133,7 @@ char	*check_line(char *line)
 	tmp = rm_cotes(tmp, cotes);
 	free(line);
 	line = join_line(tmp, s_line, e_line);
-	printf("line = %s\n", line);
+//	printf("line = %s\n", line);
 	if (tmp[0] != '\0')
 		free(tmp);
 	free_seline(s_line, e_line);
@@ -147,6 +147,6 @@ char	*verif_cmdcotes(char *line)
 
 	new_line = NULL;
 	new_line = check_line(line);
-	printf("new_line = %s\n", new_line);
+//	printf("new_line = %s\n", new_line);
 	return (new_line);
 }

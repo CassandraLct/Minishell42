@@ -72,6 +72,7 @@ int	piping(void)
 	int		i;
 	pid_t	pid;
 	int		**pp;
+//	int		status;
 
 	pp = ft_create_pipe(g_mini.struct_cmd);
 	i = 0;
@@ -90,8 +91,11 @@ int	piping(void)
 		i++;
 	}
 	ft_last_command(g_mini.struct_cmd, pp, i);
+//	wait(&status);
+//	g_mini.ret_err = status % 256;
+//	printf("piping, ret_err = %d\n", g_mini.ret_err);
 	ft_wait_all();
-	// printf("ici ret_err = %d\n", g_mini.ret_err);
+//	printf("piping, ret_err = %d\n", g_mini.ret_err);
 	free_tab((char **)pp);
 	return (1);
 }
