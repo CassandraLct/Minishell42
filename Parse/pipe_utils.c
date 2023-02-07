@@ -42,9 +42,14 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 // exec the parent process in the while
 void	ft_parent(int **pp, int i)
 {
+//	int	status;
+
 	close(pp[i][1]);
 	if (i > 0)
 		close(pp[i - 1][0]);
+//	wait(&status);
+//	g_mini.ret_err = status % 256;
+//	dprintf(2, "parent, status=[%d], ret_err=[%d]\n", status, g_mini.ret_err);
 	return ;
 }
 
@@ -68,7 +73,7 @@ void	last_command_child(t_cmd **cmd, int **pp, int i)
 	if (i > 0)
 		close(pp[i - 1][0]);
 	redirection2(&g_mini, cmd[i]);
-	// printf("ici ret_err = %d\n", g_mini.ret_err);
+//	printf("last cmd child, ret_err = %d\n", g_mini.ret_err);
 	exit (g_mini.ret_err);
 }
 
@@ -77,6 +82,7 @@ void	ft_last_command(t_cmd **cmd, int **pp, int i)
 {
 	pid_t	pid;
 	int		fdin;
+	int		status;
 
 	pid = fork();
 	g_mini.pid = pid;
@@ -87,6 +93,14 @@ void	ft_last_command(t_cmd **cmd, int **pp, int i)
 		close(pp[i - 1][0]);
 	else if (fdin)
 		close(fdin);
+	if (waitpid(pid, &status, 0) == -1)
+	{
+        perror("Minishell:");
+            exit(EXIT_FAILURE);
+    }
+//	dprintf(2, "last command, status=[%d]\n", status / 256);
+    g_mini.ret_err = (status / 256) % 256;
+//	dprintf(2, "ici ret_err=[%d]\n", g_mini.ret_err);
 	return ;
 }
 
