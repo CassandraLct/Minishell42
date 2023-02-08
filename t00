@@ -1,13 +1,7 @@
 	-> echo >>'>' test : OK mais affiche le printf dans le fichier aussi 
 	->  cd $HOME/Documents ne prend le /Documents dans le chemin
 		-> fonctionne mais mauvais pwd (minishell: /Users/clecat && bash: /Users/clecat/Documents)
-	-> echo -n -n -nnnn -nnnnm Fonction echo
-		-> -nnnn -nnnnm au lieu de -nnnnm
-	-> cat /dev/random | head -n 1 | cat -e OK
 	-> unset var1 # with undefined var1 OK
-	-> export "" et unset "" et ajoute et; unset; dans export ajouter une verification dans export
-		-> segfault au lieu de bash: export: `': not a valid identifier
-								bash: export: `': not a valid identifier
 	-> $ doit mettre command not found et ne le fait pas faire fonction de verification de la line
 	-> not_cmd bonjour > salut fonctionne differement (minishell: creer le fichier et mets le message d'erreur dedans ;bash ne creer pas le fichier et met le message d'erreur)
 	-> env puis export puis env # vars aren't sorted
@@ -18,13 +12,9 @@
 	-> echo bonjour >>> test
 		-> mauvais message d'erreur (minishell: unexpected error au lieu de bash: syntax error near unexpected token `>')
 	-> echo bonjour > > out (fonctionne dans mnishell alors que et creer un fichier > dans bash: bash: syntax error near unexpected token `>') PARSING
-	-> echo 2 >> out1 > out2 OK
-	-> echo 2 > out1 >> out2 OK
 	-> cat < test2(fichier non existant) OK mais cat boucle alors qu'il ne doit pas
 	-> export var; export var=test (var var="test") ne change pas var Fonction export
 	-> echo bonjour > $test segfault au lieu de bash: $test: ambiguous redirect
-	-> exec.c (fichier dans le repo où l'on se trouve) OK
-	-> cd ../../../../../.. puis pwd: seg fault ai lieu de fonction et pwd= / Probleme de cd a fix
 	-> ctrl-C . 130 sur bin(ex : sleep 10)&line vide NON TESTER
  	-> ctrl-\ .131 sur bin NON TESTER
 	-> /bin/echo bonjour (met command not found au lieu de faire echo bonjour)
@@ -43,7 +33,6 @@
  # write something the press ctrl+c => bug ne dois pas ecrire ^C
  # write something then press ctrl+d
  # write something then press ctrl+\
- echo | => bug
  sort | ls # check output order => OK
  cat < > => bug bash: syntax error near unexpected token `>'
  cat < < => bug bash: syntax error near unexpected token `>'
@@ -60,12 +49,9 @@ echo """"""""$USER""""""""
 echo ' ' ' '
 echo $USER $USER9999 $USER8888 $USER7777 "$USER"
 echo $PWD/file
-exit 42 53 68
 exit -12030
 exit ++++1203020103
 exit ++++++0
-exit azerty
-exit a
 exit "1"
 exit "+102"
 exit "+++1230"
@@ -73,16 +59,10 @@ exit "2"32"32"
 exit '42'"42"42
 exit -'42'"42"42
 exit 9223372036854775808
-exit wrong
-exit something
 exit -1
 exit 0
 exit +++++++000
 exit ---31232103012
-exit q
-exit export
-exit cd ..
-exit 42 42 42 42 42
-exit exit
 cd "wtf" 2>/dev/null
 >>echo>>
+unset ""

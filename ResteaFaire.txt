@@ -305,7 +305,7 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 *PARSING:
 	-> echo bonjour;| Mauvais message d'erreur
 		bash: syntax error near unexpected token `|'
-	-> $ OK
+	-> $ ret_err doit etre egal a 127
 	-> not_cmd bonjour > salut fonctionne differement (minishell: creer le fichier et mets le message d'erreur dedans ;bash ne creer pas le fichier et met le message d'erreur)
 	-> echo bonjour > > out (fonctionne dans mnishell alors que et creer un fichier > ;dans bash: bash: syntax error near unexpected token `>') PARSING
 	-> echo bonjour > $test OK mais mauvais message d'erreur bash: $test: ambiguous redirect
