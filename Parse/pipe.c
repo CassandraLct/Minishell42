@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/08 15:21:26 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/08 17:26:40 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,11 @@ int	**ft_create_pipe(t_cmd **cmd)
 		nbcmd++;
 	pp = ft_test(ft_calloc(nbcmd + 1, sizeof(*pp)), NULL);
 	i = 0;
+			printf("cmd[0] iiiiiiiiiiiiii= %s\n", cmd[0]->cmd[0]);
 	while (i < nbcmd)
 	{
-		pp[i] = ft_test(ft_calloc(2, sizeof(**pp)), NULL);
+		pp[i] = ft_test(ft_calloc(2 , sizeof(pp)), NULL);
+		printf("cmd[0] iiiiiiiiiiiiii= %s\n", cmd[0]->cmd[0]);
 		i++;
 	}
 	return (pp);
@@ -76,7 +78,8 @@ int	piping(void)
 	pp = ft_create_pipe(g_mini.struct_cmd);
 	i = 0;
 	while (g_mini.struct_cmd[i + 1])
-	{	
+	{
+		printf("g_mini.struct_cmdinside = %s\n", g_mini.struct_cmd[0]->cmd[0]);
 		if (pipe(pp[i]) == -1)
 			dprintf(2, "pipe bug\n");
 		pid = fork();
@@ -89,8 +92,11 @@ int	piping(void)
 			ft_parent(pp, i);
 		i++;
 	}
+		printf("g_mini.struct_cmd33333333 = %s\n", g_mini.struct_cmd[0]->cmd[0]);
 	ft_last_command(g_mini.struct_cmd, pp, i);
 	ft_wait_all();
+	printf("g_mini.struct_cmd224444444 = %s\n", g_mini.struct_cmd[0]->cmd[0]);
 	free_tab((char **)pp);
+	printf("g_mini.struct_cmd55555555 = %s\n", g_mini.struct_cmd[0]->cmd[0]);
 	return (1);
 }

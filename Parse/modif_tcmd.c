@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:17:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/08 15:37:50 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 16:39:05 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ char	*rm_cotesline(char *line)
 	}
 	tmp[j] = '\0';
 	free(line);
-	line = ft_strdup(tmp);
-	free(tmp);
-	return (line);
+	return (tmp);
 }
 
 //modifie la ligne cmd ou sort
@@ -55,12 +53,16 @@ void	modif_cmd(char **cmd)
 			tmp = ft_strdup(cmd[i]);
 			free(cmd[i]);
 			cmd[i] = rm_cotesline(tmp);
+			printf("cmd[i]2 = %s, i = %d\n", cmd[i], i);
 		}
 		i++;
 	}
-	free(tmp);
 	tmp = ft_strdup(cmd[0]);
+	printf("pre checkcmd = %s\n", cmd[0]);
+	free(cmd[0]);
 	cmd[0] = check_cmd(tmp);
+	free(tmp);
+	printf("fin modif cmd = %s\n", cmd[0]);
 }
 
 //modifie la lignes stdin ou sort

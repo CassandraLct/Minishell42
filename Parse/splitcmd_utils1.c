@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/01/28 14:23:20 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 17:15:07 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ char	*ft_space_bracket(char *s)
 	int		k;
 
 	i = 2 * count_all_redir(s) + 1;
-	resu = ft_test(ft_calloc((ft_strlen(s) + i), sizeof(*s)), NULL);
+	resu = ft_test(ft_calloc((ft_strlen(s) + i), sizeof(s)), NULL);
 	i = 0;
 	k = 0;
 	while (s[i])
