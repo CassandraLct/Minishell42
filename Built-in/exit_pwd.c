@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_pwd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/08 14:54:37 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 15:24:24 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,19 +101,18 @@ void	verif_arg_exit(t_min *mini, int i, char **cmd)
 		{
 			printf("exit\n");
 			mini->ret_err = ft_atoi(cmd[i]) % 256;
-//			dprintf(2, "cmd[i]=[%s], ret_err=[%d]\n", cmd[i], mini->ret_err);
 			exit(mini->ret_err);
 		}
 		else
 		{
 			printf("exit\nminishell: exit: too many arguments\n");
-			mini->ret_err = 127; // check here with exit 4 5 6
+			mini->ret_err = 1;
 		}
 	}
 	else if (strdigit(cmd[i]) == 1)
 	{
 		printf("exit\nminishell: exit: %s: %s\n", cmd[i], err);
-		mini->ret_err = 2; // check here with exit toto
+		mini->ret_err = 255;
 		exit(mini->ret_err);
 	}
 }
