@@ -50,6 +50,7 @@ typedef struct s_min
 	char	**tab;
 	char	*prompt;
 	int		nb_passage_exp;
+	int		nb_cmd;
 	pid_t	pid;
 	int		sig_heredoc;
 	char	*val_home;

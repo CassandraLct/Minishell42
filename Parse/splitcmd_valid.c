@@ -56,7 +56,6 @@ t_cmd	**validation_cmd(t_cmd **resu)
 			}
 			j++;
 		}
-		
 		i++;
 	}
 	return (resu);

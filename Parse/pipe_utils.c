@@ -42,14 +42,9 @@ void	ft_child(t_cmd **cmd, int **pp, int i)
 // exec the parent process in the while
 void	ft_parent(int **pp, int i)
 {
-//	int	status;
-
 	close(pp[i][1]);
 	if (i > 0)
 		close(pp[i - 1][0]);
-//	wait(&status);
-//	g_mini.ret_err = status % 256;
-//	dprintf(2, "parent, status=[%d], ret_err=[%d]\n", status, g_mini.ret_err);
 	return ;
 }
 
