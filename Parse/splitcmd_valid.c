@@ -42,7 +42,7 @@ t_cmd	**validation_cmd(t_cmd **resu)
 	while (resu[i])
 	{
 		j = 0;
-		while (resu[i]->cmd[j])
+		while (j <= g_mini.nb_cmd)
 		{
 			if ((check_in(resu[i]->stdin[j], resu[i]->stdin[j + 1]) == 0))
 			{
