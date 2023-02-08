@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:57:22 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/08 14:23:33 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 15:41:03 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ char	*check_cmd(char *line)
 	real_cmd = NULL;
 	while (line[i])
 	{
-		if(line[i] == '/')
+		if (line[i] == '/')
 			nb_slash += 1;
 		i++;
 	}
-	if(nb_slash < 2)
+	if (nb_slash < 2)
 		return (line);
 	else if (nb_slash >= 2)
 	{

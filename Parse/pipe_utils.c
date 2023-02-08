@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/08 15:20:59 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/08 15:39:47 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,10 @@ void	ft_last_command(t_cmd **cmd, int **pp, int i)
 		close(fdin);
 	if (waitpid(pid, &status, 0) == -1)
 	{
-        perror("Minishell:");
-            exit(EXIT_FAILURE);
-    }
-    g_mini.ret_err = (status / 256) % 256;
+		perror("Minishell:");
+		exit(EXIT_FAILURE);
+	}
+	g_mini.ret_err = (status / 256) % 256;
 	return ;
 }
 

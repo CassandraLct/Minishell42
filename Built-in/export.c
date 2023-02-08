@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/06 11:30:51 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 15:41:42 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,8 @@ void	export(t_min *mini, char **cmd)
 			}
 			else if (verif_space(cmd[i]) == 1)
 			{
-				printf("minishell: %s: `%s': not a valid identifier\n", cmd[0], cmd[i]);
+				printf("minishell: %s: `%s': not a valid identifier\n",
+					cmd[0], cmd[i]);
 				g_mini.ret_err = 1;
 			}
 			else
