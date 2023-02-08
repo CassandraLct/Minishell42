@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:48:29 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/08 13:42:26 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 15:51:56 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ char	*rm_cotes(char *line, char cotes)
 char	*check_line(char *line)
 {
 	char	*tmp;
+	char	*tmp2;
 	char	*s_line;
 	char	*e_line;
 	char	cotes;
@@ -130,7 +131,9 @@ char	*check_line(char *line)
 	s_line = get_sline(line, cotes);
 	e_line = get_eline(line, cotes);
 	tmp = changecotesline(line, cotes);
-	tmp = rm_cotes(tmp, cotes);
+	tmp2 = ft_strdup(tmp);
+	free(tmp);
+	tmp = rm_cotes(tmp2, cotes);
 	free(line);
 	line = join_line(tmp, s_line, e_line);
 	free_seline(s_line, e_line);
@@ -141,11 +144,8 @@ char	*check_line(char *line)
 char	*verif_cmdcotes(char *line)
 {
 	char	*new_line;
-	// char	*end_line;
 
 	new_line = NULL;
 	new_line = check_line(line);
-	// end_line = check_cmd(new_line); //si cmd existante supprime ce qu'il a avant sinon ne change rien
-//	printf("new_line = %s\n", new_line);
 	return (new_line);
 }

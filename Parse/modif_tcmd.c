@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:17:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/08 14:23:14 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 15:37:50 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	modif_stdout(char **stdout)
 //free str in check_line
 void	free_seline(char *s_line, char *e_line)
 {
-	if (s_line != NULL)
+	if (s_line != NULL) // Leaks ici ------------------------------------------------------------------------
 		free(s_line);
 	if (e_line != NULL)
 		free(e_line);
