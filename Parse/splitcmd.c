@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitcmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/08 12:50:23 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 16:36:36 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ t_cmd	**spliter3(char **inst)
 	int		i;
 
 	i = 0;
-	// printf("dans spliter 3\n");
 	temp = ft_test(ft_calloc((tablen(inst) + 1), sizeof(*temp)), NULL);
 	tempclean = ft_test(ft_calloc((tablen(inst) + 1), sizeof(*temp)), NULL);
 	resu = ft_test(ft_calloc((tablen(inst) + 1), sizeof(*resu)), NULL);
@@ -117,8 +116,7 @@ t_cmd	**spliter3(char **inst)
 	free(temp);
 	free(tempclean);
 	resu[i] = NULL;
-	// printf("avant validation_cmd\n");
-	// resu = validation_cmd(resu);
-	// printf("sortie spliter 3\n");
+	// potentiel bug a cause de l'utilisation de resu dans le resultat et les parametre
+	resu = validation_cmd(resu);
 	return (resu);
 }

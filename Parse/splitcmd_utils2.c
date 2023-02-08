@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/08 17:21:36 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 17:36:32 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	**ft_init_resu(char *line)
 	index = 0;
 	while (index < i - 1)
 	{
-		resu[index] = ft_test(ft_calloc(j, sizeof(*resu[index])), NULL);
+		resu[index] = ft_test(ft_calloc(j, sizeof(*(resu[index]))), NULL);
 		index++;
 	}
 	resu[index] = NULL;
