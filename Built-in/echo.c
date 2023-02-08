@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:37:12 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/08 15:49:48 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 15:54:36 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,8 @@ void	echo(char **cmd)
 		check_opt(cmd);
 	else
 	{
-		while (cmd[i] && cmd[i][0] != '\0' && (cmd[i][j] >= 32 && cmd[i][j] <= 126))
+		while (cmd[i] && cmd[i][0] != '\0' && (cmd[i][j] >= 32
+			&& cmd[i][j] <= 126))
 		{
 			if (cmd[i + 1] == NULL)
 				printf("%s\n", cmd[i]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 13:55:50 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/08 14:55:13 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 15:49:43 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,11 @@ void	change_value_pwd(char **str)
 		w++;
 	}
 	new_val[w] = '\0';
+	free(str[i]);
 	if (ft_strcmp(new_val, "PWD=") == 0)
-	{
-		free(str[i]);
 		str[i] = ft_strjoin(new_val, "/");
-	}
 	else
-	{
-		free(str[i]);
 		str[i] = ft_strdup(new_val);
-	}
 	free(new_val);
 }
 

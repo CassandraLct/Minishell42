@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitcmd_valid.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/08 15:04:53 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 15:19:40 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ t_cmd	**validation_cmd(t_cmd **resu)
 
 	i = 0;
 	j = 0;
-	while(resu[0]->cmd[j])
+	while (resu[0]->cmd[j])
 	{
 		printf("cmd[j] = {%s}\n", resu[0]->cmd[j]);
-		if(resu[0]->cmd[j] == NULL)
+		if (resu[0]->cmd[j] == NULL)
 			printf("cmd NULL\n");
-		else if(resu[0]->cmd[j] == 0)
+		else if (resu[0]->cmd[j] == 0)
 			printf("cmd egale 0\n");
 		j++;
 	}

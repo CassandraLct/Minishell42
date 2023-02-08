@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:48:29 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/08 15:51:56 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 15:55:07 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ char	*join_line(char *tmp, char *s_line, char *e_line)
 	tmp2 = NULL;
 	new_line = NULL;
 	if (s_line != NULL && e_line == NULL && tmp[0] != '\0')
-	{
 		new_line = ft_strjoin(s_line, tmp);
-	}
 	else if (s_line != NULL && e_line != NULL && tmp[0] != '\0')
 	{
 		tmp2 = ft_strjoin(s_line, tmp);
@@ -33,25 +31,15 @@ char	*join_line(char *tmp, char *s_line, char *e_line)
 		free(tmp2);
 	}
 	else if (s_line != NULL && e_line != NULL && tmp[0] == '\0')
-	{
 		new_line = ft_strjoin(s_line, e_line);
-	}
 	else if (s_line == NULL && e_line != NULL && tmp[0] != '\0')
-	{
 		new_line = ft_strjoin(tmp, e_line);
-	}
 	else if (s_line != NULL && tmp[0] == '\0' && e_line == NULL)
-	{
 		new_line = ft_strdup(s_line);
-	}
 	else if (s_line == NULL && tmp[0] == '\0' && e_line != NULL)
-	{
 		new_line = ft_strdup(e_line);
-	}
 	else if (tmp[0] != '\0')
-	{
 		new_line = ft_strdup(tmp);
-	}
 	else
 		new_line = NULL;
 	return (new_line);
@@ -67,7 +55,6 @@ char	*add_cotesout(char *line)
 	i = 0;
 	j = 0;
 	tmp = NULL;
-//	printf("lineadd cotes = {%s}\n", line);
 	if (line[0] == '\0')
 		return (line);
 	tmp = malloc(sizeof(char) * (ft_strlen(line) + 3));

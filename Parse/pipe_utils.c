@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/04 15:52:27 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 15:39:47 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	last_command_child(t_cmd **cmd, int **pp, int i)
 	if (i > 0)
 		close(pp[i - 1][0]);
 	redirection2(&g_mini, cmd[i]);
-//	printf("last cmd child, ret_err = %d\n", g_mini.ret_err);
 	exit (g_mini.ret_err);
 }
 
@@ -90,12 +89,10 @@ void	ft_last_command(t_cmd **cmd, int **pp, int i)
 		close(fdin);
 	if (waitpid(pid, &status, 0) == -1)
 	{
-        perror("Minishell:");
-            exit(EXIT_FAILURE);
-    }
-//	dprintf(2, "last command, status=[%d]\n", status / 256);
-    g_mini.ret_err = (status / 256) % 256;
-//	dprintf(2, "ici ret_err=[%d]\n", g_mini.ret_err);
+		perror("Minishell:");
+		exit(EXIT_FAILURE);
+	}
+	g_mini.ret_err = (status / 256) % 256;
 	return ;
 }
 
