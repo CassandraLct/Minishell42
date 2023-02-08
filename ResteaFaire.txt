@@ -303,12 +303,12 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 	-> cd ../../../../../.. puis pwd: OK
 	-> cd .. => OK
 *PARSING:
-	-> echo bonjour;| Mauvais message d'erreur
+	-> echo bonjour;| OK
 		bash: syntax error near unexpected token `|'
 	-> $ ret_err doit etre egal a 127
 	-> not_cmd bonjour > salut fonctionne differement (minishell: creer le fichier et mets le message d'erreur dedans ;bash ne creer pas le fichier et met le message d'erreur)
 	-> echo bonjour > > out (fonctionne dans mnishell alors que et creer un fichier > ;dans bash: bash: syntax error near unexpected token `>') PARSING
-	-> echo bonjour > $test OK mais mauvais message d'erreur bash: $test: ambiguous redirect
+	-> echo bonjour > $test OK mais mauvais message d'erreur bash: $test: ambiguous redirect (gestion dollar)
 	-> /bin/echo bonjour OK
 	-> | echo => OK
 	-> cat < > => bug bash: syntax error near unexpected token `>' ok
@@ -316,16 +316,16 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 	-> cat > > => bug bash: syntax error near unexpected token `>' ok
 	-> cat > mauvais message d'erreur `newline' au lieu de `>' ok
 	-> echo hudifg d | | hugdfihd => OK
-	-> echo '' => OK erreur malloc
-	-> echo "" => bug (pas de retour a la ligne) erreur malloc
+	-> echo '' => OK erreur 
+	-> echo "" => bug (pas de retour a la ligne) erreur 
 *RET_ERR:
-	-> cat Makefile | grep pr | head -n 5 | cd test OK mauvais ret_err (0 au lieu de 1)  ret_err pas changer car chils pas fini au moment de l'affichage de l'erreur du parent
-	-> cat Makefile | grep pr | head -n 5 | cat test OK mais mauvais message d'erreur comme au dessus 
-	-> cat Makefile | grep pr | head -n 5 | hello OK et mauvais ret_err (0 au lieu de 127)
-	-> ; minishell OK ret_err doit etre a 258 OK
+	-> cat Makefile | grep pr | head -n 5 | cd test OK 
+	-> cat Makefile | grep pr | head -n 5 | cat test OK 
+	-> cat Makefile | grep pr | head -n 5 | hello OK et mauvais ret_err (1 au lieu de 127)
+	-> ; minishell OK ret_err soit etre a 258
 *REDIRECTION/PIPE:
 	-> cat < test2(fichier non existant) OK
-	-> echo bonjour > $test w/ t (boucle) > seg fault
+	-> echo bonjour > $test w/ t (boucle) > mauvais message d'erreur (verif $? doit etre a 1) gestion dollar
 	-> exit 0 | exit 1 => bug print exit
 	-> exit 1 | exit 0 => bug meme cas
 	-> /bin/ls => OK
@@ -420,3 +420,6 @@ Lundi 06/02:
 
 Mercredi 08/02:
 	-> cas /bin/echo ; /bin/ls; etc OK
+	-> echo ''
+
+/!\ Refaire les test + norminette + leaks
