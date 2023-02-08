@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/08 12:44:56 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 15:04:53 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 // check if in0 is < or << and in1 not NULL and not < > << >> |
 int	check_in(char *in0, char *in1)
 {
-	printf("entrer de check_in\n");
-	printf("in0= %s\n", in0);
-	if (!in1 || !in0)
-	{
-		printf("sortie 0\n");
-		return (1);
-	}
 	if ((in0[0] == '<' && in1 == NULL) || (in0[0] == '>' && in1 == NULL))
 	{
 		printf(ERR_TOKEN);
@@ -67,15 +60,16 @@ t_cmd	**validation_cmd(t_cmd **resu)
 	while (resu[i])
 	{
 		j = 0;
-		while (resu[i]->cmd[j])
+		while (j <= g_mini.nb_cmd)
 		{
-			printf("cmd[j] = {%s}\n", resu[i]->cmd[j]);
-			if ((check_in(resu[i]->stdin[j], resu[i]->stdin[j + 1]) == 0)) // accede a quelque chose qui n'existe pas ?
+			if (resu[i]->stdin[j] && resu[i]->stdin[j + 1]
+				&& (check_in(resu[i]->stdin[j], resu[i]->stdin[j + 1]) == 0))
 			{
 				// leaks => free resu
 				return (NULL);
 			}
-			if ((check_in(resu[i]->stdout[j], resu[i]->stdout[j + 1]) == 0))
+			if (resu[i]->stdout[j] && resu[i]->stdout[j + 1]
+				&& (check_in(resu[i]->stdout[j], resu[i]->stdout[j + 1]) == 0))
 			{
 				// leaks => free resu
 				return (NULL);

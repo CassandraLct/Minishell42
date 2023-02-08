@@ -46,7 +46,6 @@ char	**spliter_loop(char **resu, char *temp)
 char	**spliter(void)
 {
 	char	**resu;
-	int		i;
 	char	*temp;
 
 	resu = NULL;
@@ -56,8 +55,8 @@ char	**spliter(void)
 		printf("minishell: cote not closed\n");
 		return (NULL);
 	}
-	i = count_instruct(g_mini.line);
-	resu = ft_test(ft_calloc(i + 1, sizeof(*resu)), NULL);
+	g_mini.nb_cmd = count_instruct(g_mini.line);
+	resu = ft_test(ft_calloc(g_mini.nb_cmd + 1, sizeof(*resu)), NULL);
 	temp = ft_test(ft_calloc(ft_strlen(g_mini.line) + 1, sizeof(*temp)), NULL);
 	resu = spliter_loop(resu, temp);
 	free(temp);

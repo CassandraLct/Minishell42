@@ -324,9 +324,9 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 	-> cat Makefile | grep pr | head -n 5 | hello OK et mauvais ret_err (0 au lieu de 127)
 	-> ; minishell OK ret_err doit etre a 258 OK
 *REDIRECTION/PIPE:
-	-> cat < test2(fichier non existant) OK mais cat boucle alors qu'il ne doit pas
-	-> echo bonjour > $test w/ t (boucle)
-	-> exit 0 | exit 1 => bug print exit et ret_err a 0 au lieu de 1
+	-> cat < test2(fichier non existant) OK
+	-> echo bonjour > $test w/ t (boucle) > seg fault
+	-> exit 0 | exit 1 => bug print exit
 	-> exit 1 | exit 0 => bug meme cas
 	-> /bin/ls => OK
 *SIGNAUX: A tester a la toute fin car bug venu de nul part
