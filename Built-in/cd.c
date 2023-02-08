@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 13:55:50 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/21 10:55:02 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 14:55:13 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,16 @@ void	change_value_pwd(char **str)
 		w++;
 	}
 	new_val[w] = '\0';
-	free(str[i]);
-	str[i] = ft_strdup(new_val);
+	if (ft_strcmp(new_val, "PWD=") == 0)
+	{
+		free(str[i]);
+		str[i] = ft_strjoin(new_val, "/");
+	}
+	else
+	{
+		free(str[i]);
+		str[i] = ft_strdup(new_val);
+	}
 	free(new_val);
 }
 
@@ -132,7 +140,9 @@ void	cd(t_min *mini, char **cmd)
 	else if (cmd[1][0] == '~')
 		change_valcdtild(mini, cmd);
 	else if (chdir(cmd[1]) == -1)
+	{
 		aff_err(cmd);
+	}
 	else
 	{
 		change_value_env(mini, cmd);

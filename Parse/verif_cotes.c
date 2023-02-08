@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:48:29 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/06 16:03:19 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 13:42:26 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,9 +133,6 @@ char	*check_line(char *line)
 	tmp = rm_cotes(tmp, cotes);
 	free(line);
 	line = join_line(tmp, s_line, e_line);
-//	printf("line = %s\n", line);
-	if (tmp[0] != '\0')
-		free(tmp);
 	free_seline(s_line, e_line);
 	return (line);
 }
@@ -144,9 +141,11 @@ char	*check_line(char *line)
 char	*verif_cmdcotes(char *line)
 {
 	char	*new_line;
+	// char	*end_line;
 
 	new_line = NULL;
 	new_line = check_line(line);
+	// end_line = check_cmd(new_line); //si cmd existante supprime ce qu'il a avant sinon ne change rien
 //	printf("new_line = %s\n", new_line);
 	return (new_line);
 }

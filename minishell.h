@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/06 13:53:16 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 11:37:08 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,7 +235,10 @@ char	*get_sline(char *line, char cotes);
 char	*get_eline(char *line, char cotes);
 char	*changecotesline(char *line, char cotes);
 
-//verif_pipies.c
+//check_cmd.c
+char	*check_cmd(char *line);
+
+//verif_pipes.c
 char	*verif_pipes(char *line);
 void	verif_tmp(char *line);
 

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:17:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/06 16:50:48 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 14:23:14 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ void	modif_cmd(char **cmd)
 		}
 		i++;
 	}
+	free(tmp);
+	tmp = ft_strdup(cmd[0]);
+	cmd[0] = check_cmd(tmp);
 }
 
 //modifie la lignes stdin ou sort

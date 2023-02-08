@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/06 15:46:32 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 14:22:52 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,9 @@ int	main(int argc, char **argv, char **envp)
 		add_history(g_mini.line);
 		parcour_line(&g_mini);
 		g_mini.line = verif_cmdcotes(g_mini.line);
-//		printf("ici main, linemain = %s\n", g_mini.line);
 		g_mini.line = verif_pipes(g_mini.line);
-//		printf("line main = {%s}\n", g_mini.line);
 		if (g_mini.line[0] != '\0')
 		{
-			// printf("linemain = %s\n", g_mini.line);
 			g_mini.struct_cmd = spliter3(spliter());
 			if (g_mini.struct_cmd != NULL)
 				inside_main();

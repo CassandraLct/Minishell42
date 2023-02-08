@@ -300,8 +300,8 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 	-> export "HI =hi" OK
 *CD:
 	-> cd $HOME/Documents OK
-	-> cd ../../../../../.. puis pwd: seg fault ai lieu de fonction et pwd= / Probleme de cd a fix
-	-> cd .. => bug a la racine sinon OK
+	-> cd ../../../../../.. puis pwd: OK
+	-> cd .. => OK
 *PARSING:
 	-> echo bonjour;| Mauvais message d'erreur
 		bash: syntax error near unexpected token `|'
@@ -309,7 +309,7 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 	-> not_cmd bonjour > salut fonctionne differement (minishell: creer le fichier et mets le message d'erreur dedans ;bash ne creer pas le fichier et met le message d'erreur)
 	-> echo bonjour > > out (fonctionne dans mnishell alors que et creer un fichier > ;dans bash: bash: syntax error near unexpected token `>') PARSING
 	-> echo bonjour > $test OK mais mauvais message d'erreur bash: $test: ambiguous redirect
-	-> /bin/echo bonjour (met command not found au lieu de faire echo bonjour)
+	-> /bin/echo bonjour OK
 	-> | echo => OK
 	-> cat < > => bug bash: syntax error near unexpected token `>' ok
 	-> cat < < => bug bash: syntax error near unexpected token `>' ok
@@ -328,7 +328,7 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 	-> echo bonjour > $test w/ t (boucle)
 	-> exit 0 | exit 1 => bug print exit et ret_err a 0 au lieu de 1
 	-> exit 1 | exit 0 => bug meme cas
-	-> /bin/ls => bug au niveau du execve
+	-> /bin/ls => OK
 *SIGNAUX: A tester a la toute fin car bug venu de nul part
 	-> ctrl-C . 130 sur bin(ex : sleep 10)&line vide NON TESTER
  	-> ctrl-\ .131 sur bin NON TESTER
@@ -417,3 +417,6 @@ Lundi 06/02:
 	-> exit 9999999999999999999999999999999999999999999999999999999999999999999999 OK
 	-> exit -10 OK
 	-> exit +10 OK
+
+Mercredi 08/02:
+	-> cas /bin/echo ; /bin/ls; etc OK

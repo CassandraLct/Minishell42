@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/04 15:52:19 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 14:26:23 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_set_pathexec2(t_min *mini, char **cmd)
 	pathcmd = NULL;
 	pathcmd = init_cmd(cmd, pathcmd);
 	all_path = recup_path(mini);
-	if (all_path == NULL)
+	if (all_path == NULL || cmd[0][0] == '/')
 	{
 		mini->ret_err = 127;
 		printf("minishell: %s: No such file or directory\n", cmd[0]);
