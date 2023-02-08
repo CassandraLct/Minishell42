@@ -30,7 +30,7 @@ void	ft_interruption(int signum)
 		if (kill(g_mini.pid, signum) == 0)
 			g_mini.ret_err = 130;
 		else
-			printf("BOOOOM\n");
+			return ;
 	}
 	else
 	{
