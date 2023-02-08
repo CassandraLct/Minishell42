@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitcmd_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/01 09:34:13 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 17:33:01 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	**ft_init_resu(char *line)
 	index = 0;
 	while (index < i - 1)
 	{
-		resu[index] = ft_test(ft_calloc(j, sizeof(*resu[index])), NULL);
+		resu[index] = ft_test(ft_calloc(j, sizeof(*(resu[index]))), NULL);
 		index++;
 	}
 	resu[index] = NULL;
@@ -65,9 +65,9 @@ t_cmd	*ft_malloc_resu(char **list)
 	j = count_redir(list, '>');
 	k = tablen(list) + 1;
 	resu = ft_test(ft_calloc(1, sizeof(*resu)), NULL);
-	resu->stdin = ft_test(ft_calloc(2 * i + 1, sizeof(*resu->stdin)), NULL);
-	resu->stdout = ft_test(ft_calloc(2 * j + 1, sizeof(*resu->stdout)), NULL);
-	resu->cmd = ft_test(ft_calloc(k, sizeof(*resu->cmd)), NULL);
+	resu->stdin = ft_test(ft_calloc(2 * i + 1, sizeof(*(resu->stdin))), NULL);
+	resu->stdout = ft_test(ft_calloc(2 * j + 1, sizeof(*(resu->stdout))), NULL);
+	resu->cmd = ft_test(ft_calloc(k, sizeof(*(resu->cmd))), NULL);
 	return (resu);
 }
 
