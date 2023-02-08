@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/08 21:53:50 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/08 22:26:59 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	cvr(char *in0, char *in1)
 		g_mini.ret_err = 258;
 		return (0);
 	}
-	printf("sortir de checkin\n");
 	return (1);
 }
 
@@ -40,16 +39,22 @@ t_cmd	**validation_cmd(t_cmd **resu)
 	int	j;
 
 	i = 0;
-	j = 0;
-	while (resu[i])
+	while (i < g_mini.nb_cmd)
 	{
 		j = 0;
-		while (j < g_mini.nb_cmd)
+		while (resu[i]->stdin[j] && resu[i]->stdin[j + 1])
 		{
-			if ((resu[i]->stdin[j] && resu[i]->stdin[j + 1]
-					&& (cvr(resu[i]->stdin[j], resu[i]->stdin[j + 1]) == 0))
-				|| (resu[i]->stdout[j] && resu[i]->stdout[j + 1]
-					&& (cvr(resu[i]->stdout[j], resu[i]->stdout[j + 1]) == 0)))
+			if (cvr(resu[i]->stdin[j], resu[i]->stdin[j + 1]) == 0)
+			{
+//				free_t_cmd(resu); LEAKS
+				return (NULL);
+			}
+			j++;
+		}
+		j = 0;
+		while (resu[i]->stdout[j] && resu[i]->stdout[j + 1])
+		{
+			if (cvr(resu[i]->stdout[j], resu[i]->stdout[j + 1]) == 0)
 			{
 //				free_t_cmd(resu); LEAKS
 				return (NULL);

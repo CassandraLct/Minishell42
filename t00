@@ -2,7 +2,7 @@
 	->  cd $HOME/Documents ne prend le /Documents dans le chemin
 		-> fonctionne mais mauvais pwd (minishell: /Users/clecat && bash: /Users/clecat/Documents)
 	-> unset var1 # with undefined var1 OK
-	-> $ doit mettre command not found et ne le fait pas faire fonction de verification de la line
+	-> $ ret_err ?
 	-> not_cmd bonjour > salut fonctionne differement (minishell: creer le fichier et mets le message d'erreur dedans ;bash ne creer pas le fichier et met le message d'erreur)
 	-> env puis export puis env # vars aren't sorted
 		-> env # fonctionne mais pas dans notre minishell (sujet ne dis pas de gerer le #)
@@ -66,3 +66,4 @@ exit ---31232103012
 cd "wtf" 2>/dev/null
 >>echo>>
 unset ""
+ls | cat < | echo toto
