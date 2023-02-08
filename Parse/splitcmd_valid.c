@@ -14,8 +14,6 @@
 // check if in0 is < or << and in1 not NULL and not < > << >> |
 int	check_in(char *in0, char *in1)
 {
-	if (!in0 || !in1)
-		return (1);
 	if ((in0[0] == '<' && in1 == NULL) || (in0[0] == '>' && in1 == NULL))
 	{
 		printf(ERR_TOKEN);
@@ -44,12 +42,14 @@ t_cmd	**validation_cmd(t_cmd **resu)
 		j = 0;
 		while (j <= g_mini.nb_cmd)
 		{
-			if ((check_in(resu[i]->stdin[j], resu[i]->stdin[j + 1]) == 0))
+			if (resu[i]->stdin[j] && resu[i]->stdin[j + 1]
+				&& (check_in(resu[i]->stdin[j], resu[i]->stdin[j + 1]) == 0))
 			{
 				// leaks => free resu
 				return (NULL);
 			}
-			if ((check_in(resu[i]->stdout[j], resu[i]->stdout[j + 1]) == 0))
+			if (resu[i]->stdout[j] && resu[i]->stdout[j + 1]
+				&& (check_in(resu[i]->stdout[j], resu[i]->stdout[j + 1]) == 0))
 			{
 				// leaks => free resu
 				return (NULL);
