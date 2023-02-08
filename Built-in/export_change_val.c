@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_change_val.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:03:34 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/06 11:19:52 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 21:10:47 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,11 @@ void	changeval_exp(char **c_exp, char *str)
 //redirige vers les fonctions de modification ou d'ajout
 void	redir_changeval(t_min *mini, char *str)
 {
-	printf("dans redir_changeval\n");
+//	printf("dans redir_changeval\n");
 	if (verif_modif_var(mini->c_env, str) == 1
 		&& verif_modif_var(mini->c_exp, str) == 1)
 	{
-		printf("present dans env et exp\n");
+//		printf("present dans env et exp\n");
 		changeval_exp(mini->c_exp, str);
 		changeval_env(mini->c_env, str);
 		mini->nb_passage_exp += 1;
@@ -88,7 +88,7 @@ void	redir_changeval(t_min *mini, char *str)
 	else if (verif_modif_var(mini->c_exp, str) == 1
 		&& verif_modif_var(mini->c_env, str) == 0)
 	{
-		printf("present dans exp\n");
+//		printf("present dans exp\n");
 		changeval_exp(mini->c_exp, str);
 		add_valenv(mini, str);
 		mini->nb_passage_exp += 1;
@@ -103,7 +103,7 @@ char	*recup_name(char *cmp)
 
 	i = 0;
 	tmp = NULL;
-	printf("cmd= %s\n", cmp);
+//	printf("cmd= %s\n", cmp);
 	if (check_var(cmp) == 1)
 	{
 		tmp = malloc(sizeof(char) * (ft_strlen(cmp) + 1));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/08 16:42:24 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 21:23:58 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	redir_pipe(t_min *mini, t_cmd **cmd)
 //redirige soit vers les built-in soit vers execve
 void	redirection2(t_min *mini, t_cmd *cmd)
 {
-	printf("cmd->cmd[0] = %s\n", cmd->cmd[0]);
+//	printf("cmd->cmd[0] = %s\n", cmd->cmd[0]);
 	if (cmd->cmd[0] == NULL)
 		return ;
 	if (ft_strcmp(cmd->cmd[0], "exit") == 0)

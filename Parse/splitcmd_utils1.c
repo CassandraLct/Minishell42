@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitcmd_utils1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/08 17:15:07 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/08 19:06:03 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ char	*ft_space_bracket(char *s)
 	int		k;
 
 	i = 2 * count_all_redir(s) + 1;
-	resu = ft_test(ft_calloc((ft_strlen(s) + i), sizeof(s)), NULL);
+	resu = ft_test(ft_calloc((ft_strlen(s) + i), sizeof(*resu)), NULL);
 	i = 0;
 	k = 0;
 	while (s[i])

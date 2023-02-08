@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:57:22 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/08 15:41:03 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/08 21:03:50 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,37 +36,45 @@ char	*recup_rcmd(char *line)
 	return (tmp);
 }
 
-//cas /bin/echo etc + verification si l'arg avant est une cmd existante
-char	*check_cmd(char *line)
+// count how many slash in the line
+int	ft_nb_slash(char *line)
 {
-	char	*real_cmd;
-	int		nb_slash;
-	int		i;
+	int	i;
+	int	nb_slash;
 
 	i = 0;
 	nb_slash = 0;
-	real_cmd = NULL;
 	while (line[i])
 	{
 		if (line[i] == '/')
 			nb_slash += 1;
 		i++;
 	}
-	if (nb_slash < 2)
-		return (line);
-	else if (nb_slash >= 2)
+	return (nb_slash);
+}
+
+//cas /bin/echo etc + verification si l'arg avant est une cmd existante
+char	*check_cmd(char *line)
+{
+	char	*real_cmd;
+	int		nb_slash;
+
+	nb_slash = ft_nb_slash(line);
+	real_cmd = NULL;
+	if (nb_slash >= 2)
 	{
-		i = 0;
 		if (line[0] == '/')
 		{
 			if (access(line, R_OK) == 0)
-			{
 				real_cmd = recup_rcmd(line);
-				free(line);
-				line = ft_strdup(real_cmd);
-				free(real_cmd);
+			else
+			{
+				perror(NULL);
+				real_cmd = NULL;
 			}
 		}
 	}
-	return (line);
+	else if (nb_slash < 2)
+		real_cmd = ft_strdup(line);
+	return (real_cmd);
 }
