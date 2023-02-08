@@ -90,6 +90,7 @@ int	ft_open_file(char *file, int fd, int how)
 	{
 		perror(file);
 		g_mini.ret_err = 1;
+		return (fd);
 	}
 	else if (fd == O_DIRECTORY)
 	{
