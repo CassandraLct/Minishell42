@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif_cotes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:48:29 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 13:26:36 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/09 17:49:12 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,13 @@ char	*check_line(char *line)
 	if (line[i] == '\0')
 		return (ft_strdup(line));
 	cotes = line[i];
+	printf("cotes = %c\n", cotes);
 	s_line = get_sline(line, cotes);
+	printf("s_line = %s\n", s_line);
 	e_line = get_eline(line, cotes);
+	printf("e_line = %s\n", e_line);
 	tmp = get_tmp(line, cotes);
+	printf("tmp = %s\n", tmp);
 	free(line);
 	line = join_line(tmp, s_line, e_line);
 	free(s_line);

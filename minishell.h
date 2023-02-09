@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 12:12:33 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/09 15:42:38 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,19 @@ typedef struct s_cmd
 typedef struct s_min
 {
 	t_cmd	**struct_cmd;
+	pid_t	pid;
 	char	**c_env;
 	char	**c_exp;
+	char	*line;
+	char	*prompt;
+	char	*val_home;
 	int		ret_err;
 	int		fd_hd[2];
-	char	*line;
-	char	**tab;
-	char	*prompt;
 	int		nb_passage_exp;
 	int		nb_cmd;
-	pid_t	pid;
 	int		sig_heredoc;
-	char	*val_home;
+	int		rl_done;
+	int		in_cmd;
 }	t_min;
 
 extern t_min	g_mini;

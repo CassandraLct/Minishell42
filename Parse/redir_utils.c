@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/03 17:04:16 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/09 17:07:34 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	heredoc(char *cond)
 	int		pp[2];
 
 	pipe(pp);
-	while (1 && g_mini.sig_heredoc == 1)
+	while (g_mini.sig_heredoc == 1)
 	{
 		line = readline("> ");
 		if (ft_strncmp(cond, line, ft_strlen(line)) == 0)
@@ -28,10 +28,18 @@ int	heredoc(char *cond)
 			close(pp[1]);
 			return (pp[0]);
 		}
+		if(g_mini.sig_heredoc == 0)
+		{
+			g_mini.ret_err = 1;
+			break ;
+		}
 		write(pp[1], line, ft_strlen(line));
 		write(pp[1], "\n", 1);
 		free(line);
+		g_mini.rl_done = 1;
 	}
+	if (g_mini.sig_heredoc == 0)
+		exit(g_mini.ret_err);
 	return (pp[0]);
 }
 

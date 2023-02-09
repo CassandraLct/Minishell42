@@ -431,9 +431,10 @@ Mercredi 08/02:
 /!\ Refaire les test + norminette + leaks
 
 Jeudi 09/02:
-	-> Faire la norme;
+	-> Faire la norme; OK
 		-> fixe d'abordles fonctions de +25lignes; OK
 		-> fixe les too many functions in file; OK
-		-> reverifier la gestions des dollars (< $test)
-	->refaire tout les test;
+	-> reverifier la gestions des dollars (< $test)
+	-> refaire tout les test;
 	-> verifier les leaks;
+	-> Fixe les signaux; en cours (ctrlC fonctionne dans le heredoc) plus de probleme de ctrl \
