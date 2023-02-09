@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/09 17:07:34 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/09 23:15:06 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ int	heredoc(char *cond)
 	while (g_mini.sig_heredoc == 1)
 	{
 		line = readline("> ");
+		if (line == NULL)
+		{
+			g_mini.sig_heredoc = 0;
+			return (0);
+		}
 		if (ft_strncmp(cond, line, ft_strlen(line)) == 0)
 		{
 			free(line);

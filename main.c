@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 17:32:27 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/09 21:53:11 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,12 @@ int	main(int argc, char **argv, char **envp)
 		if (g_mini.line == NULL)
 			signal_exit();
 		add_history(g_mini.line);
-		printf("line1 = {%s}\n", g_mini.line);
 		parcour_line(&g_mini);
-		printf("line2 = {%s}\n", g_mini.line);
 		g_mini.line = verif_cmdcotes(g_mini.line);
-		printf("line3 = {%s}\n", g_mini.line);
 		g_mini.line = verif_pipes(g_mini.line);
-		printf("line4 = {%s}\n", g_mini.line);
 		if (g_mini.line[0] != '\0')
 		{
 			g_mini.struct_cmd = spliter3(spliter());
-			printf("cmd[0] = {%s}, cmd[1] = {%s}\n", g_mini.struct_cmd[0]->cmd[0], g_mini.struct_cmd[0]->cmd[1]);
-			printf("cmd[2] = {%s}, cmd[3] = {%s}\n", g_mini.struct_cmd[0]->cmd[2], g_mini.struct_cmd[0]->cmd[3]);
 			if (g_mini.struct_cmd != NULL)
 				inside_main();
 		}
