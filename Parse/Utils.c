@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:28:10 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 12:13:26 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/09 13:20:44 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*join_linetmp(char *s_line, char *tmp, char *e_line)
 	char	*tmp2;
 
 	tmp2 = NULL;
-    n_line = NULL;
+	n_line = NULL;
 	if (s_line != NULL && e_line == NULL)
 		n_line = ft_strjoin(s_line, tmp);
 	else if (s_line != NULL && e_line != NULL)
