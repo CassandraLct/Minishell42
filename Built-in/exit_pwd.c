@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_pwd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/08 16:25:30 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/09 10:25:44 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	pwd(char **c_env, char **cmd)
 }
 
 /*verifie si les arguments d'exit sont valide ou non et si il y en a plus qu'un 
-et renvoie le code erreur approprié(bash)*/
+et renvoie le code erreur approprié(bash) +25 lignes*/
 void	verif_arg_exit(t_min *mini, int i, char **cmd)
 {
 	char	*err;

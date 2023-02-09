@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modif_tcmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:17:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/08 21:05:56 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/09 11:31:25 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,13 @@ void	modif_cmd(char **cmd)
 			tmp = ft_strdup(cmd[i]);
 			free(cmd[i]);
 			cmd[i] = rm_cotesline(tmp);
-//			printf("cmd[i]2 = %s, i = %d\n", cmd[i], i);
 		}
 		i++;
 	}
 	tmp = ft_strdup(cmd[0]);
-//	printf("pre checkcmd = %s\n", cmd[0]);
 	free(cmd[0]);
 	cmd[0] = check_cmd(tmp);
 	free(tmp);
-//	printf("fin modif cmd = %s\n", cmd[0]);
 }
 
 //modifie la lignes stdin ou sort
@@ -95,13 +92,4 @@ void	modif_stdout(char **stdout)
 			rm_cotesline(stdout[i]);
 		i++;
 	}
-}
-
-//free str in check_line
-void	free_seline(char *s_line, char *e_line)
-{
-	if (s_line != NULL) // Leaks ici ------------------------------------------------------------------------
-		free(s_line);
-	if (e_line != NULL)
-		free(e_line);
 }

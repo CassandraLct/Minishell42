@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/08 11:37:08 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/09 11:51:34 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ extern t_min	g_mini;
 
 /*--------------------------BUILT-IN-----------------------------------*/
 //13 fichiers
-void	rl_replace_line(const char *text, int clear_undo);
-
 //cd.c 5 fonctions
 void	cd(t_min *mini, char **cmd);
 void	change_value_pwd(char **str);
@@ -106,8 +104,8 @@ void	add_valenv(t_min *mini, char *str);
 
 //export_change_val 5 fonctions
 char	*recup_name(char *cmp);
-void	redir_changeval(t_min *mini, char *str);
 char	*addegal(char *cmp);
+void	redir_changeval(t_min *mini, char *str);
 
 //export_utils.c 5 fonctions
 char	**fill_exp(char **new_val, char *str);
@@ -123,6 +121,12 @@ void	signal_exit(void);
 //unset.c 4 fonctions
 int		check_var(char *str);
 void	unset(t_min *mini, char **cmd);
+
+//annexe.c 3 fonctions
+char	*verif_pwd(char *line);
+char	*get_namevar(char *str);
+char	*get_tmp(char *line, char *cotes);
+int		verif_space(char *str);
 
 /*------------------------PARSE-------------------------------------------*/
 //12 fichiers
@@ -243,6 +247,12 @@ char	*check_cmd(char *line);
 char	*verif_pipes(char *line);
 void	verif_tmp(char *line);
 
+//Utils.c 4 fonctions
+int		get_endcotes(char *line, char cotes, int j);
+void	verif_tmp(char *line);
+char	*join_linetmp(char *s_line, char *tmp, char *e_line);
+char	*join_wout_tmp(char *s_line, char *e_line);
+
 /*-----------------------UTILS--------------------------------------------*/
 //5 fichiers
 //itoa.c (libft)
@@ -271,6 +281,9 @@ void	*ft_calloc(int count, int size);
 // printstruc.c
 void	printstruc(t_cmd *cmd);
 void	printstruc2(t_cmd **cmd);
+
+//fonction read_line(signaux.c)
+void	rl_replace_line(const char *text, int clear_undo);
 
 /*-----------------------------------------------------------------------*/
 

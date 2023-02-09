@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/08 15:41:42 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/09 11:37:47 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,20 +115,6 @@ char	**order_exp(char **c_exp, char **cmp)
 		y++;
 	}
 	return (c_exp);
-}
-
-int	verif_space(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '=')
-	{
-		if (str[i] == 32)
-			return (1);
-		i++;
-	}
-	return (0);
 }
 
 //add new_var ou affiche export

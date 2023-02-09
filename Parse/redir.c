@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/04 15:54:32 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/09 10:29:43 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	ft_open_file(char *file, int fd, int how)
 	return (fd);
 }
 
-// return the fd of the redirection out
+// return the fd of the redirection out +25 lignes
 int	ft_redir_out(t_cmd **cmd, int nb)
 {
 	int	i;

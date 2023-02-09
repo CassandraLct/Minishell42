@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitcmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/08 21:56:53 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/09 10:31:21 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	**pre_split(char *line)
 	return (resu);
 }
 
-// transform the command from char** to t_cmd type
+// transform the command from char** to t_cmd type +25 lignes
 t_cmd	*alloc_cmd(char **list)
 {
 	t_cmd	*resu;
@@ -89,7 +89,7 @@ t_cmd	*split_inst(char *temp)
 	return (resu);
 }
 
-//
+// + 25 lignes
 t_cmd	**spliter3(char **inst)
 {
 	t_cmd	**resu;

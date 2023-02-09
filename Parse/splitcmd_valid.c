@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitcmd_valid.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/08 22:26:59 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/09 10:33:06 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	cvr(char *in0, char *in1)
 	return (1);
 }
 
-// check some bad instructions or redirections
+// check some bad instructions or redirections +25 lignes
 t_cmd	**validation_cmd(t_cmd **resu)
 {
 	int	i;

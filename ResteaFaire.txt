@@ -422,3 +422,9 @@ Mercredi 08/02:
 	-> echo ''
 
 /!\ Refaire les test + norminette + leaks
+
+Jeudi 09/02:
+	-> Faire la norme;
+		-> fixe d'abordles fonctions de +25lignes; OK
+		-> fixe les too many functions in file; OK
+		-> reverifier la gestions des dollars (< $test)
