@@ -294,10 +294,17 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 *ECHO: OK
 	-> echo -n -n -nnnn -nnnnm OK
 	-> echo hi " ; " hihi OK
+	-> echo hello""world
+	-> echo ""
+	-> echo $?HELLO
+	-> echo "coucou ->'"
+	-> echo 'exit_code ->$? user ->$USER home -> $HOME'
+	-> echo 'exit_code ->$? user ->$USER home -> $HOME'
 *EXPORT: OK
 	-> export "" et unset "" OK
 	-> export var; export var=test OK
 	-> export "HI =hi" OK
+	-> export A-
 *CD:
 	-> cd $HOME/Documents OK
 	-> cd ../../../../../.. puis pwd: OK
@@ -343,6 +350,7 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 Autre Test: 19 TESTS
 -> minishell unset PATH OK
 -> echo | => OK
+
 
 Test OK : (a retester avant de rendre)
 
