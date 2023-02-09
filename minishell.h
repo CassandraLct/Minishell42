@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 11:51:34 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/09 11:52:55 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 /*----------ERROR MES-----------*/
 # define ERR_TOKEN "minishell: syntax error near unexpected token `newline'\n"
 # define ERR_TOKEN_SHORT "minishell: syntax error near unexpected token `"
+# define ERR_NUM "numeric argument required"
 
 /*----------STRUCTURE-----------*/
 //structure tableau de cmd
@@ -87,7 +88,10 @@ void	ft_env(t_min *mini, char **cmd);
 void	change_val(char **str, char *new_pwd, char *pwd, char *oldpwd);
 void	add_reponame(char **str, char *repo);
 
-//exit_pwd.c 5 fonctions
+//exit_pwd_utils.c 3 fonctions
+void	verif_arg_exit(t_min *mini, int i, char **cmd);
+
+//exit_pwd.c 4 fonctions
 int		recup_new_pwd(char **str);
 void	exit_min(t_min *mini, char **cmd);
 void	pwd(char **c_env, char **cmd);
@@ -199,9 +203,11 @@ char	*ft_last_single_redir_in(t_cmd **cmd);
 int		ft_what_is_last_redir_in(t_cmd **cmd);
 int		ft_open_file(char *file, int fd, int how);
 
+// redir_utils2.c
+int		ft_redir_out(t_cmd **cmd, int nb);
+
 // redir.c
 int		ft_redir_in(t_cmd **cmd);
-int		ft_redir_out(t_cmd **cmd, int nb);
 
 //splitcmd.c
 t_cmd	**spliter3(char **inst);

@@ -6,7 +6,7 @@
 #    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2023/02/09 11:40:09 by clecat           ###   ########.fr        #
+#    Updated: 2023/02/09 11:52:43 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC		=	main.c \
 		Built-in/cd_tild.c \
 		Built-in/echo.c \
 		Built-in/env.c \
+		Built-in/exit_pwd_utils.c \
 		Built-in/exit_pwd.c \
 		Built-in/export_addvar.c \
 		Built-in/export.c \
@@ -41,6 +42,7 @@ SRC		=	main.c \
 		Parse/pipe_utils.c \
 		Parse/pipe.c \
 		Parse/redir_utils.c \
+		Parse/redir_utils2.c \
 		Parse/redir.c \
 		Parse/splitcmd_utils1.c \
 		Parse/splitcmd_utils2.c \
