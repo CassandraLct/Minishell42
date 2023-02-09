@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/08 11:37:08 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/09 10:54:06 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 /*----------ERROR MES-----------*/
 # define ERR_TOKEN "minishell: syntax error near unexpected token `newline'\n"
 # define ERR_TOKEN_SHORT "minishell: syntax error near unexpected token `"
+# define ERR_NUM "numeric argument required"
 
 /*----------STRUCTURE-----------*/
 //structure tableau de cmd
@@ -89,7 +90,10 @@ void	ft_env(t_min *mini, char **cmd);
 void	change_val(char **str, char *new_pwd, char *pwd, char *oldpwd);
 void	add_reponame(char **str, char *repo);
 
-//exit_pwd.c 5 fonctions
+//exit_pwd_utils.c 3 fonctions
+void	verif_arg_exit(t_min *mini, int i, char **cmd);
+
+//exit_pwd.c 4 fonctions
 int		recup_new_pwd(char **str);
 void	exit_min(t_min *mini, char **cmd);
 void	pwd(char **c_env, char **cmd);

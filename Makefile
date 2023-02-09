@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
+#    By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2023/02/08 11:37:53 by clecat           ###   ########.fr        #
+#    Updated: 2023/02/09 10:49:27 by rdi-marz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC		=	main.c \
 		Built-in/cd_tild.c \
 		Built-in/echo.c \
 		Built-in/env.c \
+		Built-in/exit_pwd_utils.c \
 		Built-in/exit_pwd.c \
 		Built-in/export_addvar.c \
 		Built-in/export.c \

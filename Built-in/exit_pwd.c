@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_pwd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/08 16:25:30 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/09 10:48:10 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,42 +79,6 @@ void	pwd(char **c_env, char **cmd)
 		g_mini.ret_err = 127;
 		printf("minishell: %s: No such file or directory\n", cmd[0]);
 		return ;
-	}
-}
-
-/*verifie si les arguments d'exit sont valide ou non et si il y en a plus qu'un 
-et renvoie le code erreur approprié(bash)*/
-void	verif_arg_exit(t_min *mini, int i, char **cmd)
-{
-	char	*err;
-
-	err = "numeric argument required";
-	if (strdigit(cmd[i]) == 0)
-	{
-		if (ft_strlen(cmd[i]) >= 19)
-		{
-			printf("exit\nminishell: %s: %s: %s\n", cmd[0], cmd[i], err);
-			mini->ret_err = ft_atoi(cmd[i]) % 256;
-			exit(mini->ret_err);
-		}
-		if (cmd[i + 1] == NULL)
-		{
-			if (g_mini.nb_cmd == 1)
-				printf("exit\n");
-			mini->ret_err = ft_atoi(cmd[i]) % 256;
-			exit(mini->ret_err);
-		}
-		else
-		{
-			printf("exit\nminishell: exit: too many arguments\n");
-			mini->ret_err = 1;
-		}
-	}
-	else if (strdigit(cmd[i]) == 1)
-	{
-		printf("exit\nminishell: exit: %s: %s\n", cmd[i], err);
-		mini->ret_err = 255;
-		exit(mini->ret_err);
 	}
 }
 
