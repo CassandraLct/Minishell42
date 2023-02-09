@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/09 13:12:11 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/09 13:36:30 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,15 @@ char	**pre_split(char *line)
 	return (resu);
 }
 
+// intitialize 4 int at 0
+void	zero_four_int(int *a, int *b, int *c, int *d)
+{
+	*a = 0;
+	*b = 0;
+	*c = 0;
+	*d = 0;
+}
+
 // transform the command from char** to t_cmd type +25 lignes
 t_cmd	*alloc_cmd(char **list)
 {
@@ -50,10 +59,7 @@ t_cmd	*alloc_cmd(char **list)
 	int		index[3];
 
 	resu = ft_malloc_resu(list);
-	i = 0;
-	index[0] = 0;
-	index[1] = 0;
-	index[2] = 0;
+	zero_four_int(&i, &index[0], &index[1], &index[2]);
 	while (list[i])
 	{
 		if (list[i][0] == '<')
