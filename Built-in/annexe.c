@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:36:11 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 11:51:13 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/09 12:26:11 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*get_namevar(char *str)
 }
 
 //modifie line et tmp
-char	*get_tmp(char *line, char *cotes)
+char	*get_tmp(char *line, char cotes)
 {
 	char	*tmp;
 	char	*tmp2;
@@ -68,6 +68,5 @@ char	*get_tmp(char *line, char *cotes)
 	tmp2 = ft_strdup(tmp);
 	free(tmp);
 	tmp = rm_cotes(tmp2, cotes);
-	free(tmp2);
 	return (tmp);
 }

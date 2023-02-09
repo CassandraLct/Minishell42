@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 11:52:55 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/09 12:12:33 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void	unset(t_min *mini, char **cmd);
 //annexe.c 3 fonctions
 char	*verif_pwd(char *line);
 char	*get_namevar(char *str);
-char	*get_tmp(char *line, char *cotes);
+char	*get_tmp(char *line, char cotes);
 int		verif_space(char *str);
 
 /*------------------------PARSE-------------------------------------------*/
@@ -240,6 +240,7 @@ void	*ft_test(void *var, void *error);
 
 //verif_cotes.c 5 fonctions
 char	*verif_cmdcotes(char *line);
+char	*rm_cotes(char *line, char cotes);
 
 //verif_cotes_utils.c 5 fonctions
 char	*get_sline(char *line, char cotes);

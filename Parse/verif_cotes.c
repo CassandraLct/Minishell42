@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:48:29 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 11:50:53 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/09 12:26:06 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ char	*check_line(char *line)
 	line = join_line(tmp, s_line, e_line);
 	free(s_line);
 	free(e_line);
-	free(tmp);
 	return (line);
 }
 

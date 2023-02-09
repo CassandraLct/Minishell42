@@ -428,3 +428,5 @@ Jeudi 09/02:
 		-> fixe d'abordles fonctions de +25lignes; OK
 		-> fixe les too many functions in file; OK
 		-> reverifier la gestions des dollars (< $test)
+	->refaire tout les test;
+	-> verifier les leaks;
