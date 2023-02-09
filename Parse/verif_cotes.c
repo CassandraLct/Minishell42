@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif_cotes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:48:29 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 12:26:06 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/09 13:26:36 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ char	*check_line(char *line)
 	s_line = NULL;
 	e_line = NULL;
 	i = find_cotes(line);
-	if (line[i] == '\0') //?
+	if (line[i] == '\0')
 		return (ft_strdup(line));
 	cotes = line[i];
 	s_line = get_sline(line, cotes);
