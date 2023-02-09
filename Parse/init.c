@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:36:33 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/04 15:42:37 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/09 15:42:54 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,17 @@ void	aff_err(char **cmd)
 //initialise la structure
 void	init_struct(t_min *mini, char **envp)
 {
-	mini->ret_err = 0;
-	mini->sig_heredoc = 1;
-	mini->pid = -1;
-	mini->line = NULL;
-	mini->tab = NULL;
-	mini->prompt = "minishell> ";
 	mini->c_env = ft_cpytab(envp);
 	init_export(mini);
-	mini->nb_passage_exp = 0;
+	mini->line = NULL;
+	mini->prompt = "minishell> ";
 	mini->val_home = recup_valhome(mini->c_env);
+	mini->ret_err = 0;
+	mini->nb_passage_exp = 0;
+	mini->sig_heredoc = 1;
+	mini->rl_done = 0;
+	mini->in_cmd = 0;
+	mini->pid = -1;
 }
 
 //creer la copie d'export au tout début

@@ -315,8 +315,8 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 	-> cat > > => bug bash: syntax error near unexpected token `>' ok
 	-> cat > mauvais message d'erreur `newline' au lieu de `>' ok
 	-> echo hudifg d | | hugdfihd => OK
-	-> echo '' => OK erreur 
-	-> echo "" => bug (pas de retour a la ligne) erreur 
+	-> echo '' => OK
+	-> echo "" =>OKbug (pas de retour a la ligne) erreur 
 *RET_ERR:
 	-> cat Makefile | grep pr | head -n 5 | cd test OK 
 	-> cat Makefile | grep pr | head -n 5 | cat test OK 
@@ -328,12 +328,12 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 	-> exit 0 | exit 1 => bug print exit
 	-> exit 1 | exit 0 => bug meme cas
 	-> /bin/ls => OK
-*SIGNAUX: A tester a la toute fin car bug venu de nul part
-	-> ctrl-C . 130 sur bin(ex : sleep 10)&line vide NON TESTER
+*SIGNAUX: A tester
+	-> ctrl-C . 130 sur bin(ex : sleep 10)&line NON TESTER CAR NON COMPRIS
  	-> ctrl-\ .131 sur bin NON TESTER
-	-> # write something the press ctrl+c => bug ne dois pas ecrire ^C
-	-> # write something then press ctrl+d
-	-> # write something then press ctrl+\
+	-> # write something the press ctrl+c OK
+	-> # write something then press ctrl+d OK
+	-> # write something then press ctrl+\ a tester une fois fini
 *EXIT: OK
 	-> exit -10 OK
 	-> exit +10 OK
@@ -424,9 +424,10 @@ Mercredi 08/02:
 /!\ Refaire les test + norminette + leaks
 
 Jeudi 09/02:
-	-> Faire la norme;
+	-> Faire la norme; OK
 		-> fixe d'abordles fonctions de +25lignes; OK
 		-> fixe les too many functions in file; OK
-		-> reverifier la gestions des dollars (< $test)
-	->refaire tout les test;
+	-> reverifier la gestions des dollars (< $test)
+	-> refaire tout les test;
 	-> verifier les leaks;
+	-> Fixe les signaux; en cours (ctrlC fonctionne dans le heredoc) plus de probleme de ctrl \

@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 12:26:19 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/09 17:32:27 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,27 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	init_struct(&g_mini, envp);
-	signaux();
 	while (1)
 	{
+		signaux();
 		g_mini.pid = -1;
 		g_mini.sig_heredoc = 1;
 		g_mini.line = readline(g_mini.prompt);
 		if (g_mini.line == NULL)
 			signal_exit();
 		add_history(g_mini.line);
+		printf("line1 = {%s}\n", g_mini.line);
 		parcour_line(&g_mini);
+		printf("line2 = {%s}\n", g_mini.line);
 		g_mini.line = verif_cmdcotes(g_mini.line);
+		printf("line3 = {%s}\n", g_mini.line);
 		g_mini.line = verif_pipes(g_mini.line);
+		printf("line4 = {%s}\n", g_mini.line);
 		if (g_mini.line[0] != '\0')
 		{
 			g_mini.struct_cmd = spliter3(spliter());
+			printf("cmd[0] = {%s}, cmd[1] = {%s}\n", g_mini.struct_cmd[0]->cmd[0], g_mini.struct_cmd[0]->cmd[1]);
+			printf("cmd[2] = {%s}, cmd[3] = {%s}\n", g_mini.struct_cmd[0]->cmd[2], g_mini.struct_cmd[0]->cmd[3]);
 			if (g_mini.struct_cmd != NULL)
 				inside_main();
 		}

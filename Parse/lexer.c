@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:09 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 10:27:15 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/09 16:48:54 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	redir_pipe(t_min *mini, t_cmd **cmd)
 			piping();
 		else
 		{
+			mini->in_cmd = 1;
 			if (ft_strcmp(cmd[0]->cmd[0], "exit") == 0 && cmd[1] == NULL)
 				exit_min(mini, cmd[0]->cmd);
 			else if (ft_strcmp(cmd[0]->cmd[0], "cd") == 0 && cmd[1] == NULL)
