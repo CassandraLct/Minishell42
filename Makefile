@@ -6,7 +6,7 @@
 #    By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2023/02/09 10:49:27 by rdi-marz         ###   ########.fr        #
+#    Updated: 2023/02/09 11:07:30 by rdi-marz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRC		=	main.c \
 		Parse/pipe_utils.c \
 		Parse/pipe.c \
 		Parse/redir_utils.c \
+		Parse/redir_utils2.c \
 		Parse/redir.c \
 		Parse/splitcmd_utils1.c \
 		Parse/splitcmd_utils2.c \

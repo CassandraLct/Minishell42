@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 10:54:06 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/09 11:08:12 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,9 +199,11 @@ char	*ft_last_single_redir_in(t_cmd **cmd);
 int		ft_what_is_last_redir_in(t_cmd **cmd);
 int		ft_open_file(char *file, int fd, int how);
 
+// redir_utils2.c
+int		ft_redir_out(t_cmd **cmd, int nb);
+
 // redir.c
 int		ft_redir_in(t_cmd **cmd);
-int		ft_redir_out(t_cmd **cmd, int nb);
 
 //splitcmd.c
 t_cmd	**spliter3(char **inst);
