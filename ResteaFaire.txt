@@ -292,26 +292,25 @@ LEAKS :
 
 Test minishell non fonctionnel: test fixe ce matin (6)
 *ECHO: OK
-	-> echo -n -n -nnnn -nnnnm OK
-	-> echo hi " ; " hihi OK
-	-> echo hello""world
-	-> echo ""
-	-> echo $?HELLO
-	-> echo "coucou ->'"
-	-> echo 'exit_code ->$? user ->$USER home -> $HOME'
-	-> echo 'exit_code ->$? user ->$USER home -> $HOME'
+	-> echo -n -n -nnnn -nnnnm OK 							*OK*
+	-> echo hi " ; " hihi OK								*KO*	ret_err=1 bash=>0
+	-> echo hello""world									*KO*	ret_err=1 bash=>0	imprime hello, bash=>helloworld
+	-> echo ""												*KO*	ret_err=1 bash=>0
+	-> echo $?HELLO											*KO*	ret_err=1 bash=>0	imprime 1, bash=>0HELLO
+	-> echo "coucou ->'"									*KO*	ret_err=1 bash=>0	imprime des espace autour de >
 *EXPORT: OK
-	-> export "" et unset "" OK
-	-> export var; export var=test OK
-	-> export "HI =hi" OK
-	-> export A-
+	-> export ""											*KO*						imprime export, bash=>bash: export: `': not a valid identifier
+	-> unset "" OK											*KO*						n'imprime rien, bash=>bash: unset: `': not a valid identifier
+	-> export var; export var=test OK						*KO*	ret_err=1 bash=>0	export: `var;': not a valid identifier, bash=>n'imprime rien
+	-> export "HI =hi" OK									*OK*
+	-> export A-											*OK*
 *CD:
-	-> cd $HOME/Documents OK
-	-> cd ../../../../../.. puis pwd: OK
-	-> cd .. => OK
+	-> cd $HOME/Documents OK								*KO*	ret_err=1 bash=>0
+	-> cd ../../../../../.. puis pwd: OK					*KO*	ret_err=1 bash=>0
+	-> cd .. => OK											*KO*	ret_err=1 bash=>0
 *PARSING:
-	-> echo bonjour;| OK
-	-> $ ret_err doit etre egal a 127
+	-> echo bonjour;| OK									*OK*
+	-> $ ret_err doit etre egal a 127						*KO*	ret_err=1 bash=>127
 	-> not_cmd bonjour > salut fonctionne differement (minishell: creer le fichier et mets le message d'erreur dedans ;bash ne creer pas le fichier et met le message d'erreur)
 	-> echo bonjour > > out (fonctionne dans mnishell alors que et creer un fichier > ;dans bash: bash: syntax error near unexpected token `>') PARSING
 	-> echo bonjour > $test OK mais mauvais message d'erreur bash: $test: ambiguous redirect (gestion dollar)
