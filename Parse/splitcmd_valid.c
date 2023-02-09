@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitcmd_valid.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/09 10:33:06 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/09 13:13:15 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_cmd	**validation_cmd(t_cmd **resu)
 		{
 			if (cvr(resu[i]->stdin[j], resu[i]->stdin[j + 1]) == 0)
 			{
-//				free_t_cmd(resu); LEAKS
+				free_t_cmd(resu);
 				return (NULL);
 			}
 			j++;
@@ -56,7 +56,7 @@ t_cmd	**validation_cmd(t_cmd **resu)
 		{
 			if (cvr(resu[i]->stdout[j], resu[i]->stdout[j + 1]) == 0)
 			{
-//				free_t_cmd(resu); LEAKS
+				free_t_cmd(resu);
 				return (NULL);
 			}
 			j++;
