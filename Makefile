@@ -6,7 +6,7 @@
 #    By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2023/02/09 14:45:06 by rdi-marz         ###   ########.fr        #
+#    Updated: 2023/02/09 16:36:53 by rdi-marz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ SRC		=	main.c \
 		Parse/verif_cotes_utils.c \
 		Parse/check_cmd.c \
 		Parse/verif_pipes.c \
-		Parse/Utils.c \
+		Parse/utils.c \
 		Utils/ft_split.c \
 		Utils/ft_itoa.c \
 		Utils/utils.c \

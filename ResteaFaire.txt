@@ -292,49 +292,48 @@ LEAKS :
 
 Test minishell non fonctionnel: test fixe ce matin (6)
 *ECHO: OK
-	-> echo -n -n -nnnn -nnnnm OK 											*OK*
+	-> echo -n -n -nnnn -nnnnm OK 										*OK*
 	-> echo hi " ; " hihi OK												*KO*	ret_err=1 bash=>0
 	-> echo hello""world													*KO*	ret_err=1 bash=>0	imprime hello, bash=>helloworld
-	-> echo ""																*KO*	ret_err=1 bash=>0
 	-> echo $?HELLO															*KO*	ret_err=1 bash=>0	imprime 1, bash=>0HELLO
 	-> echo "coucou ->'"													*KO*	ret_err=1 bash=>0	imprime des espace autour de >
 *EXPORT: OK	
 	-> export ""															*KO*						imprime export, bash=>bash: export: `': not a valid identifier
 	-> unset "" OK															*KO*						n'imprime rien, bash=>bash: unset: `': not a valid identifier
 	-> export var; export var=test OK										*KO*	ret_err=1 bash=>0	export: `var;': not a valid identifier, bash=>n'imprime rien
-	-> export "HI =hi" OK													*OK*
-	-> export A-															*OK*
+	-> export "HI =hi" OK												*OK*
+	-> export A-														*OK*
 *CD:
 	-> cd $HOME/Documents OK												*KO*	ret_err=1 bash=>0
 	-> cd ../../../../../.. puis pwd: OK									*KO*	ret_err=1 bash=>0
 	-> cd .. => OK															*KO*	ret_err=1 bash=>0
 *PARSING:
-	-> echo bonjour;| OK													*OK*
+	-> echo bonjour;| OK												*OK*
 	-> $ ret_err doit etre egal a 127										*KO*	ret_err=1 bash=>127
 	-> not_cmd bonjour > salut fonctionne differement (minishell: creer le fichier et mets le message d'erreur dedans ;bash ne creer pas le fichier et met le message d'erreur) *KO*
 	-> echo bonjour > > out (fonctionne dans mnishell alors que et creer un fichier > ;dans bash: bash: syntax error near unexpected token `>') PARSING 						*OK*
 	-> echo bonjour > $test OK mais mauvais message d'erreur bash: $test: ambiguous redirect (gestion dollar) 									*KO* ret_err=2 bash=>1 mauvais msg d'erreur
 	-> /bin/echo bonjour OK													*KO*	ret_err=1 bash=>0
-	-> | echo => OK															*OK*
-	-> cat < > => bug bash: syntax error near unexpected token `>' ok		*OK*
-	-> cat < < => bug bash: syntax error near unexpected token `>' ok		*OK*
-	-> cat > > => bug bash: syntax error near unexpected token `>' ok		*OK*
+	-> | echo => OK														*OK*
+	-> cat < > => bug bash: syntax error near unexpected token `>' ok	*OK*
+	-> cat < < => bug bash: syntax error near unexpected token `>' ok	*OK*
+	-> cat > > => bug bash: syntax error near unexpected token `>' ok	*OK*
 	-> cat > mauvais message d'erreur `newline' au lieu de `>' ok			*KO*	ret_err=2 bash=>258		=> ne va pas dans le bon programme bug a fix
 	-> cat <																*KO*	cat pending				=> ne va pas dans le bon programme bug a fix
-	-> echo hudifg d | | hugdfihd => OK										*OK*
+	-> echo hudifg d | | hugdfihd => OK									*OK*
 	-> echo '' => OK erreur 												*KO*	ret_err=1 bash=>0
-	-> echo "" => bug (pas de retour a la ligne) erreur 
+	-> echo "" => bug (pas de retour a la ligne) erreur 					*KO*	ret_err=1 bash=>0
 *RET_ERR:
-	-> cat Makefile | grep pr | head -n 5 | cd test OK 
-	-> cat Makefile | grep pr | head -n 5 | cat test OK 
-	-> cat Makefile | grep pr | head -n 5 | hello OK et mauvais ret_err (1 au lieu de 127)
-	-> ; minishell OK ret_err soit etre a 258
+	-> cat Makefile | grep pr | head -n 5 | cd test OK 					*OK*
+	-> cat Makefile | grep pr | head -n 5 | cat test OK 				*OK*
+	-> cat Makefile | grep pr | head -n 5 | hello  ret_err (1 vs 127)		*KO*	ret_err=1 bash=>127
+	-> ; minishell OK ret_err soit etre a 258								*KO*	ret_err=1 bash=>258		msg erreur different, ok car ; est hors sujet
 *REDIRECTION/PIPE:
-	-> cat < test2(fichier non existant) OK
-	-> echo bonjour > $test w/ t (boucle) > mauvais message d'erreur (verif $? doit etre a 1) gestion dollar
-	-> exit 0 | exit 1 => bug print exit
-	-> exit 1 | exit 0 => bug meme cas
-	-> /bin/ls => OK
+	-> cat < test2(fichier non existant) OK									*KO*							cat boucle
+	-> echo bonjour > $test w/ t (boucle) > mauvais message d'erreur (verif $? doit etre a 1) gestion dollar	*KO*
+	-> exit 0 | exit 1 => bug print exit								*OK*
+	-> exit 1 | exit 0 => bug meme cas									*OK*
+	-> /bin/ls => OK													*OK*
 *SIGNAUX: A tester a la toute fin car bug venu de nul part
 	-> ctrl-C . 130 sur bin(ex : sleep 10)&line vide NON TESTER
  	-> ctrl-\ .131 sur bin NON TESTER
