@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_pwd_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 10:56:09 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/09 14:43:06 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	exit_number_too_big(t_min *mini, int i, char **cmd)
 {
 	printf("exit\nminishell: %s: %s: %s\n", cmd[0], cmd[i], ERR_NUM);
-	mini->ret_err = ft_atoi(cmd[i]) % 256; // tester le retour sur mac
+	mini->ret_err = 255;
 	exit(mini->ret_err);
 }
 
