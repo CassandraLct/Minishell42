@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
+#    By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2023/02/09 11:52:43 by clecat           ###   ########.fr        #
+#    Updated: 2023/02/09 16:36:53 by rdi-marz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ SRC		=	main.c \
 		Parse/verif_cotes_utils.c \
 		Parse/check_cmd.c \
 		Parse/verif_pipes.c \
-		Parse/Utils.c \
+		Parse/utils.c \
 		Utils/ft_split.c \
 		Utils/ft_itoa.c \
 		Utils/utils.c \
@@ -94,18 +94,6 @@ norme	:
 	| egrep -v "readdir|closedir|strerror|perror|isatty|ttyname|ttyslot" \
 	| egrep -v "ioctl|getenv|csuetattr|tcgetattr|tgetent|tgetflag" \
 	| egrep -v "tgetnum|tgetstr|tgoto|tputs|dyld_stub_binder" || true
-
-test :
-	@./minishell <t01 || true
-	@./minishell <t02 || true
-	@./minishell <t03 || true
-	@./minishell <t04 || true
-	@./minishell <t05 || true
-	@./minishell <t06 || true
-	@./minishell <t07 || true
-	@./minishell <t08 || true
-	@./minishell <t09 || true
-	@./minishell <t10 || true
 
 re	:	fclean all
 

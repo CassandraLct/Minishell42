@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitcmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/09 10:31:21 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/09 13:36:30 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,15 @@ char	**pre_split(char *line)
 	return (resu);
 }
 
+// intitialize 4 int at 0
+void	zero_four_int(int *a, int *b, int *c, int *d)
+{
+	*a = 0;
+	*b = 0;
+	*c = 0;
+	*d = 0;
+}
+
 // transform the command from char** to t_cmd type +25 lignes
 t_cmd	*alloc_cmd(char **list)
 {
@@ -50,10 +59,7 @@ t_cmd	*alloc_cmd(char **list)
 	int		index[3];
 
 	resu = ft_malloc_resu(list);
-	i = 0;
-	index[0] = 0;
-	index[1] = 0;
-	index[2] = 0;
+	zero_four_int(&i, &index[0], &index[1], &index[2]);
 	while (list[i])
 	{
 		if (list[i][0] == '<')
@@ -106,17 +112,15 @@ t_cmd	**spliter3(char **inst)
 	while (inst[i])
 	{
 		temp[i] = ft_strtrim(inst[i], " ");
-		free(inst[i]);
 		tempclean[i] = ft_space_bracket(temp[i]);
-		free(temp[i]);
 		resu[i] = split_inst(tempclean[i]);
 		free(tempclean[i++]);
 	}
-	free(inst);
-	free(temp);
+	free_tab(inst);
+	free_tab(temp);
 	free(tempclean);
 	resu[i] = NULL;
-	// potentiel bug a cause de l'utilisation de resu dans le resultat et les parametre
 	resu = validation_cmd(resu);
 	return (resu);
 }
+// potentiel bug a cause de resu dans le resultat et les parametre

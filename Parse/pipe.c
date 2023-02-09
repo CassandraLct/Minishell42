@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/09 14:39:51 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/09 17:48:59 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	piping(void)
 	while (g_mini.struct_cmd[i + 1])
 	{
 		if (pipe(pp[i]) == -1)
-			dprintf(2, "pipe bug\n");
+			printf("minishell: pipe bug\n");
 		pid = fork();
 		g_mini.pid = pid;
 		if (pid == -1)

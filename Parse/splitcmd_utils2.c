@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitcmd_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/08 17:36:32 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/09 13:22:43 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ void	free_t_cmd(t_cmd **cmd)
 	int	i;
 
 	i = 0;
-	while (cmd[i])
+	while (i < g_mini.nb_cmd)
 	{
-		if (cmd[i]->cmd != NULL) // Probleme sur un des 3 free (free en trop)
+		if (cmd[i]->cmd != NULL)
 			free_tab(cmd[i]->cmd);
 		if (cmd[i]->stdin != NULL)
 			free_tab(cmd[i]->stdin);
