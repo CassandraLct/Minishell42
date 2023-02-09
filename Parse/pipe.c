@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/09 10:38:49 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/09 14:21:41 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	piping(void)
 	while (g_mini.struct_cmd[i + 1])
 	{
 		if (pipe(pp[i]) == -1)
-			dprintf(2, "pipe bug\n");
+			printf("minishell: pipe bug\n");
 		pid = fork();
 		g_mini.pid = pid;
 		if (pid == -1)

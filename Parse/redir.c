@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/09 12:14:56 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/09 14:22:39 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,34 +100,3 @@ int	ft_open_file(char *file, int fd, int how)
 	}
 	return (fd);
 }
-
-// return the fd of the redirection out +25 lignes
-// int	ft_redir_out(t_cmd **cmd, int nb)
-// {
-// 	int	i;
-// 	int	fd;
-
-// 	i = 0;
-// 	fd = 0;
-// 	while (cmd[nb]->stdout[i])
-// 	{
-// 		if (cmd[nb]->stdout[i + 1] == NULL)
-// 		{
-// 			printf("minishell: syntax error near unexpected token `newline'\n");
-// 			g_mini.ret_err = 258;
-// 			exit (g_mini.ret_err);
-// 		}
-// 		if (ft_strcmp(cmd[nb]->stdout[i], ">") == 0)
-// 			fd = ft_open_file(cmd[nb]->stdout[i + 1], fd, 1);
-// 		else if (ft_strcmp(cmd[nb]->stdout[i], ">>") == 0)
-// 			fd = ft_open_file(cmd[nb]->stdout[i + 1], fd, 2);
-// 		else
-// 		{
-// 			dprintf(2, "minishell: syntax error near unexpected token `>'\n");
-// 			g_mini.ret_err = 258;
-// 			exit (g_mini.ret_err);
-// 		}
-// 		i += 2;
-// 	}
-// 	return (fd);
-// }
