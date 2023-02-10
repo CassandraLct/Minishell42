@@ -401,9 +401,9 @@ Test OK : (a retester avant de rendre)
 	-> cd a b c d => OK													*OK*
 	-> pwd a => OK														*OK*	ret_err=0 bash=>0
 	-> pwd a b c d => OK												*OK*	ret_err=0 bash=>0
-	-> export LOL=lala ROR=rara => OK										*KO*	ret_err=127 bash=>0
+	-> export LOL=lala ROR=rara => OK									*OK*	ret_err=0 bash=>0
 	-> unset LOL ROR => OK												*OK*	ret_err=0 bash=>0
-	-> export "HI= hi" => OK												*KO*	ret_err=127 bash=>0
+	-> export "HI= hi" => OK											*OK*	ret_err=0 bash=>0
 	-> echo $? => OK													*OK*
 	-> l^Ds => OK														*OK*
 	-> sort | ls # check output order => OK								*OK*

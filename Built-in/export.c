@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 10:51:22 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 15:18:18 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	new_vars(t_min *mini, char *str, int y, char **cmd)
 	if (mini->nb_passage_exp == 0)
 		add_valexp(mini, str);
 	mini->nb_passage_exp = 0;
+	mini->ret_err = 0;
 }
 
 //verifie si index envoyer est deja present dans copy exp
