@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/09 14:22:39 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 15:45:01 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,30 @@ int	ft_redir_in(t_cmd **cmd)
 	return (fd_return_redir_in(cmd, last_redir, fd));
 }
 
+// return 1 if there is a dollar in the name
+int	is_dollar_inside(char *file)
+{
+	int	i;
+
+	i = 0;
+	while(file[i])
+	{
+		if (file[i] == '$')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 // open file and return the fd
 // close fd if allready open, open the file how=1 for > and how=2 for >>
 int	ft_open_file(char *file, int fd, int how)
 {
+	if (is_dollar_inside(file) == 1)
+	{
+		g_mini.ret_err = 1;
+		exit (1);
+	}
 	if (fd)
 		close(fd);
 	if (how == 1)
