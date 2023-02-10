@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 13:51:02 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 15:42:54 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 15:50:45 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,9 @@ char	*var_false(char *line)
 	char	*name_var;
 	char	*tmp;
 
-	printf("ici\n");
 	if (verif_redirdollar(line) == 1)
 	{
 		name_var = ft_strjoin("$", recup_namevar(line));
-		printf("name_var = %s\n", name_var);
 		printf("minishell: %s: ambiguous redirect\n", name_var);
 		free(name_var);
 		g_mini.ret_err = 1;
