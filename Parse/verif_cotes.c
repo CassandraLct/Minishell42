@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:48:29 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 13:34:41 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 13:45:44 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ char	*check_line(char *line)
 	s_line = get_sline(line, cotes);
 	e_line = get_eline(line, cotes);
 	tmp = get_tmp(line, cotes);
+	printf("tmp = {%s}\n", tmp);
 	free(line);
 	line = join_line(tmp, s_line, e_line);
 	free(s_line);

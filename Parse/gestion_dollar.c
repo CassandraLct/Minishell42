@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 13:51:02 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/08 16:10:52 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 15:18:40 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,27 @@ char	*var_false(char *line)
 	char	*name_var;
 	char	*tmp;
 
-	name_var = malloc(sizeof(char) * 1);
-	name_var[0] = '\0';
-	tmp = change_line(name_var, line);
-	free(line);
-	line = ft_strdup(tmp);
-	free(tmp);
+	printf("ici\n");
+	if (verif_redirdollar(line) == 1)
+	{
+		name_var = ft_strjoin("$", recup_namevar(line));
+		printf("name_var = %s\n", name_var);
+		printf("minishell: %s: ambiguous redirect\n", name_var);
+		free(name_var);
+		g_mini.ret_err = 1;
+		return (line);
+	}
+	else if (verif_redirdollar(line) == 2)
+		return (line);
+	else
+	{
+		name_var = malloc(sizeof(char) * 1);
+		name_var[0] = '\0';
+		tmp = change_line(name_var, line);
+		free(line);
+		line = ft_strdup(tmp);
+		free(tmp);
+	}
 	return (line);
 }
 
@@ -82,6 +97,12 @@ char	*redir_line(char *line, int nb_dollar)
 		else if (verif_dollarcase(tmp_line) == 3)
 		{
 			line = var_false(tmp_line);
+		}
+		else if (verif_dollarcase(tmp_line) == 4)
+		{
+			line = ft_strdup(tmp_line);
+			free(tmp_line);
+			return (line);
 		}
 		tmp_line = ft_strdup(line);
 		nb_dollar--;

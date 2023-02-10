@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:54:56 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 17:44:06 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 13:54:32 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ char	*changecotesline(char *line, char cotes)
 	if (line[start] == ' ' || line[start] == '<' || line[start] == '>')
 		start += 1;
 	tmp = tmpline(line, start, end);
+	printf("tmpline = {%s}\n", tmp);
 	verif_tmp(tmp);
 	return (tmp);
 }

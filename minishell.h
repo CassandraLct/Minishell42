@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 13:35:27 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 14:54:40 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,6 +261,7 @@ char	*join_linetmp(char *s_line, char *tmp, char *e_line);
 char	*join_wout_tmp(char *s_line, char *e_line);
 int		count_cotes(char *line);
 int		get_endcotes(char *line, char cotes, int j);
+int		verif_redirdollar(char *line);
 void	verif_tmp(char *line);
 
 /*-----------------------UTILS--------------------------------------------*/
