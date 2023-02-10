@@ -293,10 +293,10 @@ LEAKS :
 Test minishell non fonctionnel: test fixe ce matin (6)
 *ECHO: OK
 	-> echo -n -n -nnnn -nnnnm OK 										*OK*
-	-> echo hi " ; " hihi OK												*KO*	bash=>0
-	-> echo hello""world													*KO*	ret_err=1 bash=>0	imprime hello, bash=>helloworld
-	-> echo $?HELLO															*KO*	ret_err=1 bash=>0	imprime 1, bash=>0HELLO (pb dans startline)
-	-> echo "coucou ->'"													*KO*	ret_err=1 bash=>0	imprime des espace autour de >
+	-> echo hi " ; " hihi OK											*OK*
+	-> echo hello""world													*KO*	ret_err=0 bash=>0	imprime hello, bash=>helloworld
+	-> echo $?HELLO															*KO*	ret_err=0 bash=>0	imprime 1, bash=>0HELLO (pb dans startline)
+	-> echo "coucou ->'"													*KO*	ret_err=0 bash=>0	imprime des espace autour de >
 *EXPORT: OK	
 	-> export ""														*OK*
 	-> unset "" OK														*OK*
@@ -304,9 +304,9 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 	-> export "HI =hi" OK												*OK*
 	-> export A-														*OK*
 *CD:
-	-> cd $HOME/Documents OK												*OK*
-	-> cd ../../../../../.. puis pwd: OK									*KO*	ret_err=1 bash=>0
-	-> cd .. => OK															*OK*	
+	-> cd $HOME/Documents OK											*OK*
+	-> cd ../../../../../.. puis pwd: OK									*KO*	ret_err=127 bash=>0
+	-> cd .. => OK															*KO*	ret_err=127 bash=>0
 *PARSING:
 	-> echo bonjour;| OK												*OK*
 	-> $ ret_err doit etre egal a 127										*KO*	ret_err=1 bash=>127
