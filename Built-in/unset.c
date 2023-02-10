@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 10:38:12 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 15:14:09 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,10 @@ void	unset(t_min *mini, char **cmd)
 	while (cmd[i])
 	{
 		if (check_var(cmd[i]) == 0)
+		{
 			unset_verif_var(mini, i, cmd);
+			mini->ret_err = 0;
+		}
 		else
 		{
 			printf("minishell: unset: `%s':", cmd[1]);

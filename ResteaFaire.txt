@@ -402,7 +402,7 @@ Test OK : (a retester avant de rendre)
 	-> pwd a => OK														*OK*	ret_err=0 bash=>0
 	-> pwd a b c d => OK												*OK*	ret_err=0 bash=>0
 	-> export LOL=lala ROR=rara => OK										*KO*	ret_err=127 bash=>0
-	-> unset LOL ROR => OK													*KO*	ret_err=127 bash=>0
+	-> unset LOL ROR => OK												*OK*	ret_err=0 bash=>0
 	-> export "HI= hi" => OK												*KO*	ret_err=127 bash=>0
 	-> echo $? => OK													*OK*
 	-> l^Ds => OK														*OK*
