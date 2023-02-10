@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 17:02:19 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:53:38 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void	export(t_min *mini, char **cmd)
 				printf("minishell: %s: `': not a valid identifier\n", cmd[0]);
 				g_mini.ret_err = 1;
 			}
-			else if (verif_space(cmd[i]) == 1)
+			if (verif_space(cmd[i]) == 1)
 			{
 				printf("minishell: %s: `%s': not a valid identifier\n",
 					cmd[0], cmd[i]);

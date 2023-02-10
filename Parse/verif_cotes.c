@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif_cotes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:48:29 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 16:30:29 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:57:21 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,8 @@ void	verif_cmdcotes(t_min *mini)
 
 	new_line = NULL;
 	tmp_line = NULL;
-	if (verif_cmdcotesempty(mini->line) == 1)
-		return ;
+	// if (verif_cmdcotesempty(mini->line) == 1)
+	// 	return ;
 	i = count_cotes(mini->line);
 	if (i < 2)
 		return ;

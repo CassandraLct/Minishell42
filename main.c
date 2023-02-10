@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 16:35:03 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:52:48 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,13 @@ void	inside_main(void)
 {
 	verif_struct_cmd(g_mini.struct_cmd);
 	redir_pipe(&g_mini, g_mini.struct_cmd);
-	free_t_cmd(g_mini.struct_cmd);
+}
+
+//exit du ctrl-d
+void	signal_exit(void)
+{
+	printf("exit\n");
+	exit(0);
 }
 
 //modifier le split de la line // test a faire : ec'ho | cat ex'ec.c
@@ -44,6 +50,7 @@ int	main(int argc, char **argv, char **envp)
 			g_mini.struct_cmd = spliter3(spliter());
 			if (g_mini.struct_cmd != NULL)
 				inside_main();
+			free_t_cmd(g_mini.struct_cmd);
 		}
 		free(g_mini.line);
 	}

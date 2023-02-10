@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 13:51:02 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 17:24:59 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:46:22 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	verif_posreterr(char *line)
 		tmp = copy_tmp(line, i);
 		free(line);
 		line = ft_strdup(tmp);
+		free(tmp);
 	}
 }
 
@@ -39,7 +40,10 @@ char	*var_reterr(char *line)
 	tmp2 = ft_itoa(g_mini.ret_err);
 	tmp = recup_namevar(line);
 	verif_posreterr(tmp);
-	name_var = ft_strjoin(tmp2, tmp);
+	if (strlen(tmp) > 1)
+		name_var = ft_strjoin(tmp2, tmp);
+	else
+		name_var = ft_strdup(tmp2);
 	free(tmp);
 	free(tmp2);
 	tmp = change_line(name_var, line);
