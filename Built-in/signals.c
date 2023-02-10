@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:33:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 17:39:52 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:46:10 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,25 +81,6 @@ void	ft_ctrl_backslash(int signum)
 		rl_on_new_line();
 		rl_redisplay();
 	}
-}
-
-void	echo_control_seq(int c)
-{
-	struct termios	conf;
-
-	ioctl(ttyslot(), TIOCGETA, &conf);
-	if (c == 1)
-		conf.c_lflag |= ECHOCTL;
-	else if (c == 0)
-		conf.c_lflag &= ~(ECHOCTL);
-	ioctl(ttyslot(), TIOCSETA, &conf);
-}
-
-//exit du ctrl-d
-void	signal_exit(void)
-{
-	printf("exit\n");
-	exit(0);
 }
 
 //numero_du_signal, procedure a faire
