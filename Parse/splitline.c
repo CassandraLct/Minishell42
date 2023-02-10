@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitline.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/08 21:29:45 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/09 17:32:58 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	**spliter(void)
 	temp = NULL;
 	if (iscotevalid(g_mini.line) == 0)
 	{
-		printf("minishell: cote not closed\n");
+		printf("minishell: quote not closed\n");
 		return (NULL);
 	}
 	g_mini.nb_cmd = count_instruct(g_mini.line);
