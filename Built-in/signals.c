@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:33:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 23:20:52 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 10:35:08 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	ft_ctrl_c(int signum)
 		return ;
 	}
 	else if (g_mini.pid > 0)
-    {
-        if (kill(g_mini.pid, signum) == 0)
-            g_mini.ret_err = 130;
-        else
-            return ;
-    }
+	{
+		if (kill(g_mini.pid, signum) == 0)
+			g_mini.ret_err = 130;
+		else
+			return ;
+	}
 	else
 	{
 		printf("\n");
@@ -52,16 +52,14 @@ void	ft_ctrl_d(int signum)
 		exit(0);
 	}
 	else if (g_mini.pid > 0)
-    {
-		dprintf(2, "receive D, killing child\n");
-        if (kill(g_mini.pid, signum) == 0)
-            g_mini.ret_err = 0;
-        else
-            return ;
-    }
+	{
+		if (kill(g_mini.pid, signum) == 0)
+			g_mini.ret_err = 0;
+		else
+			return ;
+	}
 	else
 	{
-		dprintf(2, "receive D in child, exiting\n");
 		printf("\n");
 		exit(0);
 	}
