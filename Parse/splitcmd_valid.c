@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/10 13:54:49 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:25:00 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 // Check the Valdity of Redirections IN,
 // if in0 is < << > >> and in1 not NULL and not < > << >> | then return 1
-int	cvrin(t_cmd **resu, int i, int j)
+int	cvrin(t_cmd **resu, int i, int *j)
 {
 	char	*in0;
 	char	*in1;
 
-	in0 = resu[i]->stdin[j];
-	in1 = resu[i]->stdin[j + 1];
+	in0 = resu[i]->stdin[*j];
+	in1 = resu[i]->stdin[*j + 1];
+	*j += 2;
 	if ((in0[0] == '<' && in1 == NULL) || (in0[0] == '>' && in1 == NULL))
 	{
 		printf(ERR_TOKEN);
@@ -39,13 +40,14 @@ int	cvrin(t_cmd **resu, int i, int j)
 
 // Check the Valdity of Redirections out,
 // if in0 is < << > >> and in1 not NULL and not < > << >> | then return 1
-int	cvrout(t_cmd **resu, int i, int j)
+int	cvrout(t_cmd **resu, int i, int *j)
 {
 	char	*in0;
 	char	*in1;
 
-	in0 = resu[i]->stdout[j];
-	in1 = resu[i]->stdout[j + 1];
+	in0 = resu[i]->stdout[*j];
+	in1 = resu[i]->stdout[*j + 1];
+	*j += 2;
 	if ((in0[0] == '<' && in1 == NULL) || (in0[0] == '>' && in1 == NULL))
 	{
 		printf(ERR_TOKEN);
@@ -75,16 +77,10 @@ t_cmd	**validation_cmd(t_cmd **resu)
 	{
 		j = 0;
 		while (resu[i]->stdin[j])
-		{
-			not_err = cvrin(resu, i, j);
-			j += 2;
-		}
+			not_err = cvrin(resu, i, &j);
 		j = 0;
 		while (resu[i]->stdout[j])
-		{
-			not_err = cvrout(resu, i, j);
-			j += 2;
-		}
+			not_err = cvrout(resu, i, &j);
 		i++;
 	}
 	if (not_err == 0)
