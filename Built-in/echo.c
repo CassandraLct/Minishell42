@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:37:12 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/08 17:36:20 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 12:50:26 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,6 @@ int	check_arg_opt(char *arg)
 		return (1);
 	return (0);
 }
-/*{
-	int	i;
-
-	i = 1;
-	while (arg[i])
-	{
-		if (arg[i] != 'n')
-			return (1);
-	}
-	return (0);
-}*/
 
 //print les args option valide
 int	print_arg_opt(char **arg, int i)
@@ -105,16 +94,6 @@ int	check_opt(char **arg)
 	}
 	return (0);
 }
-/*{
-	if (check_arg_opt(arg[i]) == 0)
-		print_arg_opt(arg, 1);
-	else
-	{
-		print_arg_opt(arg, 0);
-		printf("\n");
-	}
-	return (0);
-}*/
 
 //verifie si echo a des arguments ou non
 void	echo(char **cmd)
@@ -127,6 +106,7 @@ void	echo(char **cmd)
 	if (cmd[1] == NULL || cmd[1][0] == '\0')
 	{
 		printf("\n");
+		g_mini.ret_err = 0;
 		return ;
 	}
 	else if (cmd[i][0] == '-')
@@ -143,5 +123,6 @@ void	echo(char **cmd)
 			i++;
 		}
 	}
+	g_mini.ret_err = 0;
 	return ;
 }
