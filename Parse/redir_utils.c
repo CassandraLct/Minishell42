@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/09 23:15:06 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 10:57:22 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// managing heredoc
+// managing heredoc + 25lignes
 int	heredoc(char *cond)
 {
 	char	*line;
@@ -33,7 +33,7 @@ int	heredoc(char *cond)
 			close(pp[1]);
 			return (pp[0]);
 		}
-		if(g_mini.sig_heredoc == 0)
+		if (g_mini.sig_heredoc == 0)
 		{
 			g_mini.ret_err = 1;
 			break ;

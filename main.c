@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 21:53:11 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 10:57:07 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char **argv, char **envp)
 			signal_exit();
 		add_history(g_mini.line);
 		parcour_line(&g_mini);
-		g_mini.line = verif_cmdcotes(g_mini.line);
+		verif_cmdcotes(&g_mini);
 		g_mini.line = verif_pipes(g_mini.line);
 		if (g_mini.line[0] != '\0')
 		{
@@ -46,6 +46,7 @@ int	main(int argc, char **argv, char **envp)
 				inside_main();
 		}
 		free(g_mini.line);
+		system("leaks minishell");
 	}
 	free_all(g_mini);
 }
