@@ -396,20 +396,20 @@ Test OK : (a retester avant de rendre)
 	-> cd . => OK														*OK*	ret_err=0 bash=>0
 	-> cd ~ => OK														*OK*	ret_err=0 bash=>0
 	-> cd / => OK														*OK*	ret_err=0 bash=>0
-	-> cd no_file => OK													*OK*
-	-> cd a b c d => OK													*OK*
-	-> pwd a => OK														*OK*	ret_err=0 bash=>0
-	-> pwd a b c d => OK												*OK*	ret_err=0 bash=>0
-	-> export LOL=lala ROR=rara => OK									*OK*	ret_err=0 bash=>0
-	-> unset LOL ROR => OK												*OK*	ret_err=0 bash=>0
-	-> export "HI= hi" => OK											*OK*	ret_err=0 bash=>0
-	-> echo $? => OK													*OK*
-	-> l^Ds => OK														*OK*
-	-> sort | ls # check output order => OK								*OK*
-	-> > a ls > b < Makefile => OK										*OK*
-	-> echo > a Hello World! => OK										*OK*
-	-> > a echo Hello World! => OK										*OK*
-	-> cat < Makefile | grep gcc > output => OK							*OK*
+	-> cd no_file => OK														*OK*
+	-> cd a b c d => OK														*OK*
+	-> pwd a => OK															*OK*
+	-> pwd a b c d => OK													*OK*
+	-> export LOL=lala ROR=rara => OK										*OK*	parfois seg fault
+	-> unset LOL ROR => OK													*OK*
+	-> export "HI= hi" => OK												*OK*
+	-> echo $? => OK														*OK*
+	-> l^Ds => OK															*OK*
+	-> sort | ls # check output order => OK									*OK*
+	-> > a ls > b < Makefile => OK											*OK*
+	-> echo > a Hello World! => OK											*OK*
+	-> > a echo Hello World! => OK											*OK*
+	-> cat < Makefile | grep gcc > output => OK								*OK*
 
 Lundi 06/02:
 	-> cd $HOME/Documents OK

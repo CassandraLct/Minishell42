@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 13:55:50 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 16:55:14 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 18:47:33 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,11 +134,12 @@ void	cd(t_min *mini, char **cmd)
 	else if (chdir(cmd[1]) == -1)
 	{
 		aff_err(cmd);
+		mini->ret_err = 1;
 	}
 	else
 	{
 		change_value_env(mini, cmd);
 		change_value_exp(mini, cmd);
+		mini->ret_err = 0;
 	}
-	mini->ret_err = 0;
 }
