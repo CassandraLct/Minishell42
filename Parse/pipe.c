@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/09 17:48:59 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 11:19:31 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_exec2(t_min *mini, char **all_path, char **pathcmd, char **cmd)
 	{
 		free_tab(all_path);
 		free_tab(pathcmd);
-		exit(1);
+		exit(g_mini.ret_err);
 	}
 	else
 	{

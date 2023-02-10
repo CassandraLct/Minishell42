@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:04:33 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/01 15:04:28 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 11:03:47 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,13 @@ int	aff_errcmd(char **cmd)
 	{
 		if (cmd[0][i] == '/')
 		{
-			g_mini.ret_err = 127;
 			printf("minishell: %s: No such file or directory\n", cmd[0]);
-			return (-1);
+			g_mini.ret_err = 127;
+			return (g_mini.ret_err);
 		}
 		i++;
 	}
-	g_mini.ret_err = 127;
 	printf("minishell: %s: command not found\n", cmd[0]);
-	return (-1);
+	g_mini.ret_err = 127;
+	return (g_mini.ret_err);
 }
