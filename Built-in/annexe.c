@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:36:11 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 12:26:11 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 10:53:09 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,17 @@ char	*get_namevar(char *str)
 	}
 	tmp[i] = '\0';
 	return (tmp);
+}
+
+int	verif_cmdcotesempty(char *line)
+{
+	if (ft_strncmp(line, "export \"\"", ft_strlen("export \"\"")) == 0)
+		return (1);
+	else if (ft_strncmp(line, "unset \"\"", ft_strlen("unset \"\"")) == 0)
+		return (1);
+	else if (ft_strncmp(line, "cd \"\"", ft_strlen("cd \"\"")) == 0)
+		return (1);
+	return (0);
 }
 
 //modifie line et tmp

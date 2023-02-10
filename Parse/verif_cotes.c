@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:48:29 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 17:49:12 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 10:55:25 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,30 +91,35 @@ char	*check_line(char *line)
 	tmp = NULL;
 	s_line = NULL;
 	e_line = NULL;
-	i = find_cotes(line);
 	if (line[i] == '\0')
 		return (ft_strdup(line));
+	i = find_cotes(line);
 	cotes = line[i];
-	printf("cotes = %c\n", cotes);
 	s_line = get_sline(line, cotes);
-	printf("s_line = %s\n", s_line);
 	e_line = get_eline(line, cotes);
-	printf("e_line = %s\n", e_line);
 	tmp = get_tmp(line, cotes);
-	printf("tmp = %s\n", tmp);
 	free(line);
 	line = join_line(tmp, s_line, e_line);
 	free(s_line);
 	free(e_line);
+	if (tmp[0] != '\0')
+		free(tmp);
 	return (line);
 }
 
 //gestion des cotes au milieu d'une commande
-char	*verif_cmdcotes(char *line)
+void	verif_cmdcotes(t_min *mini)
 {
 	char	*new_line;
+	char	*tmp_line;
 
 	new_line = NULL;
-	new_line = check_line(line);
-	return (new_line);
+	tmp_line = NULL;
+	if (verif_cmdcotesempty(mini->line) == 1)
+		return ;
+	tmp_line = ft_strdup(mini->line);
+	new_line = check_line(tmp_line);
+	free(mini->line);
+	mini->line = ft_strdup(new_line);
+	free(tmp_line);
 }

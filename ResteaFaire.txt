@@ -295,10 +295,10 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 	-> echo -n -n -nnnn -nnnnm OK 										*OK*
 	-> echo hi " ; " hihi OK												*KO*	ret_err=1 bash=>0
 	-> echo hello""world													*KO*	ret_err=1 bash=>0	imprime hello, bash=>helloworld
-	-> echo $?HELLO															*KO*	ret_err=1 bash=>0	imprime 1, bash=>0HELLO
+	-> echo $?HELLO															*KO*	ret_err=1 bash=>0	imprime 1, bash=>0HELLO (pb dans startline)
 	-> echo "coucou ->'"													*KO*	ret_err=1 bash=>0	imprime des espace autour de >
 *EXPORT: OK	
-	-> export ""															*KO*						imprime export, bash=>bash: export: `': not a valid identifier
+	-> export ""														*OK*						imprime export, bash=>bash: export: `': not a valid identifier
 	-> unset "" OK															*KO*						n'imprime rien, bash=>bash: unset: `': not a valid identifier
 	-> export var; export var=test OK										*KO*	ret_err=1 bash=>0	export: `var;': not a valid identifier, bash=>n'imprime rien
 	-> export "HI =hi" OK												*OK*
@@ -348,7 +348,7 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 	-> echo "$HOME" pb malloc mais fonctionnait avant					*OK*
 Autre Test: 19 TESTS
 -> minishell unset PATH OK													*KO*	ret_err=1 bash=>127
--> echo | => OK																*KO*		mini=>error near `|', bash attends 2ieme commande
+-> echo | => OK															*OK*	mini=>error near `|', bash attends 2ieme commande
 
 Test OK : (a retester avant de rendre)
 
@@ -356,7 +356,7 @@ Test OK : (a retester avant de rendre)
 	-> echo >>'>' test : OK 												*KO* 	DOUBLE FREE !!!!!!															=> URGENT
 	-> | OK
 	-> echo > OK														*OK*
-	-> echo bonjour |; OK												*OK*	msg diff;erents mais OK car ; est hors sujet
+	-> echo bonjour |; OK												*OK*	msg differents mais OK car ; est hors sujet
 	-> echo bonjour ; ls OK												*OK*	ret+err different, mais OK car ; est hors sujet
 	-> echo bonjour > test\ 1 (voir si on gere \) OK MAIS NOM DIFFERENT DE BASH 		*OK* car \ est hors sujet
 	-> echo "\s" & echo "\s" OK											*OK* hors sujet
