@@ -305,8 +305,8 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 	-> export A-														*OK*
 *CD:
 	-> cd $HOME/Documents OK											*OK*
-	-> cd ../../../../../.. puis pwd: OK									*KO*	ret_err=127 bash=>0
-	-> cd .. => OK															*KO*	ret_err=127 bash=>0
+	-> cd ../../../../../.. puis pwd: OK								*OK*	ret_err=0 bash=>0
+	-> cd .. => OK														*OK*	ret_err=0 bash=>0
 *PARSING:
 	-> echo bonjour;| OK												*OK*
 	-> $ ret_err doit etre egal a 127										*KO*	ret_err=1 bash=>127
@@ -321,8 +321,8 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 	-> cat > OK															*OK*
 	-> cat < OK															*OK*
 	-> echo hudifg d | | hugdfihd => OK									*OK*
-	-> echo '' => OK erreur 												*KO*	ret_err=1 bash=>0
-	-> echo "" => bug (pas de retour a la ligne) erreur 					*KO*	ret_err=1 bash=>0
+	-> echo '' => OK erreur 											*OK*	ret_err=0 bash=>0
+	-> echo "" => bug (pas de retour a la ligne) erreur 				*OK*	ret_err=0 bash=>0
 *RET_ERR:
 	-> cat Makefile | grep pr | head -n 5 | cd test OK 					*OK*
 	-> cat Makefile | grep pr | head -n 5 | cat test OK 				*OK*
@@ -352,7 +352,7 @@ Autre Test: 19 TESTS
 
 Test OK : (a retester avant de rendre)
 
-	-> echo bonjour >>> test OK												*KO* msg erreur different mini 'newline' bash '>'
+	-> echo bonjour >>> test OK												*KO* ret_err=2 bash=>258 msg erreur different mini '>>>' bash '>'
 	-> echo >>'>' test : OK 											*OK*
 	-> | OK
 	-> echo > OK														*OK*
@@ -362,7 +362,7 @@ Test OK : (a retester avant de rendre)
 	-> echo "\s" & echo "\s" OK											*OK*
 	-> cat /dev/random | head -n 1 | cat -e OK							*OK*
 	-> unset var1 # with undefined var1 OK									*KO*	ret_err=127 bash=>0
-	-> echo test > file test1 OK											*KO*	ret_err=127 bash=>0 pas remis a zero apres une erreur
+	-> echo test > file test1 OK										*OK*
 	-> env puis export puis env # vars aren't sorted OK					*OK*
 		-> env # fonctionne mais pas dans minishell (# hors sujet)
 	-> echo 2 >> out1 > out2 OK											*OK*
@@ -393,10 +393,10 @@ Test OK : (a retester avant de rendre)
 	-> echo "\n \n \\n" => Ok car Hors sujet							*OK* hors sujet
 	-> echo ;; => OK													*OK* hors sujet
 	-> echo hi";" hihi => OK											*OK*
-	-> cd => OK																*KO*	ret_err=127 bash=>0
-	-> cd . => OK															*KO*	ret_err=127 bash=>0
-	-> cd ~ => OK															*KO*	ret_err=127 bash=>0
-	-> cd / => OK															*KO*	ret_err=127 bash=>0
+	-> cd => OK															*OK*	ret_err=0 bash=>0
+	-> cd . => OK														*OK*	ret_err=0 bash=>0
+	-> cd ~ => OK														*OK*	ret_err=0 bash=>0
+	-> cd / => OK														*OK*	ret_err=0 bash=>0
 	-> cd no_file => OK													*OK*
 	-> cd a b c d => OK													*OK*
 	-> pwd a => OK															*KO*	ret_err=127 bash=>0
