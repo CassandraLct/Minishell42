@@ -290,11 +290,11 @@ LEAKS :
 		puis relance un heredoc;
 	-> seg fault lorsque que le heredoc est fait directement sans cmd;
 
-Test minishell non fonctionnel: test fixe ce matin (6)
+Test minishell non fonctionnel: test fixe ce matin (6) 17 KO / 86 OK
 *ECHO: OK
 	-> echo -n -n -nnnn -nnnnm OK 										*OK*
 	-> echo hi " ; " hihi OK											*OK*
-	-> echo hello""world													*KO*	imprime hello, bash=>helloworld
+	-> echo hello""world													*KO* imprime hello, bash=>helloworld
 	-> echo $?HELLO														*OK*
 	-> echo "coucou ->'"												*OK*
 *EXPORT: OK	
@@ -352,60 +352,60 @@ Autre Test: 19 TESTS
 Test OK : (a retester avant de rendre)
 
 	-> echo bonjour >>> test OK												*KO* ret_err=2 bash=>258 msg erreur different mini '>>>' bash '>'
-	-> echo >>'>' test : OK 											*OK* pb malloc
+	-> echo >>'>' test : OK 												*KO* pb malloc
 	-> | OK
 	-> echo > OK														*OK* segfault
 	-> echo bonjour |; OK												*OK*
-	-> echo bonjour ; ls OK												*OK*	ret+err different, mais OK car ; est hors sujet
-	-> echo bonjour > test\ 1 (voir si on gere \)						*OK* car \ est hors sujet
+	-> echo bonjour ; ls OK												*OK*
+	-> echo bonjour > test\ 1 (voir si on gere \)						*OK*
 	-> echo "\s" & echo "\s" OK											*OK*
-	-> cat /dev/random | head -n 1 | cat -e OK							*OK*
-	-> unset var1 # with undefined var1 OK									*KO*	ret_err=127 bash=>0
-	-> echo test > file test1 OK										*OK*
+	-> cat /dev/random | head -n 1 | cat -e 							*OK*
+	-> unset var1 # with undefined var1									*OK*
+	-> echo test > file test1 											*OK*
 	-> env puis export puis env # vars aren't sorted OK					*OK*
 		-> env # fonctionne mais pas dans minishell (# hors sujet)
-	-> echo 2 >> out1 > out2 OK											*OK*
-	-> echo 2 > out1 >> out2 OK											*OK*
-	-> exec.c (fichier dans le repo où l'on se trouve) OK				*OK*
-	-> echo "bip | bip ; coyotte > < " " OK								*OK* 
-	-> cat | cat | cat | ls OK											*OK*
-	-> $bla # with bla not defined OK									*OK*
-	-> $bla bla not defined													*OK*	ret_err=127 bash=>0
-	-> export var ="cat Makefile | grep >" OK							*OK*
-	-> export "test=ici"=coucou OK										*OK*
-	-> c$var Makefile # with var=at OK									*OK*
-	-> $LESS$VAR OK														*OK*
+	-> echo 2 >> out1 > out2 											*OK*
+	-> echo 2 > out1 >> out2 											*OK*
+	-> exec.c (fichier dans le repo où l'on se trouve) 					*OK*
+	-> echo "bip | bip ; coyotte > < " "									*KO* segfault after quote not closed
+	-> cat | cat | cat | ls												*OK*
+	-> $bla # with bla not defined										*OK*
+	-> $bla bla not defined												*OK*
+	-> export var ="cat Makefile | grep >" 								*OK*
+	-> export "test=ici"=coucou 										*OK*
+	-> c$var Makefile # with var=at										*OK*
+	-> $LESS$VAR														*OK*
 	-> not_cmd OK														*OK*
-	-> sleep 5 | exit OK												*OK*
-	-> "exit\n" OK														*OK*
-	-> cat diufosgid (#) test avec et sans # : Fonctionnne correctement, bon ret_err, message d'erreur pour # *OK* # hors sujet.
-	-> exit #																*KO*	ret_err=255 bash=>0
-	-> $ OK																*OK*
-	-> echo '$HOME' OK													*OK*	ret_err=0 bash=>0
-	-> echo $HOME OK													*OK*	ret_err=0 bash=>0
-	-> > log echo coucou => OK											*OK*	ret_err=0 bash=>0
-	-> echo => OK														*OK*	ret_err=0 bash=>0
-	-> echo simple =>OK													*OK*	ret_err=0 bash=>0
-	-> echo -n simple => OK												*OK*	ret_err=0 bash=>0
-	-> echo "\" => OK car hors sujet									*OK* hors sujet
-	-> echo "\n \n \n" => OK											*OK*	ret_err=0 bash=>0
-	-> echo "\n \n \\n" => Ok car Hors sujet							*OK* hors sujet
-	-> echo ;; => OK													*OK* hors sujet
-	-> echo hi";" hihi => OK											*OK*
-	-> cd => OK															*OK*	ret_err=0 bash=>0
-	-> cd . => OK														*OK*	ret_err=0 bash=>0
-	-> cd ~ => OK														*OK*	ret_err=0 bash=>0
-	-> cd / => OK														*OK*	ret_err=0 bash=>0
+	-> sleep 5 | exit													*OK*
+	-> "exit\n"															*OK*
+	-> cat diufosgid (#) test avec et sans # :							*OK*
+	-> exit #															*OK*	HS
+	-> $ 																*OK*
+	-> echo '$HOME'														*OK*
+	-> echo $HOME														*OK*
+	-> > log echo coucou												*OK*
+	-> echo 															*OK*
+	-> echo simple														*OK*
+	-> echo -n simple 													*OK*
+	-> echo "\" 														*OK*
+	-> echo "\n \n \n"													*OK*
+	-> echo "\n \n \\n"													*OK* 
+	-> echo ;;															*OK* 
+	-> echo hi";" hihi 														*KO* pb malloc
+	-> cd																*OK*
+	-> cd . => OK														*OK*
+	-> cd ~ => OK														*OK*
+	-> cd / => OK														*OK*
 	-> cd no_file => OK													*OK*
 	-> cd a b c d => OK													*OK*
-	-> pwd a => OK														*OK*	ret_err=0 bash=>0
-	-> pwd a b c d => OK												*OK*	ret_err=0 bash=>0
-	-> export LOL=lala ROR=rara => OK									*OK*	ret_err=0 bash=>0
-	-> unset LOL ROR => OK												*OK*	ret_err=0 bash=>0
-	-> export "HI= hi" => OK											*OK*	ret_err=0 bash=>0
+	-> pwd a => OK														*OK*
+	-> pwd a b c d => OK												*OK*
+	-> export LOL=lala ROR=rara => OK									*OK*
+	-> unset LOL ROR => OK												*OK*
+	-> export "HI= hi"													*OK*
 	-> echo $? => OK													*OK*
 	-> l^Ds => OK														*OK*
-	-> sort | ls # check output order => OK								*OK*
+	-> sort | ls # check output order									*OK*
 	-> > a ls > b < Makefile => OK										*OK*
 	-> echo > a Hello World! => OK										*OK*
 	-> > a echo Hello World! => OK										*OK*

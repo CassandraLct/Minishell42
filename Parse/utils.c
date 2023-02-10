@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:28:10 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 17:29:09 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 18:33:59 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ int	get_endcotes(char *line, char cotes, int j)
 // check if tmp is only cotes
 void	verif_tmp(char *line)
 {
-	int	i;
-
-	i = find_cotes(line);
 	if (line[0] == '\'' && line[1] == '\'')
 		line[0] = '\0';
 	else if (line[0] == '"' && line[1] == '"')
