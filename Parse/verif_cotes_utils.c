@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif_cotes_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:54:56 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 13:54:32 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 16:32:05 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ char	*changecotesline(char *line, char cotes)
 	if (line[start] == ' ' || line[start] == '<' || line[start] == '>')
 		start += 1;
 	tmp = tmpline(line, start, end);
-	printf("tmpline = {%s}\n", tmp);
 	verif_tmp(tmp);
 	return (tmp);
 }
