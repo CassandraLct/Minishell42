@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/10 17:06:57 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:42:02 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// set g_mini.sig_heredoc at 0
+int	ft_set_sig_heredoc_zero(void)
+{
+	g_mini.sig_heredoc = 0;
+	return (0);
+}
 
 //5 fonctions
 // managing heredoc + 25lignes
@@ -24,10 +31,7 @@ int	heredoc(char *cond)
 	{
 		line = readline("> ");
 		if (line == NULL)
-		{
-			g_mini.sig_heredoc = 0;
-			return (0);
-		}
+			return (ft_set_sig_heredoc_zero());
 		if (ft_strncmp(cond, line, ft_strlen(line)) == 0)
 		{
 			free(line);
