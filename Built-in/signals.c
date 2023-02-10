@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:33:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 17:38:40 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:39:52 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,6 @@ void	ft_ctrl_backslash(int signum)
 	{
 		rl_redisplay();
 		return ;
-	}
-	else if (g_mini.pid > 0)
-	{
 	}
 	else
 	{

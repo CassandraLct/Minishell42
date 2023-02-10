@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 17:24:20 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:36:02 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ char	*recup_oldpwd(char **str);
 int		check_arg(char *str);
 void	cpy_value(char *name_var, char **str, char *new_val);
 
-//chevrons.c
 //echo.c 4 fonctions
 void	echo(char **cmd);
 
