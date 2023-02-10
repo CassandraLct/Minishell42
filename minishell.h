@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 17:45:20 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:48:12 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,11 +209,11 @@ void	free_seline(char *s_line, char *e_line);
 int		heredoc(char *cond);
 int		ft_nb_heredoc(t_cmd **cmd);
 char	*ft_last_single_redir_in(t_cmd **cmd);
-int		ft_what_is_last_redir_in(t_cmd **cmd);
 int		ft_open_file(char *file, int fd, int how);
 
 // redir_utils2.c
 int		ft_redir_out(t_cmd **cmd, int nb);
+int		ft_what_is_last_redir_in(t_cmd **cmd);
 
 // redir.c
 int		ft_redir_in(t_cmd **cmd);
