@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 17:36:02 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:48:12 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,11 @@ int		tablen(char **s1);
 int		check_exp(char **s1, char **s2, int index);
 void	print_export(char **str);
 
-//signaux.c
+//signals_utils.c
+void	echo_control_seq(int c);
+void	signal_exit(void);
+
+//signals.c
 void	signaux(void);
 void	signal_exit(void);
 
@@ -205,11 +209,11 @@ void	free_seline(char *s_line, char *e_line);
 int		heredoc(char *cond);
 int		ft_nb_heredoc(t_cmd **cmd);
 char	*ft_last_single_redir_in(t_cmd **cmd);
-int		ft_what_is_last_redir_in(t_cmd **cmd);
 int		ft_open_file(char *file, int fd, int how);
 
 // redir_utils2.c
 int		ft_redir_out(t_cmd **cmd, int nb);
+int		ft_what_is_last_redir_in(t_cmd **cmd);
 
 // redir.c
 int		ft_redir_in(t_cmd **cmd);
