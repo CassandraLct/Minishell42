@@ -381,7 +381,7 @@ Test OK : (a retester avant de rendre)
 	-> "exit\n" OK														*OK*
 	-> cat diufosgid (#) test avec et sans # : Fonctionnne correctement, bon ret_err, message d'erreur pour # *OK* # hors sujet.
 	-> exit #
-	-> echo coucou | ; OK
+	-> $ OK
 	-> echo '$HOME' OK
 	-> echo $HOME OK
 	-> > log echo coucou => OK
