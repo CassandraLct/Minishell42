@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   Utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:28:10 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 10:37:00 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 13:34:55 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,20 @@ char	*join_wout_tmp(char *s_line, char *e_line)
 	else if (s_line == NULL && e_line == NULL)
 		n_line = NULL;
 	return (n_line);
+}
+
+int	count_cotes(char *line)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (line[i])
+	{
+		if (line[i] == '"' || line[i] == '\'')
+			j += 1;
+		i++;
+	}
+	return (j);
 }

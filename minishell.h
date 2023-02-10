@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 10:25:05 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 13:35:27 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,11 +256,12 @@ char	*check_cmd(char *line);
 char	*verif_pipes(char *line);
 void	verif_tmp(char *line);
 
-//Utils.c 4 fonctions
-int		get_endcotes(char *line, char cotes, int j);
-void	verif_tmp(char *line);
+//utils.c 5 fonctions
 char	*join_linetmp(char *s_line, char *tmp, char *e_line);
 char	*join_wout_tmp(char *s_line, char *e_line);
+int		count_cotes(char *line);
+int		get_endcotes(char *line, char cotes, int j);
+void	verif_tmp(char *line);
 
 /*-----------------------UTILS--------------------------------------------*/
 //5 fichiers

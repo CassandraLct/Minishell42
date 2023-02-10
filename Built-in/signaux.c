@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signaux.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:33:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 22:02:02 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 13:09:58 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@
 // 	signal(SIGQUIT, ft_quit);
 // 	init_termios(0);
 // }
-/*
+
 void	echo_control_seq(int c)
 {
 	struct termios	conf;
@@ -99,7 +99,7 @@ void	echo_control_seq(int c)
 		conf.c_lflag &= ~(ECHOCTL);
 	ioctl(ttyslot(), TIOCSETA, &conf);
 }
-*/
+
 //fonctionne dans le heredoc et en dehors (enfants et parent affiche le prompt)
 void	ft_signal(int signum)
 {
@@ -148,5 +148,5 @@ void	signaux2(void)
 {
 	signal(SIGINT, ft_signal);
 	signal(SIGQUIT, ft_signalquit);
-//	echo_control_seq(g_mini.in_cmd);
+	echo_control_seq(g_mini.in_cmd);
 }

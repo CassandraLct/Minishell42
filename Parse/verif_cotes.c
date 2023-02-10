@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:48:29 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 12:34:44 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 13:34:41 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,14 @@ void	verif_cmdcotes(t_min *mini)
 {
 	char	*new_line;
 	char	*tmp_line;
+	int		i;
 
 	new_line = NULL;
 	tmp_line = NULL;
 	if (verif_cmdcotesempty(mini->line) == 1)
+		return ;
+	i = count_cotes(mini->line);
+	if (i < 2)
 		return ;
 	tmp_line = ft_strdup(mini->line);
 	new_line = check_line(tmp_line);
