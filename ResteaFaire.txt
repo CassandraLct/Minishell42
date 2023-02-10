@@ -399,8 +399,8 @@ Test OK : (a retester avant de rendre)
 	-> cd / => OK														*OK*	ret_err=0 bash=>0
 	-> cd no_file => OK													*OK*
 	-> cd a b c d => OK													*OK*
-	-> pwd a => OK															*KO*	ret_err=127 bash=>0
-	-> pwd a b c d => OK													*KO*	ret_err=127 bash=>0
+	-> pwd a => OK														*OK*	ret_err=0 bash=>0
+	-> pwd a b c d => OK												*OK*	ret_err=0 bash=>0
 	-> export LOL=lala ROR=rara => OK										*KO*	ret_err=127 bash=>0
 	-> unset LOL ROR => OK													*KO*	ret_err=127 bash=>0
 	-> export "HI= hi" => OK												*KO*	ret_err=127 bash=>0

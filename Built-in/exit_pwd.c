@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_pwd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 12:14:13 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 15:02:42 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	pwd(char **c_env, char **cmd)
 		{
 			while (c_env[i])
 			{
+				g_mini.ret_err = 0;
 				printf("%s\n", c_env[i] + 4);
 				return ;
 			}
@@ -80,6 +81,7 @@ void	pwd(char **c_env, char **cmd)
 		printf("minishell: %s: No such file or directory\n", cmd[0]);
 		return ;
 	}
+	g_mini.ret_err = 0;
 }
 
 /*verifie si les arguments d'exit sont valide ou non et si il y en a plus qu'un 
