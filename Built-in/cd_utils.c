@@ -6,13 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 11:06:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/09 09:05:39 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 16:54:10 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//3 fonctions
+//5 fonctions
 //verifie si un . est present dans le fichier quand chdir return 1
 int	check_arg(char *str)
 {

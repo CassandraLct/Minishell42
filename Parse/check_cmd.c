@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:57:22 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/08 21:03:50 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:03:19 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+//3 fonctions
 char	*recup_rcmd(char *line)
 {
 	char	*tmp;

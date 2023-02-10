@@ -438,3 +438,9 @@ Jeudi 09/02:
 	-> refaire tout les test;
 	-> verifier les leaks;
 	-> Fixe les signaux; en cours (ctrlC fonctionne dans le heredoc) plus de probleme de ctrl \
+
+Vendredi 10/02:
+	-> Dernier test fix;
+	-> Norme; en cours
+	-> verifier les leaks;
+	-> tout retester;

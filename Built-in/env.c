@@ -6,14 +6,14 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:05:50 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 13:05:54 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 16:57:19 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 //4 fonctions
-
+//check if var PATH exist
 int	verif_path(char **tab)
 {
 	int	i;
@@ -30,6 +30,7 @@ int	verif_path(char **tab)
 	return (0);
 }
 
+//print env
 void	ft_env(t_min *mini, char **cmd)
 {
 	int	i;

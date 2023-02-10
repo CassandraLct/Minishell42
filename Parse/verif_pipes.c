@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   verif_pipes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:16:57 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/08 15:32:01 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:10:42 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+//2 fonctions
 // return 1 if there is at least one double pipe : '| |'
 int	is_there_double_pipe(char *line)
 {

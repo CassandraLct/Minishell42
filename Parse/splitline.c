@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   splitline.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/09 17:32:58 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:09:41 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+//2 fonctions
 // main loop of spliter / +25lignes(printf)
 char	**spliter_loop(char **resu, char *temp)
 {

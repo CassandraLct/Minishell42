@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 15:21:46 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 16:35:03 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_min	g_mini;
 void	inside_main(void)
 {
 	verif_struct_cmd(g_mini.struct_cmd);
-	//printstruc2(g_mini.struct_cmd);
 	redir_pipe(&g_mini, g_mini.struct_cmd);
 	free_t_cmd(g_mini.struct_cmd);
 }
@@ -38,9 +37,7 @@ int	main(int argc, char **argv, char **envp)
 			signal_exit();
 		add_history(g_mini.line);
 		parcour_line(&g_mini);
-		//printf("line main1= {%s}\n", g_mini.line);
 		verif_cmdcotes(&g_mini);
-		//printf("linemain2= {%s}\n", g_mini.line);
 		g_mini.line = verif_pipes(g_mini.line);
 		if (g_mini.line[0] != '\0')
 		{
@@ -49,7 +46,6 @@ int	main(int argc, char **argv, char **envp)
 				inside_main();
 		}
 		free(g_mini.line);
-		//system("leaks minishell");
 	}
 	free_all(g_mini);
 }

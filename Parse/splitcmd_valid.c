@@ -6,12 +6,13 @@
 /*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/10 17:25:00 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:30:04 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+//3fonctions
 // Check the Valdity of Redirections IN,
 // if in0 is < << > >> and in1 not NULL and not < > << >> | then return 1
 int	cvrin(t_cmd **resu, int i, int *j)

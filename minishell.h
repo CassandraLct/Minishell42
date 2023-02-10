@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 14:54:40 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:24:20 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,11 +150,15 @@ int		count_nbdollar(char *line);
 char	*recup_valvar(char *name_var);
 char	*change_line(char *name_var, char *line);
 
-//gestion_dollar_quotes.c 4 fonctions
+//gestion_dollar_quotes.c 5 fonctions
 char	*rm_dollarcotes(char *line, int i, int savedollar);
 char	*rmd_bf_cotes(char *line, int savedollar);
 int		verif_cotes(char *line);
 int		d_outside_cotes(int i, char *line);
+int		verif_redirdollar(char *line);
+
+//gestion_dollar_utils2.c
+char	*copy_tmp(char *line, int i);
 
 //init.c 5 fonctions
 char	*recup_valhome(char	**c_env);

@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   splitcmd_utils1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/08 19:06:03 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:08:00 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// remove all the multiple space to keep only one
+//5 fonctions
+//remove all the multiple space to keep only one
 char	*remove_double_space(char *line)
 {
 	char	*resu;
