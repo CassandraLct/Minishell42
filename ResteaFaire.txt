@@ -380,17 +380,17 @@ Test OK : (a retester avant de rendre)
 	-> sleep 5 | exit OK												*OK*
 	-> "exit\n" OK														*OK*
 	-> cat diufosgid (#) test avec et sans # : Fonctionnne correctement, bon ret_err, message d'erreur pour # *OK* # hors sujet.
-	-> exit #
-	-> $ OK
-	-> echo '$HOME' OK
-	-> echo $HOME OK
-	-> > log echo coucou => OK
-	-> echo => OK
-	-> echo simple =>OK
-	-> echo -n simple => OK
-	-> echo "\" => OK car hors sujet
-	-> echo "\n \n \n" => OK
-	-> echo "\n \n \\n" => Ok car Hors sujet
+	-> exit #																*KO*	ret_err=255 bash=>0
+	-> $ OK																*OK*
+	-> echo '$HOME' OK													*OK*	ret_err=0 bash=>0
+	-> echo $HOME OK													*OK*	ret_err=0 bash=>0
+	-> > log echo coucou => OK											*OK*	ret_err=0 bash=>0
+	-> echo => OK														*OK*	ret_err=0 bash=>0
+	-> echo simple =>OK													*OK*	ret_err=0 bash=>0
+	-> echo -n simple => OK												*OK*	ret_err=0 bash=>0
+	-> echo "\" => OK car hors sujet									*OK* hors sujet
+	-> echo "\n \n \n" => OK											*OK*	ret_err=0 bash=>0
+	-> echo "\n \n \\n" => Ok car Hors sujet							*OK* hors sujet
 	-> echo ;; => OK
 	-> echo hi";" hihi => OK
 	-> cd => OK
