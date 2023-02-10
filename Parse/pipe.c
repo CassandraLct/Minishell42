@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/10 13:25:23 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:07:17 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+//4 fonctions
 //test chaque path puis execute la cmd si existante
 void	ft_exec2(t_min *mini, char **all_path, char **pathcmd, char **cmd)
 {
@@ -66,7 +67,7 @@ int	**ft_create_pipe(t_cmd **cmd)
 	return (pp);
 }
 
-// main function to manage pipes
+//main function to manage pipes
 int	piping(void)
 {
 	int		i;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:37:12 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 12:50:26 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 16:55:49 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,6 @@
 #include <stdlib.h>
 
 //4 fonctions
-/*echo sans arg affiche une ligne vide puis le prompt ok (a faire avec le
-vraie prompt)
-echo (num/string) affiche la string ok
-echo -n n'affiche pas la nouvelle ligne (verif avec vraie minishell)
-echo -n-n-n-n-n-n affiche le -n-n-n-... ok
-echo -nnnnnnn même comportement que -n ok
-echo -nnnnn5nnnn affiche -nnnnn5nnnn ok
-echo $PATH ou "$PATH" affiche /Users/clecat/.brew/bin:/Users/clecat/... lexer
-echo '$PATH' affiche $PATH lexer
-echo $ affiche $ sur new line puis prompt sur new line (gerer par la string)
-echo $? affiche la valeur lexer */
-
 //verifie si que des n pour l'option
 int	check_arg_opt(char *arg)
 {
@@ -104,11 +92,7 @@ void	echo(char **cmd)
 	i = 1;
 	j = 0;
 	if (cmd[1] == NULL || cmd[1][0] == '\0')
-	{
 		printf("\n");
-		g_mini.ret_err = 0;
-		return ;
-	}
 	else if (cmd[i][0] == '-')
 		check_opt(cmd);
 	else

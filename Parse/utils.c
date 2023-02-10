@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:28:10 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 15:04:27 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 16:26:55 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,32 +23,6 @@ int	get_endcotes(char *line, char cotes, int j)
 	return (j);
 }
 
-// char	*verif_poscotes(char *line)
-// {
-	
-// }
-
-int	verif_redirdollar(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] && line[i] != '>' && line[i] != '<')
-		i++;
-	if (line[i] == '\0')
-		return (0);
-	else if (line[i] == '<' && line[i + 1] == '<')
-		return (2);
-	else
-	{
-		while (line[i] && line[i] != 32)
-			i++;
-		if (line[i + 1] == '$')
-			return (1);
-	}
-	return (0);
-}
-
 // check if tmp is only cotes
 void	verif_tmp(char *line)
 {
@@ -59,9 +33,6 @@ void	verif_tmp(char *line)
 		line[0] = '\0';
 	else if (line[0] == '"' && line[1] == '"')
 		line[0] = '\0';
-	// else if ((line[i] == '"' && line[i + 1] == '"')
-	// 	|| (line[i] == '\'' && line[i + 1] == '\''))
-	// 	change_line
 	return ;
 }
 

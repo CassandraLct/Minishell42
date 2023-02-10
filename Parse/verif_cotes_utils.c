@@ -6,14 +6,14 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:54:56 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 13:54:32 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:10:11 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 // 3fonctions
-// +25 lignes cut a partir d'ici
+//cut a partir d'ici
 char	*get_sline(char *line, char cotes)
 {
 	char	*s_line;
@@ -60,7 +60,7 @@ char	*cpy_eline(char *line, int j)
 	return (e_line);
 }
 
-// too many functions +25 lignes
+// too many functions
 char	*get_eline(char *line, char cotes)
 {
 	char	*e_line;

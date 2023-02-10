@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 15:18:18 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:02:19 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include <string.h>
 
 //5 fonctions
-/*si var deja dans env et que la valeur est modifier, elle reste dans env mais
-la val est bien changer*/
 
 //verifier si valeur deja presente
 int	verif_modif_var(char **str, char *cmp)

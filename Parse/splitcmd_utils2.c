@@ -6,12 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/10 09:44:33 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:08:14 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+//5 fonctions
 // initialise the variable resu in pre_split
 char	**ft_init_resu(char *line)
 {

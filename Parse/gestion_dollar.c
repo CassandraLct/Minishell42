@@ -6,47 +6,29 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 13:51:02 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 15:50:45 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:24:59 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//4 fonctions
-
+//5 fonctions
+//verifie la position du ?
 void	verif_posreterr(char *line)
 {
 	char	*tmp;
 	int		i;
-	int		j;
 
 	i = 0;
-	j = 0;
 	if (line[i] == '?' && line[i + 1] != '\0')
 	{
 		i += 1;
-		while (line[i])
-		{
-			j++;
-			i++;
-		}
-		i = 0;
-		tmp = malloc(sizeof(char) * (j + 1));
-		j = 0;
-		while (line[i] && line[i] != '?')
-			i++;
-		i += 1;
-		while(line[i])
-		{
-			tmp[j] = line[i];
-			j++;
-			i++;
-		}
-		tmp[j] = '\0';
+		tmp = copy_tmp(line, i);
 		free(line);
 		line = ft_strdup(tmp);
 	}
 }
+
 //change le $?
 char	*var_reterr(char *line)
 {
@@ -122,17 +104,11 @@ char	*redir_line(char *line, int nb_dollar)
 	while (nb_dollar != 0)
 	{
 		if (verif_dollarcase(tmp_line) == 1)
-		{
 			line = var_reterr(tmp_line);
-		}
 		else if (verif_dollarcase(tmp_line) == 2)
-		{
 			line = var_true(tmp_line);
-		}
 		else if (verif_dollarcase(tmp_line) == 3)
-		{
 			line = var_false(tmp_line);
-		}
 		else if (verif_dollarcase(tmp_line) == 4)
 		{
 			line = ft_strdup(tmp_line);

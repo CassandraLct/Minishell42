@@ -6,14 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:48:06 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/19 17:18:12 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 16:59:13 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 //4 fonctions
-
 //remplie la copie de NULL
 static void	ft_remp(char **remp, int y)
 {

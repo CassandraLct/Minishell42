@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 09:59:22 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/21 12:13:59 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 16:53:54 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ char	*cd_tildpwd(char *str)
 	return (tmp);
 }
 
+//change with val_home
 void	change_valtab(t_min *mini, char **cmd)
 {
 	char	*tmp;

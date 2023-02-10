@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exit_pwd_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 14:43:06 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 16:57:47 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+//3 fonctions
 //exit in case the digit is too big
 void	exit_number_too_big(t_min *mini, int i, char **cmd)
 {

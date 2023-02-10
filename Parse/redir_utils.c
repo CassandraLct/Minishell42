@@ -6,12 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/10 11:14:39 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:06:57 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+//5 fonctions
 // managing heredoc + 25lignes
 int	heredoc(char *cond)
 {

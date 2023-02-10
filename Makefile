@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+         #
+#    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2023/02/09 22:01:41 by rdi-marz         ###   ########.fr        #
+#    Updated: 2023/02/10 17:25:48 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC		=	main.c \
 		Parse/gestion_dollar.c \
 		Parse/gestion_dollar_line.c \
 		Parse/gestion_dollar_utils.c \
+		Parse/gestion_dollar_utils2.c \
 		Parse/gestion_dollar_quotes.c \
 		Parse/modif_tcmd.c \
 		Parse/parse.c \

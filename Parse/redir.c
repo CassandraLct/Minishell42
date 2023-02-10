@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/10 15:45:01 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 16:28:32 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	is_dollar_inside(char *file)
 	int	i;
 
 	i = 0;
-	while(file[i])
+	while (file[i])
 	{
 		if (file[i] == '$')
 			return (1);

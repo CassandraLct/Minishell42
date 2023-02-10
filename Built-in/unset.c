@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 15:14:09 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:02:48 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	check_var(char *str)
 	return (0);
 }
 
-// l'arg ne doit pas avoir de egale
+//l'arg ne doit pas avoir de egale
 void	unset(t_min *mini, char **cmd)
 {
 	int	i;

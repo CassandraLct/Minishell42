@@ -6,12 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/03 13:52:11 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:09:21 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+//4 fonctions
 // return 0 if the '(39) or the "(34) are mixed or not by even number
 int	iscotevalid(char *line)
 {

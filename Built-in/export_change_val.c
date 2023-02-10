@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:03:34 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 11:39:18 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:00:18 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	changeval_env(char **c_env, char *str)
 	free(name_var);
 }
 
-//change la valeur dans export +25 lignes
+//change la valeur dans export
 void	changeval_exp(char **c_exp, char *str)
 {
 	char	*name_var;
@@ -108,6 +108,7 @@ char	*recup_name(char *cmp)
 	return (tmp);
 }
 
+//ajoute le egale pour la recherche
 char	*addegal(char *cmp)
 {
 	char	*tmp;

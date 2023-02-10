@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   exit_pwd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 15:02:42 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 16:58:43 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//5 fonctions
+//4 fonctions
 
+//change val PWD
 void	change_val_pwdpath(char **str, char **cmd)
 {
 	char	**path;
@@ -83,42 +84,6 @@ void	pwd(char **c_env, char **cmd)
 	}
 	g_mini.ret_err = 0;
 }
-
-/*verifie si les arguments d'exit sont valide ou non et si il y en a plus qu'un 
-et renvoie le code erreur approprié(bash) +25 lignes*/
-// void	verif_arg_exit(t_min *mini, int i, char **cmd)
-// {
-// 	char	*err;
-
-// 	err = "numeric argument required";
-// 	if (strdigit(cmd[i]) == 0)
-// 	{
-// 		if (ft_strlen(cmd[i]) >= 19)
-// 		{
-// 			printf("exit\nminishell: %s: %s: %s\n", cmd[0], cmd[i], err);
-// 			mini->ret_err = ft_atoi(cmd[i]) % 256;
-// 			exit(mini->ret_err);
-// 		}
-// 		if (cmd[i + 1] == NULL)
-// 		{
-// 			if (g_mini.nb_cmd == 1)
-// 				printf("exit\n");
-// 			mini->ret_err = ft_atoi(cmd[i]) % 256;
-// 			exit(mini->ret_err);
-// 		}
-// 		else
-// 		{
-// 			printf("exit\nminishell: exit: too many arguments\n");
-// 			mini->ret_err = 1;
-// 		}
-// 	}
-// 	else if (strdigit(cmd[i]) == 1)
-// 	{
-// 		printf("exit\nminishell: exit: %s: %s\n", cmd[i], err);
-// 		mini->ret_err = 255;
-// 		exit(mini->ret_err);
-// 	}
-// }
 
 // la fonction sort de minishell ou redirige vers la verif des arguments
 void	exit_min(t_min *mini, char **cmd)

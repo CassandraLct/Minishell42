@@ -6,14 +6,13 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:35:49 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 11:35:44 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:01:19 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 //5 fonctions
-
 //retourna la taille d'un char ** 
 int	tablen(char **s1)
 {
@@ -71,6 +70,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
+//print export
 void	print_valexp(char *str)
 {
 	int	index;

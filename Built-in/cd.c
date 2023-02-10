@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 13:55:50 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 15:16:55 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 16:55:14 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 //5 fonctions
-//change la valeur de pwd +25 lignes
+//change la valeur de pwd
 void	change_value_pwd(char **str)
 {
 	char	*new_val;

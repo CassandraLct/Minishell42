@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/08 21:55:36 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:07:32 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+//5 fonctions
 // exec the child process in the while
 void	ft_child(t_cmd **cmd, int **pp, int i)
 {
@@ -48,7 +49,6 @@ void	ft_parent(int **pp, int i)
 	return ;
 }
 
-//
 void	last_command_child(t_cmd **cmd, int **pp, int i)
 {
 	int	fdin;
