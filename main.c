@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 12:34:32 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 13:04:33 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	main(int argc, char **argv, char **envp)
 		signaux();
 		g_mini.pid = -1;
 		g_mini.sig_heredoc = 1;
+		// g_mini.ret_err = 0;
 		g_mini.line = readline(g_mini.prompt);
 		if (g_mini.line == NULL)
 			signal_exit();

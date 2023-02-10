@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:05:50 by clecat            #+#    #+#             */
-/*   Updated: 2023/01/21 12:13:51 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 13:05:54 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	ft_env(t_min *mini, char **cmd)
 		i = 0;
 		while (mini->c_env[i])
 			printf("%s\n", mini->c_env[i++]);
+		mini->ret_err = 0;
 	}
 }
 

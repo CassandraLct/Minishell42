@@ -299,27 +299,27 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 	-> echo "coucou ->'"													*KO*	ret_err=1 bash=>0	imprime des espace autour de >
 *EXPORT: OK	
 	-> export ""														*OK*
-	-> unset "" OK															*KO*	bash=>bash: unset: `': not a valid identifier
-	-> export var; export var=test OK									*OK*	OK car pas de gestion ";" export: `var;': not a valid identifier, bash=>n'imprime rien
+	-> unset "" OK														*OK*
+	-> export var; export var=test OK									*OK* car pas de gestion ";"
 	-> export "HI =hi" OK												*OK*
 	-> export A-														*OK*
 *CD:
-	-> cd $HOME/Documents OK												*KO*	ret_err=1 bash=>0
+	-> cd $HOME/Documents OK												*OK*
 	-> cd ../../../../../.. puis pwd: OK									*KO*	ret_err=1 bash=>0
-	-> cd .. => OK															*KO*	ret_err=1 bash=>0
+	-> cd .. => OK															*OK*	
 *PARSING:
 	-> echo bonjour;| OK												*OK*
 	-> $ ret_err doit etre egal a 127										*KO*	ret_err=1 bash=>127
 	-> not_cmd bonjour > salut fonctionne differement (minishell: creer le fichier et mets le message d'erreur dedans ;bash ne creer pas le fichier et met le message d'erreur) *KO*
-	-> echo bonjour > > out (fonctionne dans mnishell alors que et creer un fichier > ;dans bash: bash: syntax error near unexpected token `>') PARSING 						*OK*
+	-> echo bonjour > > out 											*OK* affiche 2 fois le message d'erreur bash 1 fois
 	-> echo bonjour > $test OK mais mauvais message d'erreur bash: $test: ambiguous redirect (gestion dollar) 									*KO* ret_err=2 bash=>1 mauvais msg d'erreur
-	-> /bin/echo bonjour OK													*KO*	ret_err=2 bash=>0
+	-> /bin/echo bonjour OK												*OK*	 mais ret_err=2 bash=>0
 	-> | echo => OK														*OK*
 	-> cat < > => bug bash: syntax error near unexpected token `>' ok	*OK*
 	-> cat < < => bug bash: syntax error near unexpected token `>' ok	*OK*
 	-> cat > > => bug bash: syntax error near unexpected token `>' ok	*OK*
 	-> cat > OK															*OK*
-	-> cat < OK															*KO*	cat pending				=> ne va pas dans le bon programme bug a fix 			=> URGENT
+	-> cat < OK															*OK*
 	-> echo hudifg d | | hugdfihd => OK									*OK*
 	-> echo '' => OK erreur 												*KO*	ret_err=1 bash=>0
 	-> echo "" => bug (pas de retour a la ligne) erreur 					*KO*	ret_err=1 bash=>0
@@ -329,7 +329,7 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 	-> cat Makefile | grep pr | head -n 5 | hello  ret_err (1 vs 127)		*KO*	ret_err=1 bash=>127
 	-> ; minishell OK ret_err soit etre a 258								*KO*	ret_err=1 bash=>258		msg erreur different, ok car ; est hors sujet
 *REDIRECTION/PIPE:
-	-> cat < test2(fichier non existant) OK									*KO*					cat boucle
+	-> cat < test2(fichier non existant) OK									*KO*	cat boucle
 	-> echo bonjour > $test w/ t (boucle) > mauvais message d'erreur (verif $? doit etre a 1) gestion dollar	*KO*
 	-> exit 0 | exit 1 => bug print exit								*OK*
 	-> exit 1 | exit 0 => bug meme cas									*OK*
@@ -337,7 +337,7 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 *SIGNAUX: A tester a la toute fin car bug venu de nul part
 	-> ctrl-C . 130 sur bin(ex : sleep 10)&line vide NON TESTER				*KO* *not tested*
  	-> ctrl-\ .131 sur bin NON TESTER										*KO* *not tested*
-	-> # write something the press ctrl+c => bug ne dois pas ecrire ^C	OK(avec signaux cassandra)	*KO* *not tested*
+	-> # write something the press ctrl+c 								OK(avec signaux cassandra)	*KO* *not tested*
 	-> # write something then press ctrl+d								OK(avec signaux cassandra)	*KO* *not tested*
 	-> # write something then press ctrl+\								OK(avec signaux cassandra)	*KO* *not tested*
 *EXIT: OK
@@ -353,12 +353,12 @@ Autre Test: 19 TESTS
 Test OK : (a retester avant de rendre)
 
 	-> echo bonjour >>> test OK												*KO* msg erreur different mini 'newline' bash '>'
-	-> echo >>'>' test : OK 												*KO* 	DOUBLE FREE !!!!!!															=> URGENT
+	-> echo >>'>' test : OK 											*OK*
 	-> | OK
 	-> echo > OK														*OK*
 	-> echo bonjour |; OK												*OK*	msg differents mais OK car ; est hors sujet
 	-> echo bonjour ; ls OK												*OK*	ret+err different, mais OK car ; est hors sujet
-	-> echo bonjour > test\ 1 (voir si on gere \) OK MAIS NOM DIFFERENT DE BASH 		*OK* car \ est hors sujet
+	-> echo bonjour > test\ 1 (voir si on gere \)						*OK* car \ est hors sujet
 	-> echo "\s" & echo "\s" OK											*OK*
 	-> cat /dev/random | head -n 1 | cat -e OK							*OK*
 	-> unset var1 # with undefined var1 OK									*KO*	ret_err=127 bash=>0
