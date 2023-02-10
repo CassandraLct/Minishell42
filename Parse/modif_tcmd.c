@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:17:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/09 11:31:25 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 12:33:41 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	modif_cmd(char **cmd)
 //modifie la lignes stdin ou sort
 void	modif_stdin(char **stdin)
 {
-	int	i;
+	char	*tmp;
+	int		i;
 
 	i = 0;
 	if (stdin[0] == NULL)
@@ -73,7 +74,11 @@ void	modif_stdin(char **stdin)
 	while (stdin[i])
 	{
 		if (stdin[i][0] == '\'' || stdin[i][0] == '"')
-			rm_cotesline(stdin[i]);
+		{
+			tmp = ft_strdup(stdin[i]);
+			free(stdin[i]);
+			stdin[i] = rm_cotesline(tmp);
+		}
 		i++;
 	}
 }
@@ -81,7 +86,8 @@ void	modif_stdin(char **stdin)
 //modifie la ligne stdout ou sort
 void	modif_stdout(char **stdout)
 {
-	int	i;
+	char	*tmp;
+	int		i;
 
 	i = 0;
 	if (stdout[0] == NULL)
@@ -89,7 +95,11 @@ void	modif_stdout(char **stdout)
 	while (stdout[i])
 	{
 		if (stdout[i][0] == '\'' || stdout[i][0] == '"')
-			rm_cotesline(stdout[i]);
+		{
+			tmp = ft_strdup(stdout[i]);
+			free(stdout[i]);
+			stdout[i] = rm_cotesline(tmp);
+		}
 		i++;
 	}
 }

@@ -293,14 +293,14 @@ LEAKS :
 Test minishell non fonctionnel: test fixe ce matin (6)
 *ECHO: OK
 	-> echo -n -n -nnnn -nnnnm OK 										*OK*
-	-> echo hi " ; " hihi OK												*KO*	ret_err=1 bash=>0
+	-> echo hi " ; " hihi OK												*KO*	bash=>0
 	-> echo hello""world													*KO*	ret_err=1 bash=>0	imprime hello, bash=>helloworld
 	-> echo $?HELLO															*KO*	ret_err=1 bash=>0	imprime 1, bash=>0HELLO (pb dans startline)
 	-> echo "coucou ->'"													*KO*	ret_err=1 bash=>0	imprime des espace autour de >
 *EXPORT: OK	
-	-> export ""														*OK*						imprime export, bash=>bash: export: `': not a valid identifier
-	-> unset "" OK															*KO*						n'imprime rien, bash=>bash: unset: `': not a valid identifier
-	-> export var; export var=test OK										*KO*	ret_err=1 bash=>0	export: `var;': not a valid identifier, bash=>n'imprime rien
+	-> export ""														*OK*
+	-> unset "" OK															*KO*	bash=>bash: unset: `': not a valid identifier
+	-> export var; export var=test OK									*OK*	OK car pas de gestion ";" export: `var;': not a valid identifier, bash=>n'imprime rien
 	-> export "HI =hi" OK												*OK*
 	-> export A-														*OK*
 *CD:
@@ -313,13 +313,13 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 	-> not_cmd bonjour > salut fonctionne differement (minishell: creer le fichier et mets le message d'erreur dedans ;bash ne creer pas le fichier et met le message d'erreur) *KO*
 	-> echo bonjour > > out (fonctionne dans mnishell alors que et creer un fichier > ;dans bash: bash: syntax error near unexpected token `>') PARSING 						*OK*
 	-> echo bonjour > $test OK mais mauvais message d'erreur bash: $test: ambiguous redirect (gestion dollar) 									*KO* ret_err=2 bash=>1 mauvais msg d'erreur
-	-> /bin/echo bonjour OK													*KO*	ret_err=1 bash=>0
+	-> /bin/echo bonjour OK													*KO*	ret_err=2 bash=>0
 	-> | echo => OK														*OK*
 	-> cat < > => bug bash: syntax error near unexpected token `>' ok	*OK*
 	-> cat < < => bug bash: syntax error near unexpected token `>' ok	*OK*
 	-> cat > > => bug bash: syntax error near unexpected token `>' ok	*OK*
-	-> cat > mauvais message d'erreur `newline' au lieu de `>' ok			*KO*	ret_err=2 bash=>258		=> ne va pas dans le bon programme bug a fix 			=> URGENT
-	-> cat <																*KO*	cat pending				=> ne va pas dans le bon programme bug a fix 			=> URGENT
+	-> cat > OK															*OK*
+	-> cat < OK															*KO*	cat pending				=> ne va pas dans le bon programme bug a fix 			=> URGENT
 	-> echo hudifg d | | hugdfihd => OK									*OK*
 	-> echo '' => OK erreur 												*KO*	ret_err=1 bash=>0
 	-> echo "" => bug (pas de retour a la ligne) erreur 					*KO*	ret_err=1 bash=>0
@@ -329,7 +329,7 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 	-> cat Makefile | grep pr | head -n 5 | hello  ret_err (1 vs 127)		*KO*	ret_err=1 bash=>127
 	-> ; minishell OK ret_err soit etre a 258								*KO*	ret_err=1 bash=>258		msg erreur different, ok car ; est hors sujet
 *REDIRECTION/PIPE:
-	-> cat < test2(fichier non existant) OK									*KO*							cat boucle
+	-> cat < test2(fichier non existant) OK									*KO*					cat boucle
 	-> echo bonjour > $test w/ t (boucle) > mauvais message d'erreur (verif $? doit etre a 1) gestion dollar	*KO*
 	-> exit 0 | exit 1 => bug print exit								*OK*
 	-> exit 1 | exit 0 => bug meme cas									*OK*
@@ -337,9 +337,9 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 *SIGNAUX: A tester a la toute fin car bug venu de nul part
 	-> ctrl-C . 130 sur bin(ex : sleep 10)&line vide NON TESTER				*KO* *not tested*
  	-> ctrl-\ .131 sur bin NON TESTER										*KO* *not tested*
-	-> # write something the press ctrl+c => bug ne dois pas ecrire ^C		*KO* *not tested*
-	-> # write something then press ctrl+d									*KO* *not tested*
-	-> # write something then press ctrl+\									*KO* *not tested*
+	-> # write something the press ctrl+c => bug ne dois pas ecrire ^C	OK(avec signaux cassandra)	*KO* *not tested*
+	-> # write something then press ctrl+d								OK(avec signaux cassandra)	*KO* *not tested*
+	-> # write something then press ctrl+\								OK(avec signaux cassandra)	*KO* *not tested*
 *EXIT: OK
 	-> exit -10 OK														*OK*
 	-> exit +10 OK														*OK*
@@ -347,38 +347,38 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 *PB_MALLOC:
 	-> echo "$HOME" pb malloc mais fonctionnait avant					*OK*
 Autre Test: 19 TESTS
--> minishell unset PATH OK													*KO*	ret_err=1 bash=>127
--> echo | => OK															*OK*	mini=>error near `|', bash attends 2ieme commande
+-> minishell unset PATH OK												*OK*
+-> echo | => OK															*OK* 
 
 Test OK : (a retester avant de rendre)
 
-	-> echo bonjour >>> test OK												*KO*	ret_err=2 bash=>258		msg erreur different mini '>>>' bash '>'
+	-> echo bonjour >>> test OK												*KO* msg erreur different mini 'newline' bash '>'
 	-> echo >>'>' test : OK 												*KO* 	DOUBLE FREE !!!!!!															=> URGENT
 	-> | OK
 	-> echo > OK														*OK*
 	-> echo bonjour |; OK												*OK*	msg differents mais OK car ; est hors sujet
 	-> echo bonjour ; ls OK												*OK*	ret+err different, mais OK car ; est hors sujet
 	-> echo bonjour > test\ 1 (voir si on gere \) OK MAIS NOM DIFFERENT DE BASH 		*OK* car \ est hors sujet
-	-> echo "\s" & echo "\s" OK											*OK* hors sujet
+	-> echo "\s" & echo "\s" OK											*OK*
 	-> cat /dev/random | head -n 1 | cat -e OK							*OK*
-	-> unset var1 # with undefined var1 OK									*KO*	ret_err=1 bash=>0
-	-> echo test > file test1 OK											*KO*	ret_err=1 bash=>0
+	-> unset var1 # with undefined var1 OK									*KO*	ret_err=127 bash=>0
+	-> echo test > file test1 OK											*KO*	ret_err=127 bash=>0 pas remis a zero apres une erreur
 	-> env puis export puis env # vars aren't sorted OK					*OK*
 		-> env # fonctionne mais pas dans minishell (# hors sujet)
 	-> echo 2 >> out1 > out2 OK											*OK*
-	-> echo 2 > out1 >> out2 OK												*KO*	ret_err=1 bash=>0										
-	-> exec.c (fichier dans le repo où l'on se trouve) OK					*KO*	ret_err=1 bash=>127
+	-> echo 2 > out1 >> out2 OK											*OK*								
+	-> exec.c (fichier dans le repo où l'on se trouve) OK				*OK*
 	-> echo "bip | bip ; coyotte > < " " OK								*OK* 
 	-> cat | cat | cat | ls OK											*OK*
-	-> $bla # with bla not defined OK									*OK* 	# hors sujet
-	-> $bla bla not defined													*KO*	ret_err=1 bash=>0
+	-> $bla # with bla not defined OK									*OK*
+	-> $bla bla not defined													*OK*	ret_err=127 bash=>0
 	-> export var ="cat Makefile | grep >" OK							*OK*
 	-> export "test=ici"=coucou OK										*OK*
-	-> c$var Makefile # with var=at OK										*KO*	ret_err=1 bash=>127
-	-> $LESS$VAR OK															*KO*	ret_err=1 bash=>127
-	-> not_cmd OK															*KO*	ret_err=1 bash=>127
+	-> c$var Makefile # with var=at OK									*OK*
+	-> $LESS$VAR OK														*OK*
+	-> not_cmd OK														*OK*
 	-> sleep 5 | exit OK												*OK*
-	-> "exit\n" OK															*KO*	ret_err=1 bash=>127
+	-> "exit\n" OK														*OK*
 	-> cat diufosgid (#) test avec et sans # : Fonctionnne correctement, bon ret_err, message d'erreur pour # *OK* # hors sujet.
 	-> exit #
 	-> echo coucou | ; OK
