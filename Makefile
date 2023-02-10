@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+         #
+#    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2023/02/10 17:45:46 by rdi-marz         ###   ########.fr        #
+#    Updated: 2023/02/10 18:27:15 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,6 @@ SRC		=	main.c \
 		Built-in/export_change_val.c \
 		Built-in/export_utils.c \
 		Built-in/unset.c \
-		Built-in/signals_utils.c \
 		Built-in/signals.c \
 		Built-in/annexe.c \
 		Parse/init.c \

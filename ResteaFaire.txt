@@ -355,7 +355,7 @@ Test OK : (a retester avant de rendre)
 	-> echo >>'>' test : OK 											*OK* pb malloc
 	-> | OK
 	-> echo > OK														*OK* segfault
-	-> echo bonjour |; OK												*OK*	msg differents mais OK car ; est hors sujet
+	-> echo bonjour |; OK												*OK*
 	-> echo bonjour ; ls OK												*OK*	ret+err different, mais OK car ; est hors sujet
 	-> echo bonjour > test\ 1 (voir si on gere \)						*OK* car \ est hors sujet
 	-> echo "\s" & echo "\s" OK											*OK*
