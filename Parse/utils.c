@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Utils.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:28:10 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 15:04:27 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/10 15:50:13 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,6 @@ int	get_endcotes(char *line, char cotes, int j)
 		j++;
 	return (j);
 }
-
-// char	*verif_poscotes(char *line)
-// {
-	
-// }
 
 int	verif_redirdollar(char *line)
 {
