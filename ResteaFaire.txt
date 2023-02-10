@@ -311,7 +311,7 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 	-> echo bonjour;| OK												*OK*
 	-> $ ret_err doit etre egal a 127										*KO*	ret_err=1 bash=>127
 	-> not_cmd bonjour > salut fonctionne differement (minishell: creer le fichier et mets le message d'erreur dedans ;bash ne creer pas le fichier et met le message d'erreur) *KO*
-	-> echo bonjour > > out 											*OK* affiche 2 fois le message d'erreur bash 1 fois
+	-> echo bonjour > > out 											*OK*
 	-> echo bonjour > $test OK mais mauvais message d'erreur bash: $test: ambiguous redirect (gestion dollar) 									*KO* ret_err=2 bash=>1 mauvais msg d'erreur
 	-> /bin/echo bonjour OK												*OK*	 mais ret_err=2 bash=>0
 	-> | echo => OK														*OK*
@@ -391,11 +391,11 @@ Test OK : (a retester avant de rendre)
 	-> echo "\" => OK car hors sujet									*OK* hors sujet
 	-> echo "\n \n \n" => OK											*OK*	ret_err=0 bash=>0
 	-> echo "\n \n \\n" => Ok car Hors sujet							*OK* hors sujet
-	-> echo ;; => OK
-	-> echo hi";" hihi => OK
-	-> cd => OK
-	-> cd . => OK
-	-> cd ~ => OK
+	-> echo ;; => OK													*OK* hors sujet
+	-> echo hi";" hihi => OK											*OK*
+	-> cd => OK																*KO*	ret_err=127 bash=>0
+	-> cd . => OK															*KO*	ret_err=127 bash=>0
+	-> cd ~ => OK															*KO*	ret_err=127 bash=>0
 	-> cd / => OK
 	-> cd no_file => OK
 	-> cd a b c d => OK
