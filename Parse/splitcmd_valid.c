@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitcmd_valid.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/10 10:57:52 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/10 13:54:49 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,16 @@ t_cmd	**validation_cmd(t_cmd **resu)
 	{
 		j = 0;
 		while (resu[i]->stdin[j])
-			not_err = cvrin(resu, i, j++);
+		{
+			not_err = cvrin(resu, i, j);
+			j += 2;
+		}
 		j = 0;
 		while (resu[i]->stdout[j])
-			not_err = cvrout(resu, i, j++);
+		{
+			not_err = cvrout(resu, i, j);
+			j += 2;
+		}
 		i++;
 	}
 	if (not_err == 0)
