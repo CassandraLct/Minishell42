@@ -318,8 +318,8 @@ Test minishell non fonctionnel: test fixe ce matin (6)
 	-> cat < > => bug bash: syntax error near unexpected token `>' ok	*OK*
 	-> cat < < => bug bash: syntax error near unexpected token `>' ok	*OK*
 	-> cat > > => bug bash: syntax error near unexpected token `>' ok	*OK*
-	-> cat > mauvais message d'erreur `newline' au lieu de `>' ok			*KO*	ret_err=2 bash=>258		=> ne va pas dans le bon programme bug a fix 			=> URGENT
-	-> cat <																*KO*	cat pending				=> ne va pas dans le bon programme bug a fix 			=> URGENT
+	-> cat > mauvais message d'erreur `newline' au lieu de `>' ok		*OK*
+	-> cat <															*OK*
 	-> echo hudifg d | | hugdfihd => OK									*OK*
 	-> echo '' => OK erreur 												*KO*	ret_err=1 bash=>0
 	-> echo "" => bug (pas de retour a la ligne) erreur 					*KO*	ret_err=1 bash=>0
@@ -381,7 +381,7 @@ Test OK : (a retester avant de rendre)
 	-> "exit\n" OK															*KO*	ret_err=1 bash=>127
 	-> cat diufosgid (#) test avec et sans # : Fonctionnne correctement, bon ret_err, message d'erreur pour # *OK* # hors sujet.
 	-> exit #
-	-> echo coucou | ; OK
+	-> $ OK
 	-> echo '$HOME' OK
 	-> echo $HOME OK
 	-> > log echo coucou => OK
