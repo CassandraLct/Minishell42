@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/10 17:47:47 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/11 19:29:49 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_exit_when_no_arg(void)
 // exit if the redirection has no arg to open
 void	ft_exit_unexpected_token(t_cmd **cmd, int nb, int i)
 {
-	printf("%s%s'\n", ERR_TOKEN_SHORT, cmd[nb]->stdout[i]);
+	printf("%s%c'\n", ERR_TOKEN_SHORT, cmd[nb]->stdout[i][0]);
 	g_mini.ret_err = 258;
 	exit (g_mini.ret_err);
 }

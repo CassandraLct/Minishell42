@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitcmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/10 17:09:03 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/11 17:25:48 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ t_cmd	*split_inst(char *temp)
 	char	**list;
 
 	resu = NULL;
-	tmpclean = remove_double_space(temp);
+	tmpclean = remove_double_char(temp, ' ', 0);
 	list = pre_split(tmpclean);
 	free(tmpclean);
 	resu = alloc_cmd(list);

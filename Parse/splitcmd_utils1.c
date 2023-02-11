@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitcmd_utils1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/10 17:08:00 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/11 19:43:31 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //5 fonctions
 //remove all the multiple space to keep only one
-char	*remove_double_space(char *line)
+char	*remove_double_char(char *line, char c, int remove_both_char)
 {
 	char	*resu;
 	int		i;
@@ -26,11 +26,13 @@ char	*remove_double_space(char *line)
 	j = 0;
 	while (line[i])
 	{
-		if (!(line[i] == ' ' && line[i + 1] == ' '))
+		if (!(line[i] == c && line[i + 1] == c))
 		{
 			resu[j] = line[i];
 			j++;
 		}
+		else if (remove_both_char)
+			i++;
 		i++;
 	}
 	return (resu);
@@ -103,6 +105,23 @@ int	count_all_redir(char *temp)
 	return (resu);
 }
 
+// calculate if the charactere s[i] is inside a quote (1) or not (0)
+int	ft_qpar(char *s, int i)
+{
+	int	quoteparity;
+	int	j;
+
+	quoteparity = 0;
+	j = 0;
+	while(j <= i)
+	{
+		if (s[j] == '\'' || s[j] == '"')
+			quoteparity = (quoteparity + 1) % 2;
+		j++;
+	}
+	return(quoteparity);
+}
+
 // put space before and after < > << >> if there are missing
 // cat <'<' end probleme a regler
 char	*ft_space_bracket(char *s)
@@ -117,16 +136,15 @@ char	*ft_space_bracket(char *s)
 	k = 0;
 	while (s[i])
 	{
-		if (i != 0 && s[i] == '>' && s[i - 1] != ' ' && s[i - 1] != '>')
-			resu[k++] = ' ';
-		if (i != 0 && s[i] == '<' && s[i - 1] != ' ' && s[i - 1] != '<')
-			resu[k++] = ' ';
-		resu[k] = s[i];
-		k++;
-		if (s[i + 1] && s[i] == '>' && s[i + 1] != ' ' && s[i + 1] != '>')
-			resu[k++] = ' ';
-		if (s[i + 1] && s[i] == '<' && s[i + 1] != ' ' && s[i + 1] != '<')
-			resu[k++] = ' ';
+		if (ft_qpar(s, i) == 0 && ((i != 0 && s[i] == '>' && s[i - 1] != ' '
+					&& s[i - 1] != '>') || (i != 0 && s[i] == '<'
+					&& s[i - 1] != ' ' && s[i - 1] != '<')))
+				resu[k++] = ' ';
+		resu[k++] = s[i];
+		if (ft_qpar(s, i) == 0 && ((s[i + 1] && s[i] == '>' && s[i + 1] != ' '
+					&& s[i + 1] != '>') || (s[i + 1] && s[i] == '<'
+					&& s[i + 1] != ' ' && s[i + 1] != '<')))
+				resu[k++] = ' ';
 		i++;
 	}
 	return (resu);

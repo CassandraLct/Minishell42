@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:48:29 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/11 16:43:34 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/11 18:36:29 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,9 +123,13 @@ void	verif_cmdcotes(t_min *mini)
 	i = count_cotes(mini->line);
 	if (i < 2)
 		return ;
+	tmp_line = remove_double_char(mini->line, '"', 1);
+	free(mini->line);
+	mini->line = remove_double_char(tmp_line, '\'', 1);
+	free(tmp_line);
 	tmp_line = ft_strdup(mini->line);
 	new_line = check_line(tmp_line);
 	free(mini->line);
 	mini->line = ft_strdup(new_line);
-	//free(tmp_line); check_line already freed tmp_line no need to double free here
+	//free(tmp_line); check_line already free tmp_line double free here
 }

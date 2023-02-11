@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 17:48:12 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/11 17:26:45 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,7 +222,7 @@ int		ft_redir_in(t_cmd **cmd);
 t_cmd	**spliter3(char **inst);
 
 //splitcmd_utils1.c
-char	*remove_double_space(char *line);
+char	*remove_double_char(char *line, char c, int remove_both_char);
 char	*ft_space_bracket(char *s);
 int		count_cmd(char *line);
 int		count_redir(char **list, char c);

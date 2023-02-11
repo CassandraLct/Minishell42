@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modif_tcmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:17:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 12:33:41 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/11 17:25:18 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,16 @@ void	modif_cmd(char **cmd)
 		return ;
 	while (cmd[i])
 	{
-		if (cmd[i][0] == '\'' || cmd[i][0] == '"')
+		if (ft_strlen(cmd[i]) > 0 && (cmd[i][0] == '\'' || cmd[i][0] == '"'))
 		{
-			tmp = ft_strdup(cmd[i]);
+			cmd[i][ft_strlen(cmd[i]) - 1] = '\0';
+			tmp = ft_strdup(&(cmd[i][1]));
 			free(cmd[i]);
-			cmd[i] = rm_cotesline(tmp);
+			cmd[i] = tmp;
 		}
 		i++;
 	}
-	tmp = ft_strdup(cmd[0]);
-	free(cmd[0]);
+	tmp = cmd[0];
 	cmd[0] = check_cmd(tmp);
 	free(tmp);
 }
