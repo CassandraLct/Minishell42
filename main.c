@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 17:52:48 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/11 10:26:41 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,10 @@ int	main(int argc, char **argv, char **envp)
 		{
 			g_mini.struct_cmd = spliter3(spliter());
 			if (g_mini.struct_cmd != NULL)
+			{
 				inside_main();
-			free_t_cmd(g_mini.struct_cmd);
+				free_t_cmd(g_mini.struct_cmd);
+			}
 		}
 		free(g_mini.line);
 	}
