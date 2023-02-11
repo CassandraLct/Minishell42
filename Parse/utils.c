@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Utils.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:28:10 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 18:33:59 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/11 16:42:17 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	*join_wout_tmp(char *s_line, char *e_line)
 	else if (s_line == NULL && e_line != NULL)
 		n_line = ft_strdup(e_line);
 	else if (s_line == NULL && e_line == NULL)
-		n_line = NULL;
+		n_line = ft_strdup("");
 	return (n_line);
 }
 

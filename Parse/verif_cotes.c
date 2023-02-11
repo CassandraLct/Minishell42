@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif_cotes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:48:29 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 17:57:21 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/11 16:43:34 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ char	*join_line(char *tmp, char *s_line, char *e_line)
 		new_line = join_linetmp(s_line, tmp, e_line);
 	else if (tmp[0] == '\0')
 		new_line = join_wout_tmp(s_line, e_line);
+	if (s_line)
+		free(s_line);
+	if (e_line)
+		free(e_line);
 	return (new_line);
 }
 
@@ -37,7 +41,7 @@ char	*add_cotesout(char *line)
 	j = 0;
 	tmp = NULL;
 	if (line[0] == '\0')
-		return (line);
+		return (ft_strdup(line));
 	tmp = malloc(sizeof(char) * (ft_strlen(line) + 3));
 	tmp[j] = '"';
 	j += 1;
@@ -100,8 +104,6 @@ char	*check_line(char *line)
 	tmp = get_tmp(line, cotes);
 	free(line);
 	line = join_line(tmp, s_line, e_line);
-	free(s_line);
-	free(e_line);
 	if (tmp[0] != '\0')
 		free(tmp);
 	return (line);
@@ -125,5 +127,5 @@ void	verif_cmdcotes(t_min *mini)
 	new_line = check_line(tmp_line);
 	free(mini->line);
 	mini->line = ft_strdup(new_line);
-	free(tmp_line);
+	//free(tmp_line); check_line already freed tmp_line no need to double free here
 }

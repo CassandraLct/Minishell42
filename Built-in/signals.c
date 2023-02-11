@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:33:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 18:25:26 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/11 15:46:18 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ft_ctrl_backslash(int signum)
 		rl_redisplay();
 	}
 }
-
+/*
 void	echo_control_seq(int c)
 {
 	struct termios	conf;
@@ -94,12 +94,12 @@ void	echo_control_seq(int c)
 		conf.c_lflag &= ~(ECHOCTL);
 	ioctl(ttyslot(), TIOCSETA, &conf);
 }
-
+*/
 //numero_du_signal, procedure a faire
 void	signaux(void)
 {
 	signal(SIGINT, ft_ctrl_c);
 	signal(SIGTERM, ft_ctrl_d);
 	signal(SIGQUIT, ft_ctrl_backslash);
-	echo_control_seq(g_mini.in_cmd);
+	//echo_control_seq(g_mini.in_cmd);
 }
