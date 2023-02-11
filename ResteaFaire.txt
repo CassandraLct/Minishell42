@@ -311,20 +311,20 @@ Test minishell non fonctionnel: test fixe ce matin (6) 17 KO / 86 OK
 	-> echo bonjour;|													*OK*
 	-> $ ret_err doit etre egal a 127									*OK*
 	-> not_cmd bonjour > salut 												*KO* message d'erreur dans salut
-	-> echo bonjour > > out													*KO* segfault
+	-> echo bonjour > > out												*OK* 
 	-> echo bonjour > $test												*OK*
 	-> /bin/echo bonjour OK												*OK*
 	-> | echo => 														*OK*
-	-> cat < > => bug bash: syntax error near unexpected token `>' ok	*OK* segfault
-	-> cat < < => bug bash: syntax error near unexpected token `>' ok	*OK* segfault
-	-> cat > > => bug bash: syntax error near unexpected token `>' ok	*OK* segfault
-	-> cat > OK															*OK* segfault
-	-> cat < OK															*OK* segfault
+	-> cat < > => bug bash: syntax error near unexpected token `>' ok	*OK* 
+	-> cat < < => bug bash: syntax error near unexpected token `>' ok	*OK* 
+	-> cat > > => bug bash: syntax error near unexpected token `>' ok	*OK* 
+	-> cat > OK															*OK* 
+	-> cat < OK															*OK* 
 	-> echo hudifg d | | hugdfihd => OK									*OK*
 	-> echo ''															*OK*
 	-> echo ""											 				*OK*
 *RET_ERR:
-	-> cat Makefile | grep pr | head -n 5 | cd test  					*OK* ret_err=0 bash=1
+	-> cat Makefile | grep pr | head -n 5 | cd test  					*OK*
 	-> cat Makefile | grep pr | head -n 5 | cat test 	 				*OK*
 	-> cat Makefile | grep pr | head -n 5 | hello  						*OK*
 	-> ; 																*OK*
