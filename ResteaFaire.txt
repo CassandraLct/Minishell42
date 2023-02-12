@@ -315,37 +315,37 @@ Test minishell non fonctionnel: test fixe ce matin (6) 17 KO / 86 OK
 	-> echo bonjour > $test												*OK*
 	-> /bin/echo bonjour OK												*OK*
 	-> | echo => 														*OK*
-	-> cat < > => bug bash: syntax error near unexpected token `>' ok	*OK* segfault
-	-> cat < < => bug bash: syntax error near unexpected token `>' ok	*OK* segfault
-	-> cat > > => bug bash: syntax error near unexpected token `>' ok	*OK* segfault
-	-> cat > OK															*OK* segfault
-	-> cat < OK															*OK* segfault
-	-> echo hudifg d | | hugdfihd => OK									*OK*
-	-> echo ''															*OK*
-	-> echo ""											 				*OK*
+	-> cat < > => bug bash: syntax error near unexpected token `>' ok	*OK*	l
+	-> cat < < => bug bash: syntax error near unexpected token `>' ok	*OK*	l
+	-> cat > > => bug bash: syntax error near unexpected token `>' ok	*OK*	l
+	-> cat > OK															*OK*	l
+	-> cat < OK															*OK*	l
+	-> echo hudifg d | | hugdfihd => OK									*OK*	l
+	-> echo ''															*OK*	l
+	-> echo ""											 				*OK*	l
 *RET_ERR:
-	-> cat Makefile | grep pr | head -n 5 | cd test  					*OK* ret_err=0 bash=1
-	-> cat Makefile | grep pr | head -n 5 | cat test 	 				*OK*
-	-> cat Makefile | grep pr | head -n 5 | hello  						*OK*
-	-> ; 																*OK*
+	-> cat Makefile | grep pr | head -n 5 | cd test  					*OK*	l
+	-> cat Makefile | grep pr | head -n 5 | cat test 	 				*OK*	l
+	-> cat Makefile | grep pr | head -n 5 | hello  						*OK*	l
+	-> ; 																*OK*	l
 *REDIRECTION/PIPE:
-	-> cat < test2(fichier non existant) OK									*KO*	cat boucle
-	-> echo bonjour > $test w/ t 										*OK*
-	-> exit 0 | exit 1 													*OK*
-	-> exit 1 | exit 0 													*OK*
-	-> /bin/ls => OK													*OK*
+	-> cat < test2(fichier non existant) OK								*OK*	l
+	-> echo bonjour > $test w/ t 										*OK*	l
+	-> exit 0 | exit 1 													*OK*	l
+	-> exit 1 | exit 0 													*OK*	l
+	-> /bin/ls => OK													*OK*	l
 *SIGNAUX:
 	-> # write something the press ctrl+c 								*OK*
 	-> # write something then press ctrl+d								*OK*
 	-> # write something then press ctrl+\								*OK* 
 *EXIT: OK
-	-> exit -10 OK														*OK*
-	-> exit +10 OK														*OK*
-	-> exit 99999999999999999999999999999999999999999999999 OK			*OK*
+	-> exit -10 OK														*OK*	l
+	-> exit +10 OK														*OK*	l
+	-> exit 99999999999999999999999999999999999999999999999 OK			*OK*	l
 *PB_MALLOC:
-	-> echo "$HOME"														*OK*
+	-> echo "$HOME"														*OK*	l
 Autre Test: 19 TESTS
--> minishell unset PATH OK												*OK*
+-> minishell unset PATH OK												*OK*	l
 -> echo | => OK															*OK*
 -> '																	*OK* ret_err=0 au lieu 1
 
@@ -354,21 +354,21 @@ Test OK : (a retester avant de rendre)
 	-> echo bonjour >>> test OK												*KO* ret_err=2 bash=>258 msg erreur different mini '>>>' bash '>'
 	-> echo >>'>' test : OK 												*KO* pb malloc
 	-> | OK
-	-> echo > OK														*OK* segfault
+	-> echo > OK														*OK*	l
 	-> echo bonjour |; OK												*OK*
 	-> echo bonjour ; ls OK												*OK*
 	-> echo bonjour > test\ 1 (voir si on gere \)						*OK*
-	-> echo "\s" & echo "\s" OK											*OK*
-	-> cat /dev/random | head -n 1 | cat -e 							*OK*
-	-> unset var1 # with undefined var1									*OK*
-	-> echo test > file test1 											*OK*
-	-> env puis export puis env # vars aren't sorted OK					*OK*
+	-> echo "\s" & echo "\s" OK											*OK*	l
+	-> cat /dev/random | head -n 1 | cat -e 							*OK*	l
+	-> unset var1 # with undefined var1									*OK*	l
+	-> echo test > file test1 											*OK*	l
+	-> env puis export puis env # vars aren't sorted OK					*OK*	l
 		-> env # fonctionne mais pas dans minishell (# hors sujet)
-	-> echo 2 >> out1 > out2 											*OK*
-	-> echo 2 > out1 >> out2 											*OK*
-	-> exec.c (fichier dans le repo où l'on se trouve) 					*OK*
-	-> echo "bip | bip ; coyotte > < " "									*KO* segfault after quote not closed
-	-> cat | cat | cat | ls												*OK*
+	-> echo 2 >> out1 > out2 											*OK*	l
+	-> echo 2 > out1 >> out2 											*OK*	l
+	-> exec.c (fichier dans le repo où l'on se trouve) 					*OK*	l
+	-> echo "bip | bip ; coyotte > < " "								*OK*
+	-> cat | cat | cat | ls												*OK*	l
 	-> $bla # with bla not defined										*OK*
 	-> $bla bla not defined												*OK*
 	-> export var ="cat Makefile | grep >" 								*OK*
@@ -391,7 +391,7 @@ Test OK : (a retester avant de rendre)
 	-> echo "\n \n \n"													*OK*
 	-> echo "\n \n \\n"													*OK* 
 	-> echo ;;															*OK* 
-	-> echo hi";" hihi 														*KO* pb malloc
+	-> echo hi";" hihi 													*OK*
 	-> cd																*OK*
 	-> cd . => OK														*OK*
 	-> cd ~ => OK														*OK*

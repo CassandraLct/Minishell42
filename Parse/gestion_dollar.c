@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 13:51:02 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/12 22:45:28 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/12 23:12:46 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ char	*var_false(char *line)
 
 	if (verif_redirdollar(line) == 1)
 	{
-		name_var = ft_strjoin("$", recup_namevar(line));
-		ft_print_error_msg3("minishell: ", name_var,
+		name_var = recup_namevar(line);//leaks
+		ft_print_error_msg3("minishell: $", name_var,
 			": ambiguous redirect\n");
 		free(name_var);
 		g_mini.ret_err = 1;
