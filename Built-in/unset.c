@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 17:02:48 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/12 15:46:27 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ void	unset(t_min *mini, char **cmd)
 		}
 		else
 		{
-			printf("minishell: unset: `%s':", cmd[1]);
-			printf(" not a valid identifier\n");
+			ft_print_error_msg3("minishell: unset: `", cmd[1],
+				"': not a valid identifier\n");
 			mini->ret_err = 1;
 		}
 		i++;

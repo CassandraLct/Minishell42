@@ -450,9 +450,11 @@ Saturday 11/02:
 	-> export ""														xxxxxxx - not the same output
 	-> not_cmd bonjour > salut 											xxxxxxx - not the same output
 	-> cat < test2(fichier non existant) OK									*KO*	cat boucle
+	-> unset 66
 *SIGNAUX:
 	-> # write something the press ctrl+c 								*OK*
 	-> # write something then press ctrl+d								*OK*
 	-> # write something then press ctrl+\								*OK* 														*OK*
 
 supprimer printstruct.c
+remettre les signaux
