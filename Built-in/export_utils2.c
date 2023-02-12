@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/12 15:25:14 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/12 15:32:07 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	new_vars(t_min *mini, char *str, int y, char **cmd)
 	i = 0;
 	if (ft_isdigit(str[0]) == 1 || str[0] == '=')
 	{
-		printf("minishell: export:`%s': not a valid identifier\n", cmd[y]);
+		ft_print_error_msg3("minishell: export:`", cmd[y],
+			"': not a valid identifier\n");
 		mini->ret_err = 1;
 		return ;
 	}
