@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/12 15:24:14 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/12 17:26:38 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,6 +226,7 @@ int		ft_redir_in(t_cmd **cmd);
 t_cmd	**spliter3(char **inst);
 
 //splitcmd_utils1.c
+int		ft_qpar(char *s, int i);
 char	*ft_space_bracket(char *s);
 int		count_cmd(char *line);
 int		count_redir(char **list, char c);
@@ -240,6 +241,7 @@ void	free_t_cmd(t_cmd **cmd);
 
 //splitcmd_utils3.c
 char	*remove_double_char(char *line, char c, int remove_both_char);
+char	*remove_double_char_q(char *line, char c);
 
 //splitcmd_valid.c
 t_cmd	**validation_cmd(t_cmd **resu);
