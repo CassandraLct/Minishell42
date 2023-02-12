@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitcmd_valid.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/10 17:30:04 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/12 15:57:50 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,13 @@ int	cvrin(t_cmd **resu, int i, int *j)
 	*j += 2;
 	if ((in0[0] == '<' && in1 == NULL) || (in0[0] == '>' && in1 == NULL))
 	{
-		printf(ERR_TOKEN);
+		write(2, ERR_TOKEN, ft_strlen(ERR_TOKEN));
 		g_mini.ret_err = 258;
 		return (0);
 	}	
 	if ((in0[0] == '<' || in0[0] == '>') && (in1[0] == '<' || in1[0] == '>'))
 	{
-		printf(ERR_TOKEN_SHORT);
-		printf("%s'\n", in1);
+		ft_print_error_msg3(ERR_TOKEN_SHORT, in1, "'\n");
 		g_mini.ret_err = 258;
 		return (0);
 	}
@@ -51,14 +50,13 @@ int	cvrout(t_cmd **resu, int i, int *j)
 	*j += 2;
 	if ((in0[0] == '<' && in1 == NULL) || (in0[0] == '>' && in1 == NULL))
 	{
-		printf(ERR_TOKEN);
+		write(2, ERR_TOKEN, ft_strlen(ERR_TOKEN));
 		g_mini.ret_err = 258;
 		return (0);
 	}	
 	if ((in0[0] == '<' || in0[0] == '>') && (in1[0] == '<' || in1[0] == '>'))
 	{
-		printf(ERR_TOKEN_SHORT);
-		printf("%s'\n", in1);
+		ft_print_error_msg3(ERR_TOKEN_SHORT, in1, "'\n");
 		g_mini.ret_err = 258;
 		return (0);
 	}
