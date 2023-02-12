@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/12 15:25:08 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/12 15:26:49 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	**order_exp(char **c_exp, char **cmp)
 	return (c_exp);
 }
 
-int		is_valid_export_identifier(char *str)
+int	is_valid_export_identifier(char *str)
 {
 	if (str == NULL)
 		return (0);
