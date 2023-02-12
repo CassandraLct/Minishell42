@@ -445,10 +445,9 @@ Vendredi 10/02:
 	-> tout retester;
 
 Saturday 11/02:
-
 	-> echo -n simple -n 	 												*KO*
+	-> echo -n s
 	-> export ""														xxxxxxx - not the same output
-	-> cat < test2(fichier non existant) OK									*KO*	cat boucle
 	-> unset 66
 
 *SIGNAUX:
@@ -458,3 +457,4 @@ Saturday 11/02:
 
 supprimer printstruct.c
 remettre les signaux
+cat < tt => ret_err = 55 `a changer sur mac
