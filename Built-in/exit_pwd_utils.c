@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_pwd_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 16:57:47 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/12 09:26:22 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,13 @@
 //exit in case the digit is too big
 void	exit_number_too_big(t_min *mini, int i, char **cmd)
 {
-	printf("exit\nminishell: %s: %s: %s\n", cmd[0], cmd[i], ERR_NUM);
+	write(2, "exit\nminishell: ", 16);
+	write(2, cmd[0], ft_strlen(cmd[0]));
+	write(2, ": ", 2);
+	write(2, cmd[i], ft_strlen(cmd[i]));
+	write(2, ": ", 2);
+	write(2, ERR_NUM, ft_strlen(ERR_NUM));
+	write(2, "\n", 1);
 	mini->ret_err = 255;
 	exit(mini->ret_err);
 }
@@ -27,6 +33,18 @@ void	exit_valid_number(t_min *mini, int i, char **cmd)
 	if (g_mini.nb_cmd == 1)
 		printf("exit\n");
 	mini->ret_err = ft_atoi(cmd[i]) % 256;
+	exit(mini->ret_err);
+}
+
+//exit in case the argument is not a number
+void	exit_not_numeric(t_min *mini, int i, char **cmd)
+{
+	write(2, "exit\nminishell: exit: ", 22);
+	write(2, cmd[i], ft_strlen(cmd[i]));
+	write(2, ": ", 2);
+	write(2, ERR_NUM, ft_strlen(ERR_NUM));
+	write(2, "\n", 1);
+	mini->ret_err = 255;
 	exit(mini->ret_err);
 }
 
@@ -42,14 +60,10 @@ void	verif_arg_exit(t_min *mini, int i, char **cmd)
 			exit_valid_number(mini, i, cmd);
 		else
 		{
-			printf("exit\nminishell: exit: too many arguments\n");
+			write(2, "exit\nminishell: exit: too many arguments\n", 41);
 			mini->ret_err = 1;
 		}
 	}
 	else if (strdigit(cmd[i]) == 1)
-	{
-		printf("exit\nminishell: exit: %s: %s\n", cmd[i], ERR_NUM);
-		mini->ret_err = 255;
-		exit(mini->ret_err);
-	}
+		exit_not_numeric(mini, i, cmd);
 }

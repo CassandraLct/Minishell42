@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 21:59:04 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/01 11:44:30 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/12 09:05:43 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,31 +70,26 @@ char	*ft_strtrim(char *s1, char *set)
 	return (resu);
 }
 
-// malloc with 0 everywhere inse=ide the vaiable
-void	*ft_calloc2(int count, int size)
+// malloc with 0 everywhere inside the vaiable
+void	*ft_calloc(int count, int size)
 {
 	void	*resu;
 	int		i;
 
-	printf("debut calloc\n");
-	printf("count = %d, size = %d\n", count, size);
 	resu = malloc(count * size);
-	printf("malloc resu\n");
 	if (!resu)
 		return (0);
-	printf("apres verif malloc\n");
 	i = 0;
 	while (i < count * size)
 	{
 		((unsigned char *)resu)[i] = 0;
 		i++;
 	}
-	printf("sortie calloc\n");
 	return (resu);
 }
 
 //calloc LIBFT cassandra
-void	*ft_calloc(int count, int size)
+void	*ft_calloc2(int count, int size)
 {
 	int		i;
 	char	*ptr;
