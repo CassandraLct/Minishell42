@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:36:11 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/12 10:03:13 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/12 10:55:01 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	verif_space(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] != '=')
+	while (str[i] && str[i] != '=')
 	{
 		if (str[i] == 32)
 			return (1);
