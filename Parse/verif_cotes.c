@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:48:29 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/12 10:32:48 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/12 22:46:12 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ char	*check_line(char *line)
 	tmp = get_tmp(line, cotes);
 	free(line);
 	line = join_line(tmp, s_line, e_line);
-	if (tmp[0] != '\0')
+	if (tmp)//leaks
 		free(tmp);
 	return (line);
 }
@@ -129,4 +129,5 @@ void	verif_cmdcotes(t_min *mini)
 	new_line = check_line(tmp_line);
 	free(mini->line);
 	mini->line = ft_strdup(new_line);
+	free(new_line);//leaks
 }

@@ -292,11 +292,11 @@ LEAKS :
 
 Test minishell non fonctionnel: test fixe ce matin (6) 17 KO / 86 OK
 *ECHO: OK
-	-> echo -n -n -nnnn -nnnnm OK 										*OK*
-	-> echo hi " ; " hihi OK											*OK*
-	-> echo hello""world													*KO* imprime hello, bash=>helloworld
-	-> echo $?HELLO														*OK*
-	-> echo "coucou ->'"												*OK*
+	-> echo -n -n -nnnn -nnnnm OK 										*OK*	l
+	-> echo hi " ; " hihi OK											*OK*	l
+	-> echo hello""world												*OK*	l
+	-> echo $?HELLO														*OK*	l
+	-> echo "coucou ->'"												*OK*	l
 *EXPORT: OK	
 	-> export ""														*OK*
 	-> unset "" OK														*OK*
@@ -308,10 +308,10 @@ Test minishell non fonctionnel: test fixe ce matin (6) 17 KO / 86 OK
 	-> cd ../../../../../.. puis pwd: OK								*OK*
 	-> cd .. => OK														*OK*
 *PARSING:
-	-> echo bonjour;|													*OK*
-	-> $ ret_err doit etre egal a 127									*OK*
-	-> not_cmd bonjour > salut 												*KO* message d'erreur dans salut
-	-> echo bonjour > > out													*KO* segfault
+	-> echo bonjour;|													*OK*	l
+	-> $ ret_err doit etre egal a 127									*OK*	l
+	-> not_cmd bonjour > salut 											*OK*
+	-> echo bonjour > > out												*OK*
 	-> echo bonjour > $test												*OK*
 	-> /bin/echo bonjour OK												*OK*
 	-> | echo => 														*OK*

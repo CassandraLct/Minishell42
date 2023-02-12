@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 13:51:02 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/12 16:01:42 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/12 22:45:28 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 //5 fonctions
 //verifie la position du ?
-void	verif_posreterr(char *line)
+void	verif_posreterr(char **line)
 {
 	char	*tmp;
 	int		i;
 
 	i = 0;
-	if (line[i] == '?' && line[i + 1] != '\0')
+	if ((*line)[i] == '?' && (*line)[i + 1] != '\0')
 	{
 		i += 1;
-		tmp = copy_tmp(line, i);
-		free(line);
-		line = ft_strdup(tmp);
+		tmp = copy_tmp(*line, i);
+		free(*line);
+		*line = ft_strdup(tmp);
 		free(tmp);
 	}
 }
@@ -39,7 +39,7 @@ char	*var_reterr(char *line)
 
 	tmp2 = ft_itoa(g_mini.ret_err);
 	tmp = recup_namevar(line);
-	verif_posreterr(tmp);
+	verif_posreterr(&tmp);//leaks
 	if (strlen(tmp) > 1)
 		name_var = ft_strjoin(tmp2, tmp);
 	else
