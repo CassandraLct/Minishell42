@@ -6,14 +6,14 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/11 16:22:24 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/12 16:15:38 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 //2 fonctions
-// main loop of spliter / +25lignes(printf)
+// main loop of spliter
 char	**spliter_loop(char **resu, char *temp)
 {
 	int		inb;
@@ -42,7 +42,6 @@ char	**spliter_loop(char **resu, char *temp)
 	return (resu);
 }
 
-//line too long = printf l.69, l.70, l.72
 // cut the line received from readline, the separator are real pipes 
 char	**spliter(void)
 {
@@ -53,7 +52,7 @@ char	**spliter(void)
 	temp = NULL;
 	if (iscotevalid(g_mini.line) == 0)
 	{
-		printf("minishell: quote not closed\n");
+		write(2, "minishell: quote not closed\n", 28);
 		return (NULL);
 	}
 	g_mini.nb_cmd = count_instruct(g_mini.line);

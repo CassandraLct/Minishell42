@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/10 17:07:17 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/12 16:14:34 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	ft_set_pathexec2(t_min *mini, char **cmd)
 	if (all_path == NULL || cmd[0][0] == '/')
 	{
 		mini->ret_err = 127;
-		printf("minishell: %s: No such file or directory\n", cmd[0]);
+		ft_print_error_msg3("minishell: ", cmd[0],
+			": No such file or directory\n");
 		free_tab(pathcmd);
 		return ;
 	}

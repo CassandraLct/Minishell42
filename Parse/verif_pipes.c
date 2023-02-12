@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:16:57 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/11 18:40:19 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/12 16:13:04 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*verif_pipes(char *line)
 	}
 	if (new_line[len - 1] == '|')
 	{
-		printf("minishell: syntax error near unexpected token `|'\n");
+		write(2, "minishell: syntax error near unexpected token `|'\n", 50);
 		g_mini.ret_err = 258;
 		free(new_line);
 		new_line = ft_calloc(1, sizeof(char));

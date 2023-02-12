@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:36:33 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 17:04:49 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/12 16:24:50 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	aff_err(char **cmd)
 {
 	if (check_arg(cmd[1]) == 1)
 	{
-		printf("minishell: cd: %s: Not a directory\n", cmd[1]);
+		ft_print_error_msg3("minishell: cd: ", cmd[1], ": Not a directory\n");
 		g_mini.ret_err = 1;
 	}
 	else
 	{
-		printf("minishell: cd: %s: ", cmd[1]);
-		printf("No such file or directory\n");
+		ft_print_error_msg3("minishell: cd: ", cmd[1],
+			"No such file or directory\n");
 		g_mini.ret_err = 1;
 	}
 }

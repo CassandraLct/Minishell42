@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitline_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/10 17:09:21 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/12 16:20:18 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,6 @@ int	is_single_pipe(int j)
 
 	i = 0;
 	cote = 0;
-	if (g_mini.line[0] == '|' && g_mini.line[0] != '|')
-	{
-		printf("minishell: syntax error near unexpected token `|'\n");
-		exit (1);
-	}
 	while (i < j)
 	{
 		if (g_mini.line[i] == '\'' || g_mini.line[i] == '"')

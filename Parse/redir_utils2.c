@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/11 19:29:49 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/12 16:10:55 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // exit if the redirection has no arg to open
 void	ft_exit_when_no_arg(void)
 {
-	printf("minishell: syntax error near unexpected token `newline'\n");
+	write(2, "minishell: syntax error near unexpected token `newline'\n", 56);
 	g_mini.ret_err = 258;
 	exit (g_mini.ret_err);
 }
@@ -23,7 +23,7 @@ void	ft_exit_when_no_arg(void)
 // exit if the redirection has no arg to open
 void	ft_exit_unexpected_token(t_cmd **cmd, int nb, int i)
 {
-	printf("%s%c'\n", ERR_TOKEN_SHORT, cmd[nb]->stdout[i][0]);
+	ft_print_error_msg3(ERR_TOKEN_SHORT, &(cmd[nb]->stdout[i][0]), "'\n");
 	g_mini.ret_err = 258;
 	exit (g_mini.ret_err);
 }
