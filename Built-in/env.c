@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:05:50 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 16:57:19 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/12 09:55:00 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//4 fonctions
+//5 fonctions
 //check if var PATH exist
 int	verif_path(char **tab)
 {
@@ -30,6 +30,19 @@ int	verif_path(char **tab)
 	return (0);
 }
 
+// print error message on fd=2 when env has argument
+void	ft_print_env_error(t_min *mini, char *s1, char *s2, int cas)
+{
+	write(2, s1, ft_strlen(s1));
+	if (cas == 1)
+		write(2, "'", 1);
+	write(2, s2, ft_strlen(s2));
+	if (cas == 1)
+		write(2, "'", 1);
+	write(2, ": No such file or directory\n", 28);
+	mini->ret_err = 127;
+}
+
 //print env
 void	ft_env(t_min *mini, char **cmd)
 {
@@ -38,14 +51,12 @@ void	ft_env(t_min *mini, char **cmd)
 	i = 1;
 	if (verif_path(mini->c_env) == 1)
 	{
-		printf("minishell: %s: No such file or directory\n", cmd[0]);
-		mini->ret_err = 127;
+		ft_print_env_error(mini, "minishell: ", cmd[0], 0);
 		return ;
 	}
 	if (cmd[i] != NULL)
 	{
-		printf("env: %s: No such file or directory\n", cmd[i]);
-		mini->ret_err = 127;
+		ft_print_env_error(mini, "env: ", cmd[i], 1);
 		return ;
 	}
 	else

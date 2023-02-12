@@ -6,13 +6,13 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/12 09:26:22 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/12 09:29:18 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//3 fonctions
+//4 fonctions
 //exit in case the digit is too big
 void	exit_number_too_big(t_min *mini, int i, char **cmd)
 {
