@@ -456,4 +456,4 @@ Saturday 11/02:
 	-> # write something then press ctrl+d								*OK*
 	-> # write something then press ctrl+\								*OK* 														*OK*
 
-supprimer priintstruct.c
+supprimer printstruct.c

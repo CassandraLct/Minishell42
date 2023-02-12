@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:48:29 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/11 18:36:29 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/12 10:32:48 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,6 @@ void	verif_cmdcotes(t_min *mini)
 
 	new_line = NULL;
 	tmp_line = NULL;
-	// if (verif_cmdcotesempty(mini->line) == 1)
-	// 	return ;
 	i = count_cotes(mini->line);
 	if (i < 2)
 		return ;
@@ -131,5 +129,4 @@ void	verif_cmdcotes(t_min *mini)
 	new_line = check_line(tmp_line);
 	free(mini->line);
 	mini->line = ft_strdup(new_line);
-	//free(tmp_line); check_line already free tmp_line double free here
 }

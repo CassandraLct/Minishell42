@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/11 19:43:31 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/12 10:21:15 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,13 +113,13 @@ int	ft_qpar(char *s, int i)
 
 	quoteparity = 0;
 	j = 0;
-	while(j <= i)
+	while (j <= i)
 	{
 		if (s[j] == '\'' || s[j] == '"')
 			quoteparity = (quoteparity + 1) % 2;
 		j++;
 	}
-	return(quoteparity);
+	return (quoteparity);
 }
 
 // put space before and after < > << >> if there are missing

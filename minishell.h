@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/11 17:26:45 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/12 10:29:58 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,6 +272,10 @@ int		verif_redirdollar(char *line);
 void	verif_tmp(char *line);
 
 /*-----------------------UTILS--------------------------------------------*/
+//errmsg.c
+void	ft_print_error_msg3(char *s1, char *s2, char *s3);
+void	ft_export_error_msg(char *s1, char *s2);
+
 //5 fichiers
 //itoa.c (libft)
 char	*ft_itoa(int nb);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
+#    By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2023/02/10 18:27:15 by clecat           ###   ########.fr        #
+#    Updated: 2023/02/12 10:17:39 by rdi-marz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ SRC		=	main.c \
 		Parse/check_cmd.c \
 		Parse/verif_pipes.c \
 		Parse/utils.c \
+		Utils/errmsg.c \
 		Utils/ft_split.c \
 		Utils/ft_itoa.c \
 		Utils/utils.c \
