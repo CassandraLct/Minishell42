@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/12 15:16:35 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/12 15:24:14 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,6 @@ void	exit_min(t_min *mini, char **cmd);
 void	pwd(char **c_env, char **cmd);
 void	change_val_pwdpath(char **str, char **cmd);
 
-//export.c 5 fonctions
-char	**order_exp(char **s1, char **s2);
-int		verif_modif_var(char **str, char *cmp);
-void	export(t_min *mini, char **cmd);
-
 //export_addvar.c 3 fonctions
 void	add_valexp(t_min *mini, char *str);
 void	add_valenv(t_min *mini, char *str);
@@ -117,6 +112,15 @@ char	*ft_strjoin(char const *s1, char const *s2);
 int		tablen(char **s1);
 int		check_exp(char **s1, char **s2, int index);
 void	print_export(char **str);
+
+//export_utils2.c 2 fonctions
+int		verif_modif_var(char **str, char *cmp);
+void	new_vars(t_min *mini, char *str, int y, char **cmd);
+
+//export.c 5 fonctions
+char	**order_exp(char **s1, char **s2);
+int		verif_modif_var(char **str, char *cmp);
+void	export(t_min *mini, char **cmd);
 
 //signals_utils.c
 void	echo_control_seq(int c);

@@ -6,7 +6,7 @@
 #    By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2023/02/12 15:17:10 by rdi-marz         ###   ########.fr        #
+#    Updated: 2023/02/12 15:22:17 by rdi-marz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC		=	main.c \
 		Built-in/export.c \
 		Built-in/export_change_val.c \
 		Built-in/export_utils.c \
+		Built-in/export_utils2.c \
 		Built-in/unset.c \
 		Built-in/signals.c \
 		Built-in/annexe.c \
