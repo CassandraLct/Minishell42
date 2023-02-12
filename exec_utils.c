@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:04:33 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 11:03:47 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/12 16:32:28 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,7 @@ int	verif_cmd(char **all_path, char **pathcmd, char **cmd)
 	return (0);
 }
 
-// bash-3.2$ cd./../
-// bash: cd./../: No such file or directory
-// bash-3.2$ bonjour
-// bash: bonjour: command not found
+// display error msg
 int	aff_errcmd(char **cmd)
 {
 	int	i;
@@ -72,13 +69,14 @@ int	aff_errcmd(char **cmd)
 	{
 		if (cmd[0][i] == '/')
 		{
-			printf("minishell: %s: No such file or directory\n", cmd[0]);
+			ft_print_error_msg3("minishell: ", cmd[0],
+				": No such file or directory\n");
 			g_mini.ret_err = 127;
 			return (g_mini.ret_err);
 		}
 		i++;
 	}
-	printf("minishell: %s: command not found\n", cmd[0]);
+	ft_print_error_msg3("minishell: ", cmd[0], ": command not found\n");
 	g_mini.ret_err = 127;
 	return (g_mini.ret_err);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/10 16:28:32 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/12 16:29:26 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	heredoc_launcher(t_cmd **cmd, int i, int j, int *fd)
 	{
 		if (cmd[i]->stdin[j + 1] == NULL)
 		{
-			printf(ERR_TOKEN);
+			write(2, ERR_TOKEN, ft_strlen(ERR_TOKEN));
 			g_mini.ret_err = 258;
 			return (1);
 		}
@@ -114,7 +114,7 @@ int	ft_open_file(char *file, int fd, int how)
 	}
 	else if (fd == O_DIRECTORY)
 	{
-		printf("minishell: %s: Is a directory\n", file);
+		ft_print_error_msg3("minishell: ", file, ": Is a directory\n");
 		g_mini.ret_err = 1;
 		exit (1);
 	}
