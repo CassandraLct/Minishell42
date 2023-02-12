@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_pwd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 09:38:27 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 16:58:43 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/12 15:50:25 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ void	pwd(char **c_env, char **cmd)
 	if (i == tablen(c_env))
 	{
 		g_mini.ret_err = 127;
-		printf("minishell: %s: No such file or directory\n", cmd[0]);
+		ft_print_error_msg3("minishell: ", cmd[0],
+			": No such file or directory\n");
 		return ;
 	}
 	g_mini.ret_err = 0;
