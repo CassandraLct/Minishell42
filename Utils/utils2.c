@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:12:41 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/01 13:19:50 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/12 11:03:23 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,20 @@ int	find_cotes(char *line)
 		i++;
 	}
 	return (i);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	char	*str;
+
+	str = (char *)s;
+	while (*str != c)
+	{
+		if (*str == '\0')
+		{
+			return (NULL);
+		}
+		str++;
+	}
+	return (str);
 }

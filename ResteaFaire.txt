@@ -446,10 +446,8 @@ Vendredi 10/02:
 
 Saturday 11/02:
 
-	-> export tto SEGFAULT
 	-> echo -n simple -n 	 												*KO*
 	-> export ""														xxxxxxx - not the same output
-	-> export A-														xxxxxxx - not the same output
 	-> not_cmd bonjour > salut 											xxxxxxx - not the same output
 	-> cat < test2(fichier non existant) OK									*KO*	cat boucle
 *SIGNAUX:

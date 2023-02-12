@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 17:53:38 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/12 11:05:11 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,39 @@ char	**order_exp(char **c_exp, char **cmp)
 	return (c_exp);
 }
 
+int		is_valid_export_identifier(char *str)
+{
+	if (str == NULL)
+		return (0);
+	if (str[0] == '\0')
+		return (0);
+	if (ft_strchr(str, '-'))
+		return (0);
+	return (1);
+}
+
+void	do_export(t_min *mini, char **cmd, int i)
+{
+	while (cmd[i] != NULL)
+	{
+		if (cmd[i][0] == '\0')
+		{
+			printf("minishell: %s: `': not a valid identifier\n", cmd[0]);
+			g_mini.ret_err = 1;
+		}
+		if (verif_space(cmd[i]) == 1
+			|| is_valid_export_identifier(cmd[i]) == 0)
+		{
+			printf("minishell: %s: `%s': not a valid identifier\n",
+				cmd[0], cmd[i]);
+			g_mini.ret_err = 1;
+		}
+		else
+			new_vars(mini, cmd[i], i, cmd);
+		i++;
+	}
+}
+
 //add new_var ou affiche export
 void	export(t_min *mini, char **cmd)
 {
@@ -123,25 +156,11 @@ void	export(t_min *mini, char **cmd)
 
 	i = 1;
 	if (cmd[1] == NULL)
+	{
 		print_export(mini->c_exp);
+	}
 	else
 	{
-		while (cmd[i] != NULL)
-		{
-			if (cmd[i][0] == '\0')
-			{
-				printf("minishell: %s: `': not a valid identifier\n", cmd[0]);
-				g_mini.ret_err = 1;
-			}
-			if (verif_space(cmd[i]) == 1)
-			{
-				printf("minishell: %s: `%s': not a valid identifier\n",
-					cmd[0], cmd[i]);
-				g_mini.ret_err = 1;
-			}
-			else
-				new_vars(mini, cmd[i], i, cmd);
-			i++;
-		}
+		do_export(mini, cmd, i);
 	}
 }

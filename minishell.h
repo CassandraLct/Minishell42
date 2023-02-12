@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/12 10:29:58 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/12 11:03:39 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -290,11 +290,12 @@ int		ft_strlen(char *str);
 int		strdigit(char *str);
 int		ft_isdigit(char c);
 
-// utils2.c 4 fonctions
+// utils2.c 5 fonctions
 int		ft_strcmp(char *s1, char *s2);
 int		ft_atoi(const char *str);
 int		find_cotes(char *line);
 void	ft_bzero(void *s, int n);
+char	*ft_strchr(const char *s, int c);
 
 // utils3.c 5 fonctions
 char	*ft_strtrim(char *s1, char *set);
