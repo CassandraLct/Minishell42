@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gestion_dollar.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 13:51:02 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 17:46:22 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/12 16:01:42 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ char	*var_false(char *line)
 	if (verif_redirdollar(line) == 1)
 	{
 		name_var = ft_strjoin("$", recup_namevar(line));
-		printf("minishell: %s: ambiguous redirect\n", name_var);
+		ft_print_error_msg3("minishell: ", name_var,
+			": ambiguous redirect\n");
 		free(name_var);
 		g_mini.ret_err = 1;
 		return (line);
