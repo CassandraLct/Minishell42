@@ -457,6 +457,4 @@ Saturday 11/02:
 	-> # write something then press ctrl+\								*OK* 														*OK*
 
 supprimer printstruct.c
-remettre les signaux
-cat < tt => ret_err = 55 `a changer sur mac
 clean echo.c

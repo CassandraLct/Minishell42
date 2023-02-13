@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/12 18:06:24 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/13 09:54:36 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ void	ft_what_file(char *file, char **resu)
 	if (fd == -1)
 	{
 		perror(file);
-		g_mini.ret_err = 55;
-		exit (55);
+		g_mini.ret_err = 1;
+		exit (1);
 	}
 	else
 		close(fd);
