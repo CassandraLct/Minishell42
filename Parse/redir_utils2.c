@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/13 12:30:00 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/13 12:34:04 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	ft_exit_when_no_arg(void)
 // exit if the redirection has no arg to open
 void	ft_exit_unexpected_token(t_cmd **cmd, int nb, int i)
 {
-	char *arrow;
-	
+	char	*arrow;
+
 	arrow = ft_test(ft_calloc(3, sizeof(*arrow)), NULL);
 	if (ft_strlen(cmd[nb]->stdout[i]) > 3)
 		arrow = ft_strdup(">>");
-	else 
+	else
 		arrow = ft_strdup(">");
-	ft_print_error_msg3(ERR_TOKEN_SHORT, arrow , "'\n");
+	ft_print_error_msg3(ERR_TOKEN_SHORT, arrow, "'\n");
 	free(arrow);
 	g_mini.ret_err = 258;
 	exit (258);
