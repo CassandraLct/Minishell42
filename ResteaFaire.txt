@@ -298,11 +298,11 @@ Test minishell non fonctionnel: test fixe ce matin (6) 17 KO / 86 OK
 	-> echo $?HELLO														*OK*	l
 	-> echo "coucou ->'"												*OK*	l
 *EXPORT: OK	
-	-> export ""															*KO*
-	-> unset ""																*KO*
+	-> export ""														*OK*	{0 LEAKS}
+	-> unset ""															*OK*	{0 LEAKS}
 	-> export var; export var=test 										*OK*	{0 LEAKS}
-	-> export "HI =hi"													*OK*
-	-> export A-														*OK*
+	-> export "HI =hi"													*OK*	{0 LEAKS}
+	-> export A-														*OK*	{0 LEAKS}
 *CD:
 	-> cd $HOME/Documents OK												*OK*	l
 	-> cd ../../../../../.. puis pwd: OK									*OK*	l
@@ -310,7 +310,7 @@ Test minishell non fonctionnel: test fixe ce matin (6) 17 KO / 86 OK
 *PARSING:
 	-> echo bonjour;|														*OK*	l
 	-> $ ret_err doit etre egal a 127										*OK*	l
-	-> not_cmd bonjour > salut 											*OK*  => cd/ puis la cmd => 2 msg erreur
+	-> not_cmd bonjour > salut 												*OK*  => cd/ puis la cmd => 2 msg erreur
 	-> echo bonjour > > out													*OK*	l
 	-> echo bonjour > $test													*OK*	l
 	-> /bin/echo bonjour OK													*OK*	l

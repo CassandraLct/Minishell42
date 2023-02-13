@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/13 12:33:13 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/13 12:54:04 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void	unset(t_min *mini, char **cmd)
 	int	i;
 
 	i = 1;
-	printf("cmd[0]= {%s}, cmd[1] = {%s}\n", cmd[0], cmd[1]);
 	while (cmd[i])
 	{
 		if (check_var(cmd[i]) == 0)

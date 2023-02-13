@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/12 15:41:03 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/13 12:49:17 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	do_export(t_min *mini, char **cmd, int i)
 				": `': not a valid identifier\n");
 			g_mini.ret_err = 1;
 		}
-		if (verif_space(cmd[i]) == 1
+		else if (verif_space(cmd[i]) == 1
 			|| is_valid_export_identifier(cmd[i]) == 0)
 		{
 			ft_export_error_msg(cmd[0], cmd[i]);

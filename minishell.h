@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:45 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/12 17:26:38 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/13 12:57:21 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,6 +281,7 @@ void	verif_tmp(char *line);
 
 /*-----------------------UTILS--------------------------------------------*/
 //errmsg.c
+int		verif_line(char *line);
 void	ft_print_error_msg3(char *s1, char *s2, char *s3);
 void	ft_export_error_msg(char *s1, char *s2);
 
