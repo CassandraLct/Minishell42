@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitcmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 10:56:36 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/13 12:27:57 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/13 12:49:13 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ t_cmd	*split_inst(char *temp)
 	return (resu);
 }
 
-// + 25 lignes
+// transform the char ** in t_cmd **
 t_cmd	**spliter3(char **inst)
 {
 	t_cmd	**resu;
