@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gestion_dollar.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 13:51:02 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/13 05:08:05 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/13 12:31:43 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*var_reterr(char *line)
 
 	tmp2 = ft_itoa(g_mini.ret_err);
 	tmp = recup_namevar(line);
-	verif_posreterr(&tmp);//leaks
+	verif_posreterr(&tmp);
 	if (strlen(tmp) > 1)
 		name_var = ft_strjoin(tmp2, tmp);
 	else
@@ -78,7 +78,7 @@ char	*var_false(char *line)
 
 	if (verif_redirdollar(line) == 1)
 	{
-		name_var = recup_namevar(line);//leaks
+		name_var = recup_namevar(line);
 		ft_print_error_msg3("minishell: $", name_var,
 			": ambiguous redirect\n");
 		free(name_var);
@@ -109,7 +109,7 @@ char	*redir_line(char *line, int nb_dollar)
 	//free(line);leaks
 	while (nb_dollar != 0)
 	{
-		free(line);//leaks
+		free(line);
 		if (verif_dollarcase(tmp_line) == 1)
 			line = var_reterr(tmp_line);
 		else if (verif_dollarcase(tmp_line) == 2)
