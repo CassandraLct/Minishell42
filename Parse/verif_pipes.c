@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:16:57 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/13 13:03:13 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/13 15:25:53 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	is_there_double_pipe(char *line)
 	while (i < len)
 	{
 		if (line[i - 2] == '|' && line[i - 1] == ' ' && line[i] == '|')
+			return (1);
+		else if(line[i - 2] == '|' && line[i - 1] == '|')
 			return (1);
 		i++;
 	}
