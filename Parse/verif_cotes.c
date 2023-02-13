@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:48:29 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/13 12:33:48 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/13 12:58:05 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ void	verif_cmdcotes(t_min *mini)
 	tmp_line = NULL;
 	i = count_cotes(mini->line);
 	if (i < 2)
+		return ;
+	if (verif_line(mini->line) == 1)
 		return ;
 	tmp_line = remove_double_char(mini->line, '"', 1);
 	free(mini->line);

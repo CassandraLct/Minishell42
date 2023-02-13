@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:16:57 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/13 12:29:44 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/13 12:36:09 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ char	*verif_pipes(char *line)
 	int		len;
 
 	new_line = NULL;
-	//new_line = ft_strdup(line);
 	new_line = remove_double_char_q(line, ' ');
-	//printf("line = {%s}, new_line = {%s}\n", line, new_line);
 	free(line);
 	len = ft_strlen(new_line);
 	if (new_line[0] == '|' || is_there_double_pipe(new_line) == 1)
