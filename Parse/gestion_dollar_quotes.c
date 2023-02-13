@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gestion_dollar_quotes.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 18:05:30 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 16:42:58 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/13 04:41:24 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*rmd_bf_cotes(char *line, int savedollar)
 
 	i = 0;
 	x = 0;
-	tmp = malloc(sizeof(char) * ft_strlen(line));
+	tmp = malloc(sizeof(char) * (ft_strlen(line) + 1));
 	while (line[i])
 	{
 		if (i == savedollar)

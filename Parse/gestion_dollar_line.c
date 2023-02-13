@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gestion_dollar_line.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:31:40 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/10 15:21:20 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/13 04:45:58 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char	*endline(char *line, int i, char *n_line)
 	char	*new_line;
 	int		j;
 
-	tmp = malloc(sizeof(char) * (ft_strlen(line) - i));
+	tmp = malloc(sizeof(char) * (ft_strlen(line) - i + 1));//leaks
 	tmp2 = ft_strdup(n_line);
 	free(n_line);
 	j = 0;

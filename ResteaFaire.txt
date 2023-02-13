@@ -379,37 +379,37 @@ Test OK : (a retester avant de rendre)
 	-> sleep 5 | exit													*OK*
 	-> "exit\n"															*OK*
 	-> cat diufosgid (#) test avec et sans # :							*OK*
-	-> exit #															*OK*	HS
-	-> $ 																*OK*
-	-> echo '$HOME'														*OK*
-	-> echo $HOME														*OK*
-	-> > log echo coucou												*OK*
-	-> echo 															*OK*
-	-> echo simple														*OK*
-	-> echo -n simple 													*OK*
-	-> echo "\" 														*OK*
-	-> echo "\n \n \n"													*OK*
-	-> echo "\n \n \\n"													*OK* 
-	-> echo ;;															*OK* 
-	-> echo hi";" hihi 													*OK*
-	-> cd																*OK*
-	-> cd . => OK														*OK*
-	-> cd ~ => OK														*OK*
-	-> cd / => OK														*OK*
-	-> cd no_file => OK													*OK*
-	-> cd a b c d => OK													*OK*
-	-> pwd a => OK														*OK*
-	-> pwd a b c d => OK												*OK*
-	-> export LOL=lala ROR=rara => OK									*OK*
-	-> unset LOL ROR => OK												*OK*
-	-> export "HI= hi"													*OK*
-	-> echo $? => OK													*OK*
-	-> l^Ds => OK														*OK*
-	-> sort | ls # check output order									*OK*
-	-> > a ls > b < Makefile => OK										*OK*
-	-> echo > a Hello World! => OK										*OK*
-	-> > a echo Hello World! => OK										*OK*
-	-> cat < Makefile | grep gcc > output => OK							*OK*
+	-> exit #															*OK*	l
+	-> $ 																*OK*	l
+	-> echo '$HOME'														*OK*	l
+	-> echo $HOME														*OK*	l
+	-> > log echo coucou												*OK*	l
+	-> echo 															*OK*	l
+	-> echo simple														*OK*	l
+	-> echo -n simple 													*OK*	l
+	-> echo "\" 														*OK*	l
+	-> echo "\n \n \n"													*OK*	l
+	-> echo "\n \n \\n"													*OK* 	l
+	-> echo ;;															*OK* 	l
+	-> echo hi";" hihi 													*OK*	l
+	-> cd																*OK*	l
+	-> cd . => OK														*OK*	l
+	-> cd ~ => OK														*OK*	l
+	-> cd / => OK														*OK*	l
+	-> cd no_file => OK													*OK*	l
+	-> cd a b c d => OK													*OK*	l
+	-> pwd a => OK														*OK*	l
+	-> pwd a b c d => OK												*OK*	l
+	-> export LOL=lala ROR=rara =>=> OK									*OK*	l
+	-> unset LOL ROR => OK												*OK*	l
+	-> export "HI= hi"													*OK*	l
+	-> echo $? => OK													*OK*	l
+	-> l^Ds => OK														*OK*	l
+	-> sort | ls # check output order									*OK*	l
+	-> > a ls > b < Makefile => OK										*OK*	l
+	-> echo > a Hello World! => OK										*OK*	l
+	-> > a echo Hello World! => OK										*OK*	l
+	-> cat < Makefile | grep gcc > output => OK							*OK*	l
 
 Lundi 06/02:
 	-> cd $HOME/Documents OK

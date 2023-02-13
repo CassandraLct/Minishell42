@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/12 15:32:07 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/13 03:58:37 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@ int	verif_modif_var(char **str, char *cmp)
 			free(name_var);
 			return (1);
 		}
+		free(new_str);//leaks
 		i++;
 	}
 	free(name_var);
-	free(new_str);
+	//free(new_str);//leaks
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:36:33 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/12 17:58:23 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/13 04:47:17 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*recup_valhome(char	**c_env)
 		if (ft_strncmp(c_env[i], "HOME=", 5) == 0)
 			break ;
 	}
-	tmp = malloc(sizeof(char) * (ft_strlen(c_env[i])));
+	tmp = malloc(sizeof(char) * (ft_strlen(c_env[i]) + 1));//leaks
 	while (c_env[i][j] != '=')
 		j++;
 	j += 1;
