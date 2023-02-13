@@ -352,64 +352,64 @@ Autre Test: 19 TESTS
 Test OK : (a retester avant de rendre)
 
 	-> echo bonjour >>> test OK											*OK* ret_err=2 bash=>258 msg erreur different mini '>>>' bash '>'
-	-> echo >>'>' test : OK 											*OK*
-	-> | OK
-	-> echo > OK														*OK*	l
-	-> echo bonjour |; OK												*OK*
-	-> echo bonjour ; ls OK												*OK*
-	-> echo bonjour > test\ 1 (voir si on gere \)						*OK*
-	-> echo "\s" & echo "\s" OK											*OK*	l
-	-> cat /dev/random | head -n 1 | cat -e 							*OK*	l
-	-> unset var1 # with undefined var1									*OK*	l
-	-> echo test > file test1 											*OK*	l
-	-> env puis export puis env # vars aren't sorted OK					*OK*	l
+	-> echo >>'>' test : OK 											*OK*	{0 LEAKS}
+	-> | 																*OK*	{0 LEAKS}
+	-> echo > 															*OK*	{0 LEAKS}
+	-> echo bonjour |; 													*OK*	{0 LEAKS}
+	-> echo bonjour ; ls 												*OK*	{0 LEAKS}
+	-> echo bonjour > test\ 1 (voir si on gere \)						*OK*	{0 LEAKS}
+	-> echo "\s" & echo "\s" 											*OK*	{0 LEAKS}
+	-> cat /dev/random | head -n 1 | cat -e 							*OK*	{0 LEAKS}
+	-> unset var1 # with undefined var1									*OK*	{0 LEAKS}
+	-> echo test > file test1 											*OK*	{0 LEAKS}
+	-> env puis export puis env # vars aren't sorted 					*OK*	{0 LEAKS}
 		-> env # fonctionne mais pas dans minishell (# hors sujet)
-	-> echo 2 >> out1 > out2 											*OK*	l
-	-> echo 2 > out1 >> out2 											*OK*	l
-	-> exec.c (fichier dans le repo où l'on se trouve) 					*OK*	l
-	-> echo "bip | bip ; coyotte > < " "								*OK*
-	-> cat | cat | cat | ls												*OK*	l
+	-> echo 2 >> out1 > out2 											*OK*	{0 LEAKS}
+	-> echo 2 > out1 >> out2 											*OK*	{0 LEAKS}
+	-> exec.c (fichier dans le repo où l'on se trouve) 					*OK*	{0 LEAKS}
+	-> echo "bip | bip ; coyotte > < " "								*OK*	{0 LEAKS}
+	-> cat | cat | cat | ls												*OK*	{0 LEAKS} *pas de \n entre ls et prompt
 	-> $bla # with bla not defined										*OK*
-	-> $bla bla not defined												*OK*
-	-> export var ="cat Makefile | grep >" 								*OK*
-	-> export "test=ici"=coucou 										*OK*
-	-> c$var Makefile # with var=at										*OK*
-	-> $LESS$VAR														*OK*
-	-> not_cmd OK														*OK*
+	-> $bla bla not defined												*OK*	ERREUR DE MALLOC
+	-> export var ="cat Makefile | grep >" 								*OK*	{0 LEAKS}
+	-> export "test=ici"=coucou 										*OK*	{0 LEAKS}
+	-> c$var Makefile # with var=at										*OK*	{0 LEAKS}
+	-> $LESS$VAR														*OK*	ERREUR DE MALLOC
+	-> not_cmd 															*OK*	{0 LEAKS}
 	-> sleep 5 | exit													*OK*
-	-> "exit\n"															*OK*
-	-> cat diufosgid (#) test avec et sans # :							*OK*
-	-> exit #															*OK*	l
-	-> $ 																*OK*	l
-	-> echo '$HOME'														*OK*	l
-	-> echo $HOME														*OK*	l
-	-> > log echo coucou												*OK*	l
-	-> echo 															*OK*	l
-	-> echo simple														*OK*	l
-	-> echo -n simple 													*OK*	l
-	-> echo "\" 														*OK*	l
-	-> echo "\n \n \n"													*OK*	l
-	-> echo "\n \n \\n"													*OK* 	l
-	-> echo ;;															*OK* 	l
-	-> echo hi";" hihi 													*OK*	l
-	-> cd																*OK*	l
-	-> cd . => OK														*OK*	l
-	-> cd ~ => OK														*OK*	l
-	-> cd / => OK														*OK*	l
-	-> cd no_file => OK													*OK*	l
-	-> cd a b c d => OK													*OK*	l
-	-> pwd a => OK														*OK*	l
-	-> pwd a b c d => OK												*OK*	l
-	-> export LOL=lala ROR=rara =>=> OK									*OK*	l
-	-> unset LOL ROR => OK												*OK*	l
-	-> export "HI= hi"													*OK*	l
-	-> echo $? => OK													*OK*	l
-	-> l^Ds => OK														*OK*	l
-	-> sort | ls # check output order									*OK*	l
-	-> > a ls > b < Makefile => OK										*OK*	l
-	-> echo > a Hello World! => OK										*OK*	l
-	-> > a echo Hello World! => OK										*OK*	l
-	-> cat < Makefile | grep gcc > output => OK							*OK*	l
+	-> "exit\n"															*OK*	{0 LEAKS}
+	-> cat diufosgid (#) test avec et sans # :							*OK*	{0 LEAKS}
+	-> exit #															*OK*	
+	-> $ 																*OK*	{0 LEAKS}
+	-> echo '$HOME'														*OK*	{0 LEAKS}
+	-> echo $HOME														*OK*	{0 LEAKS}
+	-> > log echo coucou												*OK*	{0 LEAKS}
+	-> echo 															*OK*	{0 LEAKS}
+	-> echo simple														*OK*	{0 LEAKS}
+	-> echo -n simple 													*OK*	{0 LEAKS}
+	-> echo "\" 														*OK*	{0 LEAKS}
+	-> echo "\n \n \n"													*OK*	{0 LEAKS}
+	-> echo "\n \n \\n"													*OK* 	{0 LEAKS}
+	-> echo ;;															*OK* 	{0 LEAKS}
+	-> echo hi";" hihi 													*OK*	{0 LEAKS}
+	-> cd																*OK*	{0 LEAKS}
+	-> cd . => OK														*OK*	{0 LEAKS}
+	-> cd ~ => OK														*OK*	{0 LEAKS}
+	-> cd / => OK														*OK*	{0 LEAKS}
+	-> cd no_file 														*OK*	{0 LEAKS}
+	-> cd a b c d 														*OK*	{0 LEAKS}
+	-> pwd a 															*OK*	{0 LEAKS}
+	-> pwd a b c d 														*OK*	{0 LEAKS}
+	-> export LOL=lala ROR=rara											*OK*	{0 LEAKS}
+	-> unset LOL ROR													*OK*	{0 LEAKS}
+	-> export "HI= hi"													*OK*	{0 LEAKS}
+	-> echo $? 															*OK*	{0 LEAKS}
+	-> l^Ds 															*OK*	{0 LEAKS}
+	-> sort | ls # check output order									*OK*	{0 LEAKS}
+	-> > a ls > b < Makefile 											*OK*	{0 LEAKS}
+	-> echo > a Hello World! 											*OK*	{0 LEAKS}
+	-> > a echo Hello World! 											*OK*	{0 LEAKS}
+	-> cat < Makefile | grep gcc > output 								*OK*	{0 LEAKS}
 
 Lundi 06/02:
 	-> cd $HOME/Documents OK
@@ -445,16 +445,13 @@ Vendredi 10/02:
 	-> tout retester;
 
 Saturday 11/02:
-
-
-
-	-> export ""														*KO* execute export sans arg
+	-> export ""															*KO* execute export sans arg
 
 
 *SIGNAUX:
 	-> # write something the press ctrl+c 								*OK*
 	-> # write something then press ctrl+d								*OK*
-	-> # write something then press ctrl+\								*OK* 														*OK*
+	-> # write something then press ctrl+\								*OK*
 
 supprimer printstruct.c
 clean echo.c

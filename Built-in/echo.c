@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:37:12 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/13 10:29:31 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/13 10:33:23 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,11 @@ int	print_arg_opt(char **arg, int i)
 		return (0);
 	else if (arg[i + 1] != NULL)
 	{
-		if (check_arg_opt(arg[i + 1]) == 0)
-			i += 2;
-		else
+		i += 1;
+		while (arg[i] && check_arg_opt(arg[i]) == 0)
 			i += 1;
 		while (arg[i] != NULL)
 		{
-			if (check_arg_opt(arg[i]) == 0)
-				i += 1;
 			if (arg[i + 1] == NULL)
 				printf("%s", arg[i]);
 			else
@@ -82,7 +79,7 @@ int	check_opt(char **arg)
 }
 
 //verifie si echo a des arguments ou non
-void	echo2(char **cmd)
+void	echo(char **cmd)
 {
 	int	i;
 	int	j;
@@ -109,7 +106,7 @@ void	echo2(char **cmd)
 	return ;
 }
 
-void	echo(char **cmd)
+void	echo2(char **cmd)
 {
 	int	i;
 	int	is_option;
