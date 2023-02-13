@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:12:41 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/08 15:31:22 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/13 04:28:43 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	*ft_strdup(char *s)
 	i = 0;
 	while (s[i] != '\0')
 		i++;
-	dest = malloc(sizeof(char) * i + 1);
+	dest = malloc(sizeof(char) * (i + 1));//leaks
 	if (dest == 0)
 		return (NULL);
 	i = 0;
