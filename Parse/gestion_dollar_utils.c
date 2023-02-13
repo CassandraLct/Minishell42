@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gestion_dollar_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 17:30:01 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/13 04:27:25 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/13 12:32:37 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ char	*rm_d_dollar(char *tmp)
 
 	i = 0;
 	j = 0;
-	new_line = malloc(sizeof(char) * (ft_strlen(tmp) + 1));//leaks
+	new_line = malloc(sizeof(char) * (ft_strlen(tmp) + 1));
 	while (tmp[i])
 	{
 		if (tmp[i] == '$' && tmp[i + 1] == '$')

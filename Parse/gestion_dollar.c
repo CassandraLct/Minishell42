@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 13:51:02 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/13 11:28:49 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/13 12:34:31 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*var_reterr(char *line)
 
 	tmp2 = ft_itoa(g_mini.ret_err);
 	tmp = recup_namevar(line);
-	verif_posreterr(&tmp);//leaks
+	verif_posreterr(&tmp);
 	if (strlen(tmp) > 1)
 		name_var = ft_strjoin(tmp2, tmp);
 	else
