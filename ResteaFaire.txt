@@ -293,61 +293,61 @@ LEAKS :
 Test minishell non fonctionnel: test fixe ce matin (6) 17 KO / 86 OK
 *ECHO: OK
 	-> echo -n -n -nnnn -nnnnm OK 											*OK*	l
-	-> echo hi " ; " hihi OK											*OK*	l
-	-> echo hello""world												*OK*	l
-	-> echo $?HELLO														*OK*	l
-	-> echo "coucou ->'"												*OK*	l
+	-> echo hi " ; " hihi OK												*OK*	l
+	-> echo hello""world													*OK*	l
+	-> echo $?HELLO															*OK*	l
+	-> echo "coucou ->'"													*OK*	l
 *EXPORT: OK	
-	-> export ""														*OK*
-	-> unset "" OK														*OK*
-	-> export var; export var=test OK										*KO* export casser
-	-> export "HI =hi"													*OK*
-	-> export A-														*OK*
+	-> export ""														*KO*
+	-> unset "" OK														*KO*
+	-> export var; export var=test OK										*OK*	l
+	-> export "HI =hi"														*OK*	l
+	-> export A-															*OK*	l
 *CD:
-	-> cd $HOME/Documents OK											*OK*
-	-> cd ../../../../../.. puis pwd: OK								*OK*
-	-> cd .. => OK														*OK*
+	-> cd $HOME/Documents OK												*OK*	l
+	-> cd ../../../../../.. puis pwd: OK									*OK*	l
+	-> cd .. => OK															*OK*	l
 *PARSING:
-	-> echo bonjour;|													*OK*	l
-	-> $ ret_err doit etre egal a 127									*OK*	l
-	-> not_cmd bonjour > salut 											*OK*
-	-> echo bonjour > > out												*OK*
-	-> echo bonjour > $test												*OK*
-	-> /bin/echo bonjour OK												*OK*
-	-> | echo => 														*OK*
-	-> cat < > => bug bash: syntax error near unexpected token `>' ok	*OK*	l
-	-> cat < < => bug bash: syntax error near unexpected token `>' ok	*OK*	l
-	-> cat > > => bug bash: syntax error near unexpected token `>' ok	*OK*	l
-	-> cat > OK															*OK*	l
-	-> cat < OK															*OK*	l
-	-> echo hudifg d | | hugdfihd => OK									*OK*	l
-	-> echo ''															*OK*	l
-	-> echo ""											 				*OK*	l
+	-> echo bonjour;|														*OK*	l
+	-> $ ret_err doit etre egal a 127										*OK*	l
+	-> not_cmd bonjour > salut 											*OK*  => cd/ puis la cmd => 2 msg erreur
+	-> echo bonjour > > out													*OK*	l
+	-> echo bonjour > $test													*OK*	l
+	-> /bin/echo bonjour OK													*OK*	l
+	-> | echo => 															*OK*	l
+	-> cat < > => bug bash: syntax error near unexpected token `>' ok		*OK*	l
+	-> cat < < => bug bash: syntax error near unexpected token `>' ok		*OK*	l
+	-> cat > > => bug bash: syntax error near unexpected token `>' ok		*OK*	l
+	-> cat > OK																*OK*	l
+	-> cat < OK																*OK*	l
+	-> echo hudifg d | | hugdfihd => OK										*OK*	l
+	-> echo ''																*OK*	l
+	-> echo ""											 					*OK*	l
 *RET_ERR:
-	-> cat Makefile | grep pr | head -n 5 | cd test  					*OK*	l
-	-> cat Makefile | grep pr | head -n 5 | cat test 	 				*OK*	l
-	-> cat Makefile | grep pr | head -n 5 | hello  						*OK*	l
-	-> ; 																*OK*	l
+	-> cat Makefile | grep pr | head -n 5 | cd test  						*OK*	l
+	-> cat Makefile | grep pr | head -n 5 | cat test 	 					*OK*	l
+	-> cat Makefile | grep pr | head -n 5 | hello  							*OK*	l
+	-> ; 																	*OK*	l
 *REDIRECTION/PIPE:
-	-> cat < test2(fichier non existant) OK								*OK*	l
-	-> echo bonjour > $test w/ t 										*OK*	l
-	-> exit 0 | exit 1 													*OK*	l
-	-> exit 1 | exit 0 													*OK*	l
-	-> /bin/ls => OK													*OK*	l
+	-> cat < test2(fichier non existant) OK									*OK*	l
+	-> echo bonjour > $test w/ t 											*OK*	l
+	-> exit 0 | exit 1 														*OK*	l
+	-> exit 1 | exit 0 														*OK*	l
+	-> /bin/ls => OK														*OK*	l
 *SIGNAUX:
 	-> # write something the press ctrl+c 								*OK*
 	-> # write something then press ctrl+d								*OK*
 	-> # write something then press ctrl+\								*OK* 
 *EXIT: OK
-	-> exit -10 OK														*OK*	l
-	-> exit +10 OK														*OK*	l
-	-> exit 99999999999999999999999999999999999999999999999 OK			*OK*	l
+	-> exit -10 OK															*OK*
+	-> exit +10 OK															*OK*
+	-> exit 99999999999999999999999999999999999999999999999 OK				*OK*
 *PB_MALLOC:
-	-> echo "$HOME"														*OK*	l
+	-> echo "$HOME"															*OK*	l
 Autre Test: 19 TESTS
--> minishell unset PATH OK												*OK*	l
--> echo | => OK															*OK*
--> '																	*OK* ret_err=0 au lieu 1
+-> minishell unset PATH OK													*OK*	l
+-> echo | => OK															*OK* open pipe
+-> '																	*OK* ret_err=0 au lieu 127
 
 Test OK : (a retester avant de rendre)
 
@@ -454,7 +454,7 @@ Saturday 11/02:
 *SIGNAUX:
 	-> # write something the press ctrl+c 								*OK*
 	-> # write something then press ctrl+d								*OK*
-	-> # write something then press ctrl+\								*OK* 														*OK*
+	-> # write something then press ctrl+\								*OK*
 
 supprimer printstruct.c
 clean echo.c
