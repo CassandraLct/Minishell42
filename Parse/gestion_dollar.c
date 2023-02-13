@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 13:51:02 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/13 12:31:43 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/13 12:33:15 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char	*var_false(char *line)
 		free(line);
 		line = ft_strdup(tmp);
 		free(tmp);
-		free(name_var);//leaks test
+		free(name_var);
 	}
 	return (line);
 }
@@ -106,7 +106,6 @@ char	*redir_line(char *line, int nb_dollar)
 	char	*tmp_line;
 
 	tmp_line = ft_strdup(line);
-	//free(line);leaks
 	while (nb_dollar != 0)
 	{
 		free(line);
