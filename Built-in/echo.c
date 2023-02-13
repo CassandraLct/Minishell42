@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:37:12 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/12 20:07:25 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/13 10:29:31 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,9 +121,7 @@ void	echo(char **cmd)
 	while (cmd[i])
 	{
 		if (cmd[i][0] == '-' && check_arg_opt(cmd[i]) == 0 && after_option == 0)
-		{
 			is_option = 1;
-		}
 		else
 		{
 			after_option = 1;

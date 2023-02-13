@@ -292,7 +292,7 @@ LEAKS :
 
 Test minishell non fonctionnel: test fixe ce matin (6) 17 KO / 86 OK
 *ECHO: OK
-	-> echo -n -n -nnnn -nnnnm OK 										*OK*	l
+	-> echo -n -n -nnnn -nnnnm OK 											*OK*	l
 	-> echo hi " ; " hihi OK											*OK*	l
 	-> echo hello""world												*OK*	l
 	-> echo $?HELLO														*OK*	l
@@ -449,7 +449,7 @@ Saturday 11/02:
 
 
 	-> export ""														*KO* execute export sans arg
-	-> unset 66
+
 
 *SIGNAUX:
 	-> # write something the press ctrl+c 								*OK*

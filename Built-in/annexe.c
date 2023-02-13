@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   annexe.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:36:11 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/12 22:08:44 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/13 10:31:17 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,5 @@ char	*get_tmp(char *line, char cotes)
 	tmp2 = ft_strdup(tmp);
 	free(tmp);
 	tmp = rm_cotes(tmp2, cotes);
-	free(tmp2);//leaks
 	return (tmp);
 }
