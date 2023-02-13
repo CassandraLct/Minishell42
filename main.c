@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:25:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/13 11:41:19 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/13 12:57:39 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,20 @@
 
 t_min	g_mini;
 
+// inside the while in the main
 void	inside_main(void)
 {
 	verif_struct_cmd(g_mini.struct_cmd);
 	redir_pipe(&g_mini, g_mini.struct_cmd);
+}
+
+// before the while in the main 
+void	step1_main(void)
+{
+	add_history(g_mini.line);
+	parcour_line(&g_mini);
+	verif_cmdcotes(&g_mini);
+	g_mini.line = verif_pipes(g_mini.line);
 }
 
 //exit du ctrl-d
@@ -41,11 +51,7 @@ int	main(int argc, char **argv, char **envp)
 		g_mini.line = readline(g_mini.prompt);
 		if (g_mini.line == NULL)
 			signal_exit();
-		add_history(g_mini.line);
-		parcour_line(&g_mini);
-		verif_cmdcotes(&g_mini);
-		printf("line = {%s}\n", g_mini.line);
-		g_mini.line = verif_pipes(g_mini.line);
+		step1_main();
 		if (g_mini.line[0] != '\0')
 		{
 			g_mini.struct_cmd = spliter3(spliter());
