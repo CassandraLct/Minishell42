@@ -351,8 +351,8 @@ Autre Test: 19 TESTS
 
 Test OK : (a retester avant de rendre)
 
-	-> echo bonjour >>> test OK												*KO* ret_err=2 bash=>258 msg erreur different mini '>>>' bash '>'
-	-> echo >>'>' test : OK 												*KO* pb malloc
+	-> echo bonjour >>> test OK											*OK* ret_err=2 bash=>258 msg erreur different mini '>>>' bash '>'
+	-> echo >>'>' test : OK 											*OK*
 	-> | OK
 	-> echo > OK														*OK*	l
 	-> echo bonjour |; OK												*OK*

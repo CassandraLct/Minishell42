@@ -6,7 +6,7 @@
 /*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:38 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/13 03:58:37 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/13 05:22:24 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	verif_modif_var(char **str, char *cmp)
 		new_str = ft_strjoin(str[i], "=");
 		if (ft_strncmp(new_str, name_var, ft_strlen(name_var)) == 0)
 		{
+			free(new_str);//leaks
 			free(name_var);
 			return (1);
 		}
