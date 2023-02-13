@@ -292,15 +292,15 @@ LEAKS :
 
 Test minishell non fonctionnel: test fixe ce matin (6) 17 KO / 86 OK
 *ECHO: OK
-	-> echo -n -n -nnnn -nnnnm OK 											*OK*	l
-	-> echo hi " ; " hihi OK											*OK*	l
+	-> echo -n -n -nnnn -nnnnm	 										*OK*	l
+	-> echo hi " ; " hihi 												*OK*	l
 	-> echo hello""world												*OK*	l
 	-> echo $?HELLO														*OK*	l
 	-> echo "coucou ->'"												*OK*	l
 *EXPORT: OK	
-	-> export ""														*OK*
-	-> unset "" OK														*OK*
-	-> export var; export var=test OK										*KO* export casser
+	-> export ""															*KO*
+	-> unset ""																*KO*
+	-> export var; export var=test 										*OK*	{0 LEAKS}
 	-> export "HI =hi"													*OK*
 	-> export A-														*OK*
 *CD:
@@ -346,12 +346,12 @@ Test minishell non fonctionnel: test fixe ce matin (6) 17 KO / 86 OK
 	-> echo "$HOME"														*OK*	l
 Autre Test: 19 TESTS
 -> minishell unset PATH OK												*OK*	l
--> echo | => OK															*OK*
--> '																	*OK* ret_err=0 au lieu 1
+-> echo |																*OK*	{0 LEAKS}
+-> '																	*OK* 	{0 LEAKS}
 
 Test OK : (a retester avant de rendre)
 
-	-> echo bonjour >>> test OK											*OK* ret_err=2 bash=>258 msg erreur different mini '>>>' bash '>'
+	-> echo bonjour >>> test OK											*OK* 	ret_err=2 bash=>258 msg erreur different mini '>>>' bash '>'
 	-> echo >>'>' test : OK 											*OK*	{0 LEAKS}
 	-> | 																*OK*	{0 LEAKS}
 	-> echo > 															*OK*	{0 LEAKS}
@@ -370,11 +370,11 @@ Test OK : (a retester avant de rendre)
 	-> echo "bip | bip ; coyotte > < " "								*OK*	{0 LEAKS}
 	-> cat | cat | cat | ls												*OK*	{0 LEAKS} *pas de \n entre ls et prompt
 	-> $bla # with bla not defined										*OK*
-	-> $bla bla not defined												*OK*	ERREUR DE MALLOC
+	-> $bla bla not defined												*OK*	{0 LEAKS}
 	-> export var ="cat Makefile | grep >" 								*OK*	{0 LEAKS}
 	-> export "test=ici"=coucou 										*OK*	{0 LEAKS}
 	-> c$var Makefile # with var=at										*OK*	{0 LEAKS}
-	-> $LESS$VAR														*OK*	ERREUR DE MALLOC
+	-> $LESS$VAR														*OK*	{0 LEAKS}
 	-> not_cmd 															*OK*	{0 LEAKS}
 	-> sleep 5 | exit													*OK*
 	-> "exit\n"															*OK*	{0 LEAKS}

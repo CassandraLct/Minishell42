@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gestion_dollar.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 13:51:02 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/13 05:08:05 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/13 11:28:49 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*var_false(char *line)
 
 	if (verif_redirdollar(line) == 1)
 	{
-		name_var = recup_namevar(line);//leaks
+		name_var = recup_namevar(line);
 		ft_print_error_msg3("minishell: $", name_var,
 			": ambiguous redirect\n");
 		free(name_var);
@@ -95,7 +95,7 @@ char	*var_false(char *line)
 		free(line);
 		line = ft_strdup(tmp);
 		free(tmp);
-		free(name_var);//leaks test
+
 	}
 	return (line);
 }
@@ -106,10 +106,9 @@ char	*redir_line(char *line, int nb_dollar)
 	char	*tmp_line;
 
 	tmp_line = ft_strdup(line);
-	//free(line);leaks
 	while (nb_dollar != 0)
 	{
-		free(line);//leaks
+		free(line);
 		if (verif_dollarcase(tmp_line) == 1)
 			line = var_reterr(tmp_line);
 		else if (verif_dollarcase(tmp_line) == 2)
