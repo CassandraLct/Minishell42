@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_tild.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 09:59:22 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/13 04:35:45 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/13 11:19:38 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*cd_tildpwd(char *str)
 
 	i = 1;
 	j = 0;
-	tmp = malloc(sizeof(char) * (ft_strlen(str) + 1));//leaks
+	tmp = malloc(sizeof(char) * (ft_strlen(str) + 1));
 	while (str[i])
 	{
 		tmp[j] = str[i];

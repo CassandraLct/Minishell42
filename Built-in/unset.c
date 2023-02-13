@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:06:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/13 11:40:35 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/13 12:33:13 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	**unset_var(char **tab_cmd, char *str)
 	int		i;
 
 	i = 0;
-	cpy = malloc(sizeof(char *) * (tablen(tab_cmd) + 1));//leaks
+	cpy = malloc(sizeof(char *) * (tablen(tab_cmd) + 1));
 	while (tab_cmd[i])
 	{
 		if (ft_strncmp(tab_cmd[i], str, ft_strlen(str)) == 0)

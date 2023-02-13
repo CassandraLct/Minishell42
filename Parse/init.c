@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:36:33 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/13 10:49:27 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/13 11:21:18 by rdi-marz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*recup_valhome(char	**c_env)
 		if (ft_strncmp(c_env[i], "HOME=", 5) == 0)
 			break ;
 	}
-	tmp = malloc(sizeof(char) * (ft_strlen(c_env[i]) + 1));//leaks
+	tmp = malloc(sizeof(char) * (ft_strlen(c_env[i]) + 1));
 	while (c_env[i][j] != '=')
 		j++;
 	j += 1;

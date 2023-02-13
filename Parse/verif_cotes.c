@@ -6,7 +6,7 @@
 /*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:48:29 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/13 11:42:40 by clecat           ###   ########.fr       */
+/*   Updated: 2023/02/13 12:33:48 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,5 @@ void	verif_cmdcotes(t_min *mini)
 	new_line = check_line(tmp_line);
 	free(mini->line);
 	mini->line = ft_strdup(new_line);
-	printf("mini.line = {%s}\n", mini->line);
 	free(new_line);
 }
