@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 10:33:18 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/13 10:58:50 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/14 09:23:55 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,15 @@ void	echo_control_seq(int c)
 
 	ioctl(ttyslot(), TIOCGETA, &conf);
 	if (c == 1)
+	{
 		conf.c_lflag |= ECHOCTL;
+		conf.c_cc[VQUIT] = 034;
+	}
 	else if (c == 0)
-		conf.c_lflag &= ~(ECHOCTL);
+	{
+		conf.c_lflag &= ~(ECHOCTL);	
+		conf.c_cc[VQUIT] = 0;
+	}
 	ioctl(ttyslot(), TIOCSETA, &conf);
 }
 

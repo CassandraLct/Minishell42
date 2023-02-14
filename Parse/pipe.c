@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:01:25 by rdi-marz          #+#    #+#             */
-/*   Updated: 2023/02/12 17:58:31 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/13 18:13:21 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	piping(void)
 	pid_t	pid;
 	int		**pp;
 
+	echo_control_seq(1);
 	pp = ft_create_pipe(g_mini.struct_cmd);
 	i = 0;
 	while (g_mini.struct_cmd[i + 1])
@@ -94,5 +95,6 @@ int	piping(void)
 	ft_last_command(g_mini.struct_cmd, pp, i);
 	ft_wait_all();
 	free_tab((char **)pp);
+	echo_control_seq(0);
 	return (1);
 }

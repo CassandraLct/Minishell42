@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdi-marz <rdi-marz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clecat <clecat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:36:33 by clecat            #+#    #+#             */
-/*   Updated: 2023/02/13 11:21:18 by rdi-marz         ###   ########.fr       */
+/*   Updated: 2023/02/14 09:24:48 by clecat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,12 @@ void	aff_err(char **cmd)
 //initialise la structure
 void	init_struct(t_min *mini, char **envp)
 {
-	mini->c_env = ft_cpytab(envp);
+	if (envp[0] == NULL) //pour gestion cas env -i
+	{
+		printf("only getpwd & oldpwd\n");//en cours
+	}
+	else
+		mini->c_env = ft_cpytab(envp);
 	init_export(mini);
 	mini->line = NULL;
 	mini->prompt = "minishell> ";

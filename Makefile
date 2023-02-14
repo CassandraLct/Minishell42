@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rdi-marz <rdi-marz@student.42nice.fr>      +#+  +:+       +#+         #
+#    By: clecat <clecat@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/20 11:44:23 by clecat            #+#    #+#              #
-#    Updated: 2023/02/12 15:22:17 by rdi-marz         ###   ########.fr        #
+#    Updated: 2023/02/14 09:23:23 by clecat           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,10 @@ CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror -g #-fsanitize=address
 NAME	= minishell
 LIBPATH	= ~/.brew/Cellar/readline/8.2.1/lib/ 
-SRC		=	main.c \
-		exec.c \
-		exec_utils.c \
+SRC		=	Execution/main.c \
+		Execution/exec.c \
+		Execution/exec_utils.c \
+		Execution/signals.c \
 		Built-in/cd.c \
 		Built-in/cd_utils.c \
 		Built-in/cd_tild.c \
@@ -30,7 +31,6 @@ SRC		=	main.c \
 		Built-in/export_utils.c \
 		Built-in/export_utils2.c \
 		Built-in/unset.c \
-		Built-in/signals.c \
 		Built-in/annexe.c \
 		Parse/init.c \
 		Parse/lexer.c \
